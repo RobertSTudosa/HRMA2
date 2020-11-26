@@ -577,3 +577,329 @@
 2020-11-26 21:29:18.420  INFO 20336 --- [RMI TCP Connection(8)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 2020-11-26 21:29:18.422  INFO 20336 --- [RMI TCP Connection(8)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2020-11-26 21:29:18.651  WARN 20336 --- [RMI TCP Connection(8)-127.0.0.1] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-26 21:38:49.063  INFO 12744 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 12744 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:38:49.066 DEBUG 12744 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:38:49.066  INFO 12744 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 21:38:49.107  INFO 12744 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-26 21:38:49.107  INFO 12744 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-26 21:38:49.941  INFO 12744 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:38:50.014  INFO 12744 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66ms. Found 8 JPA repository interfaces.
+2020-11-26 21:38:50.616  INFO 12744 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:38:50.708  INFO 12744 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1601 ms
+2020-11-26 21:38:50.972  INFO 12744 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 21:38:52.254  INFO 12744 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:38:52.300  INFO 12744 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:38:52.994  WARN 12744 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:38:53.125  INFO 12744 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:38:53.627  INFO 12744 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:38:53.696  INFO 12744 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:38:53.700  INFO 12744 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 4.899 seconds (JVM running for 5.463)
+2020-11-26 21:39:03.239  INFO 12744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 21:39:03.257  INFO 12744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
+2020-11-26 21:39:03.277 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:03.279 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 21:39:03.279 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:03.282 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:03.283 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=dev}]
+2020-11-26 21:39:03.283 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:05.070 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:05.071 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayLoginForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.SecurityController.displayLoginForm () with arguments[s] = []
+2020-11-26 21:39:05.071 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:05.075 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:05.075 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayLoginForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.SecurityController.displayLoginForm () with arguments[s] = []
+2020-11-26 21:39:05.075 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:06.069 DEBUG 12744 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:06.070 DEBUG 12744 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{}]
+2020-11-26 21:39:06.070 DEBUG 12744 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:06.075 DEBUG 12744 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:06.076 DEBUG 12744 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@5cc606a7, userAccount=com.bzbees.hrma.entities.User@770a22d3}]
+2020-11-26 21:39:06.076 DEBUG 12744 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:24.747  INFO 12744 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:39:24.749  INFO 12744 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:39:24.987  WARN 12744 --- [Thread-5] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-26 21:39:25.092  INFO 12744 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 12744 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:39:25.092 DEBUG 12744 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:39:25.092  INFO 12744 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 21:39:25.429  INFO 12744 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:39:25.452  INFO 12744 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23ms. Found 8 JPA repository interfaces.
+2020-11-26 21:39:25.572  INFO 12744 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:39:25.597  INFO 12744 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 503 ms
+2020-11-26 21:39:25.638  INFO 12744 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 21:39:25.894  INFO 12744 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:39:25.905  INFO 12744 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:39:26.126  WARN 12744 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:39:26.150  INFO 12744 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:39:26.295  INFO 12744 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:39:26.316  INFO 12744 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:39:26.317  INFO 12744 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 1.254 seconds (JVM running for 38.081)
+2020-11-26 21:39:26.320  INFO 12744 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-11-26 21:39:32.995  INFO 12744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 21:39:33.000  INFO 12744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2020-11-26 21:39:33.004 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:33.004 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{}]
+2020-11-26 21:39:33.004 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:33.008 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:33.008 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@6bd96067, userAccount=com.bzbees.hrma.entities.User@79406238}]
+2020-11-26 21:39:33.008 DEBUG 12744 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:33.824 DEBUG 12744 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:33.825 DEBUG 12744 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@6bd96067, userAccount=com.bzbees.hrma.entities.User@79406238}]
+2020-11-26 21:39:33.825 DEBUG 12744 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:33.825 DEBUG 12744 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:33.826 DEBUG 12744 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@6bd96067, userAccount=com.bzbees.hrma.entities.User@79406238}]
+2020-11-26 21:39:33.826 DEBUG 12744 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:36.695 DEBUG 12744 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:36.695 DEBUG 12744 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 21:39:36.695 DEBUG 12744 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:36.697 DEBUG 12744 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:39:36.698 DEBUG 12744 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=dev}]
+2020-11-26 21:39:36.698 DEBUG 12744 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:39:42.846  INFO 12744 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-11-26 21:39:42.849  INFO 12744 --- [RMI TCP Connection(9)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:39:42.850  INFO 12744 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:39:43.073  WARN 12744 --- [RMI TCP Connection(9)-127.0.0.1] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-26 21:39:52.885  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 19992 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:39:52.887 DEBUG 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:39:52.887  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 21:39:52.923  INFO 19992 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-26 21:39:52.923  INFO 19992 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-26 21:39:53.803  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:39:53.869  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59ms. Found 8 JPA repository interfaces.
+2020-11-26 21:39:54.493  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:39:54.589  INFO 19992 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1666 ms
+2020-11-26 21:39:54.844  INFO 19992 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 21:39:56.128  INFO 19992 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:39:56.181  INFO 19992 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:39:56.884  WARN 19992 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:39:57.012  INFO 19992 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:39:57.449  INFO 19992 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 058e6100-3fd2-4435-8ed1-eefaaa036af6
+
+2020-11-26 21:39:57.606  INFO 19992 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44942027, org.springframework.security.web.context.SecurityContextPersistenceFilter@7e390ebe, org.springframework.security.web.header.HeaderWriterFilter@375e5600, org.springframework.security.web.csrf.CsrfFilter@3eb24cfb, org.springframework.security.web.authentication.logout.LogoutFilter@4948d2f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@72b3a96f, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@68a60664, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@591d06b9, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@731d2c0a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@18ee9a5f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@42a09458, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@66cf292b, org.springframework.security.web.session.SessionManagementFilter@51a3f4cc, org.springframework.security.web.access.ExceptionTranslationFilter@53b0af1a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2476618b]
+2020-11-26 21:39:57.771  INFO 19992 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:39:57.854  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:39:57.857  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 5.223 seconds (JVM running for 5.846)
+2020-11-26 21:40:01.050  INFO 19992 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 21:40:01.068  INFO 19992 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
+2020-11-26 21:40:13.123 DEBUG 19992 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:40:13.124 DEBUG 19992 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 21:40:13.124 DEBUG 19992 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:40:13.128 DEBUG 19992 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:40:13.129 DEBUG 19992 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=dev}]
+2020-11-26 21:40:13.129 DEBUG 19992 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:40:38.948  INFO 19992 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:40:38.950  INFO 19992 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:40:39.178  WARN 19992 --- [Thread-5] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-26 21:40:39.293  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 19992 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:40:39.293 DEBUG 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:40:39.293  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 21:40:39.650  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:40:39.673  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23ms. Found 8 JPA repository interfaces.
+2020-11-26 21:40:39.804  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:40:39.828  INFO 19992 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 533 ms
+2020-11-26 21:40:39.867  INFO 19992 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 21:40:40.128  INFO 19992 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:40:40.139  INFO 19992 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:40:40.347  WARN 19992 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:40:40.373  INFO 19992 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:40:40.493  INFO 19992 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: f7a72de3-7903-4c3d-8d88-21b3d181db0b
+
+2020-11-26 21:40:40.507  INFO 19992 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@131201b5, org.springframework.security.web.context.SecurityContextPersistenceFilter@ff8b7cf, org.springframework.security.web.header.HeaderWriterFilter@4f0b263d, org.springframework.security.web.csrf.CsrfFilter@5fc47a25, org.springframework.security.web.authentication.logout.LogoutFilter@65a24bee, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@431ba2ad, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5aff8258, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@189ceed, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@62f838a3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30c8bd9a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@26e44f70, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1f991abb, org.springframework.security.web.session.SessionManagementFilter@7311feda, org.springframework.security.web.access.ExceptionTranslationFilter@4cae643e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@43aa246e]
+2020-11-26 21:40:40.560  INFO 19992 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:40:40.583  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:40:40.584  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 1.32 seconds (JVM running for 48.574)
+2020-11-26 21:40:40.587  INFO 19992 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-11-26 21:40:46.210  INFO 19992 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:40:46.212  INFO 19992 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:40:46.434  WARN 19992 --- [Thread-9] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-26 21:40:46.553  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 19992 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:40:46.553 DEBUG 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:40:46.553  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2020-11-26 21:40:46.887  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:40:46.910  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22ms. Found 8 JPA repository interfaces.
+2020-11-26 21:40:47.034  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:40:47.059  INFO 19992 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 504 ms
+2020-11-26 21:40:47.336  INFO 19992 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://176.223.122.51:3306/bpeople_BZBees'
+2020-11-26 21:40:47.560  INFO 19992 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:40:47.772  WARN 19992 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:40:47.799  INFO 19992 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:40:47.916  INFO 19992 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 83ca9fcf-c790-499e-bd4e-a2a7e0447f39
+
+2020-11-26 21:40:47.929  INFO 19992 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@65d8580b, org.springframework.security.web.context.SecurityContextPersistenceFilter@1ba10bbe, org.springframework.security.web.header.HeaderWriterFilter@462e5805, org.springframework.security.web.csrf.CsrfFilter@7fa5e2c6, org.springframework.security.web.authentication.logout.LogoutFilter@8d7fdde, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4d916bd9, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@74c0d6e6, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@16653603, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@436c8854, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@189ef139, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2c446c5f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@50ec48b5, org.springframework.security.web.session.SessionManagementFilter@4bc273d2, org.springframework.security.web.access.ExceptionTranslationFilter@28957536, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5eec40f]
+2020-11-26 21:40:47.984  INFO 19992 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:40:47.987  INFO 19992 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:40:48.011  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:40:48.012  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 1.486 seconds (JVM running for 56.001)
+2020-11-26 21:40:48.015  INFO 19992 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-11-26 21:40:53.549  INFO 19992 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 21:40:53.558  INFO 19992 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-11-26 21:40:53.563 DEBUG 19992 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:40:53.563 DEBUG 19992 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 21:40:53.564 DEBUG 19992 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:40:53.567 DEBUG 19992 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:40:53.567 DEBUG 19992 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=locale - 0.0.2.0}]
+2020-11-26 21:40:53.567 DEBUG 19992 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:41:29.278 DEBUG 19992 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:41:29.278 DEBUG 19992 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 21:41:29.278 DEBUG 19992 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:41:29.279 DEBUG 19992 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:41:29.279 DEBUG 19992 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=locale - 0.0.2.0}]
+2020-11-26 21:41:29.279 DEBUG 19992 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:41:56.428  INFO 19992 --- [Thread-14] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:41:56.429  INFO 19992 --- [Thread-14] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:41:56.552  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 19992 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:41:56.552 DEBUG 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:41:56.552  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2020-11-26 21:41:56.890  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:41:56.913  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22ms. Found 8 JPA repository interfaces.
+2020-11-26 21:41:57.043  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:41:57.068  INFO 19992 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 514 ms
+2020-11-26 21:41:57.254  INFO 19992 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://176.223.122.51:3306/bpeople_BZBees'
+2020-11-26 21:41:57.465  INFO 19992 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:41:57.666  WARN 19992 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:41:57.699  INFO 19992 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:41:57.823  INFO 19992 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 3522cb22-bd3d-48b6-b023-d22b5f76ead3
+
+2020-11-26 21:41:57.837  INFO 19992 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6fc39a5e, org.springframework.security.web.context.SecurityContextPersistenceFilter@199115f2, org.springframework.security.web.header.HeaderWriterFilter@4af1132f, org.springframework.security.web.csrf.CsrfFilter@1c0291cc, org.springframework.security.web.authentication.logout.LogoutFilter@ddf669e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3a2d46a9, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6e2e5169, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@ace65b2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3bd160d1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@167c8a07, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54569b8c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a06624c, org.springframework.security.web.session.SessionManagementFilter@11957afd, org.springframework.security.web.access.ExceptionTranslationFilter@16d33639, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@26b86a0e]
+2020-11-26 21:41:57.891  INFO 19992 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:41:57.894  INFO 19992 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:41:57.917  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:41:57.918  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 1.396 seconds (JVM running for 125.907)
+2020-11-26 21:41:57.920  INFO 19992 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-11-26 21:42:10.818  INFO 19992 --- [Thread-19] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:42:10.820  INFO 19992 --- [Thread-19] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:42:10.953  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 19992 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:42:10.953 DEBUG 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:42:10.953  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2020-11-26 21:42:11.306  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:42:11.331  INFO 19992 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24ms. Found 8 JPA repository interfaces.
+2020-11-26 21:42:11.451  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:42:11.477  INFO 19992 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 522 ms
+2020-11-26 21:42:11.659  INFO 19992 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://176.223.122.51:3306/bpeople_BZBees'
+2020-11-26 21:42:11.898  INFO 19992 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:42:12.141  WARN 19992 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:42:12.187  INFO 19992 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:42:12.330  INFO 19992 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: dd6ee7d3-b7f6-4e9e-b4ee-d55748ce84f5
+
+2020-11-26 21:42:12.347  INFO 19992 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41587f79, org.springframework.security.web.context.SecurityContextPersistenceFilter@7963f1c8, org.springframework.security.web.header.HeaderWriterFilter@158efb5c, org.springframework.security.web.csrf.CsrfFilter@729559a9, org.springframework.security.web.authentication.logout.LogoutFilter@260651db, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2961239b, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@12e85416, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@626e5ca1, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6d5d3ceb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ce3ca87, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2ed58c5c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@42b3d68c, org.springframework.security.web.session.SessionManagementFilter@21e3bc4c, org.springframework.security.web.access.ExceptionTranslationFilter@413e8172, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@19a7465d]
+2020-11-26 21:42:12.405  INFO 19992 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:42:12.408  INFO 19992 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:42:12.434  INFO 19992 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:42:12.436  INFO 19992 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 1.508 seconds (JVM running for 140.424)
+2020-11-26 21:42:12.439  INFO 19992 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
