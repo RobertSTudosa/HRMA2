@@ -1,0 +1,468 @@
+@import url("buttons/buttons.css");
+   * {
+                                        box-sizing: border-box;
+                                        margin: 0px;
+                                        padding: 0px;
+                                        border: 0px; 
+                                    }
+.register_form {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: left;
+	text-align: left;
+	padding-top: 20%;
+	padding-left: 5%;
+	padding-right: 2%;
+	width: 100%;
+}
+
+.input_elements {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: left;
+	width: 90%;
+}
+
+.input_elements .upload {
+	align-self: flex-start;
+}
+
+
+	.input_elements button {
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10%;
+    align-self: flex-end;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: inset 1px -1px 1px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    /* border: 0.25px solid #000000; */
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 10%;
+    height: 2rem;
+    background-color: #E9D415;
+}
+
+.input_elements button p {
+	display: none;
+	margin-right: 2px;
+	font-size: 0.8rem;
+}
+
+
+.input_elements button a {
+    text-decoration: none;
+}
+
+.input_elements button #add_desk {
+	display:none;
+	
+}
+
+.input_elements #addlanguage {
+	width: 30%;
+}
+
+.input_elements button #add_mobile {
+	display:inline;
+	
+}
+
+	
+.input_dates .input_field #date {
+	width: 100%;			
+}
+	
+.input_dates .input_field #work_number {
+	width: 30%;
+	margin-left: 2rem;
+	
+}
+	
+.register_form2 .input_elements_private {
+	display: flex;
+	width: 90%;
+	padding-top: 5%;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.input_elements_private radio {
+	padding-top: 1%;
+	color: #1F1B1B;
+	border: none;
+	border-radius: 0px;
+}
+
+.input_elements .input_field input:checked {
+	border-style: none;
+}
+
+
+.register_form h3 {
+	text-align: left;
+	padding-top: 2rem;
+	font-size: 2rem;
+ 	text-decoration: underline;
+ 	text-underline-position: under;
+	text-decoration-color: #E9D415;
+	
+	
+	
+	/* width: 20%; */
+}
+
+.register_form h4 {
+	font-style: italic;
+	border-bottom: solid 1px #E9D415;
+	padding-bottom: .3rem;
+	width: 65%;
+	
+	
+	
+}
+
+.register_form input {
+	display: block;
+	position: relative;
+	border: 1px solid transparent;
+	border-radius: .3rem;
+	outline: none;
+	text-align: left;
+	text-indent: .3rem;
+	padding: .3rem;
+	margin-top: 2rem;
+	background: #F3F3F3;
+	width: 90%;
+	
+}
+
+.register_form  .input_field {
+	display: block;
+	position: relative;
+}
+
+.register_form .input_elements .input_field label {
+	position:absolute;
+	font-family: sans-serif;
+	font-size: .8rem;
+	top:37px;
+	left: 10px;
+	color: #6f6f6f; 
+	transition: 0.1s ease all;
+}
+
+.register_form .input_field input:placeholder-shown + label,
+.register_form .input_field textarea:placeholder-shown + label,
+.register_form .input_field select:placeholder-shown + label {
+	/*if placeholder IS SHOWN the label is hidden 
+		placeholder-shown="true" */
+	visibility: hidden;
+	z-index: -1;
+}
+
+
+.register_form  .input_field span {
+	color: red;
+}
+
+
+.register_form .input_field input:focus ~ label,
+.register_form .input_field textarea:focus ~ label,
+.register_form .input_field select:focus ~ label
+
+ {
+ 	visibility:visible;
+ 	z-index: 1;
+	top: 15px;
+	color: #1F9A01;
+
+
+}
+
+.register_form .input_field input:not(:placeholder-shown) ~ label,
+.register_form .input_field textarea:not(:placeholder-shown) ~ label,
+.register_form .input_field select:not(:placeholder-shown) ~ label {
+	/*placeholder-shown="false"  */
+	
+	top: 18px;
+	/* color: #E9D415;	 */
+	color: #1F9A01; 
+	font-size: .7rem;
+	
+	
+}
+
+
+
+.register_form input::placeholder, textarea::placeholder {
+	text-align: left;
+	font-style: italic;
+	color: #6f6f6f; 
+	
+}
+
+
+.register_form input[type=email] {
+	background: #FFFFFF;
+	border: 0.25px solid #000000;
+	box-sizing: border-box;
+	border-radius: 4px;
+	box-shadow: inset 3px -1px 1px #1F1B1B;
+}
+
+.register_form input[type=text] {
+	box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.25);
+	background: #FFFFFF;
+	/* border: 0.25px solid #000000; */
+	box-sizing: border-box;
+	border-radius: 4px;
+}
+
+.register_form textarea {
+	border: 1px solid transparent;
+	box-shadow: inset 1px -1px 1px rgba(0, 0, 0, 0.25);
+	border-radius: .3rem;
+	outline: none;
+	text-align: left;
+	text-indent: .3rem;
+	padding: .3rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	background: #F3F3F3;
+	width: 90%;
+	height: 30vh;
+}
+
+	.register_form .input_elements #skill {
+		border: 1px solid transparent;
+		box-shadow: inset 1px -1px 1px rgba(0, 0, 0, 0.25);
+		border-radius: .3rem;
+		outline: none;
+		text-align: left;
+		text-indent: .3rem;
+		padding: .3rem;
+		margin-top: 2rem;
+		background: #F3F3F3;
+		width: 90%;
+		height: 10vh;
+}
+
+.register_form input:focus, textarea:focus {
+	border-color: #E9D415;
+	box-shadow: 2px 1px 10px 2px rgba(233, 212, 22, 0.56);
+	
+}
+
+
+ 
+.select_fields {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: space-evenly;
+	align-content: center;
+}
+
+.select_lang {
+	box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.25);
+	background: #FFFFFF;
+	/* border: 0.25px solid #000000; */
+	box-sizing: border-box;
+	border-radius: 4px;
+	margin-top: 2rem;
+	width: 90%;
+}
+
+
+.skill_table, .lang_table, .docs_table {
+	border-collapse: collapse;
+	margin-top: 2rem;
+	box-shadow: inset 1px -1px 1px rgba(0, 0, 0, 0.25);
+	background: #FFFFFF;
+	/* border: 0.25px solid #000000; */
+	box-sizing: border-box;
+	border-radius: 4px;
+	width: 90%;
+	border-spacing: 1rem;
+	color: #1F9A01;
+}
+
+
+.skill_table tr:nth-of-type(2) {
+	border: none;
+	background-color: #ccc9c9;
+}
+
+.lang_table tr:nth-of-type(2) {
+	border: none;
+	background-color: #ccc9c9;
+}
+
+.docs_table tr:nth-of-type(2) {
+	border: none;
+	background-color: #ccc9c9;
+}
+
+.skill_table .caption {
+	align: left;
+}
+
+.skill_table #skill_description {
+	font-style: italic;
+}
+
+.skill_table tbody th, td {
+	text-align: left;
+	margin-left: 3px;
+	padding-left: 10px;
+}
+
+ .lang_table tbody th, td {
+	text-align: left;
+	margin-left: 3px;
+	padding-left: 10px;
+} 
+
+ .docs_table tbody th, td {
+	text-align: left;
+	margin-left: 3px;
+	padding-left: 10px;
+} 
+	
+	
+
+	
+/* iconify */
+
+.iconify {
+	font-size: 1.5rem;
+
+}
+
+
+@media screen and (min-width:481px) and (max-width: 780px) {
+	.register_form {
+		padding-top: 20%;
+
+	}
+}
+
+
+/* *** !!! this is where desk versions starts!!! ***  */
+@media screen and (min-width: 781px) {
+	
+	.register_form {
+		padding-top: 20px;
+	}
+	
+	.register_form .register_home {
+		font-size:2rem;
+	}
+	
+	.register_form h3 {
+	margin-right: 20%;
+	text-align: left;
+	padding-top: 10%;
+	font-size: 3rem;
+}
+	
+	.account_profile {
+		margin-bottom: 10px;
+		margin-top: 10px;
+		padding-top:5%;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-around;
+		align-items: center; 
+		height: 300px;
+	}
+	
+	.account_profile .profile {
+		width: 40%;
+		border: #E9D415 solid 1px ;
+		box-shadow: 2px 1px 10px 2px rgba(233, 212, 22, 0.56);
+		background-color: #F3F3F3;
+		padding-top:0px;
+		padding-bottom: 1%;
+
+	}
+	.account_profile .account {
+		width: 40%;
+	}
+	
+	.register_form2 {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center; 
+		height: 300px;
+	
+	}
+	
+	.register_form2 .input_jobinfo {
+		width: 45%;
+	
+	}
+	
+
+	
+	.register_form2 .input_elements #job_resp {
+	width: 55vw;
+	height: 50vh;
+	
+	}
+	
+	/* icons */
+	
+/* 	.iconify {
+	font-size: 1.8rem;
+	}
+ */	
+
+.input_elements button {
+	width: 20%;
+}
+
+.input_elements button #add_desk {
+	display:inline;
+	
+}
+
+.input_elements button #add_mobile {
+	display:none;
+	
+}
+
+.input_elements button p {
+	display: inline;
+	margin-right: 2px;
+	margin-left: 5px;
+	padding-left: 5%;
+
+}
+
+
+
+.input_elements .iconify {
+	font-size: 1.3rem;
+}
+
+
+	
+	
+	
+	
+	
+	
+
+	
+
+}

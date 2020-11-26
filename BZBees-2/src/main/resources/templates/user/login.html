@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="brand-text">
+            	<a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" /></button></a>  
+            </div>
+
+
+
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="#">candidate</a></li>
+                    <li><a href="#">agency</a></li>
+                    <li><a href="#">employee</a></li>
+
+                </ul>
+            </div>
+            <div>
+                <button class="button-user">
+                            <img src="../css/buttons/user-name.png" alt="header" />
+                        </button>
+
+                <div class="user-name">Robert T.</div>
+
+                <button class="button-userplus">
+                            <img src="../css/buttons/user-plus.png" alt="header" />
+                        </button>
+
+
+
+                <button class="burgermenu">
+                            <img src="../css/buttons/burgermenu.svg" alt="header" />
+                        </button>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <main>
+        <section class="login_form">
+            <h3>Login</h3>
+            <div>
+                <input type="text" placeholder="username">
+            </div>
+
+            <input type="text" placeholder="password">
+
+            <div class="login_buttons">
+            
+                <button type="submit" class="button_login">
+                    <a href="#" >Login</a>
+                </button>
+
+                <button type="submit" class="button_login">
+                   <a th:href="@{/user}" >Register</a>
+                </button>
+            </div>
+
+        </section>
+
+
+    </main>
+
+    <!-- <h3>Check out this useful links</h3> -->
+    <!-- <hr>
+    <hr style="height:1px;border-width:0;color:gray;background-color:gray"> -->
+    <footer class="footer-container2">
+
+        <div class="footer-follow-me2">
+            <button class="facebook">
+                <span class="iconify" data-inline="false" data-icon="dashicons:facebook"></span>
+                <label for="facebook" >facebook</label>
+            </button>
+            <button class="linkedin">
+                <span class="iconify" data-inline="false" data-icon="el:linkedin"></span>
+                <label for="linkedin">linkedin</label>
+            </button>
+            <button class="twitter">
+                <span class="iconify" data-inline="false" data-icon="vaadin:twitter-square"></span>
+                <label for="twitter">twitter</label>
+            </button>
+            <button class="youtube">
+                <span class="iconify" data-inline="false" data-icon="ant-design:youtube-outlined"></span>
+                <label for="youtube">youtube</label>
+            </button>
+
+
+        </div> 
+
+         <div class="copyright2">
+            <h5>Conveniently redefine world-class e-business after state of the art relationships. Authoritatively streamline standardized users without efficient "outside the box" thinking. Uniquely whiteboard.</h5>
+
+        </div> 
+    </footer>
+
+
+
+
+
+
+
+
+  <script src="../css/script.js" defer></script>
+</body>
+
+</html>

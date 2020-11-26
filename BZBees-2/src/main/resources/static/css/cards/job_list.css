@@ -1,0 +1,88 @@
+@import url("text.css");
+
+.job_profile_card {
+    margin-top: .3rem;
+    border-radius: 3px;
+    width:100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    color: #484848;
+    background-color: #ECECEC;
+}
+
+
+
+.profile_icons {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    right: -10%; 
+    margin-bottom: .5rem;
+}
+
+.profile_icons a {
+	text-decoration: none;
+}
+
+.profile_icons_right {
+	isplay: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width:30%;
+    
+}
+
+
+
+.profile_icons #false {
+	color: red;
+	margin-right: 10px;
+}
+
+.profile_icons #true {
+	color:green;
+	margin-right: 10px;
+}
+
+.job_profile_title {
+	text-decoration:underline;
+	text-decoration-color: #ECECEC;
+    padding-left: .2rem;
+    margin-top: .5rem;
+    font-size: 1.7rem;
+}
+
+
+.job_profile_location {
+    padding-left: .2rem;
+    font-size: 1.2rem;
+}
+
+.job_profile_card_dates {
+    padding-left: .2rem;
+    display: flex;
+    flex-flow: row wrap;
+    width: 70%;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+.job_profile_card_dates_line {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: baseline;
+	
+}
+
+.job_profile_description p {
+    color: #484848;
+    padding-left: 1.2rem;
+    font-style: italic;
+}

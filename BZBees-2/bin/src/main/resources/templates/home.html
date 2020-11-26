@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BZBees - real job and management app</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+    <header>
+        <nav class="navbar">
+            <div class="brand-text">
+                <a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" /></button></a>
+            </div>
+
+
+
+            <div class="navbar-links">
+                <ul>
+                    <li><a th:href="@{/login}">candidate</a></li>
+                    <li><a href="#">agency</a></li>
+                    <li><a href="#">employee</a></li>
+
+                </ul>
+            </div>
+            <div>
+                <button class="button-user">
+                        <img src="../css/buttons/user-name.png" alt="header" />
+                    </button>
+
+                <div class="user-name">Robert T.</div>
+
+                <button class="button-userplus">
+                        <img src="../css/buttons/user-plus.png" alt="header" />
+                    </button>
+
+
+
+                <button class="burgermenu">
+                        <img src="../css/buttons/burgermenu.svg" alt="header" />
+                    </button>
+            </div>
+
+
+
+
+        </nav>
+        
+     
+
+
+    </header>
+    
+       
+
+    <main>
+		
+        <div class="searchbox">
+       
+            <input type="text" id="searchbox-input" onclick="" placeholder="search for me" />
+            <button type="submit" class="search-button"><img src="../css/graphic/search.png" /></button>
+        </div>
+        
+ <a th:text="${localVerNumber}" style="self-align:right;"></a>
+        <section class="top-main">
+			
+            <section class="jobs">
+                <div class="main-yellow-text">jobs</div>
+
+                <div class="job-card-container">
+
+                    <div class="job-card">
+                        <div id="agency-avatar">
+                            <img src="../css/cards/agency_avatar.png" alt="agency" />
+                            <div id="agency-avatar-text">prp solutions</div>
+                        </div>
+                        <div id="job-card-main">
+                            <img id="job-card-img" src="../css/cards/jobCardMainPhoto.svg" alt="agency" />
+                            <div id="job-card-title">Java developer</div>
+                            <div id="job-card-hashes">#java #IT $20/h 40h/wk</div>
+                            <div id="job-card-text"> General description or an excerpt of the offered job. Project type, work type general conditions, special ... </div>
+                        </div>
+
+                        <div id="job-card-footer">
+
+
+                            <div class="card-interact">
+
+                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
+                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+
+
+                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
+                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
+
+
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">256 likes</div>
+                            </div>
+
+                            <div class="apply">
+                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
+                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div id="agency-avatar">
+                            <img src="../css/cards/agency_avatar.png" alt="agency" />
+                            <div id="agency-avatar-text">prp solutions</div>
+                        </div>
+                        <div id="job-card-main">
+                            <img id="job-card-img" src="../css/cards/jobCardMainPhoto.svg" alt="agency" />
+                            <div id="job-card-title">Java developer</div>
+                            <div id="job-card-hashes">#java #IT $20/h 40h/wk</div>
+                            <div id="job-card-text"> General description or an excerpt of the offered job. Project type, work type general conditions, special ... </div>
+                        </div>
+
+                        <div id="job-card-footer">
+
+
+                            <div class="card-interact">
+
+                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
+                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+
+
+                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
+                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
+
+
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">256 likes</div>
+                            </div>
+
+                            <div class="apply">
+                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
+                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div id="agency-avatar">
+                            <img src="../css/cards/agency_avatar.png" alt="agency" />
+                            <div id="agency-avatar-text">prp solutions</div>
+                        </div>
+                        <div id="job-card-main">
+                            <img id="job-card-img" src="../css/cards/jobCardMainPhoto.svg" alt="agency" />
+                            <div id="job-card-title">Java developer</div>
+                            <div id="job-card-hashes">#java #IT $20/h 40h/wk</div>
+                            <div id="job-card-text"> General description or an excerpt of the offered job. Project type, work type general conditions, special ... </div>
+                        </div>
+
+                        <div id="job-card-footer">
+
+
+                            <div class="card-interact">
+
+                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
+                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+
+
+                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
+                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
+
+
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">256 likes</div>
+                            </div>
+
+                            <div class="apply">
+                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
+                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card">
+                        <div id="agency-avatar">
+                            <img src="../css/cards/agency_avatar.png" alt="agency" />
+                            <div id="agency-avatar-text">prp solutions</div>
+                        </div>
+                        <div id="job-card-main">
+                            <img id="job-card-img" src="../css/cards/jobCardMainPhoto.svg" alt="agency" />
+                            <div id="job-card-title">Java developer</div>
+                            <div id="job-card-hashes">#java #IT $20/h 40h/wk</div>
+                            <div id="job-card-text"> General description or an excerpt of the offered job. Project type, work type general conditions, special ... </div>
+                        </div>
+
+                        <div id="job-card-footer">
+
+
+                            <div class="card-interact">
+
+                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
+                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+
+
+                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
+                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
+
+
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">256 likes</div>
+                            </div>
+
+                            <div class="apply">
+                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
+                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <br><br><br>
+                </div>
+
+            </section>
+
+            <section class="agencies">
+                <div class="main-yellow-text">agencies</div>
+
+                <div class="agencycard-container">
+
+                    <div class="agencycard">
+
+                        <div id="agencycard-bg">
+                            <div id="agencycard-header">
+
+                                <div id="agencycard-avatar">
+                                    <img src="../css/cards/agencycard_avatar.svg" alt="agency" />
+                                    <div id="agencycard-avatar-text">the JobBoss</div>
+
+                                </div>
+
+                                <div class="arrow">
+                                    <div class="line"></div>
+                                    <div class="point"></div>
+                                    <div class="point2"></div>
+                                </div>
+                            </div>
+
+
+
+                            <div id="agencycard-left-details">
+                                <div id="agencycard-location">
+                                    <h6>location:</h6>
+                                    <h4>Denmark</h4>
+                                </div>
+
+                                <div id="agencycard-joblocation">
+                                    <h6>jobs location:</h6>
+                                    <h4>Denmark, Estonia, Germany</h4>
+                                </div>
+
+                                <div id="agencycard-jobs">
+                                    <h6>jobs:</h6>
+                                    <h4>webdesigner, wireframe, java developer</h4>
+                                </div>
+
+                                <div id="agencycard-mainindustries">
+                                    <h6>main industries:</h6>
+                                    <h4>IT, software development</h4>
+                                </div>
+
+                            </div>
+
+                            <div id="agencycard-rightdetails">
+
+                                <div id="agencycard-icns">
+                                    <img src="../css/cards/agencycard_candidates.png" />
+                                    <h4>357</h4>
+                                    <h6>candidates</h6>
+                                </div>
+
+                                <div id="agencycard-icns">
+                                    <img src="../css/cards/agencycard_avgSalary.png" />
+                                    <h4>$ 56/h</h4>
+                                    <h6>average salary</h6>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="agencycard-footer">
+                            <div id="agencycard-starRating">
+                                <p>4.5</p>
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/halfBlackStar.png" />
+                            </div>
+
+                            <div id="agency-likes">
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">23 likes</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="agencycard">
+
+                        <div id="agencycard-bg">
+                            <div id="agencycard-header">
+
+                                <div id="agencycard-avatar">
+                                    <img src="../css/cards/agencycard_avatar.svg" alt="agency" />
+                                    <div id="agencycard-avatar-text">the JobBoss</div>
+
+                                </div>
+
+                                <div class="arrow">
+                                    <div class="line"></div>
+                                    <div class="point"></div>
+                                    <div class="point2"></div>
+                                </div>
+                            </div>
+
+
+
+                            <div id="agencycard-left-details">
+                                <div id="agencycard-location">
+                                    <h6>location:</h6>
+                                    <h4>Denmark</h4>
+                                </div>
+
+                                <div id="agencycard-joblocation">
+                                    <h6>jobs location:</h6>
+                                    <h4>Denmark, Estonia, Germany</h4>
+                                </div>
+
+                                <div id="agencycard-jobs">
+                                    <h6>jobs:</h6>
+                                    <h4>webdesigner, wireframe, java developer</h4>
+                                </div>
+
+                                <div id="agencycard-mainindustries">
+                                    <h6>main industries:</h6>
+                                    <h4>IT, software development</h4>
+                                </div>
+
+                            </div>
+
+                            <div id="agencycard-rightdetails">
+
+                                <div id="agencycard-icns">
+                                    <img src="../css/cards/agencycard_candidates.png" />
+                                    <h4>357</h4>
+                                    <h6>candidates</h6>
+                                </div>
+
+                                <div id="agencycard-icns">
+                                    <img src="../css/cards/agencycard_avgSalary.png" />
+                                    <h4>$ 56/h</h4>
+                                    <h6>average salary</h6>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="agencycard-footer">
+                            <div id="agencycard-starRating">
+                                <p>4.5</p>
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/halfBlackStar.png" />
+                            </div>
+
+                            <div id="agency-likes">
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">23 likes</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </section>
+
+
+
+        </section>
+
+
+
+        <div class="main-yellow-text">news</div>
+
+        <div class="newscontainer">
+
+
+            <div class="newscard">
+
+                <div id="newscard-textarea">
+                    <h2>The news are big</h2>
+                    <div id="newscard-subtitle">
+                        <h4>24.09.2020</h4>
+                        <h4>by Robert S. Tudor</h4>
+                    </div>
+
+
+                    <p id="newscard-text">Completely leverage other's 24/365 imperatives and frictionless manufactured products. Globally harness collaborative vortals after 2.0 convergence. Enthusiastically myocardinate holistic sources and professional human capital. Compellingly
+                        create magnetic paradigms before highly efficient.
+                    </p>
+
+
+                </div>
+
+            </div>
+
+            <div class="newscard-md">
+
+                <div id="newscard-textarea-md">
+                    <h2>And other news</h2>
+                    <div id="newscard-subtitle">
+                        <h4>12.10.2020</h4>
+                        <h4>by Stef R. Tudor</h4>
+                    </div>
+
+                    <p id="newscard-text">Completely leverage other's 24/365 imperatives and frictionless manufactured products. Globally harness collaborative vortals after 2.0 convergence. Enthusiastically myocardinate holistic sources and professional human capital. Compellingly
+                        create magnetic paradigms before highly efficient.
+                </div>
+
+            </div>
+
+
+            <div class="newscard-sm">
+
+                <div id="newscard-textarea-sm">
+                    <h2>Here we go</h2>
+                    <div id="newscard-subtitle">
+                        <h4>07.12.2020</h4>
+                        <h4>by Alina T.</h4>
+                    </div>
+
+                    <p id="newscard-text">Completely leverage other's 24/365 imperatives and frictionless manufactured products. Globally harness collaborative vortals after 2.0 convergence.
+                </div>
+
+            </div>
+        </div>
+
+
+    </main>
+    <h3>Check out this useful links</h3>
+    <!-- <hr>
+    <hr style="height:1px;border-width:0;color:gray;background-color:gray"> -->
+    <footer class="footer-container">
+
+        <section class="footer-section">
+
+            <ul>
+                <li>
+                    <a href="#">
+                        About
+                    </a>
+                    <p>Quickly implement ubiquitous schemas and optimal metrics. Appropriately pontificate distinctive testing procedures with resource sucking methodologies. Interactively envisioneer effective synergy via strategic innovation.
+                    </p>
+
+                    <a href="#">
+                        How to use
+                    </a>
+                    <p>Quickly implement ubiquitous schemas and optimal metrics. Appropriately pontificate distinctive testing procedures with resource sucking methodologies. Interactively envisioneer effective synergy via strategic innovation.
+                    </p>
+
+                    <a href="#">
+                        Uff, yet another webapp...
+                    </a>
+                    <p>Quickly implement ubiquitous schemas and optimal metrics. Appropriately pontificate distinctive testing procedures with resource sucking methodologies. Interactively envisioneer effective synergy via strategic innovation.
+                    </p>
+
+
+                    <a href="#">
+                        For companies
+                    </a>
+                    <p>Quickly implement ubiquitous schemas and optimal metrics. Appropriately pontificate distinctive testing procedures with resource sucking methodologies. Interactively envisioneer effective synergy via strategic innovation.
+                    </p>
+
+
+                </li>
+            </ul>
+        </section>
+        <nav class="bottom-nav">
+            <div class="bottom-nav-links">
+                <button class="button-home">
+                    <a href="#" class="bottom-nav-link-item">
+                        <img src="../css/buttons/home.png" alt="Home"/>
+                        <h5>Home</h5></a>
+                </button>
+
+                <button class="button-news">
+                    <a href="#" class="bottom-nav-link-item">
+                        <img src="../css/buttons/book-open.png" alt="News"/>
+                        <h5>News</h5></a>
+                </button>
+
+                <button class="button-search">
+                    <a href="#" class="bottom-nav-link-item">
+                        <img src="../css/buttons/search.png"/>
+                        <h5>Search</h5></a>
+                </button>
+
+                <button class="button-jobs">
+                   
+                    <a href="#" class="bottom-nav-link-item">
+                        <img src="../css/buttons/briefcase.png"/>
+                        <h5>Jobs</h5></a>
+                </button>
+
+                <button class="button-agencies">
+                    
+                    <a href="#" class="bottom-nav-link-item">
+                        <img src="../css/buttons/agencies.png"/>
+                        <h5>Agencies</h5></a>
+                </button>
+
+            </div>
+        </nav>
+
+        <div class="footer-follow-me">
+            <button class="facebook">
+                <span class="iconify" data-inline="false" data-icon="dashicons:facebook"></span>
+                <label for="facebook" >facebook</label>
+            </button>
+            <button class="linkedin">
+                <span class="iconify" data-inline="false" data-icon="el:linkedin"></span>
+                <label for="linkedin">linkedin</label>
+            </button>
+            <button class="twitter">
+                <span class="iconify" data-inline="false" data-icon="vaadin:twitter-square"></span>
+                <label for="twitter">twitter</label>
+            </button>
+            <button class="youtube">
+                <span class="iconify" data-inline="false" data-icon="ant-design:youtube-outlined"></span>
+                <label for="youtube">youtube</label>
+            </button>
+
+
+        </div>
+
+        <div class="copyright">
+            <h5>Conveniently redefine world-class e-business after state of the art relationships. Authoritatively streamline standardized users without efficient "outside the box" thinking. Uniquely whiteboard.</h5>
+
+        </div>
+    </footer>
+
+
+
+    <script src="../css/script.js" defer></script>
+
+</body>
+
+</html>

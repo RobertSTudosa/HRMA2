@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Create User</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/main.css">
+<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    
+   
+    
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="brand-text">
+                <a th:href="@{/}"><button>
+						<img src="../css/header/logo.svg" alt="logo" />
+					</button></a>
+            </div>
+
+
+
+            <div class="navbar-links">
+            
+                <ul>
+                    <li><a href="#">candidate</a></li>
+                    <li><a href="#">agency</a></li>
+                    <li><a href="#">employee</a></li>
+
+                </ul>
+            </div>
+            <div>
+                <button class="button-user">
+					<img src="../css/buttons/user-name.png" alt="header" />
+				</button>
+
+                <div class="user-name">Robert T.</div>
+
+                <button class="button-userplus">
+					<img src="../css/buttons/user-plus.png" alt="header" />
+				</button>
+
+
+
+                <button class="burgermenu">
+					<img src="../css/buttons/burgermenu.svg" alt="header" />
+				</button>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <main>
+        <section class="register_form">
+        
+            <form data-persist="garlic" th:action="@{/user/save}" th:object="${userAccount}" method="POST" >
+
+                <div class="account_profile">
+                    
+                    <div class="profile">
+
+                        <h3 class="register_home">Profile</h3>
+
+                        <div class="input_elements">
+                        	<div class="input_field">
+	                        	<input th:field="${person.firstName}" type="text" required="required" 
+	                        		autofocus placeholder="First Name"> 
+	                        	<label>First Name<span> *</span></label>
+                        	</div>
+                        	<div class="input_field">
+	                            <input th:field="${person.lastName}" type="text" required="required" placeholder="Last Name" > 
+	                            <label>Last Name<span> *</span></label>
+                        	</div>
+                        	
+                        	<div class="input_field">
+		                    	<input th:field="${person.birthDate}" type="text" required="required"  
+		                    	onclick="(this.type='date')" onblur="(this.type='text')" placeholder="Birth Date">
+		               			<label>Birth Date<span> *</span></label>
+                     		</div>
+                     		
+                            <div class="input_field">
+                            	<input th:field="${person.location}"
+                                type="text" required="required" placeholder="current location">
+								<label>location<span> *</span></label>
+                        	</div>
+
+                        </div>
+
+                    </div>
+                    
+                    <div class="account">
+
+                        <h3 class="register_home">Account info</h3>
+
+                        <input type="hidden" th:field="${userAccount.userId}" /> <input type="hidden" th:field="${person.personId}" />
+
+                        <div class="input_elements">
+                             <div class="input_field">
+	                            <input type="email" required="required"  th:field="${userAccount.email}" placeholder="email"> 
+    							<label>email<span> *</span></label>
+                        	</div>
+                        	<div class="input_field">
+                            <input th:field="${userAccount.userName}" type="text" required="required" autocomplete="off" placeholder="username"> 
+                            <label>username<span> *</span></label>
+                        	</div>
+                            
+                            <div class="input_field">
+                            <input th:field="${userAccount.password}"
+                                type="password" required="required"  autocomplete="off" placeholder="password"> 
+                                <label>password<span> *</span></label>
+                        	</div>
+                        	
+                        	
+                        	<div class="input_field">
+                                <input th:field="${userAccount.password}" type="password" required="required" placeholder="retype password" autocomplete="off">
+                                <label>retype password<span> *</span></label>
+                        	</div>
+                        </div>
+
+
+                    </div>
+
+
+                    
+                </div>
+                
+                 <h3 class="register_home">Job info</h3>
+                
+                 <hr style="height:1px;border-width:0;color:gray;background-color:gray"> 
+
+               
+
+               <div class="register_form2">
+               
+               		<div class="input_jobinfo">
+               		
+	               		 <div class="input_elements">
+	               		 
+		               		 <div class="input_field">
+					                    <input th:field="${person.privateCurrentjob}" type="radio" id="private" value="true" >
+				                        <label for="private">Make this info private?</label> 
+			                     	</div> 
+						
+								<div class="input_field">
+			                   		<input th:field="${person.currentJob}" type="text" required="required" placeholder="current job">
+								 	<label>current job<span> *</span></label>
+			                     </div>
+			                                       
+			                    	  
+			                   
+	               		 </div>
+	               		
+			             <div class="input_elements">
+			                
+				               	<div class="input_field">
+				                    <input id="date" th:field="${person.availability}" type="datetime" required="required"  onclick="(this.type='date')" onblur="(this.type='text')" placeholder="available since ...">
+									<label>Availability<span> *</span></label>
+	                     		</div>
+				               
+				                <div class="input_field">
+			               			<input id="work_number" th:field="${person.workExperience}" type="text" required="required" 
+			               			 onclick="(this.type='number')" onblur="(this.type='text')" placeholder="working years, months">
+				              		<label>work experience<span> *</span></label>
+		                     	</div>
+			            </div>
+							
+               		</div>
+							
+						<div class="input_elements">
+							 <div class="input_field">
+				               		<textarea id="description" th:field="${person.jobWishDesc}" required="required" placeholder="Describe the job you are searching for" ></textarea>
+				                	<label>What kind of job do you want?<span> *</span></label>
+		                     	</div>
+						</div>
+               		
+                     
+                </div>
+
+                <div class="login-buttons">
+
+                    <button type="button" class="button_login">
+                    	<p>Cancel</p>
+                    	<span class="iconify" id="next_desk"  data-icon="topcoat:cancel" data-inline="false"></span>
+						<span class="iconify" id="next_mobile" data-icon="ic:sharp-cancel" data-inline="false"></span>
+						
+					</button>
+
+                    <button type="submit" class="button_login">
+	                    <p>Next</p>
+						<span class="iconify" id="next_mobile" data-icon="bx:bxs-skip-next-circle" data-inline="false"></span>
+	 					<span class="iconify" id="next_desk" data-icon="ic:baseline-navigate-next" data-inline="false"></span>
+ 					</button> 
+
+
+
+                </div>
+                <br>
+
+
+            </form>
+
+        </section>
+
+
+    </main>
+    <!-- <h3>Check out this useful links</h3> -->
+    <hr>
+    <hr style="height:1px;border-width:0;color:gray;background-color:gray"> 
+    <footer class="footer-container2">
+
+        <div class="footer-follow-me2">
+            <button class="facebook">
+                <span class="iconify" data-inline="false" data-icon="dashicons:facebook"></span>
+                <label for="facebook" >facebook</label>
+            </button>
+            <button class="linkedin">
+                <span class="iconify" data-inline="false" data-icon="el:linkedin"></span>
+                <label for="linkedin">linkedin</label>
+            </button>
+            <button class="twitter">
+                <span class="iconify" data-inline="false" data-icon="vaadin:twitter-square"></span>
+                <label for="twitter">twitter</label>
+            </button>
+            <button class="youtube">
+                <span class="iconify" data-inline="false" data-icon="ant-design:youtube-outlined"></span>
+                <label for="youtube">youtube</label>
+            </button>
+
+
+        </div> 
+
+         <div class="copyright2">
+            <h5>Conveniently redefine world-class e-business after state of the art relationships. Authoritatively streamline standardized users without efficient "outside the box" thinking. Uniquely whiteboard.</h5>
+
+        </div> 
+    </footer>
+
+
+
+
+
+
+
+
+    <script src="../css/script.js" defer></script>
+</body>
+
+</html>

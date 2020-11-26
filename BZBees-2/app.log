@@ -1,0 +1,579 @@
+2020-11-26 03:34:16.270  WARN 15676 --- [HikariPool-149 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-149 - Thread starvation or clock leap detected (housekeeper delta=3h27s540ms500µs300ns).
+2020-11-26 07:58:39.879  WARN 15676 --- [HikariPool-149 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-149 - Thread starvation or clock leap detected (housekeeper delta=4h24m33s268ms362µs100ns).
+2020-11-26 09:37:31.108  WARN 15676 --- [HikariPool-149 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-149 - Thread starvation or clock leap detected (housekeeper delta=33m20s349ms115µs600ns).
+2020-11-26 10:46:24.258  WARN 15676 --- [HikariPool-149 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-149 - Thread starvation or clock leap detected (housekeeper delta=1m52s143ms632µs800ns).
+2020-11-26 12:04:12.718  INFO 15676 --- [Thread-734] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 12:04:12.722  INFO 15676 --- [Thread-734] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 12:04:12.953  WARN 15676 --- [Thread-734] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-26 12:04:13.259  INFO 15676 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 15676 (C:\Users\rober\git\HRMA\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA\BZBees-2)
+2020-11-26 12:04:13.259 DEBUG 15676 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 12:04:13.259  INFO 15676 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 12:04:13.711  INFO 15676 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 12:04:13.735  INFO 15676 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23ms. Found 8 JPA repository interfaces.
+2020-11-26 12:04:13.976  INFO 15676 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 12:04:14.035  INFO 15676 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 773 ms
+2020-11-26 12:04:14.077  INFO 15676 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 12:04:14.268  INFO 15676 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 12:04:14.281  INFO 15676 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 12:04:14.505  WARN 15676 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 12:04:14.534  INFO 15676 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 12:04:14.697  INFO 15676 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 12:04:14.720  INFO 15676 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 12:04:14.720  INFO 15676 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 1.497 seconds (JVM running for 173829.406)
+2020-11-26 12:04:14.722  INFO 15676 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-11-26 12:04:26.890  INFO 15676 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 12:04:26.894  INFO 15676 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2020-11-26 12:04:26.896 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:26.896 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayLoginForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.SecurityController.displayLoginForm () with arguments[s] = []
+2020-11-26 12:04:26.896 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:26.900 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:26.900 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayLoginForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.SecurityController.displayLoginForm () with arguments[s] = []
+2020-11-26 12:04:26.900 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:28.067 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:28.068 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{}]
+2020-11-26 12:04:28.068 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:28.078 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:28.078 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@39928fc8, userAccount=com.bzbees.hrma.entities.User@4600051e}]
+2020-11-26 12:04:28.078 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:41.430 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:41.430 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE createAndSaveUserAndPerson EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.createAndSaveUserAndPerson () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@4600051e, user=com.bzbees.hrma.entities.User@6c39e9c6, org.springframework.validation.BindingResult.user=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@39928fc8, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.User@6c39e9c6, com.bzbees.hrma.entities.Person@39928fc8, {}]
+2020-11-26 12:04:41.430 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:41.468 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:41.468 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER createAndSaveUserAndPerson EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.createAndSaveUserAndPerson () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@4600051e, user=com.bzbees.hrma.entities.User@6c39e9c6, org.springframework.validation.BindingResult.user=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@39928fc8, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.User@6c39e9c6, com.bzbees.hrma.entities.Person@39928fc8, {}]
+2020-11-26 12:04:41.468 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:41.474 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:41.474 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayAddSkill EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayAddSkill () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@39928fc8, userAccount=com.bzbees.hrma.entities.User@6c39e9c6}]
+2020-11-26 12:04:41.474 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:41.474 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:41.474 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayAddSkill EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayAddSkill () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@39928fc8, userAccount=com.bzbees.hrma.entities.User@6c39e9c6, skillsList=[], skill=com.bzbees.hrma.entities.Skill@460dbd8d}]
+2020-11-26 12:04:41.474 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:43.738 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:43.739 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@39928fc8, userAccount=com.bzbees.hrma.entities.User@6c39e9c6, skillsList=[]}]
+2020-11-26 12:04:43.739 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:43.739 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:43.739 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@39928fc8, userAccount=com.bzbees.hrma.entities.User@6c39e9c6, skillsList=[]}]
+2020-11-26 12:04:43.739 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:47.328 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:47.329 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE createAndSaveUserAndPerson EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.createAndSaveUserAndPerson () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@6c39e9c6, skillsList=[], user=com.bzbees.hrma.entities.User@686eb8c, org.springframework.validation.BindingResult.user=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@39928fc8, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.User@686eb8c, com.bzbees.hrma.entities.Person@39928fc8, {}]
+2020-11-26 12:04:47.329 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:47.338 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:47.339 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER createAndSaveUserAndPerson EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.createAndSaveUserAndPerson () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@6c39e9c6, skillsList=[], user=com.bzbees.hrma.entities.User@686eb8c, org.springframework.validation.BindingResult.user=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@39928fc8, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.User@686eb8c, com.bzbees.hrma.entities.Person@39928fc8, {}]
+2020-11-26 12:04:47.339 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:47.345 DEBUG 15676 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:47.346 DEBUG 15676 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayAddSkill EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayAddSkill () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@39928fc8, userAccount=com.bzbees.hrma.entities.User@686eb8c, skillsList=[]}]
+2020-11-26 12:04:47.346 DEBUG 15676 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:04:47.346 DEBUG 15676 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:04:47.346 DEBUG 15676 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayAddSkill EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayAddSkill () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@39928fc8, userAccount=com.bzbees.hrma.entities.User@686eb8c, skillsList=[], skill=com.bzbees.hrma.entities.Skill@3bdeea54}]
+2020-11-26 12:04:47.346 DEBUG 15676 --- [http-nio-8080-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:05:47.561  INFO 15676 --- [Thread-739] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 12:05:47.562  INFO 15676 --- [Thread-739] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 12:05:47.773  WARN 15676 --- [Thread-739] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-26 12:05:47.926  INFO 15676 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 15676 (C:\Users\rober\git\HRMA\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA\BZBees-2)
+2020-11-26 12:05:47.926 DEBUG 15676 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 12:05:47.926  INFO 15676 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 12:05:48.238  INFO 15676 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 12:05:48.260  INFO 15676 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21ms. Found 8 JPA repository interfaces.
+2020-11-26 12:05:48.382  INFO 15676 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 12:05:48.403  INFO 15676 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 475 ms
+2020-11-26 12:05:48.440  INFO 15676 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 12:05:48.636  INFO 15676 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 12:05:48.647  INFO 15676 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 12:05:48.844  WARN 15676 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 12:05:48.868  INFO 15676 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 12:05:49.002  INFO 15676 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 12:05:49.035  INFO 15676 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 12:05:49.035  INFO 15676 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 1.132 seconds (JVM running for 173923.72)
+2020-11-26 12:05:49.038  INFO 15676 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-11-26 12:06:06.815  INFO 15676 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 12:06:06.820  INFO 15676 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2020-11-26 12:06:06.822 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:06.823 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{skillsList=[]}]
+2020-11-26 12:06:06.823 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:06.827 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:06.827 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{skillsList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@f2b8937}]
+2020-11-26 12:06:06.827 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:17.717 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:17.718 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE createAndSaveUserAndPerson EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.createAndSaveUserAndPerson () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@f2b8937, skillsList=[], user=com.bzbees.hrma.entities.User@7df63d3a, org.springframework.validation.BindingResult.user=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.User@7df63d3a, com.bzbees.hrma.entities.Person@5dc7ee96, {}]
+2020-11-26 12:06:17.718 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:17.731 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:17.731 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER createAndSaveUserAndPerson EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.createAndSaveUserAndPerson () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@f2b8937, skillsList=[], user=com.bzbees.hrma.entities.User@7df63d3a, org.springframework.validation.BindingResult.user=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.User@7df63d3a, com.bzbees.hrma.entities.Person@5dc7ee96, {}]
+2020-11-26 12:06:17.731 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:17.736 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:17.736 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayAddSkill EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayAddSkill () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7df63d3a, skillsList=[]}]
+2020-11-26 12:06:17.736 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:17.736 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:17.736 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayAddSkill EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayAddSkill () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7df63d3a, skillsList=[], skill=com.bzbees.hrma.entities.Skill@5caacece}]
+2020-11-26 12:06:17.736 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:19.530 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:19.530 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7df63d3a, skillsList=[]}]
+2020-11-26 12:06:19.531 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:19.531 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:19.531 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayRegisterForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayRegisterForm () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7df63d3a, skillsList=[]}]
+2020-11-26 12:06:19.531 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:23.309 DEBUG 15676 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:23.309 DEBUG 15676 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE createAndSaveUserAndPerson EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.createAndSaveUserAndPerson () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@7df63d3a, skillsList=[], user=com.bzbees.hrma.entities.User@7986b6c5, org.springframework.validation.BindingResult.user=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.User@7986b6c5, com.bzbees.hrma.entities.Person@5dc7ee96, {}]
+2020-11-26 12:06:23.309 DEBUG 15676 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:23.313 DEBUG 15676 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:23.313 DEBUG 15676 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER createAndSaveUserAndPerson EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.createAndSaveUserAndPerson () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@7df63d3a, skillsList=[], user=com.bzbees.hrma.entities.User@7986b6c5, org.springframework.validation.BindingResult.user=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.User@7986b6c5, com.bzbees.hrma.entities.Person@5dc7ee96, {}]
+2020-11-26 12:06:23.313 DEBUG 15676 --- [http-nio-8080-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:23.317 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:23.317 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayAddSkill EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayAddSkill () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[]}]
+2020-11-26 12:06:23.317 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:23.317 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:23.317 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayAddSkill EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayAddSkill () with arguments[s] = [{person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], skill=com.bzbees.hrma.entities.Skill@56c38714}]
+2020-11-26 12:06:23.317 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:25.101 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:25.101 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE saveListOfSkills EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.saveListOfSkills () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors, skill=com.bzbees.hrma.entities.Skill@56961b31, org.springframework.validation.BindingResult.skill=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.Person@5dc7ee96, com.bzbees.hrma.entities.Skill@56961b31, {}]
+2020-11-26 12:06:25.101 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:25.105 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:25.105 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER saveListOfSkills EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.saveListOfSkills () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors, skill=com.bzbees.hrma.entities.Skill@56961b31, org.springframework.validation.BindingResult.skill=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.Person@5dc7ee96, com.bzbees.hrma.entities.Skill@56961b31, {}]
+2020-11-26 12:06:25.105 DEBUG 15676 --- [http-nio-8080-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:25.110 DEBUG 15676 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:25.111 DEBUG 15676 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayLang EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayLang () with arguments[s] = [{skillsList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5}]
+2020-11-26 12:06:25.111 DEBUG 15676 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:25.111 DEBUG 15676 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:25.111 DEBUG 15676 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayLang EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayLang () with arguments[s] = [{skillsList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, langList=[], lang=com.bzbees.hrma.entities.Language@6c7d81b0}]
+2020-11-26 12:06:25.111 DEBUG 15676 --- [http-nio-8080-exec-7] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:25.508 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:25.508 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE saveListOfLangs EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.saveListOfLangs () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors, language=com.bzbees.hrma.entities.Language@7c7f1362, org.springframework.validation.BindingResult.language=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.Person@5dc7ee96, com.bzbees.hrma.entities.Language@7c7f1362, {}]
+2020-11-26 12:06:25.508 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:25.510 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:25.510 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER saveListOfLangs EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.saveListOfLangs () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors, language=com.bzbees.hrma.entities.Language@7c7f1362, org.springframework.validation.BindingResult.language=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.Person@5dc7ee96, com.bzbees.hrma.entities.Language@7c7f1362, {}]
+2020-11-26 12:06:25.510 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:25.517 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:25.517 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayJobForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayJobForm () with arguments[s] = [{langList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[]}]
+2020-11-26 12:06:25.517 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:25.518 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:25.518 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayJobForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayJobForm () with arguments[s] = [{langList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], jobList=[], job=com.bzbees.hrma.entities.Job@aa0e7fa}]
+2020-11-26 12:06:25.518 DEBUG 15676 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:26.053 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:26.053 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE saveListOfJobs EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.saveListOfJobs () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], jobList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors, job=com.bzbees.hrma.entities.Job@36243e64, org.springframework.validation.BindingResult.job=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.Person@5dc7ee96, com.bzbees.hrma.entities.Job@36243e64, {}, org.springframework.web.bind.support.SimpleSessionStatus@71680a5b]
+2020-11-26 12:06:26.053 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:26.055 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:26.055 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER saveListOfJobs EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.saveListOfJobs () with arguments[s] = [{userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], jobList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors, job=com.bzbees.hrma.entities.Job@36243e64, org.springframework.validation.BindingResult.job=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.Person@5dc7ee96, com.bzbees.hrma.entities.Job@36243e64, {}, org.springframework.web.bind.support.SimpleSessionStatus@71680a5b]
+2020-11-26 12:06:26.055 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:26.059 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:26.059 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayUploadForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayUploadForm () with arguments[s] = [{jobList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[]}]
+2020-11-26 12:06:26.059 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:26.060 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:26.060 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayUploadForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayUploadForm () with arguments[s] = [{jobList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], docList=[], doc=com.bzbees.hrma.entities.Doc@2038a52a}]
+2020-11-26 12:06:26.060 DEBUG 15676 --- [http-nio-8080-exec-3] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:26.740 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:26.740 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE saveDocs EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.saveDocs () with arguments[s] = [{docList=[], userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], jobList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.Person@5dc7ee96, {}]
+2020-11-26 12:06:26.740 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:26.741 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:26.741 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER saveDocs EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.saveDocs () with arguments[s] = [{docList=[], userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], jobList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, org.springframework.validation.BindingResult.person=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, com.bzbees.hrma.entities.Person@5dc7ee96, {}]
+2020-11-26 12:06:26.741 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:26.745 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:26.745 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayProfile EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayProfile () with arguments[s] = [{docList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], jobList=[]}]
+2020-11-26 12:06:26.745 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:26.745 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:26.745 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayProfile EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayProfile () with arguments[s] = [{docList=[], person=com.bzbees.hrma.entities.Person@5dc7ee96, userAccount=com.bzbees.hrma.entities.User@7986b6c5, skillsList=[], langList=[], jobList=[], picList=[], lastPicList=[], img=com.bzbees.hrma.entities.ProfileImg@5e2dcbaf, job=com.bzbees.hrma.entities.Job@7b6d8cf8, skill=com.bzbees.hrma.entities.Skill@6f9dc18f, lang=com.bzbees.hrma.entities.Language@6b2c73bd}]
+2020-11-26 12:06:26.745 DEBUG 15676 --- [http-nio-8080-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:33.949 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:33.949 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHomePage EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayHomePage () with arguments[s] = [org.springframework.web.bind.support.SimpleSessionStatus@4f43d507]
+2020-11-26 12:06:33.949 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:33.949 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:33.949 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHomePage EXECUTION**************** 
+ com.bzbees.hrma.controllers.UserController.displayHomePage () with arguments[s] = [org.springframework.web.bind.support.SimpleSessionStatus@4f43d507]
+2020-11-26 12:06:33.949 DEBUG 15676 --- [http-nio-8080-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:33.954 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:33.954 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 12:06:33.954 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 12:06:33.955 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 12:06:33.955 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=dev}]
+2020-11-26 12:06:33.955 DEBUG 15676 --- [http-nio-8080-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:19:24.159  INFO 1584 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 1584 (E:\BeePeopleApp\HRMA-master\HRMA-master\BZBees-2\target\classes started by rober in E:\BeePeopleApp\HRMA-master\HRMA-master\BZBees-2)
+2020-11-26 21:19:24.178 DEBUG 1584 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:19:24.178  INFO 1584 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 21:19:24.212  INFO 1584 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-26 21:19:24.212  INFO 1584 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-26 21:19:24.982  INFO 1584 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:19:25.046  INFO 1584 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58ms. Found 8 JPA repository interfaces.
+2020-11-26 21:19:25.615  INFO 1584 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:19:25.721  INFO 1584 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1509 ms
+2020-11-26 21:19:25.989  INFO 1584 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 21:19:27.219  INFO 1584 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:19:27.266  INFO 1584 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:19:27.950  WARN 1584 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:19:28.070  INFO 1584 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:19:28.521  INFO 1584 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:19:28.585  INFO 1584 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:19:28.588  INFO 1584 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 4.662 seconds (JVM running for 5.243)
+2020-11-26 21:19:37.839  INFO 1584 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 21:19:37.857  INFO 1584 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
+2020-11-26 21:19:37.877 DEBUG 1584 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:19:37.878 DEBUG 1584 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 21:19:37.878 DEBUG 1584 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:19:37.880 DEBUG 1584 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:19:37.881 DEBUG 1584 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=dev}]
+2020-11-26 21:19:37.881 DEBUG 1584 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:27:23.113  INFO 12912 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 12912 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:27:23.115 DEBUG 12912 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:27:23.115  INFO 12912 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 21:27:23.154  INFO 12912 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-26 21:27:23.154  INFO 12912 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-26 21:27:23.987  INFO 12912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:27:24.054  INFO 12912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60ms. Found 8 JPA repository interfaces.
+2020-11-26 21:27:24.654  INFO 12912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:27:24.751  INFO 12912 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1596 ms
+2020-11-26 21:27:25.030  INFO 12912 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 21:27:26.325  INFO 12912 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:27:26.373  INFO 12912 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:27:27.068  WARN 12912 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:27:27.200  INFO 12912 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:27:27.697  INFO 12912 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:27:27.765  INFO 12912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:27:27.768  INFO 12912 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 4.919 seconds (JVM running for 5.5)
+2020-11-26 21:27:32.309  INFO 12912 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 21:27:32.341  INFO 12912 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 30 ms
+2020-11-26 21:27:32.363 DEBUG 12912 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:27:32.364 DEBUG 12912 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 21:27:32.364 DEBUG 12912 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:27:32.367 DEBUG 12912 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:27:32.368 DEBUG 12912 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=dev}]
+2020-11-26 21:27:32.368 DEBUG 12912 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:28:06.635  INFO 12912 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-11-26 21:28:06.639  INFO 12912 --- [RMI TCP Connection(9)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:28:06.641  INFO 12912 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:28:06.874  WARN 12912 --- [RMI TCP Connection(9)-127.0.0.1] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-26 21:29:05.276  INFO 20336 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 20336 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2020-11-26 21:29:05.278 DEBUG 20336 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2020-11-26 21:29:05.278  INFO 20336 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: test
+2020-11-26 21:29:05.316  INFO 20336 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-26 21:29:05.316  INFO 20336 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-26 21:29:06.146  INFO 20336 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-26 21:29:06.216  INFO 20336 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64ms. Found 8 JPA repository interfaces.
+2020-11-26 21:29:06.820  INFO 20336 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-11-26 21:29:06.909  INFO 20336 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1593 ms
+2020-11-26 21:29:07.178  INFO 20336 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-26 21:29:08.521  INFO 20336 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:29:08.567  INFO 20336 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-11-26 21:29:09.269  WARN 20336 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-26 21:29:09.403  INFO 20336 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:29:09.915  INFO 20336 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-11-26 21:29:09.985  INFO 20336 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-26 21:29:09.989  INFO 20336 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 4.979 seconds (JVM running for 5.594)
+2020-11-26 21:29:11.664  INFO 20336 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-11-26 21:29:11.683  INFO 20336 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
+2020-11-26 21:29:11.705 DEBUG 20336 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:29:11.706 DEBUG 20336 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{}]
+2020-11-26 21:29:11.706 DEBUG 20336 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:29:11.710 DEBUG 20336 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2020-11-26 21:29:11.710 DEBUG 20336 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{localVerNumber=dev}]
+2020-11-26 21:29:11.710 DEBUG 20336 --- [http-nio-8080-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2020-11-26 21:29:18.417  INFO 20336 --- [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-11-26 21:29:18.420  INFO 20336 --- [RMI TCP Connection(8)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-26 21:29:18.422  INFO 20336 --- [RMI TCP Connection(8)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-26 21:29:18.651  WARN 20336 --- [RMI TCP Connection(8)-127.0.0.1] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]

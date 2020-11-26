@@ -1,0 +1,63 @@
+@import url("buttons/buttons.css");
+.login_form {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40%;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.login_form h3 {
+    padding: 2rem;
+}
+
+.login_form input {
+    padding: .9rem;
+    margin-top: 2rem;
+    background: #F3F3F3;
+    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border: 1px solid transparent;
+    border-radius: .3rem;
+    outline: none;
+}
+
+.login_form input:focus {
+    border-color: #E9D415;
+    box-shadow: 1px 1px 10px 2px rgba(233, 212, 22, 0.56);
+}
+
+.login_form input::placeholder {
+    text-align: left;
+    padding-left: 1rem;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.login_buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+}
+
+.login_form .button_login {
+    padding: 1.2rem;
+    margin-top: 2rem;
+    border-color: .5px solid darkorange;
+    background-color: #FFF;
+}
+
+.login_form .button_login a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: darkorange;
+}
+
+@media screen and (min-width: 781px) {
+    .login_form {
+        padding-top: 10%;
+    }
+}

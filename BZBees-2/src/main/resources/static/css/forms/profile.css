@@ -1,0 +1,409 @@
+@import url("cards/job_list.css");
+@import url("buttons/buttons.css");
+@import url("forms/register.css");
+
+* {
+	 box-sizing: border-box;
+	 margin: 0px;
+	 padding: 0px;
+	 border: 0px; 
+	 
+ }
+
+
+.modal {
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.profile {
+	
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: left;
+    text-align: left;
+    padding-top: 15%;
+    padding-left: 5%;
+    padding-right: 2%;
+    /* width: 100vw; */ 
+    
+}
+
+.profile_top {
+    display: flex;
+    flex-flow: column wrap;
+    padding-top: 1rem;
+    color: #888686;
+    width:100%;
+}
+
+.new_line {
+	width:95%;
+    border: 1px solid #959292;
+}
+
+.profile_details {
+    width: 75%;
+/*     height: 10rem; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    /* align-items: inherit; */
+    /* align-content: space-between; */
+    color: #888686;
+}
+
+.profile_details_desktop {
+	display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.profile_details address {
+	margin-left:.2rem;
+	margin-bottom: 0.1rem;
+}
+
+.profile_details #birthdate, #email, #jobStatus {
+	margin-left:.2rem;
+
+}
+
+.profile-status {
+	margin-bottom: 0.1rem;
+}
+
+.profile_avatar {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    padding: .5rem;
+    margin-left: .2rem;
+    
+   
+    
+}
+.profile_avatar button {
+	 overflow: hidden;
+    -webkit-border-radius: 10%;
+    -moz-border-radius: 10%;
+    -ms-border-radius: 10%;
+    -o-border-radius: 10%;
+    border-radius: 10%;
+	width: 30%;
+}
+
+.profile_avatar button.active {
+	border: none;
+}
+
+.profile_avatar ul {
+	width: 100%;
+}
+
+.profile_avatar li {
+	 list-style: none;
+	 width: 100%;
+}
+
+
+.profile_avatar img {
+	height: 15vh;
+	object-fit: cover;
+	width: 100%;
+}
+
+.profile_avatar	.iconify {
+	font-size: 3rem;
+	margin-right: 1rem;
+
+}
+
+
+
+.profile_avatar label {
+    font-weight: 700;
+    margin-left: 1rem;
+}
+
+.profile_personal, .profile_status {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: space-around;
+	align-items: baseline;
+	
+}
+
+
+
+.profile_personal_fields{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: baseline;
+	
+	
+}
+
+.profile_docs {
+    width: 95%;
+    background-color: #ECECEC;
+}
+
+/* .profile_docs img {
+    position: relative;
+    right: -70%;
+} */
+
+.profile_docs_header {
+	margin-top: .5rem;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+}
+
+.profile_docs_buttons {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 35%;
+
+	
+}
+
+.profile_docs_buttons a  {
+	color:aqua;
+	align-self: right;
+}
+
+.profile_docs li {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+    padding-left: .3rem;
+    list-style: none;
+    font-size: .8rem;
+}
+
+
+
+
+ .profile_docs li a {
+    display: flex;
+    flex-flow: row wrap;
+    text-decoration: none;
+    color: #1F9A01;
+    justify-content: space-between;
+    /* align-items: left; */
+	margin-right: 2px;
+	margin-left:auto;
+     
+} 
+
+
+
+
+.profile_docs .doc_name   {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width:50%;
+	margin-right:auto;
+	
+}
+
+.profile_headline {
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    width:100%;
+}
+
+.profile_headline h3 {
+	font-size: .9rem;
+	
+	}
+	
+.profile_headline h5 {
+	font-size: .9rem;
+	
+	}
+	
+	
+.job_list_desktop {
+	width:93%;
+}
+	
+
+
+
+.profile_headline .profile_work_addJob {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	width:80%;
+	align-items: baseline;
+	align-self: left;
+}
+
+
+
+.profile_headline .profile_work_addLang {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	width:80%;
+	align-items: baseline;
+	align-self: left;
+}
+
+.skill_profile table {
+	width:95%;
+}
+
+.lang_profile table {
+	width:95%;
+}
+
+	.skills_lang_desktop {
+		display: flex;
+		flex-flow: column wrap;
+		justify-content: space-between;	
+		width:100%;
+	
+	}
+	
+	.skills_lang_desktop #skills_profile {
+		flex-grow: 1;
+		width:100%;
+	}
+	
+	.skills_lang_desktop #lang_profile {
+		flex-grow: 1;
+		width:100%;
+	}
+
+
+/* .profile_headline .profile_work_addJob button {
+	background-color: white;
+	color: #1F9A01;
+	
+	}
+ */
+
+.table th,
+td {
+	
+    color: #1F9A01;
+}
+
+
+/* MODALS CSS */
+
+
+
+
+@media screen and (min-width: 781px) {
+	
+	.profile_top {
+    display: flex;
+    flex-flow: row nowrap;
+    padding-top: 1rem;
+    color: #888686;
+	}
+
+	.profile_details {
+		display: flex;
+		flex-flow:column nowrap;	
+	
+	}
+	
+	
+ 	.profile_details_desktop {
+		margin-left: 5px;
+	} 
+	
+	.profile_avatar	.iconify {
+	font-size: 5rem;
+	margin-right: 1rem;
+
+	}
+	
+	.profile_docs li {
+		font-size: 1rem;
+	}
+	
+	.profile_headline h3 {
+	font-size: 1.9rem;
+	
+	}
+	
+	.job_list_desktop {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-evenly;
+	}
+	
+	.job_list_desktop li {
+		width: 95%;
+	}
+	
+	
+	.skills_lang_desktop {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;	
+	
+	}
+	
+	.skills_lang_desktop #skills_profile {
+		display: flex;
+		flex-flow: column wrap;
+		flex-grow: 2;
+	}
+	
+	.skills_lang_desktop #lang_profile {
+		display: flex;
+		flex-flow: column wrap;
+		flex-basis: 450px;
+		margin-left: 5rem;
+	}
+	
+	.profile_headline .profile_work_addJob {
+		width: 30%;
+	
+	}
+	
+
+	
+	.profile_headline .profile_work_addlang { 
+		justify-content: space-between;
+		width: 100%;
+	}
+	
+	
+
+	
+	.profile_docs_buttons {
+		width: 20%;
+	}
+	
+	.profile_icons #deleteButton {
+		color:#1F9A01 ;
+		text-decoration: none;
+	}
+	
+	
+	
+	
+
+}

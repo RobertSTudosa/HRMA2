@@ -1,0 +1,229 @@
+:root {
+    --lh: 1rem;
+}
+
+.newscontainer {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.newscard {
+    margin: .2rem;
+    display: flex;
+    /*    object-fit: contain;*/
+    max-width: 49vw;
+    max-height: 370px;
+    height: 100vh;
+    text-align: justify-all;
+    background-image: url(https://source.unsplash.com/350x500/?covid19);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    /*    overflow: hidden;*/
+}
+
+.newscard #newscard-textarea {
+    background-color: azure;
+    opacity: .9;
+    padding: .3rem;
+    margin-top: 80%;
+    color: #484848;
+}
+
+.newscard h2,
+p {
+    color: black;
+    font-size-adjust: auto;
+}
+
+.newscard h4 {
+    margin-left: .2rem;
+    font-size-adjust: auto;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.newscard #newscard-subtitle {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+}
+
+.newscard #newscard-text {
+    --max-lines: 10;
+    position: relative;
+    max-height: calc(var(--lh) * var(--max-lines));
+    overflow: hidden;
+    padding-right: 1rem;
+    /* space for ellipsis */
+    word-break: break-all;
+}
+
+.newscard #newscard-text::before {
+    position: absolute;
+    content: "...";
+    /* tempting... but shows when lines == content */
+    /* top: calc(var(--lh) * (var(--max-lines) - 1)); */
+    /*
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  */
+    bottom: 0;
+    right: 0;
+}
+
+.newscard #newscard-text::after {
+    content: "";
+    position: absolute;
+    /*
+  inset-inline-end: 0;
+  */
+    right: 0;
+    /* missing bottom on purpose*/
+    width: 1rem;
+    height: 1rem;
+    background: white;
+}
+
+.newscard-md {
+    margin: .2rem;
+    display: flex;
+    object-fit: cover;
+    max-width: 40vw;
+    /*    width: 175px;*/
+    /*    padding: .2rem;*/
+    max-height: 370px;
+    height: 100vh;
+    text-align: justify;
+    background-image: url(https://source.unsplash.com/350x200/?tech);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*    background-clip: content-box;*/
+    background-blend-mode: darken;
+    /*    grid-column: 1/2;*/
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.newscard-md #newscard-textarea-md {
+    display: inline-block;
+    background-color: azure;
+    opacity: .9;
+    padding: .3rem;
+    margin-top: 55%;
+    color: #484848;
+}
+
+.newscard-md h2,
+p {
+    color: black;
+    font-size-adjust: auto;
+}
+
+.newscard-md h4 {
+    margin-left: .2rem;
+    font-size-adjust: auto;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.newscard-md #newscard-subtitle {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+}
+
+.newscard-sm {
+    margin: .2rem;
+    display: flex;
+    object-fit: contain;
+    max-width: 100vw;
+    /*    width: 175px;*/
+    /*    padding: .2rem;*/
+    max-height: 370px;
+    height: 30vh;
+    text-align: justify;
+    background-image: url(https://source.unsplash.com/350x500/?construction);
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*    background-clip: content-box;*/
+    background-blend-mode: darken;
+    /*    grid-column: 1/2;*/
+    overflow: hidden;
+}
+
+.newscard-sm #newscard-textarea-sm {
+    background-color: azure;
+    opacity: .9;
+    padding: .3rem;
+    margin-top: 20%;
+    color: #484848;
+}
+
+.newscard-sm h2,
+p {
+    color: black;
+    font-size-adjust: auto;
+}
+
+.newscard-sm h4 {
+    font-size-adjust: auto;
+    font-size: 12px;
+    font-style: italic;
+    margin-left: .2rem;
+}
+
+.newscard-sm #newscard-subtitle {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-content: space-between;
+}
+
+@media screen and (max-width: 480px) {
+    .newscard {
+        flex: 45%;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 780px) {
+    .newscard #newscard-textarea {
+        margin-top: 70%;
+    }
+    .newscard-sm #newscard-textarea-sm {
+        margin-top: 10%;
+    }
+    .newscard #newscard-text {
+        --max-lines: 3;
+        position: relative;
+        max-height: calc(var(--lh) * var(--max-lines));
+        overflow: hidden;
+        padding-right: 1rem;
+        /* space for ellipsis */
+        word-break: break-all;
+    }
+}
+
+@media screen and (min-width: 781px) {
+    .newscard #newscard-textarea {
+        margin-top: 40%;
+    }
+    .newscard-md #newscard-textarea-md {
+        margin-top: 40%;
+    }
+    .newscard-sm {
+        width: 100%;
+        height: 50%;
+        background-size: cover;
+        background-position: center;
+    }
+    .newscard-sm #newscard-textarea-sm {
+        margin-top: 20%;
+    }
+}
