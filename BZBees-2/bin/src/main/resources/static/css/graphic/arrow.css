@@ -1,0 +1,32 @@
+.arrow {
+
+    margin-left: .5rem;
+  width: 80%;
+    margin-bottom: .5rem;
+}
+
+.line {
+  margin-top: 4px;
+  width: 90%;
+  background: #716D6D;
+  height: 1px;
+  float: left;
+}
+
+.point {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid  #1F9A01;
+  float: right;
+}
+
+.point2 {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 6px solid #716D6D;
+  float: left;
+}

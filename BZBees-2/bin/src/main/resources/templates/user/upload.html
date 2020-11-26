@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Upload docs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/main.css">
+<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</head>
+
+
+<body>
+
+	<header>
+		<nav class="navbar">
+			<div class="brand-text">
+				<a th:href="@{/}"><button>
+						<img src="../css/header/logo.svg" alt="logo" />
+					</button></a>
+			</div>
+
+
+
+			<div class="navbar-links">
+				<ul>
+					<li><a href="#">candidate</a></li>
+					<li><a href="#">agency</a></li>
+					<li><a href="#">employee</a></li>
+
+				</ul>
+			</div>
+			<div>
+				<button class="button-user">
+					<img src="../css/buttons/user-name.png" alt="header" />
+				</button>
+
+				<div class="user-name">Robert T.</div>
+
+				<button class="button-userplus">
+					<img src="../css/buttons/user-plus.png" alt="header" />
+				</button>
+
+
+
+				<button class="burgermenu">
+					<img src="../css/buttons/burgermenu.svg" alt="header" />
+				</button>
+			</div>
+
+		</nav>
+
+	</header>
+
+	<main>
+		<section class="register_form">
+
+			<!-- 		insert form here for upload of the documents
+ -->
+			
+
+				<h3>"Upload some docs"</h3>
+			
+			<form th:action="@{/user/saveDocs}" th:object="${doc}"
+				method="POST">
+
+				
+				<div class="login-buttons">
+				<h4>They will need to see some documents</h4>
+					<button type="submit"  name="next" class="button_login" ><p>Next</p>
+					<span class="iconify" id="next_mobile" data-icon="bx:bxs-skip-next-circle" data-inline="false"></span>
+ 					<span class="iconify" id="next_desk" data-icon="ic:baseline-navigate-next" data-inline="false"></span>
+ 					</button>
+					</div>
+					
+			</form>
+				<div>
+				<form id="uploadFiles" name="uploadFiles" method="POST" th:action="@{/user/addDocs}"
+				encType="multipart/form-data" >
+					<input autofocus type="file" name="doc" placeholder="choose file" multiple  >
+					
+					<div class="input_elements">
+						<button class="upload" type="submit" ><p>upload</p>
+					<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
+					<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
+					</button>
+					</div>
+				</form>
+				</div>
+				
+
+				<table class="docs_table">
+					<tbody>
+					<tr th:each="aDoc : ${docList}">
+						<td> <a th:text="${aDoc.docName} " th:href="@{/user/downloadFile(docId=${aDoc.docId})}">English</a></td>
+						<td> <a th:href="@{/user/deleteDoc(id=${aDoc.docId})}"
+								class="btn btn-danger btn-sm"
+								onClick="if (! (confirm('Are you sure you want to delete this job?'))) return false">
+								<span class="iconify" data-icon="jam:trash-alt-f" data-inline="false"></span>
+								</a> 
+								
+								</td>
+						
+						
+							
+					</tr>
+					
+					</tbody>
+				</table>
+
+				</div>
+
+		
+
+		</section>
+
+
+	</main>
+<!-- <h3>Check out this useful links</h3> -->
+    <hr>
+    <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+    <footer class="footer-container2">
+
+        <div class="footer-follow-me2">
+            <button class="facebook">
+                <span class="iconify" data-inline="false" data-icon="dashicons:facebook"></span>
+                <label for="facebook" >facebook</label>
+            </button>
+            <button class="linkedin">
+                <span class="iconify" data-inline="false" data-icon="el:linkedin"></span>
+                <label for="linkedin">linkedin</label>
+            </button>
+            <button class="twitter">
+                <span class="iconify" data-inline="false" data-icon="vaadin:twitter-square"></span>
+                <label for="twitter">twitter</label>
+            </button>
+            <button class="youtube">
+                <span class="iconify" data-inline="false" data-icon="ant-design:youtube-outlined"></span>
+                <label for="youtube">youtube</label>
+            </button>
+
+
+        </div> 
+
+         <div class="copyright2">
+            <h5>Conveniently redefine world-class e-business after state of the art relationships. Authoritatively streamline standardized users without efficient "outside the box" thinking. Uniquely whiteboard.</h5>
+
+        </div> 
+    </footer>
+
+
+
+
+
+
+
+
+  <script src="../css/script.js" defer></script>
+</body>
+
+</html>

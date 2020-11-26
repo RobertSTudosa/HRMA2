@@ -1,0 +1,336 @@
+.button-userplus {
+    display: none;
+    position: absolute;
+    right: .75rem;
+    top: .4rem;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: white;
+}
+
+.burgermenu {
+    display: none;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: white;
+}
+
+.button-user {
+    display: none;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: white;
+}
+
+.button-like {
+    width: 24px;
+    height: 26px;
+    border: none;
+    background-color: white;
+}
+
+.button-fullLike {
+    display: none;
+    width: 24px;
+    height: 26px;
+    background-color: white;
+}
+
+.button-shareActive {
+    display: none;
+    width: 24px;
+    height: 27px;
+    border: none;
+    background-color: white;
+}
+
+.button-share {
+    width: 33px;
+    height: 33px;
+    border: none;
+    background-color: white;
+}
+
+.button-addToListActive {
+    width: 23px;
+    height: 24px;
+    border: none;
+    display: none;
+}
+
+.button-addToList {
+    width: 23px;
+    height: 24px;
+    border: none;
+}
+
+.button-applied {
+    width: 24px;
+    height: 20px;
+    border: none;
+    display: none;
+}
+
+.button-openJob {
+    width: 25px;
+    height: 27px;
+    border: none;
+    background-color: white;
+    background-blend-mode: multiply;
+    margin-right: 1rem;
+}
+
+.button-home {
+    width: 35px;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.button-news {
+    width: 32px;
+    height: 28px;
+    background-color: white;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.button-search {
+    width: 30px;
+    height: 28px;
+    background-color: white;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.button-jobs {
+    width: 33px;
+    height: 32px;
+    background-color: white;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.button-agencies {
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.button-save {
+    box-shadow: inset 1px -1px 1px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    border: 0.25px solid #000000;
+    box-sizing: border-box;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.button-login {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items:center; 
+	justify-content: space-evenly;
+	font-size: 1rem;
+	margin-bottom: 2rem;
+	padding: 3px;
+	
+}
+
+.button-login .iconify {
+	self-align: center;
+	font-size: 1.4rem;
+}
+
+.login-buttons {
+    padding-top: 2.5rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+   
+    width: 90%; 
+}
+
+.login-buttons form {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items:center; 
+	justify-content: space-evenly;
+	width:50%;
+}
+
+
+
+.login-buttons button {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items:center; 
+	justify-content: space-evenly;
+    box-shadow: inset 1px -1px 1px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+    /* height: 2rem; */
+    width: 6rem;
+    background-color: #E9D415; 
+}
+
+
+.login-buttons span {
+	align-self: center;
+	width: 80%;
+}
+
+ .login-buttons button #next_desk {
+	display: none;
+} 
+
+
+.login-buttons button p  {
+	align-self:center;
+	margin-right: 2px;
+	margin-left: 2px;
+	padding-left: 2px;
+	font-size: .9rem;
+	
+}
+
+
+.login-buttons h4 {
+	font-size: 0.9rem;
+}
+
+.login-buttons button a {
+    text-decoration: none;
+    color: #484848;
+}
+
+
+
+/* .login-buttons .button_login p {
+	display: inline;
+} */
+
+.login-buttons .button_login {
+	padding: 3px;
+	width: 27%;
+}
+
+
+/* .login-buttons .button_login #next_desk {
+	display:none;
+
+}
+
+.login-buttons .button_login #next_mobile {
+	display:inline;
+	
+} */
+
+
+
+.login-buttons .button-save  {
+	display: flex;
+	flex-flow: row wrap;
+	align-items:center;
+	justify-content: space-evenly;
+    box-shadow: inset 1px -1px 1px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    /* border: 0.25px solid #000000; */
+    outline: none;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #E9D415;
+    padding: 2px;
+    
+}
+
+
+/* ******** !!! this is where desktop starts !!!******* */
+@media screen and (min-width: 781px) {
+
+.login-buttons button {
+	width:50%;
+	height: 12vh;
+}
+
+.login-buttons h4 {
+	font-size: 1.3rem;	
+}
+
+.login-buttons button p  {
+	margin-right: 10px;
+	margin-left: 5px;
+	padding-left: 2px;
+	font-size: 1.8rem;
+}
+
+.login-buttons button a  {
+	font-size: 1.4rem;
+}
+
+
+.login-buttons button #next_mobile {
+	display: none;
+}
+
+.login-buttons button #next_desk {
+	display: inline-block;
+	padding-bottom: 2px;
+	margin-left:5px;
+	
+}
+
+
+.login-buttons .iconify {
+	font-size: 3.3rem;
+}
+
+
+.login-buttons .button_save {
+	width: 100%;
+}
+
+/* .login-buttons .button_login p {
+	display: inline;
+} */
+
+/* .login-buttons .button_login #next_desk {
+	
+	display:inline;
+	font-size: 1.9rem;
+}
+
+.login-buttons .button_login #next_mobile {
+	display:none;
+} */
+
+
+/* .login-buttons .login-buttons-modal button {
+	width: 40%;
+}
+
+.login-buttons .login-buttons-modal button p {
+	display: inline;
+	font-size: 1.4rem;
+}
+
+.login-buttons .login-buttons-modal button .iconify {
+	font-size: 1.4rem;
+}
+ */
+
+
+
+
+
+
+}

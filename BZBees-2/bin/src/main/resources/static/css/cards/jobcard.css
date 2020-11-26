@@ -1,0 +1,132 @@
+.job-card-container {
+    display: grid;
+    grid-template-columns: auto ;
+    
+   
+}
+
+.job-card {
+    display: grid;
+    grid-template-columns: auto;
+    width: 100%;
+/*    background-color: aqua;*/
+    
+}
+
+.job-card > #agency-avatar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .5rem;
+    margin-left: .2rem;
+}
+.job-card #agency-avatar-text {
+    padding: .5rem;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 17px;
+    color: #5B5A5A;
+    
+}
+
+.job-card #job-card-main {
+    display: grid;
+    grid-template-columns: auto auto;
+    background: #f3f3f3;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    padding: .5rem;
+    
+}
+
+.job-card #job-card-title {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    margin-left: 2rem;
+
+
+color: #5B5B5B;
+    
+}
+
+.job-card #job-card-img {
+    grid-row: 1/span 3;
+    height: 88px;
+    width: 82px;
+    margin-left: .3rem;
+    padding: 0px;
+    margin-top: .3rem;
+    
+}
+
+.job-card #job-card-hashes {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 15px;
+    margin-left: .5rem;
+    margin-top: .35rem;
+    
+
+
+    color: #8A8484;
+
+}
+
+.job-card #job-card-text {
+    
+font-family: Inter;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 16px;
+    margin-left: .5rem;
+color: #000000;
+}
+
+.job-card #job-card-footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .3rem;
+    
+}
+.card-interact {
+    width: 150px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: .5rem;
+    
+}
+
+@media screen and (min-width:481px) and (max-width: 780px) {
+    .job-card-container {
+        grid-template-columns: auto auto;
+        grid-column-gap: .3rem;
+    }
+    .job-card {
+        max-width: 50vw;
+    }
+}
+
+@media screen and (min-width: 781px) {
+    .job-card-container {
+        grid-template-columns: auto auto;
+        grid-column-gap: .3rem;
+    }
+    
+     .job-card {
+        max-width: 45vw;
+    }
+
+}
+

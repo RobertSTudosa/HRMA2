@@ -1,0 +1,49 @@
+@import url("buttons/buttons.css");
+@import url("header/navbar.css");
+@import url("text.css");
+@import url("cards/jobcard.css");
+@import url("cards/newscard.css");
+@import url("cards/agency.css");
+@import url("graphic/arrow.css");
+@import url("header/search.css");
+@import url("footer/footer.css");
+@import url("footer/footer_form.css");
+@import url("forms/login.css");
+@import url("forms/register.css");
+/* @import url("forms/addjob.css"); */
+@import url("forms/profile.css");
+@import url("cards/job_list.css");
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+main {
+    margin-left: .5rem;
+    margin-right: .5rem;
+    padding: 0px;
+    border: none;
+    margin-bottom: 10%;
+    /* background-color: antiquewhite; */
+}
+
+@media screen and (min-width: 781px) {
+    .top-main {
+        display: grid;
+        grid-template-columns: 70% auto;
+        grid-column-gap: 2rem;
+    }
+    body h3 {
+        padding-bottom: 1.2rem;
+    }
+}

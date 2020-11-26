@@ -1,0 +1,169 @@
+@import url("graphic/arrow.css");
+@import url("./text.css");
+* {
+    box-sizing: border-box;
+}
+
+.agencycard {
+    display: grid;
+    grid-template-columns: auto;
+    width: 100%;
+}
+
+#agencycard-bg {
+    display: inline-grid;
+    background: linear-gradient(132.95deg, #E9D415 2.92%, rgba(212, 203, 119, 0.442708) 55.13%, rgba(196, 196, 196, 0) 97.49%);
+    box-shadow: inset 0px -1px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+#agencycard-header {
+    grid-column: 1 / span 2;
+}
+
+#agencycard-avatar {
+    margin-left: 2rem;
+    width: 70%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+#agencycard-avatar-text {
+    margin-left: .5rem;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 650;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+#agencycard-left-details {
+    padding-left: .3rem;
+}
+
+.agencycard h6 {
+    font-family: Imprima;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 8px;
+    line-height: 9px;
+    color: #716D6D;
+}
+
+.agencycard h4 {
+    font-family: Imprima;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: .5rem;
+    max-width: 60vw;
+}
+
+#agencycard-icns img {
+    margin-top: .5rem;
+    justify-self: center;
+}
+
+#agencycard-icns>h4 {
+    margin-top: .5rem;
+    font-family: Imprima;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    justify-self: center;
+    color: #1F9A01;
+}
+
+#agencycard-icns>h6 {
+    margin-top: -.5rem;
+    justify-self: center;
+}
+
+#agencycard-icns {
+    display: grid;
+    grid-template-columns: auto;
+    padding: .5rem;
+    max-width: 30vw;
+}
+
+#agencycard-footer {
+    grid-column: 1 / span 2;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+#agencycard-starRating {
+    max-width: 55%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: .3rem;
+}
+
+#agencycard-starRating>p {
+    margin-left: .3rem;
+    padding-right: .2rem;
+    /*    line-height: 14px;*/
+    font-size: 20px;
+}
+
+.agencycard-container .agencycard #agencycard-footer #agency-likes {
+    max-width: 40vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#agency-likes>.like-text {
+    padding-left: .2rem;
+}
+
+.agencycard #agencycard-footer #agency-likes .button-like {
+    margin-top: .3rem;
+}
+
+@media screen and (min-width:481px) and (max-width: 780px) {
+    .agencycard-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-column-gap: .8rem;
+    }
+    .agencies {
+        background-color: beige;
+        background-size: cover;
+    }
+    .agencycard #agencycard-footer #agency-likes .button-like {
+        background-color: rgba(244, 228, 142, 0.63);
+    }
+}
+
+@media screen and (min-width: 781px) {
+    .agencycard-container {
+        display: grid;
+        grid-template-columns: auto;
+        grid-column-gap: .3rem;
+        padding: .8rem;
+    }
+    #agency-likes {
+        max-width: 40%;
+    }
+    .agencies {
+        background-color: rgba(244, 228, 142, 0.63);
+        border-radius: .5rem;
+        background-size: cover;
+    }
+    .agencycard #agencycard-footer #agency-likes .button-like {
+        background-color: rgba(244, 228, 142, 0.63);
+    }
+}
