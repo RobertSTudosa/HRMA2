@@ -11,7 +11,7 @@ public class HomeController {
 	@Value("${version}")
 	private String ver;
 	
-	@GetMapping("/")
+	@GetMapping("/home")
 	public String displayHome (Model model) {
 		
 		model.addAttribute("localVerNumber", ver);

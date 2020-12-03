@@ -74,7 +74,7 @@
 			
 			<form th:action="@{/user/saveSkills}" th:object="${skill}"
 				method="POST">
-
+				<!-- <input type="hidden" name="_csrf" th:value="$(_csrf.token)" /> -->
 				<div class="login-buttons">
 					
 				

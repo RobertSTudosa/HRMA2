@@ -45,16 +45,20 @@
 .login_form .button_login {
     padding: 1.2rem;
     margin-top: 2rem;
-    border-color: .5px solid darkorange;
-    background-color: #FFF;
-}
-
-.login_form .button_login a {
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 700;
     color: darkorange;
+  	border-color: .5px solid darkorange;
+    background-color: #FFF; 
 }
+
+ .login_form .button_login a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: darkorange;
+} 
 
 @media screen and (min-width: 781px) {
     .login_form {

@@ -32,10 +32,17 @@
                     <li><a th:href="@{/login}">candidate</a></li>
                     <li><a href="#">agency</a></li>
                     <li><a href="#">employee</a></li>
+                    <li>
+                    	
+                    </li>
 
                 </ul>
+                
             </div>
             <div>
+	            <form th:action="@{/logout}">
+                			<button type="submit">logout</button>
+                </form>
                 <button class="button-user">
                         <img src="../css/buttons/user-name.png" alt="header" />
                     </button>

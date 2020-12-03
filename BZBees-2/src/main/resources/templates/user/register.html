@@ -71,6 +71,8 @@
         <section class="register_form">
         
             <form data-persist="garlic" th:action="@{/user/save}" th:object="${userAccount}" method="POST" >
+            
+           <!--  <input type="hidden" name="_csrf" th:value="$(_csrf.token)" /> -->
 
                 <div class="account_profile">
                     
@@ -128,10 +130,11 @@
                         	</div>
                         	
                         	
-                        	<div class="input_field">
+                        	<!-- <div class="input_field">
                                 <input th:field="${userAccount.password}" type="password" required="required" placeholder="retype password" autocomplete="off">
                                 <label>retype password<span> *</span></label>
-                        	</div>
+                        	</div> -->
+                        	
                         </div>
 
 

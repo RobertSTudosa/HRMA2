@@ -16,18 +16,17 @@ import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.UserService;
 
 @Controller
-@RequestMapping("/login")
-public class SecurityController {
+public class LoginController {
 	
 	
-	
-	
-	
-	@GetMapping()
+	@GetMapping("/login")
 	public String displayLoginForm () {
 		
 		return "user/login";
 	}
+	
+	
+	
 	
 
 	

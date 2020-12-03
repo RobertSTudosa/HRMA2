@@ -14,6 +14,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -76,6 +77,9 @@ public class UserController {
 	
 	@Autowired
 	RoleService roleServ;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptEncoder;
 
 	@GetMapping
 	public String displayRegisterForm(Model model) {
@@ -122,7 +126,13 @@ public class UserController {
 							userAccount.addRole(role2);
 							
 							userAccount.setPerson(person);
+							//set the user active 
+							userAccount.setActive(true);
+							
+							//encrypt the password for the user
+
 							persServ.save(person);
+							userAccount.setPassword(bCryptEncoder.encode(userAccount.getPassword()));
 							userServ.save(userAccount);							
 						}
 						
