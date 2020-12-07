@@ -75,7 +75,7 @@
 	</header>
 
 	<main>
-		<section th:object="${person}" class="profile">
+		<section th:object="${application}" class="profile">
 
 			<h3>Profile</h3>
 			<hr class="new_line">
@@ -160,7 +160,7 @@
 						</button>
 
 
-						<label th:text="${session.name} +' '+ ${person.lastName}"
+						<label th:text="${application.name} +' '+ ${application.lastName}"
 							id="profile-avatar-text">firstName</label>
 
 					</div>
@@ -170,13 +170,13 @@
 						<div class="profile_personal">
 							<div class="profile_personal_fields">
 								<h6>location:</h6>
-								<address id="location" th:text="${person.location}">Lima, Peru</address>
+								<address id="location" th:text="${session.location}">Lima, Peru</address>
 								
 							</div>
 							
 							<div class="profile_personal_fields">
 								<h6>birth date:</h6>
-								<div th:value="${person.BirthDate}" id="birthdate">15-05-2000</div>
+								<div th:value="${session.BirthDate}" id="birthdate">15-05-2000</div>
 							</div>
 							
 
@@ -186,7 +186,7 @@
 						
 							<div class="profile_personal_fields">
 							<h6>email:</h6>
-							<div th:text="${person.email}" id="email">jo@thePeru.com</div>
+							<div th:text="${session.email}" id="email">jo@thePeru.com</div>
 							</div>
 							
 							<div class="profile_personal_fields">

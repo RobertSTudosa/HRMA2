@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -82,11 +85,12 @@ public class UserController {
 	BCryptPasswordEncoder bCryptEncoder;
 
 	@GetMapping
-	public String displayRegisterForm(Model model) {
+	public String displayRegisterForm(Model model, HttpSession session) {
 
 		if (!model.containsAttribute("person")) {
 			Person person = new Person();
 			model.addAttribute("person", person);
+			session.setAttribute("person", person);
 		}
 
 		if (!model.containsAttribute("userAccount")) {
@@ -101,7 +105,7 @@ public class UserController {
 
 	@PostMapping("/save")
 	public String createAndSaveUserAndPerson(Model model, User userAccount, Person person,
-			RedirectAttributes redirAttr) {
+			RedirectAttributes redirAttr, HttpSession session) {
 
 		System.out.println("person is " + person.getLastName());
 				
@@ -149,6 +153,9 @@ public class UserController {
 		System.out.println("Number of users " + " " + "is "+ usersNo);
 
 		System.out.println("Hitting the save from user/save POST ");
+		
+		session.setAttribute("person", person);
+		session.setAttribute("userAccount", userAccount);
 		
 		redirAttr.addFlashAttribute("person", person);
 		redirAttr.addFlashAttribute("userAccount", userAccount);
@@ -887,6 +894,8 @@ public class UserController {
 	@GetMapping("/profile")
 	public String displayProfile(Model model) {
 		System.out.println("before whichPerson");
+		
+
 		Person whichPerson = (Person) model.getAttribute("person");
 		System.out.println(
 				"person in getmapping 'PROFILE' is " + whichPerson.getFirstName() + " " + whichPerson.getLastName());
@@ -1002,8 +1011,8 @@ public class UserController {
 		
 
 		
-		status.setComplete();
-		return "redirect:/";
+//		status.setComplete();
+		return "redirect:/home";
 	}
 
 }
