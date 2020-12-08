@@ -1,5 +1,6 @@
 package com.bzbees.hrma.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="persons")
-public class Person {
+public class Person implements Serializable {
 
 	@Id()
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_generator")

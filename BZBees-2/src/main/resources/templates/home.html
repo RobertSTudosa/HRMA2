@@ -25,14 +25,15 @@
                 <a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" /></button></a>
             </div>
 
-
+			
 
             <div class="navbar-links">
-                <ul>
+                <ul sec:authorize="isAnonymous()">
                     <li><a th:href="@{/login}">candidate</a></li>
                     <li><a href="#">agency</a></li>
                     <li><a href="#">employee</a></li>
-                    <li>
+                    
+                    <li><a href="@{/admin}">admin</a></li>
                     	
                     </li>
 
@@ -40,12 +41,13 @@
                 
             </div>
             <div>
-	            <form th:action="@{/logout}">
+	            <form sec:authorize="isAuthenticated()" th:action="@{/logout}">
                 			<button type="submit">logout</button>
                 </form>
 				<div sec:authorize="isAuthenticated()">
       				<a th:href="@{/person/sprofile}">
-      				<span sec:authentication="name"></span>
+<!--       			<span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> -->
+				<span sec:authentication="name"></span>
       				
       				</a></div>
                 <button class="button-user">
@@ -57,8 +59,6 @@
                 <button class="button-userplus">
                         <img src="../css/buttons/user-plus.png" alt="header" />
                     </button>
-
-
 
                 <button class="burgermenu">
                         <img src="../css/buttons/burgermenu.svg" alt="header" />
@@ -78,8 +78,13 @@
        
 
     <main>
+    
+    
 		
         <div class="searchbox">
+        
+        
+        	
        
             <input type="text" id="searchbox-input" onclick="" placeholder="search for me" />
             <button type="submit" class="search-button"><img src="../css/graphic/search.png" /></button>
@@ -89,6 +94,13 @@
         <section class="top-main">
 			
             <section class="jobs">
+            <div sec:authorize="isAuthenticated()">
+ 				 This content is only shown to authenticated users.
+			</div>
+            <div sec:authorize="hasAuthority('USER')">
+  			This content is only shown to users.
+			</div>
+            
                 <div class="main-yellow-text">jobs</div>
 
                 <div class="job-card-container">

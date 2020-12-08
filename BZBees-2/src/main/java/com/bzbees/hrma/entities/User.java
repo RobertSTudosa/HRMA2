@@ -1,6 +1,8 @@
 package com.bzbees.hrma.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,9 +19,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name="user_accounts")
-public class User {
+public class User implements UserDetails, Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
@@ -33,6 +39,15 @@ public class User {
 	private String email;
 	
 	private String password;
+	
+	@Column(name="account_non_expired")
+    private boolean accountNonExpired = true;
+	
+	@Column(name="account_non_locked")
+    private boolean accountNonLocked = true;
+	
+	@Column(name="credentials_non_expired")
+    private boolean credentialsNonExpired = true;
 	
 	private boolean active;
 	
@@ -124,6 +139,41 @@ public class User {
 	public User addRole(UserRole role) {
 		this.roles.add(role);
 		return this;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.toString())));
+		return authorities;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.userName;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		
+		return this.accountNonExpired;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		
+		return this.accountNonLocked;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		
+		return this.credentialsNonExpired;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.active;
 	}
 	
 	

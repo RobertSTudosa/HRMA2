@@ -13,9 +13,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
 @Table(name="userrole")
-public class UserRole {
+public class UserRole implements GrantedAuthority {
 	
 	@Id()
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userrole_generator")
@@ -61,6 +63,13 @@ public class UserRole {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+
+	@Override
+	public String getAuthority() {
+	
+		return this.permission;
 	}
 	
 	

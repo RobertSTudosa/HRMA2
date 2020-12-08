@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <!--<![endif]-->
 
 <head>
@@ -47,7 +47,7 @@
 
 
 			<div class="navbar-links">
-				<ul>
+				<ul sec:authorize="isAnonymous()">
 					<li><a th:href="@{/login}">candidate</a></li>
 					<li><a th:href="@{/login}">agency</a></li>
 					<li><a th:href="@{/login}">employee</a></li>
@@ -55,27 +55,41 @@
 				</ul>
 			</div>
 			<div>
-				<button class="button-user">
-					<img src="../css/buttons/user-name.png" alt="header" />
-				</button>
+	            <form th:action="@{/logout}">
+                			<button type="submit">logout</button>
+                </form>
+				<div sec:authorize="isAuthenticated()">
+      				<a th:href="@{/person/sprofile}">
+      				<span sec:authentication="name"></span>
+      				
+      				</a></div>
+      				
+      				<div>
+      			<button class="button-user">
+                        <img src="../css/buttons/user-name.png" alt="header" />
+                    </button>
 
-				<div class="user-name">Robert T.</div>
+                <div class="user-name">Robert T.</div>
 
-				<button class="button-userplus">
-					<img src="../css/buttons/user-plus.png" alt="header" />
-				</button>
+                <button class="button-userplus">
+                        <img src="../css/buttons/user-plus.png" alt="header" />
+                    </button>
 
-				<button class="burgermenu">
-					<img src="../css/buttons/burgermenu.svg" alt="header" />
-				</button>
-			</div>
+                <button class="burgermenu">
+                        <img src="../css/buttons/burgermenu.svg" alt="header" />
+                    </button>
+      				
+      				
+      				</div>
+                            </div>
+
 
 		</nav>
 
 	</header>
 
 	<main>
-		<section th:object="${application}" class="profile">
+		<section th:object="${person}" class="profile">
 
 			<h3>Profile</h3>
 			<hr class="new_line">
@@ -102,7 +116,7 @@
 									</div>
 
 									<form id="uploadFiles" name="uploadFiles" method="POST"
-										th:action="@{/user/addProfileImg}"
+										th:action="@{/person/addProfileImg}"
 										encType="multipart/form-data">
 										<div class="modal-body">
 
@@ -151,7 +165,7 @@
 							<ul>
 								<li th:if="${not #lists.isEmpty(lastPicList)}"
 									th:each="thePic : ${lastPicList}"><img
-									th:src="@{/user/img(imgId=${thePic.picId})}" style="size: 10%">
+									th:src="@{/person/img(imgId=${thePic.picId})}" style="size: 10%">
 								</li>
 
 							</ul>
@@ -160,7 +174,7 @@
 						</button>
 
 
-						<label th:text="${application.name} +' '+ ${application.lastName}"
+						<label th:text="${person.firstName} +' '+ ${person.lastName}"
 							id="profile-avatar-text">firstName</label>
 
 					</div>
@@ -176,7 +190,10 @@
 							
 							<div class="profile_personal_fields">
 								<h6>birth date:</h6>
-								<div th:value="${session.BirthDate}" id="birthdate">15-05-2000</div>
+								<div th:text="${#dates.format(person.BirthDate, 'dd-MMM-yyyy')}" 
+								id="birthdate">15-05-2000</div>
+
+								 
 							</div>
 							
 
@@ -186,7 +203,7 @@
 						
 							<div class="profile_personal_fields">
 							<h6>email:</h6>
-							<div th:text="${session.email}" id="email">jo@thePeru.com</div>
+							<div th:text="${person.email}" id="email">jo@thePeru.com</div>
 							</div>
 							
 							<div class="profile_personal_fields">
@@ -225,7 +242,7 @@
 								</button>
 							</div>
 								<div>
-									<form id="uploadFiles" name="uploadFiles" method="POST" th:action="@{/user/addDocsModal}"
+									<form id="uploadFiles" name="uploadFiles" method="POST" th:action="@{/person/addDocsModal}"
 									encType="multipart/form-data" >
 										<input autofocus type="file" name="doc" placeholder="choose file" multiple  >
 										
@@ -247,13 +264,13 @@
 							<a
 							class="doc_name d-inline-block text-truncate"
 							th:text="${aDoc.docName}"
-							th:href="@{/user/downloadFile(docId=${aDoc.docId})}">
+							th:href="@{/person/downloadFile(docId=${aDoc.docId})}">
 								Resume.pdf</a>
 
 							<div class="profile_docs_buttons btn btn-toolbar" 
 								
 								role="toolbar">
-								<form th:action="@{/user/makeDocPrivate(id=${aDoc.docId})}"
+								<form th:action="@{/person/makeDocPrivate(id=${aDoc.docId})}"
 									th:object="${aDoc}" method="post">
 
 									<!-- is true  -->
@@ -275,14 +292,14 @@
 
 								</form>
 								
-								<a 	th:href="@{/user/displayFile(docId=${aDoc.docId})}"
+								<a 	th:href="@{/person/displayFile(docId=${aDoc.docId})}"
 									role="button" data-toggle="tooltip" data-html="true"
 									title="see the document"
 									data-content="click to see the document"> <span
 									class="iconify" data-icon="ion:documents-outline"
 									data-inline="false"></span></a> 
 								<a
-									th:href="@{/user/deleteProfileDoc(id=${aDoc.docId})}"
+									th:href="@{/person/deleteProfileDoc(id=${aDoc.docId})}"
 									onClick="if (! (confirm('Are you sure you want to delete this doc?'))) return false">
 									<span class="iconify" data-icon="jam:trash-alt-f"
 									data-inline="false"></span>
@@ -329,7 +346,7 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<form th:action="@{/user/addModalJob}" th:object="${job}"
+							<form th:action="@{/person/addModalJob}" th:object="${job}"
 								method="POST">
 
 									<div class="register_form">
@@ -457,7 +474,7 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<form th:action="@{/user/editJob(id=${job.jobId})}"
+									<form th:action="@{/person/editJob(id=${job.jobId})}"
 										th:object="${job}" method="POST">
 
 									
@@ -591,7 +608,7 @@
 						<div class="profile_icons">
 
 							<a id="deleteButton"
-								th:href="@{/user/deleteJobByModal(id=${job.jobId})}"
+								th:href="@{/person/deleteJobByModal(id=${job.jobId})}"
 								onClick="if (! (confirm('Are you sure you want to delete this job?'))) return false">
 								<span class="iconify" data-icon="jam:trash-alt-f"
 								data-inline="false"></span>
@@ -599,7 +616,7 @@
 
 							<div class="profile_icons_right btn btn-toolbar" role="toolbar">
 
-								<form th:action="@{/user/makeJobPrivate(id=${job.jobId})}"
+								<form th:action="@{/person/makeJobPrivate(id=${job.jobId})}"
 									th:object="${job}" method="post">
 
 									<!-- este true  -->
@@ -689,7 +706,7 @@
 											</button>
 										</div>
 
-										<form class="register_form" th:action="@{/user/addSkillModal}"
+										<form class="register_form" th:action="@{/person/addSkillModal}"
 											th:object="${skill}" method="POST">
 
 											<div class="input_elements">
@@ -747,7 +764,7 @@
 									<th th:text="${aSkill.skillName}">Java</th>
 									<td th:text="${aSkill.skillDescription}">Basic knowledge</td>
 									<td><a id="deleteButton"
-										th:href="@{/user/deleteSkillbyProfile(id=${aSkill.skillId})}"
+										th:href="@{/person/deleteSkillbyProfile(id=${aSkill.skillId})}"
 										onClick="if (! (confirm('Are you sure you want to delete this job?'))) return false">
 											<span class="iconify" data-icon="jam:trash-alt-f"
 											data-inline="false"></span>
@@ -795,7 +812,7 @@
 										</div>
 										
 										
-											<form class="register_form" th:action="@{/user/addLangModal}" th:object="${lang}"
+											<form class="register_form" th:action="@{/person/addLangModal}" th:object="${lang}"
 												method="POST">
 						
 										
@@ -864,7 +881,7 @@
 									<th th:text="${aLang.name}" scope="row">English</th>
 									<td th:text="${aLang.level}">Communicative</td>
 									<td><a id="deleteButton"
-										th:href="@{/user/deleteLangbyProfile(id=${aLang.langId})}"
+										th:href="@{/person/deleteLangbyProfile(id=${aLang.langId})}"
 										onClick="if (! (confirm('Are you sure you want to delete this job?'))) return false">
 											<span class="iconify" data-icon="jam:trash-alt-f"
 											data-inline="false"></span>
@@ -884,7 +901,7 @@
 
 			<div class="login-buttons">
 
-				<a th:href="@{/user/profilePDF}"  target="_blank">
+				<a th:href="@{/person/profilePDF}"  target="_blank">
 				<button type="submit" class="button_login" style="width:95%;" >
 					<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
 					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>
@@ -894,7 +911,7 @@
 				
 				
 				
-				<form th:action="@{/user/finishAccount}" th:object="${person}" method="post">
+				<form th:action="@{/person/finishAccount}" th:object="${person}" method="post">
 					
 					<button type="submit" class="button_login" style="width:95%;" >
 					<span class="iconify"  id="next_mobile" data-icon="icons8:finish-flag" data-inline="false"></span>

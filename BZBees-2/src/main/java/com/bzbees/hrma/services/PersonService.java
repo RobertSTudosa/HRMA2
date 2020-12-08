@@ -53,6 +53,10 @@ public class PersonService {
 		
 	}
 	
+	public Person findPersonByUserId(long userId) {
+		return persRepo.findPersonFromUserId(userId);
+	}
+	
 	
 	
 }

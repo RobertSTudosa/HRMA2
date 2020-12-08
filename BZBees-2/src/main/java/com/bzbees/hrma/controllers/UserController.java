@@ -136,6 +136,7 @@ public class UserController {
 							//encrypt the password for the user
 
 							persServ.save(person);
+							System.out.println("What person is saved now: " + person.getFirstName());
 							userAccount.setPassword(bCryptEncoder.encode(userAccount.getPassword()));
 							userServ.save(userAccount);							
 						}
@@ -1010,9 +1011,8 @@ public class UserController {
 	public String displayHomePage(SessionStatus status) {
 		
 
-		
-//		status.setComplete();
-		return "redirect:/home";
+		status.setComplete();
+		return "redirect:/";
 	}
 
 }
