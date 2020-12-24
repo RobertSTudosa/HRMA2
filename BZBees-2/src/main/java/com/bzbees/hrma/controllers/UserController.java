@@ -5,18 +5,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -26,13 +35,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bzbees.hrma.entities.ConfirmationToken;
 import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Language;
@@ -41,7 +51,9 @@ import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.Skill;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.entities.UserRole;
+import com.bzbees.hrma.services.ConfirmationTokenService;
 import com.bzbees.hrma.services.DocService;
+import com.bzbees.hrma.services.EmailService;
 import com.bzbees.hrma.services.JobService;
 import com.bzbees.hrma.services.LanguageService;
 import com.bzbees.hrma.services.PersonService;
@@ -83,10 +95,25 @@ public class UserController {
 	
 	@Autowired
 	BCryptPasswordEncoder bCryptEncoder;
+	
+	@Autowired
+	ConfirmationTokenService confTokenServ;
+	
+	@Autowired
+	EmailService emailService;
+	
+	
+	@Autowired
+	AuthenticationManager authManager;
 
-	@GetMapping
-	public String displayRegisterForm(Model model, HttpSession session) {
-
+	@GetMapping(value={"","/"})
+	public String displayRegisterForm(Model model, HttpSession session, Authentication auth) {
+		
+		if(auth != null) {
+			System.out.println("User is " + auth.getName());
+			return "redirect: ";
+		}
+		
 		if (!model.containsAttribute("person")) {
 			Person person = new Person();
 			model.addAttribute("person", person);
@@ -106,10 +133,10 @@ public class UserController {
 	@PostMapping("/save")
 	public String createAndSaveUserAndPerson(Model model, User userAccount, Person person,
 			RedirectAttributes redirAttr, HttpSession session) {
-
+		
 		System.out.println("person is " + person.getLastName());
-				
-	
+								
+		
 				if (person.getLastName() != null) {
 
 					person.setAppStatus(1);
@@ -121,7 +148,7 @@ public class UserController {
 						
 						//used to avoid detach exception 
 						if(!persServ.getAll().contains(persServ.findPersonById(person.getPersonId()))) {
-							
+														
 							UserRole role1 = new UserRole("USER");
 							UserRole role2 = new UserRole("CANDIDATE");
 							roleServ.saveRole(role1);
@@ -130,25 +157,36 @@ public class UserController {
 							userAccount.addRole(role2);
 							
 							userAccount.setPerson(person);
+							
 							//set the user active 
-							userAccount.setActive(true);
+//							userAccount.setActive(true);
 							
 							//encrypt the password for the user
-
 							persServ.save(person);
-							System.out.println("What person is saved now: " + person.getFirstName());
 							userAccount.setPassword(bCryptEncoder.encode(userAccount.getPassword()));
-							userServ.save(userAccount);							
-						}
-						
+							userServ.save(userAccount);	
+							
+							ConfirmationToken confirmationToken = new ConfirmationToken(userAccount);
+							System.out.println("confirmationToken is " + confirmationToken.getConfirmationToken());
+							confTokenServ.saveToken(confirmationToken);
+							SimpleMailMessage mailMessage = emailService.simpleConfirmationMessage(userAccount.getEmail(), 
+									"BZBees - please confirm your account, jobs are ready", confirmationToken.getConfirmationToken());
+							
+							
+			
+				emailService.sendEmail(mailMessage);
+				System.out.println("Email was sent according to spring boot");
 
+						}
+							
+											
 					} else {
 						System.out.println("Invalid dates baby");
 						skillServ.deleteAll();
-						return "user/register" + person;
+						return "user/register";
 					}
-
-				}
+		
+		}
 		
 		int usersNo = userServ.getAll().size();
 		System.out.println("Number of users " + " " + "is "+ usersNo);
@@ -165,9 +203,52 @@ public class UserController {
 		return "redirect:/user/skills";
 
 	}
+	
+	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST}) 
+	public String confirmAccount (Model model, @RequestParam("t0") String confirmationToken, User userAccount, Person person,
+			HttpServletRequest request, RedirectAttributes redirAttr	) {
+		
+		ConfirmationToken checkedToken = confTokenServ.findConfirmationTokenByConfirmationToken(confirmationToken);
+		if(checkedToken !=null) {
+			
+			userAccount = checkedToken.getUser();
+			person = userAccount.getPerson();
+					
+			System.out.println("Who is this person ? " + person.getLastName());
+			System.out.println("Who is this user? " + userAccount.getUsername());
+			System.out.println("authorities are : " + userAccount.getAuthorities().toString());
+			System.out.println("What password is passed here via user.getpassword " + userAccount.getPassword());
+			
+			userAccount.setActive(true);
+			userAccount.setPerson(person);
+			persServ.save(person);
+			userServ.save(userAccount);
+			
+			//used to auto login the user coming from email			
+			request.getSession();		
+			Authentication authentication = new UsernamePasswordAuthenticationToken(userAccount,null, userAccount.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			
+			
+			System.out.println("This is user activation is " + userAccount.isActive());
+			redirAttr.addFlashAttribute("message", "User " + userAccount.getUsername() + " is confirmed");
+		}
+		
+
+	
+	return "home";
+	}	
+	
+	
+	
 
 	@GetMapping("/skills")
-	public String displayAddSkill(Model model) {
+	public String displayAddSkill(Model model, Authentication auth) {
+		
+		if(auth != null) {
+			System.out.println("User is " + auth.getName());
+			return "redirect: ";
+		}
 
 		Person whichPerson = (Person) model.getAttribute("person");
 		System.out.println(
@@ -264,15 +345,16 @@ public class UserController {
 	
 	@GetMapping("/deleteSkillbyProfile")
 	public String deleteSkillFromProfile(@RequestParam("id") long id, Person person, Model model, RedirectAttributes redirAttr) {
-
 		
 		
 		Skill theSkill = skillServ.findSkillById(id);
 		
+		person.removeSkill(theSkill.getSkillId());
+		
 		skillServ.deleteSkill(theSkill);
 		
 
-		person.removeSkill(theSkill.getSkillId());
+		
 		
 
 		redirAttr.addFlashAttribute("skillsList", skillServ.getSavedSkillsByPersonId(person.getPersonId()));
@@ -970,7 +1052,7 @@ public class UserController {
 			
 
 			List<ProfileImg> lastPicList = new ArrayList<>();
-			lastPicList.add(profileImgServ.getLastPic());
+			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
 			System.out.println("lastPicList size is " + lastPicList.size());
 
 			redirAttr.addFlashAttribute("lastPicList", lastPicList);
@@ -1008,8 +1090,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/finishAccount")
-	public String displayHomePage(SessionStatus status) {
+	public String displayHomePage(SessionStatus status, Model model, HttpServletRequest request,
+			User userAccount) {
 		
+		model.addAttribute("message", "Account is set up, please login or confirm you account.");
 
 		status.setComplete();
 		return "redirect:/";

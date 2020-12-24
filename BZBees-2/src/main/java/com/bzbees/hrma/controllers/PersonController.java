@@ -1,10 +1,13 @@
 package com.bzbees.hrma.controllers;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,7 @@ import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.Skill;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.services.DocService;
+import com.bzbees.hrma.services.ImageResize;
 import com.bzbees.hrma.services.JobService;
 import com.bzbees.hrma.services.LanguageService;
 import com.bzbees.hrma.services.PersonService;
@@ -46,8 +50,11 @@ import com.bzbees.hrma.services.ProfileToPDF;
 import com.bzbees.hrma.services.SkillService;
 import com.bzbees.hrma.services.UserService;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 @Controller
-@SessionAttributes({ "person", "userAccount", "skillsList", "langList", "jobList", "docList", "picList", "lastPicList" })
+@SessionAttributes({ "person", "userAccount","picList", "lastPicList"})
+//, "skillsList", "langList", "jobList", "docList",  
 @RequestMapping("/person")
 public class PersonController {
 	
@@ -71,6 +78,9 @@ public class PersonController {
 
 	@Autowired
 	ProfileImgService profileImgServ;
+	
+	@Autowired
+	ImageResize imgResizerServ;
 
 	
 	@GetMapping("/sprofile")
@@ -78,7 +88,7 @@ public class PersonController {
 	
 		
 		//get the user from user Principal
-		User user = userServ.loadUserByUsername(auth.getName());
+		User user = (User) userServ.loadUserByUsername(auth.getName());
 		
 		
 		//get the person from repo user query
@@ -103,6 +113,28 @@ public class PersonController {
 		//get the docs from the docs repo
 		List<Doc> personDocs = docServ.getDocsByPersonId(personId);
 		
+		//get the pics from the profileImg repo
+		List<ProfileImg> personPics = profileImgServ.getPicsByPersonId(personId);
+		
+		//get the last pic of the person's profile from profileImg repo
+		ProfileImg theImg = profileImgServ.getLastPic(personId);
+		if(theImg != null) {
+			System.out.println("in the if !null of the image");
+			model.addAttribute("img", theImg);	
+			
+			List<ProfileImg> lastPicList = new ArrayList<>();
+			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
+			model.addAttribute("lastPicList", lastPicList);
+			
+		} else {
+			personPics.clear();
+			System.out.println("ALL CLEAR");
+			model.addAttribute("img", new ProfileImg());
+			model.addAttribute("lastPicList", new ArrayList<>());
+		}
+		
+
+		model.addAttribute("picList", personPics);
 		model.addAttribute("docList", personDocs);
 		model.addAttribute("jobList", personJobs);
 		model.addAttribute("langList", personLang);
@@ -110,27 +142,31 @@ public class PersonController {
 		model.addAttribute("userAccount", user);
 		model.addAttribute("person", person);
 		
-		if (!model.containsAttribute("picList")) {
-			List<ProfileImg> picList = new ArrayList<>();
-			model.addAttribute("picList", picList);
-		}
-
-		if (!model.containsAttribute("lastPicList")) {
-			List<ProfileImg> lastPicList = new ArrayList<>();
-			model.addAttribute("lastPicList", lastPicList);
-		}
+//		if (!model.containsAttribute("picList")) {
+//			List<ProfileImg> picList = new ArrayList<>();
+//			model.addAttribute("picList", picList);
+//		}
+		
+		
+//		if (!model.containsAttribute("lastPicList")) {
+//			List<ProfileImg> lastPicList = new ArrayList<>();
+//			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
+////			model.addAttribute("img", profileImgServ.getLastPic(person.getPersonId()));
+//			model.addAttribute("lastPicList", lastPicList);
+//		}
 		
 		List<ProfileImg> lastPicListCheck = (List<ProfileImg>) model.getAttribute("lastPicList");
 		System.out.println("lastPicListCheck size is " + lastPicListCheck.size());
-
-		if (!model.containsAttribute("img")) {
-			model.addAttribute("img", new ProfileImg());
-
-		}
-
-		ProfileImg whichImg = (ProfileImg) model.getAttribute("img");
-		System.out.println("Image name is " + whichImg.getPicName());
 		
+
+//		if (!model.containsAttribute("img")) {
+//			model.addAttribute("img", new ProfileImg());
+//
+//		}
+
+//		ProfileImg whichImg = (ProfileImg) model.getAttribute("img");
+//		System.out.println("Image name is " + whichImg.getPicName());
+//		
 		if (!model.containsAttribute("job")) {
 			Job job = new Job();
 			model.addAttribute("job", job);
@@ -184,14 +220,15 @@ public class PersonController {
 	@GetMapping("/deleteSkillbyProfile")
 	public String deleteSkillFromProfile(@RequestParam("id") long id, Person person, Model model, RedirectAttributes redirAttr) {
 
-			
-		Skill theSkill = skillServ.findSkillById(id);
+		List<Skill> sessionPersonSkills = skillServ.getSavedSkillsByPersonId(person.getPersonId());
 		
-		skillServ.deleteSkill(theSkill);
-		
-
-		person.removeSkill(theSkill.getSkillId());
-		
+		for(Skill skill : sessionPersonSkills) {
+			if(skill.getSkillId() == id) {
+				skillServ.deleteSkill(skill);
+			} else {
+				System.out.println("No skill here by this id --->" + id);
+			}
+		}		
 
 		redirAttr.addFlashAttribute("skillsList", skillServ.getSavedSkillsByPersonId(person.getPersonId()));
 
@@ -225,11 +262,13 @@ public class PersonController {
 									Person person,
 									RedirectAttributes redirAttr) {
 		
-
+		List<Language> sessionPersonLanguages = langServ.getLangsSavedByPersonId(person.getPersonId());
 		
-		Language theLang = langServ.findLangById(id);
-		langServ.deleteLang(theLang);
-		person.removeLang(theLang.getLangId());
+		for(Language lang : sessionPersonLanguages) {
+			if(lang.getLangId() == id) {
+				langServ.deleteLang(lang);
+			}
+		}
 		
 
 		redirAttr.addFlashAttribute("langList", langServ.getLangsSavedByPersonId(person.getPersonId()));
@@ -311,11 +350,14 @@ public class PersonController {
 	public String deleteJobModalById(@RequestParam("id") long id, Model model, Person person,
 			RedirectAttributes redirAttr) {
 
-		Job theJob = jobServ.findJobById(id);
-		jobServ.deleteJobById(theJob);
+		List<Job> sessionPersonJobs = jobServ.getJobsByPersonId(person.getPersonId());
 		
-		System.out.println("job deleted was " + theJob.getJobTitle());
-	
+		for (Job job : sessionPersonJobs) {
+			if(job.getJobId() == id) {
+				jobServ.deleteJobById(job);
+			}
+		}
+			
 		redirAttr.addFlashAttribute("jobList", jobServ.getJobsByPersonId(person.getPersonId()));
 
 		return "redirect:/person/sprofile";
@@ -401,10 +443,13 @@ public class PersonController {
 		
 		List<Doc> docList = docServ.getDocsByPersonId(person.getPersonId());
 		
-		Doc theDoc = docServ.findDocById(id);
-		docServ.deleteDocById(theDoc);
-		
-		docList.remove(theDoc.getDocId());
+		for (Doc doc : docList) {
+			if(doc.getDocId() == id) {
+				docServ.deleteDocById(doc);
+			}
+
+		}
+
 //		persServ.save(person);
 		docServ.flushDocDb();
 		List<Doc> reSavedDocList = docServ.getDocsByPersonId(person.getPersonId());
@@ -435,6 +480,8 @@ public class PersonController {
 				.body(new ByteArrayResource(dbDoc.getData()));
 	}
 	
+
+
 	
 	@GetMapping("/profile/{id}")
 	public String displayProfileById(@PathVariable ("id") Long id, Model model) {
@@ -453,10 +500,12 @@ public class PersonController {
 		}
 
 		if (!model.containsAttribute("lastPicList")) {
-			List<ProfileImg> lastPicList = person.getPics();
+			List<ProfileImg> lastPicList = new ArrayList<>();
+			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
 			model.addAttribute("lastPicList", lastPicList);
 		}
 		
+		@SuppressWarnings("unchecked")
 		List<ProfileImg> lastPicListCheck = (List<ProfileImg>) model.getAttribute("lastPicList");
 		System.out.println("lastPicListCheck size is " + lastPicListCheck.size());
 
@@ -464,10 +513,6 @@ public class PersonController {
 			model.addAttribute("img", new ProfileImg());
 
 		}
-
-		ProfileImg whichImg = (ProfileImg) model.getAttribute("img");
-		System.out.println("Image name is " + whichImg.getPicName());
-		
 
 		
 		if (!model.containsAttribute("docList")) {
@@ -527,40 +572,56 @@ public class PersonController {
 	@PostMapping(value = "/addProfileImg", consumes = { "multipart/form-data" })
 	public String addProfileImg(Model model, Person person, @RequestParam("img") MultipartFile img,
 			RedirectAttributes redirAttr) {
-
+	
+	
 		String imgName = StringUtils.cleanPath(img.getOriginalFilename());
+	
+		//init a new byte array	
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		
+	    //the bytes you want for writing your class image 
+	    byte[] newBytes = null;
+		    
+	    	baos = imgResizerServ.resizeImage(img);
+		
+			newBytes = baos.toByteArray();
+		    
+		    try {
+				baos.close();
+			} catch (IOException e) {
+				System.out.println("ByteArrayOutputSteam is not closed " );
+				e.printStackTrace();
+			}
+		    
+		    System.out.println("newbytes ====== new money " + newBytes.toString());   
+		    
+			ProfileImg smallImg = new ProfileImg(imgName, img.getContentType(), newBytes);
 
-		try {
-			ProfileImg theImg = new ProfileImg(imgName, img.getContentType(), img.getBytes());
-			
+			List<ProfileImg> picList = profileImgServ.getPicsByPersonId(person.getPersonId());
 
-//			person.addPic(theImg);
-			profileImgServ.savePic(theImg);
-			persServ.save(person);
+			profileImgServ.savePic(smallImg);
 
-			List<ProfileImg> picList = profileImgServ.getProfilePicsToSave();
-			
+			picList.add(smallImg);
 
 			List<ProfileImg> lastPicList = new ArrayList<>();
-			lastPicList.add(profileImgServ.getLastPic());
-			System.out.println("lastPicList size is " + lastPicList.size());
-			
+
+			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
+
 			person.setPics(picList);
 
+			persServ.save(person);				
+		
 			redirAttr.addFlashAttribute("lastPicList", lastPicList);
 			redirAttr.addFlashAttribute("picList", picList);
-			redirAttr.addFlashAttribute("img", theImg);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			redirAttr.addFlashAttribute("img", smallImg);
 
 		return "redirect:/person/sprofile";
 	}
 
 	@GetMapping(value = "/img")
-	public ResponseEntity<?> showProfileImg(@RequestParam("imgId") long id) {
-		ProfileImg profilePic = profileImgServ.findProfilePicById(id);
+	public ResponseEntity<?> showProfileImg(@RequestParam("imgId") long id, Person person) {
+//		ProfileImg profilePic = profileImgServ.findProfilePicById(id);
+		ProfileImg profilePic = profileImgServ.getLastPic(person.getPersonId());
 		
 		System.out.println("profile pic that is not displaying is " + profilePic.getPicName());
 
@@ -584,13 +645,9 @@ public class PersonController {
 	@PostMapping("/finishAccount")
 	public String displayHomePage(SessionStatus status) {
 		
-
 //		status.setComplete();
 		return "redirect:/";
 	}
-
-
-
 
 
 }

@@ -57,6 +57,8 @@ public class PersonService {
 		return persRepo.findPersonFromUserId(userId);
 	}
 	
-	
+	public Person findPersonByEmail (String email) {
+		return persRepo.findPersonByEmailIgnoreCase(email);
+	}
 	
 }

@@ -1,6 +1,6 @@
 package com.bzbees.hrma.entities;
 
-import java.io.InputStream;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,7 +21,7 @@ import org.apache.tomcat.util.codec.binary.Base64;
 
 @Entity
 @Table(name="profileImg")
-public class ProfileImg {
+public class ProfileImg implements Serializable {
 	
 
 	@Id()

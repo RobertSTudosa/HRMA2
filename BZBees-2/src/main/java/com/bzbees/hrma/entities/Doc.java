@@ -1,5 +1,6 @@
 package com.bzbees.hrma.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="docs")
-public class Doc {
+public class Doc implements Serializable{
 	
 	
 

@@ -58,6 +58,11 @@ public class SkillService {
 		return skillRepo.findSkillBySkillId(id);
 	}
 	
+	public Skill findSkillBySkillId (long id) {
+		return skillRepo.findBySkillId(id);
+	}
+
+	
 	public void deleteSkill (Skill skill) {
 		skillRepo.delete(skill);
 	}

@@ -27,5 +27,7 @@ public interface UserRepository extends CrudRepository <User, Long> {
 						+ " FROM user_accounts "					 
 						+ " WHERE user_accounts.username = ?1 ;")
 	public User findUserByUsername(String username);
+	
+	public User findByEmailIgnoreCase(String email);
 
 }

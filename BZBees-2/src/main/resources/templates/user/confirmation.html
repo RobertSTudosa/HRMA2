@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+   <div th:replace="header:: head"></div>
+   <title>BZBees - forgot password</title>
+
+</head>
+
+<body>
+
+    <header>
+        <div th:replace="header::nav"></div>
+    </header>
+
+    <main>
+        <section class="login_form">
+            <h4 th:text="${success}"></h4>
+            <h6 th:text="${passChanged}"></h6>
+            
+            <!--  <div class="input_elements">
+             	<h6 style="">You will be redirected to profile page.</h6>
+             </div> -->
+            
+           <!--  <form th:action="@{/}" th:object="${userAccount}" method="post" > -->
+
+	           <!--  <div>
+	            	<div th:text ="${userEmail}"></div>
+	                <input th:text="${newPassword}" type="password" name="newPassword" placeholder="new-password">
+	                
+	            </div> -->
+	            
+				 
+   <!--  	        <div sec:authorize="isAnonymous()" class="login_buttons">
+            
+        	        <button type="submit" class="button_login">Send</button>
+                
+                
+    	        </div> -->
+    	        
+    	        
+    	        
+
+                       
+            </form>
+         
+        </section>
+
+
+    </main>
+
+    <!-- <h3>Check out this useful links</h3> -->
+    <!-- <hr>
+    <hr style="height:1px;border-width:0;color:gray;background-color:gray"> -->
+    <footer class="footer-container2">
+
+        <div class="footer-follow-me2">
+            <button class="facebook">
+                <span class="iconify" data-inline="false" data-icon="dashicons:facebook"></span>
+                <label for="facebook" >facebook</label>
+            </button>
+            <button class="linkedin">
+                <span class="iconify" data-inline="false" data-icon="el:linkedin"></span>
+                <label for="linkedin">linkedin</label>
+            </button>
+            <button class="twitter">
+                <span class="iconify" data-inline="false" data-icon="vaadin:twitter-square"></span>
+                <label for="twitter">twitter</label>
+            </button>
+            <button class="youtube">
+                <span class="iconify" data-inline="false" data-icon="ant-design:youtube-outlined"></span>
+                <label for="youtube">youtube</label>
+            </button>
+
+
+        </div> 
+
+         <div class="copyright2">
+            <h5>Conveniently redefine world-class e-business after state of the art relationships. Authoritatively streamline standardized users without efficient "outside the box" thinking. Uniquely whiteboard.</h5>
+
+        </div> 
+    </footer>
+
+
+
+
+
+
+
+
+  <script src="../css/script.js" defer></script>
+</body>
+
+</html>

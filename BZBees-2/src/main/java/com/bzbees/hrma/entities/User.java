@@ -57,13 +57,11 @@ public class User implements UserDetails, Serializable{
 			inverseJoinColumns=@JoinColumn(name="role_id"))
 	private List<UserRole> roles = new ArrayList<UserRole>();
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},optional = false)
+	@OneToOne(fetch = FetchType.LAZY, cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},optional = false)
 	@JoinColumn(name = "person_id", referencedColumnName="person_id", nullable = false )
 	private Person person;
 	
 	
-	
-
 	public User() {
 		
 	}

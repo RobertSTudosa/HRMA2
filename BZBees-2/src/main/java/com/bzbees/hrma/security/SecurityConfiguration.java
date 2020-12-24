@@ -3,7 +3,9 @@ package com.bzbees.hrma.security;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,9 +24,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	BCryptPasswordEncoder bCryptEncoder;
 	
+	// implement an authenticationProvider to be called on necessary controllers 
+//	@Autowired
+//	CustomAuthenticationProvider authenticationProvider;
+	
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource)
+		
+		auth
+//		.authenticationProvider(authenticationProvider) // <---- this is hot to call a custom auth provider
+			.jdbcAuthentication()
+			.dataSource(dataSource)
 			.usersByUsernameQuery("select username, password, active " + 
 									" from user_accounts where username = ? ")
 			.authoritiesByUsernameQuery("select  user_accounts.username, userrole.permission from userrole " + 
@@ -40,11 +51,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/home").hasAuthority("USER")
-            .antMatchers("/","/**").permitAll()
+            .antMatchers("/","/**","/css/**","/js/**" ).permitAll()
             .and()
             .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true)
             .and()
-            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+            .rememberMe().tokenValiditySeconds(2925000)
+        	.and()
+            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
+            .invalidateHttpSession(true).deleteCookies("JSESSIONID");         
     }
+	
+	@Bean
+	@Override 
+	public AuthenticationManager authenticationManagerBean() 
+			throws Exception { 		
+		return super.authenticationManagerBean(); 	
+		}
 
 }
