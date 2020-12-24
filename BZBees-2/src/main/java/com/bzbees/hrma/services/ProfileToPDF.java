@@ -4,22 +4,22 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.sql.Blob;
 import java.text.SimpleDateFormat;
 
 import javax.imageio.ImageIO;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import org.apache.pdfbox.pdfwriter.ContentStreamWriter;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
@@ -27,22 +27,25 @@ import com.bzbees.hrma.entities.Language;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.Skill;
-import com.google.common.io.Files;
 
 import be.quodlibet.boxable.BaseTable;
 import be.quodlibet.boxable.Cell;
 import be.quodlibet.boxable.Row;
-import be.quodlibet.boxable.VerticalAlignment;
 import be.quodlibet.boxable.image.Image;
 import be.quodlibet.boxable.line.LineStyle;
-import be.quodlibet.boxable.utils.PDStreamUtils;
 import be.quodlibet.boxable.utils.PageContentStreamOptimized;
 
+//@Service
 public class ProfileToPDF {
 	
-		static LineStyle whiteBorder = new LineStyle(Color.WHITE,0);
+	@PersistenceContext
+    private static EntityManager em;
+		
+	static LineStyle whiteBorder = new LineStyle(Color.WHITE,0);
 	
 	public static ByteArrayInputStream exportProfile(Person person) {
+		
+		
 		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		
@@ -81,10 +84,20 @@ public class ProfileToPDF {
 			PageContentStreamOptimized contentStreamOpt = new PageContentStreamOptimized(contentStream);
 			
 			if(!person.getPics().isEmpty()) {
+				
+				
+
+				ProfileImg lastPic1 = em.createQuery("select profile_img.pic_id , pic_name, pic_type, data " + 
+											"	FROM profile_img " + 
+											"	left outer join person_pics ON profile_img.pic_id = person_pics.pic_id " + 
+											"   WHERE person_pics.person_id = :person_id ", ProfileImg.class)
+						.setParameter("person_id", person.getPersonId())
+						.getSingleResult();
+						
 				ProfileImg lastPic = person.getPics().get(person.getPics().size()-1);
 				System.out.println("lastPic name " + lastPic.getPicName());
 				
-			    byte[] bytes = lastPic.getData();
+			    byte[] bytes = lastPic1.getData();
 			    ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 			    
 //			    Image image = new Image(ImageIO.read(bis));

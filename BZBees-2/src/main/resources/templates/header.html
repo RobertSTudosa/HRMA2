@@ -1,0 +1,143 @@
+  <html>
+  	<body>
+  		<div th:fragment="head">
+  			<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=chrome">
+<title>Profile</title>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0;">
+
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
+  		
+  		</div>
+  	</body>
+  </html>
+  
+  
+  <html>
+  <body>
+  	<div th:fragment="head-register">
+  	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Create User</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/main.css">
+<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    
+   
+    
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  	
+  	</div>
+  </body>
+  
+  </html>
+  
+  
+  <html>
+	  <body>
+	  <div th:fragment="head-old">
+		    <meta charset="utf-8">
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		   
+		    <meta name="description" content="">
+		    <meta name="viewport" content="width=device-width, initial-scale=1">
+		    <link rel="stylesheet" href="./css/main.css">
+		    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+		    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>	  
+	  
+	  </div>
+		
+	  </body>
+  </html>
+  
+  <html>
+  	<body>
+  		<div th:fragment="nav">
+  			<nav class="navbar">
+            <div class="brand-text">
+                <a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" /></button></a>
+            </div>
+
+				 <div class="logged-in" >
+      				<a sec:authorize="isAuthenticated()"  th:href="@{/person/sprofile}">
+      				<span sec:authentication="name"></span>
+      				</a></div>
+
+            <div class="navbar-links">
+                <ul sec:authorize="isAnonymous()">
+                    <li><a th:href="@{/login}">candidate</a></li>
+                    <li><a href="#">agency</a></li>
+                    <li><a href="#">employee</a></li>         
+                    <li><a href="@{/admin}">admin</a></li>
+
+                </ul>
+                
+            </div>
+            
+            
+		
+				
+      		
+      		<div class="navbar-user-links">
+
+					<ul sec:authorize="isAuthenticated()">
+						
+						<li>
+							<form th:action="@{/logout}">
+								<button type="submit">logout</button>
+							</form>
+						</li>
+						
+						<li><a>Test link</a></li>
+						<li><a>Test link</a></li>
+						<li><a>Test link</a></li>
+
+					</ul>
+
+
+			</div>
+   
+          
+				
+				<button  class="button-userplus">
+                        <img sec:authorize="isAnonymous()" src="../css/buttons/user-plus.png" alt="header" />
+                        <img sec:authorize="isAuthenticated()" src="../css/buttons/user-name.png" alt="header" />
+                        
+                </button>
+
+
+                <button class="burgermenu">
+                        <img src="../css/buttons/burgermenu.svg" alt="header" />
+                    </button>
+            
+
+
+
+
+        </nav>
+  		
+  		</div>
+  	</body>
+  </html>

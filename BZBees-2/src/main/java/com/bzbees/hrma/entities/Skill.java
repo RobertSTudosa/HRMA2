@@ -1,5 +1,6 @@
 package com.bzbees.hrma.entities;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="skills")
-public class Skill {
+public class Skill implements Serializable {
 	
 	
 	@Id()

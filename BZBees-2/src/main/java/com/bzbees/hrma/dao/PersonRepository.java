@@ -21,6 +21,8 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 				+ " WHERE user_accounts.user_id = ?1 ;")
 		public Person findPersonFromUserId(long personId);
 		
+		public Person findPersonByEmailIgnoreCase(String email);
+		
 		
 		
 

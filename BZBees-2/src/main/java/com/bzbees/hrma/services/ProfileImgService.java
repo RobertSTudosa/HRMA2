@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bzbees.hrma.dao.ProfileImgRepository;
+import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.ProfileImg;
 
 @Service
@@ -32,13 +33,18 @@ public class ProfileImgService {
 		return picList;
 	}
 	
-	public ProfileImg getLastPic () {
-		ProfileImg lastPicUploaded = (ProfileImg) picRepo.getLastProfilePic();
+	public ProfileImg getLastPic (long personId) {
+		ProfileImg lastPicUploaded = (ProfileImg) picRepo.getLastProfilePic(personId);
 		return lastPicUploaded;
 	}
 	
 	public ProfileImg findProfilePicById(long id) {
 		return picRepo.findProfileImgByPicId(id);
+	}
+	
+	public List<ProfileImg> getPicsByPersonId(long personId) {
+		List<ProfileImg> picList = picRepo.getSavedPicsByPersonId(personId);
+		return picList;
 	}
 	
 	public void deleteProfileImgById(ProfileImg pic) {

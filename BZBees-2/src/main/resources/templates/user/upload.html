@@ -7,60 +7,15 @@
 <!--<![endif]-->
 
 <head>
- <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Upload docs</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/main.css">
-<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
-    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+  <div th:replace="header:: head-register"></div>
+	<title>BZBees - upload docs</title>
 </head>
 
 
 <body>
 
 	<header>
-		<nav class="navbar">
-			<div class="brand-text">
-				<a th:href="@{/}"><button>
-						<img src="../css/header/logo.svg" alt="logo" />
-					</button></a>
-			</div>
-
-
-
-			<div class="navbar-links">
-				<ul>
-					<li><a href="#">candidate</a></li>
-					<li><a href="#">agency</a></li>
-					<li><a href="#">employee</a></li>
-
-				</ul>
-			</div>
-			<div>
-				<button class="button-user">
-					<img src="../css/buttons/user-name.png" alt="header" />
-				</button>
-
-				<div class="user-name">Robert T.</div>
-
-				<button class="button-userplus">
-					<img src="../css/buttons/user-plus.png" alt="header" />
-				</button>
-
-
-
-				<button class="burgermenu">
-					<img src="../css/buttons/burgermenu.svg" alt="header" />
-				</button>
-			</div>
-
-		</nav>
+		<div th:replace="header::nav"></div>
 
 	</header>
 

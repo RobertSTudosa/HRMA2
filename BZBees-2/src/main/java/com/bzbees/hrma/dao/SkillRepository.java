@@ -1,6 +1,7 @@
 package com.bzbees.hrma.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -35,5 +36,9 @@ public interface SkillRepository extends CrudRepository <Skill, Long> {
 	public List<Skill> findSkillsForThePerson (long personId);
 	
 	public Skill findSkillBySkillId(long id);
+	
+	public Skill findBySkillId(long id);
+	
+	
 
 }
