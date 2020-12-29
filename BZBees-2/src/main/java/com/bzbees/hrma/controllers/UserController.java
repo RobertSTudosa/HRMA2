@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -15,17 +15,14 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -68,6 +65,9 @@ import com.bzbees.hrma.services.UserService;
 @SessionAttributes({ "person", "userAccount", "skillsList", "langList", "jobList", "docList", "picList", "lastPicList" })
 @RequestMapping("/user")
 public class UserController {
+	
+	@Autowired
+	EntityManager entityManager;
 
 	@Autowired
 	PersonService persServ;
@@ -158,9 +158,6 @@ public class UserController {
 							
 							userAccount.setPerson(person);
 							
-							//set the user active 
-//							userAccount.setActive(true);
-							
 							//encrypt the password for the user
 							persServ.save(person);
 							userAccount.setPassword(bCryptEncoder.encode(userAccount.getPassword()));
@@ -231,7 +228,8 @@ public class UserController {
 			
 			
 			System.out.println("This is user activation is " + userAccount.isActive());
-			redirAttr.addFlashAttribute("message", "User " + userAccount.getUsername() + " is confirmed");
+			redirAttr.addAttribute("message", "The account for" + userAccount.getUsername() + " is confirmed");
+			model.addAttribute("userAccount", userAccount);
 		}
 		
 

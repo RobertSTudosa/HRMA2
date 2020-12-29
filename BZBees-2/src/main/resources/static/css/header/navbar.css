@@ -1,3 +1,5 @@
+
+
 * {
 	 box-sizing: border-box;
 	 margin: 0px;
@@ -5,11 +7,12 @@
 	 border: 0px; 
 	 
  }
-
+ 
 .navbar {
     position: fixed;
     margin-top: 0px;
     display: flex;
+    flex-flow: row wrap;
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -19,6 +22,7 @@
     background: rgba(253, 251, 251, 1);
     z-index: 500;
 }
+
 
 .brand-text {
     padding-left: 10px;
@@ -31,17 +35,25 @@
 }
 
 .navbar-links {
+	display: none;
     height: 100%;
+    position: absolute;
+    top:3.03rem;
+    right: 0;
 }
 
 .navbar-links ul {
     margin: 0;
     padding: 0;
     display: flex;
+ 	flex-direction:row
 }
 
 .navbar-links li {
     list-style: none;
+    flex-direction: row;
+    background-color: white;
+   
 }
 
 .navbar-links li a {
@@ -55,20 +67,33 @@
     background-color: darkgrey;
 }
 
+     .navbar-links.active {
+        display: flex;
+
+    }
+ 
 
 .navbar-user-links {
+	display: none;
     height: 100%;
+    position: absolute;
+    top:3.03rem;
+    right: 0;
+    
 }
 
 .navbar-user-links ul {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction:column
 }
 
 .navbar-user-links li {
     list-style: none;
+   	background-color: white;
 }
+
 
 .navbar-user-links li a {
     text-decoration: none;
@@ -81,12 +106,37 @@
     background-color: darkgrey;
 }
 
-@media (max-width: 480px) {
-	
-	.logged-in {
-	display: flex;
-	justify-content: flex-end;
+  .navbar-user-links.active {
+        display: flex;
+        
+    }
+
+
+    
+    .button-userplus {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items:center;
+        justify-content: space-around;
+    }
+    
+    .logout {
+		text-decoration: none;
+	    color: #484848;
+	    padding: 1rem;
+	    display: block;
+	    background-color: #c4c1c0;
+    }
+    
+    
+    @media (max-width: 780px) {
+
 	}
+
+
+/* THIS IS WHERE MOBILE DESIGN COMES IN  */
+
+@media (max-width: 480px) {
 	
     .navbar-links {
         display: none;
@@ -97,15 +147,14 @@
         display: none;
         width: 100%;
     }
-    .button-userplus {
+     .button-userplus {
         display: flex;
-    }
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        align-items:center;
+    } 
     
-    
-    .button-user {
-        display: flex;
-    }
-    
+
     .nav-right {
         display: flex;
     }
@@ -140,5 +189,10 @@
     }
     .navbar-user-links.active {
         display: flex;
+        position: relative;
+        right:0;
+        top:0.5rem;
     }
+    
+    
 }
