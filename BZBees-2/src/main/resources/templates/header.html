@@ -1,14 +1,33 @@
   <html>
+	  <body>
+	  <div th:fragment="head-old">
+		    <meta charset="utf-8">
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		   
+		    <meta name="description" content="">
+		    <meta name="viewport" content="width=device-width, initial-scale=1">
+		    <link rel="stylesheet" href="./css/main.css">
+		    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+		    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>	  
+	  
+	  </div>
+		
+	  </body>
+  </html> 
+ 
+ 
+ 
+  <html>
   	<body>
   		<div th:fragment="head">
   			<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=chrome">
-<title>Profile</title>
 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0;">
 
 <link rel="stylesheet" href="../css/main.css">
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -40,7 +59,9 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/main.css">
-<!--     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+  
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
     
    
     
@@ -55,83 +76,75 @@
   </html>
   
   
-  <html>
-	  <body>
-	  <div th:fragment="head-old">
-		    <meta charset="utf-8">
-		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-		   
-		    <meta name="description" content="">
-		    <meta name="viewport" content="width=device-width, initial-scale=1">
-		    <link rel="stylesheet" href="./css/main.css">
-		    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-		    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>	  
-	  
-	  </div>
-		
-	  </body>
-  </html>
+
   
   <html>
   	<body>
   		<div th:fragment="nav">
+  		
   			<nav class="navbar">
-            <div class="brand-text">
-                <a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" /></button></a>
-            </div>
-
-				 <div class="logged-in" >
-      				<a sec:authorize="isAuthenticated()"  th:href="@{/person/sprofile}">
-      				<span sec:authentication="name"></span>
-      				</a></div>
-
-            <div class="navbar-links">
-                <ul sec:authorize="isAnonymous()">
-                    <li><a th:href="@{/login}">candidate</a></li>
-                    <li><a href="#">agency</a></li>
-                    <li><a href="#">employee</a></li>         
-                    <li><a href="@{/admin}">admin</a></li>
-
-                </ul>
-                
-            </div>
+  			
+	            <div class="brand-text">
+	                <a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" /></button></a>
+	            </div>
             
             
-		
+            <div class="menu-userplus">
+            <button  class="button-userplus" name="button-userplus" id="button-userplus">
 				
-      		
-      		<div class="navbar-user-links">
+				<img sec:authorize="isAnonymous()" src="../css/buttons/user-plus.png" alt="header" /> 
+				<img sec:authorize="isAuthenticated()" src="../css/buttons/user-name.png" alt="header" />
+                 <span sec:authorize="isAuthenticated()" sec:authentication="name"></span></button>       
+  			
+  			<div class="navbar-user-links" >
 
-					<ul sec:authorize="isAuthenticated()">
-						
-						<li>
-							<form th:action="@{/logout}">
-								<button type="submit">logout</button>
-							</form>
-						</li>
-						
-						<li><a>Test link</a></li>
-						<li><a>Test link</a></li>
-						<li><a>Test link</a></li>
+				<ul sec:authorize="isAuthenticated()">
 
-					</ul>
+					<li><a sec:authorize="isAuthenticated()"
+						th:href="@{/person/sprofile}"><span sec:authorize="isAuthenticated()" sec:authentication="name"></span>'s profile		</a>
+										
+					</li>
+					
+					<li><a
+						th:href="@{/showChangePassword/}">change password</a></li>
+
+					<li>
+
+					<li><a>My jobs</a></li>
+					
+					<li><a>Create agency</a></li>
+					
+						<form th:action="@{/logout}">
+							<button class="logout" type="submit">logout</button>
+						</form>
+					</li>
+
+				</ul>
 
 
 			</div>
-   
+            </div>
+             
+         
+         	<div class="navbar-links">
+                	<ul sec:authorize="isAnonymous()">
+	                    <li><a th:href="@{/login}">login</a></li>
+	                    <li><a th:href="@{/user}">register</a></li>
+	                </ul>
+               
+            </div>
+            
+
+      		
           
 				
-				<button  class="button-userplus">
-                        <img sec:authorize="isAnonymous()" src="../css/buttons/user-plus.png" alt="header" />
-                        <img sec:authorize="isAuthenticated()" src="../css/buttons/user-name.png" alt="header" />
-                        
-                </button>
 
 
-                <button class="burgermenu">
+
+<!--                 <button class="burgermenu">
                         <img src="../css/buttons/burgermenu.svg" alt="header" />
                     </button>
-            
+             -->
 
 
 
@@ -141,3 +154,7 @@
   		</div>
   	</body>
   </html>
+  
+  
+    
+

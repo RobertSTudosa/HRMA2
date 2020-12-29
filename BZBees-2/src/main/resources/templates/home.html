@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org"  
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 
@@ -15,8 +16,8 @@
     </header>
 
     <main>
-    
-
+    	
+		<div th:text="${message}"></div>
         <div class="searchbox">       
             <input type="text" id="searchbox-input" onclick="" placeholder="search for me" />
             <button type="submit" class="search-button"><img src="../css/graphic/search.png" /></button>
@@ -27,18 +28,18 @@
 			
             <section class="jobs">
             <div sec:authorize="isAuthenticated()">
- 				 This content is only shown to authenticated users.
+ 				 This content is only shown only when authentication occurs.
 			</div>
             <div sec:authorize="hasAuthority('USER')">
-  			This content is only shown to users.
+  			This content is only shown to USER.
 			</div>
+			<div sec:authorie="isAuthenticated()">
+				<span sec:authentication="name">[USER, ADMIN]</span>
+			</div> 
 			 <div sec:authorize="hasAuthority('ADMIN')">
   			This content is only shown to admins.
 			</div>
 			
-			<div th:text="${message}"></div>
-			
-			<div th:text="${passChanged}"></div>
 
                 <div class="main-yellow-text">jobs</div>
 
@@ -548,7 +549,7 @@
 
 
 
-    <script src="../css/script.js" defer></script>
+    <script src="../css/script.js" defer></script> 
 
 </body>
 

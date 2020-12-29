@@ -375,7 +375,7 @@
 }
 	
 	.account_profile {
-		margin-bottom: 10px;
+		margin-bottom: 60px;
 		margin-top: 10px;
 		padding-top:5%;
 		display: flex;
@@ -383,6 +383,7 @@
 		justify-content: space-around;
 		align-items: center; 
 		height: 300px;
+
 	}
 	
 	.account_profile .profile {
