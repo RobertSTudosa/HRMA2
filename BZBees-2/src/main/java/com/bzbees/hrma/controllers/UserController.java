@@ -39,6 +39,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.ConfirmationToken;
 import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
@@ -48,6 +49,7 @@ import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.Skill;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.entities.UserRole;
+import com.bzbees.hrma.services.AgencyService;
 import com.bzbees.hrma.services.ConfirmationTokenService;
 import com.bzbees.hrma.services.DocService;
 import com.bzbees.hrma.services.EmailService;
@@ -105,9 +107,13 @@ public class UserController {
 	
 	@Autowired
 	AuthenticationManager authManager;
+	
+	@Autowired
+	AgencyService agencyServ;
 
 	@GetMapping(value={"","/"})
 	public String displayRegisterForm(Model model, HttpSession session, Authentication auth) {
+		
 		
 		if(auth != null) {
 			System.out.println("User is " + auth.getName());
@@ -173,6 +179,9 @@ public class UserController {
 			
 				emailService.sendEmail(mailMessage);
 				System.out.println("Email was sent according to spring boot");
+				
+				User checkUser = entityManager.find(User.class, 1L);
+				System.out.println("What usery is this? : " + checkUser.getEmail());
 
 						}
 							
@@ -203,7 +212,7 @@ public class UserController {
 	
 	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST}) 
 	public String confirmAccount (Model model, @RequestParam("t0") String confirmationToken, User userAccount, Person person,
-			HttpServletRequest request, RedirectAttributes redirAttr	) {
+			HttpServletRequest request, RedirectAttributes redirAttr, HttpSession session	) {
 		
 		ConfirmationToken checkedToken = confTokenServ.findConfirmationTokenByConfirmationToken(confirmationToken);
 		if(checkedToken !=null) {
@@ -222,7 +231,7 @@ public class UserController {
 			userServ.save(userAccount);
 			
 			//used to auto login the user coming from email			
-			request.getSession();		
+			session = request.getSession();	
 			Authentication authentication = new UsernamePasswordAuthenticationToken(userAccount,null, userAccount.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
@@ -230,6 +239,20 @@ public class UserController {
 			System.out.println("This is user activation is " + userAccount.isActive());
 			redirAttr.addAttribute("message", "The account for" + userAccount.getUsername() + " is confirmed");
 			model.addAttribute("userAccount", userAccount);
+			session.setAttribute("userAccount", userAccount);
+			
+			//get the agency if any is associated with current user 
+			if(agencyServ.findAgencyByUserId(userAccount.getUserId()) !=null) {
+				Agency agency = agencyServ.findAgencyByUserId(userAccount.getUserId());
+				System.out.println("Agency in user controller " + agency.getAgencyName());
+				model.addAttribute("agency", agency);
+			} else {
+				Agency agency = new Agency();
+				model.addAttribute("agency", agency);
+				System.out.println("THERE IS NO AGENCY in USER CONTROLLER EMAIL USER ACTIVATION");
+			}
+
+			
 		}
 		
 

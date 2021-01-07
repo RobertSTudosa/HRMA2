@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -78,6 +79,15 @@ public class Person implements Serializable {
 			joinColumns=@JoinColumn(name="person_id"),
 			inverseJoinColumns=@JoinColumn(name="job_id"))
 	private List<Job> jobs = new ArrayList<>();
+	
+	
+	@OneToMany(
+	        mappedBy = "person",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	    )
+	private List<SocialMedia> socialMedia = new ArrayList<>();
+	
 	
 	@OneToOne(mappedBy="person")
 	private User user;

@@ -61,6 +61,9 @@ public class User implements UserDetails, Serializable{
 	@JoinColumn(name = "person_id", referencedColumnName="person_id", nullable = false )
 	private Person person;
 	
+	@OneToOne(mappedBy="user")
+	private Agency agency;
+	
 	
 	public User() {
 		

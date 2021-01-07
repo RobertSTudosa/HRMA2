@@ -71,6 +71,14 @@ public class UserRole implements GrantedAuthority {
 	
 		return this.permission;
 	}
+
+
+	@Override
+	public String toString() {
+		return "UserRole [roleId=" + roleId + ", permission=" + permission + ", users=" + users + "]";
+	}
+	
+	
 	
 	
 	

@@ -104,6 +104,11 @@
 						th:href="@{/person/sprofile}"><span sec:authorize="isAuthenticated()" sec:authentication="name"></span>'s profile		</a>
 										
 					</li>
+
+					<li  
+						sec:authorize="hasAuthority('AGENCY')"> 
+						<a  th:href="@{/agency/profile}">
+							<span  th:text="${agency.agencyName} +' \'s profile' "></span></a></li>
 					
 					<li><a
 						th:href="@{/showChangePassword/}">change password</a></li>
@@ -112,7 +117,10 @@
 
 					<li><a>My jobs</a></li>
 					
-					<li><a>Create agency</a></li>
+					<li th:if="${agency.agencyId == 0}"><a
+						th:href="@{/agency/register}">Create agency</a></li>
+						
+					<li><a>Create employer</a></li>
 					
 						<form th:action="@{/logout}">
 							<button class="logout" type="submit">logout</button>
@@ -128,8 +136,8 @@
          
          	<div class="navbar-links">
                 	<ul sec:authorize="isAnonymous()">
-	                    <li><a th:href="@{/login}">login</a></li>
-	                    <li><a th:href="@{/user}">register</a></li>
+	                    <li><a th:href="@{/login}" style="color:orange">login</a></li>
+	                    <li><a th:href="@{/user}" style="color:orange">register</a></li>
 	                </ul>
                
             </div>
