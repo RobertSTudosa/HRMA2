@@ -66,7 +66,8 @@
 	margin-bottom: 0.1rem;
 }
 
-.profile_details #birthdate, #email, #jobStatus {
+.profile_details #birthdate, #email, #jobStatus, 
+				#agency {
 	margin-left:.2rem;
 
 }

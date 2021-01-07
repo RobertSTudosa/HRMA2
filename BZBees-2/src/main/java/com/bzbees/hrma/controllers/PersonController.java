@@ -1,13 +1,11 @@
 package com.bzbees.hrma.controllers;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +31,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Language;
@@ -40,6 +39,7 @@ import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.Skill;
 import com.bzbees.hrma.entities.User;
+import com.bzbees.hrma.services.AgencyService;
 import com.bzbees.hrma.services.DocService;
 import com.bzbees.hrma.services.ImageResize;
 import com.bzbees.hrma.services.JobService;
@@ -50,11 +50,9 @@ import com.bzbees.hrma.services.ProfileToPDF;
 import com.bzbees.hrma.services.SkillService;
 import com.bzbees.hrma.services.UserService;
 
-import net.coobird.thumbnailator.Thumbnails;
-
 @Controller
-@SessionAttributes({ "person", "userAccount","picList", "lastPicList"})
-//, "skillsList", "langList", "jobList", "docList",  
+@SessionAttributes({ "person", "userAccount","picList", "lastPicList", "jobList"})
+//, "skillsList", "langList", "docList",  
 @RequestMapping("/person")
 public class PersonController {
 	
@@ -81,12 +79,17 @@ public class PersonController {
 	
 	@Autowired
 	ImageResize imgResizerServ;
+	
+	@Autowired
+	AgencyService agencyServ;
 
 	
 	@GetMapping("/sprofile")
 	public String displayLoggedInProfile( Model model, Authentication auth) {
 	
-		
+		if(auth.getName() ==null) {
+			return "home";
+		}
 		//get the user from user Principal
 		User user = (User) userServ.loadUserByUsername(auth.getName());
 		
@@ -133,6 +136,18 @@ public class PersonController {
 			model.addAttribute("lastPicList", new ArrayList<>());
 		}
 		
+		//get the agency is any is associated with current user 
+		if(agencyServ.findAgencyByUserId(user.getUserId()) !=null) {
+			Agency agency = agencyServ.findAgencyByUserId(user.getUserId());
+			model.addAttribute("agency", agency);
+			System.out.println("Agency in the PersonController is " + agency.getAgencyName());
+		} else {
+			Agency agency = new Agency();
+			model.addAttribute("agency", agency);
+			System.out.println("NEW Agency in the PersonController is added ");
+		}
+
+		
 
 		model.addAttribute("picList", personPics);
 		model.addAttribute("docList", personDocs);
@@ -141,6 +156,7 @@ public class PersonController {
 		model.addAttribute("skillsList", personSkills);
 		model.addAttribute("userAccount", user);
 		model.addAttribute("person", person);
+		
 		
 //		if (!model.containsAttribute("picList")) {
 //			List<ProfileImg> picList = new ArrayList<>();
