@@ -3,7 +3,6 @@ package com.bzbees.hrma.dao;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -11,8 +10,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.bzbees.hrma.BzBees1Application;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.entities.UserRole;
 import com.bzbees.hrma.services.UserService;
@@ -21,7 +22,7 @@ import com.bzbees.hrma.services.UserService;
 @DataJpaTest
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-//@ContextConfiguration(classes=BzBees1Application.class)
+@ContextConfiguration(classes=BzBees1Application.class)
 //@RunWith(SpringRunner.class)
 
 //@SqlGroup({@Sql(executionPhase=ExecutionPhase.BEFORE_TEST_METHOD, scripts= {"classpath:schema.sql", "classpath:data.sql"}),

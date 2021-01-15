@@ -40,8 +40,8 @@ public class HomeController {
 	@Autowired
 	BCryptPasswordEncoder bCryptEncoder;
 	
-	@Value("${version}")
-	private String ver;
+//	@Value("${version}")
+//	private String ver;
 	
 	@GetMapping("/")
 	public String displayHome ( Model model, @ModelAttribute("message") String message, 
@@ -78,7 +78,7 @@ public class HomeController {
 		
 		
 //		System.out.println("Name of the user : " + auth.getName());
-		model.addAttribute("localVerNumber", ver);
+//		model.addAttribute("localVerNumber", ver);
 		
 		return "home";
 	}

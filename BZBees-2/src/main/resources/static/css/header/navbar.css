@@ -79,7 +79,7 @@
     position: absolute;
     top:3.03rem;
     right: 0;
-    
+    z-index: 500;
 }
 
 .navbar-user-links ul {
@@ -146,6 +146,7 @@
     .navbar-user-links {
         display: none;
         width: 100%;
+        z-index: 500;
     }
      .button-userplus {
         display: flex;

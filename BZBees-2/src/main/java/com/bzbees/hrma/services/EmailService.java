@@ -11,8 +11,8 @@ import com.bzbees.hrma.entities.ConfirmationToken;
 @Service("emailService")
 public class EmailService {
 	
+	@Autowired
 	private JavaMailSender javaMailSender;
-	
 	
 	
 	@Autowired
