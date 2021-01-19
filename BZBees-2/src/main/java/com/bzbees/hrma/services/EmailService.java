@@ -14,6 +14,10 @@ public class EmailService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
+
+	
+	public String localhost1 = "hrm.bpeople.ro:8080";
+	
 	
 	@Autowired
 	public EmailService(JavaMailSender javaMailSender) {
@@ -32,8 +36,10 @@ public class EmailService {
 		 mailMessage.setTo(to);
 		 mailMessage.setSubject(subject);
 		 mailMessage.setFrom("no_reply@bpeople.ro");
+		 //1st. try was http://hrm.bpeople.ro
+		 //2nd try is going to be: http://hrm.bpeople.ro:8080 - aaaannd is right... we have a winner ladies and gentleman
 		 mailMessage.setText("To confirm your account, please click here: " + 
-				 			"http://localhost:8080/user/confirm-account?t0=" + 
+				 			"http://hrm.bpeople.ro:8080/user/confirm-account?t0=" + 
 				 			confirmationToken);
 		 return mailMessage;
 		 
@@ -47,7 +53,7 @@ public class EmailService {
 		 mailMessage.setSubject(subject);
 		 mailMessage.setFrom("no_reply@bpeople.ro");
 		 mailMessage.setText("To change your password, please click here: " + 
-				 			"http://localhost:8080/login/emailChangePassword?c4=" + 
+				 			"http://hrm.bpeople.ro:8080/login/emailChangePassword?c4=" + 
 				 			confirmationToken);
 		 return mailMessage;
 		 

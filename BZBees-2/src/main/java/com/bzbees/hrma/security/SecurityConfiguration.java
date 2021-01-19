@@ -34,11 +34,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
 		auth
-//		.authenticationProvider(authenticationProvider) // <---- this is hot to call a custom auth provider
-			.jdbcAuthentication()
+//		.authenticationProvider(authenticationProvider) // <---- this is how to call a custom auth provider
+			.jdbcAuthentication()	
 			.dataSource(dataSource)
 			.usersByUsernameQuery("select username, password, active " + 
-									" from user_accounts where username = ? ")
+									" from user_accounts where username collate latin1_general_cs = ? ")
 			.authoritiesByUsernameQuery("select  user_accounts.username, userrole.permission from userrole " + 
 					" join  user_role on user_role.role_id= userrole.role_id " + 
 					" join user_accounts on user_accounts.user_id = user_role.user_id "

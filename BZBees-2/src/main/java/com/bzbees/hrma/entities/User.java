@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -176,6 +177,24 @@ public class User implements UserDetails, Serializable{
 	public boolean isEnabled() {
 		return this.active;
 	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		if( !(obj instanceof User)) return false;
+		
+		User user = (User) obj;
+		
+		if(!getUsername().equals(user.getUsername())) return false;
+		// TODO Auto-generated method stub
+		return userId != 0L && userId == user.getUserId();
+	}
+	
 	
 	
 	

@@ -111,13 +111,13 @@
 							<span  th:text="${agency.agencyName} +' \'s profile' "></span></a></li>
 					
 					<li><a
-						th:href="@{/showChangePassword/}">change password</a></li>
+						th:href="@{/showChangePassword}">change password</a></li>
 
 					<li>
 
 					<li><a>My jobs</a></li>
 					
-					<li th:if="${agency.agencyId == 0}"><a
+					<li sec:authorize="!hasAuthority('AGENCY')"><a
 						th:href="@{/agency/register}">Create agency</a></li>
 						
 					<li><a>Create employer</a></li>
