@@ -142,6 +142,11 @@ public class User implements UserDetails, Serializable{
 		this.roles.add(role);
 		return this;
 	}
+	
+	public User removeRole (UserRole role) {
+		this.roles.remove(role);
+		return this;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

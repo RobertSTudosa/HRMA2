@@ -126,7 +126,11 @@
 	padding-bottom: .3rem;
 	width: 65%;
 	
-	
+.register_form .account h4 {
+	font-style: italic;
+	align-self: center;
+	font-size: .5rem;
+}	
 	
 }
 

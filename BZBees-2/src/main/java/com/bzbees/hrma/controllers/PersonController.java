@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -85,7 +86,10 @@ public class PersonController {
 
 	
 	@GetMapping("/sprofile")
-	public String displayLoggedInProfile( Model model, Authentication auth) {
+	public String displayLoggedInProfile( Model model, 
+			@ModelAttribute("passChanged") String passChanged,
+			@ModelAttribute("success") String success,
+			Authentication auth) {
 	
 		if(auth.getName() ==null) {
 			return "home";
@@ -157,32 +161,12 @@ public class PersonController {
 		model.addAttribute("userAccount", user);
 		model.addAttribute("person", person);
 		
-		
-//		if (!model.containsAttribute("picList")) {
-//			List<ProfileImg> picList = new ArrayList<>();
-//			model.addAttribute("picList", picList);
-//		}
-		
-		
-//		if (!model.containsAttribute("lastPicList")) {
-//			List<ProfileImg> lastPicList = new ArrayList<>();
-//			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
-////			model.addAttribute("img", profileImgServ.getLastPic(person.getPersonId()));
-//			model.addAttribute("lastPicList", lastPicList);
-//		}
+	
 		
 		List<ProfileImg> lastPicListCheck = (List<ProfileImg>) model.getAttribute("lastPicList");
 		System.out.println("lastPicListCheck size is " + lastPicListCheck.size());
 		
-
-//		if (!model.containsAttribute("img")) {
-//			model.addAttribute("img", new ProfileImg());
-//
-//		}
-
-//		ProfileImg whichImg = (ProfileImg) model.getAttribute("img");
-//		System.out.println("Image name is " + whichImg.getPicName());
-//		
+	
 		if (!model.containsAttribute("job")) {
 			Job job = new Job();
 			model.addAttribute("job", job);
@@ -664,6 +648,9 @@ public class PersonController {
 //		status.setComplete();
 		return "redirect:/";
 	}
+	
+	
+	
 
 
 }

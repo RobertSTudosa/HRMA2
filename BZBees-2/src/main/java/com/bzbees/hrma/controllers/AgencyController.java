@@ -12,10 +12,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -129,6 +131,7 @@ public class AgencyController {
 	
 		userServ.save(user);
 		agency.setUser(user);
+		agency.setAdminName(user.getUsername());
 		agencyServ.saveAgency(agency);
 		
 		redirAttr.addAttribute("userAccount", user);
@@ -142,8 +145,53 @@ public class AgencyController {
 		
 		
 		
-		return "agency/profile";
+		return "agency/agency_profile";
 	}
+	
+	
+	//must implement another form of deleting/detaching an agency from the person
+	//keep in place to resolve the profile menu null's profile
+		@Transactional
+		@GetMapping("/deleteAgency")
+		public String deleteAgency(@RequestParam("id") long id, Model model,
+									RedirectAttributes redirAttr, Person person, Authentication auth)	{
+			
+			agencyServ.deleteAgencyById(id);
+
+		
+			
+			User user = (User) userServ.loadUserByUsername(auth.getName());
+			
+			if(!user.getRoles().contains("AGENCY")) {
+				
+				auth = SecurityContextHolder.getContext().getAuthentication();
+
+				List<GrantedAuthority> updatedAuthorities = new ArrayList<>(auth.getAuthorities());
+				
+				updatedAuthorities.remove(new SimpleGrantedAuthority("AGENCY"));
+				
+				//add your role here [e.g., new SimpleGrantedAuthority("ROLE_NEW_ROLE")]
+//				updatedAuthorities.add(new SimpleGrantedAuthority("AGENCY")); 
+				
+
+				Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
+
+				SecurityContextHolder.getContext().setAuthentication(newAuth);
+				
+				
+				UserRole role = new UserRole("AGENCY");
+				user.removeRole(role);
+				
+			}
+			
+			userServ.save(user);
+			
+			redirAttr.addAttribute("userAccount", user);
+			
+			
+			
+			return "redirect:/person/sprofile";
+		}
 	
 
 }

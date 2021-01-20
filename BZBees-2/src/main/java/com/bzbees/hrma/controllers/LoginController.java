@@ -87,7 +87,7 @@ public class LoginController {
 			
 			SimpleMailMessage mailMessage = emailServ.simpleChangePassMessage(emailAddress, "BZBees - Change your password", confirmationToken.getConfirmationToken());
 			emailServ.sendEmail(mailMessage);
-			redirAttr.addAttribute("sendPassChange", "We sent you an email for changing your password.");
+			redirAttr.addAttribute("sendPassChange", "We sent you an email for reseting your password.");
 		} else {
 			redirAttr.addAttribute("sendPassChange", "Email incorrect");
 		}
@@ -98,7 +98,7 @@ public class LoginController {
 	@GetMapping("/emailChangePassword")
 	public String showPasswordChange(Model model, @RequestParam("c4") String confirmationToken,  
 			 HttpSession session, HttpServletRequest request,
-			RedirectAttributes redirAttr) {
+			 RedirectAttributes redirAttr) {
 		
 		ConfirmationToken checkedToken = confTokenServ.findConfirmationTokenByConfirmationToken(confirmationToken);
 		User userAccount = checkedToken.getUser();
@@ -113,12 +113,9 @@ public class LoginController {
 		model.addAttribute("token", checkedToken);
 		model.addAttribute("userAccount", userAccount);
 		model.addAttribute("userEmail", userAccount.getEmail());
-		
-		
-		
+
 		return "user/changePassword";
 	}
-	
 	
 	
 //	@RequestMapping(value="/changePassword", method= {RequestMethod.GET, RequestMethod.POST})
@@ -130,11 +127,11 @@ public class LoginController {
 		String newPassword = request.getParameter("newPassword");
 		String username = request.getParameter(userAccount.getUsername());
 		String userEmail = request.getParameter("userEmail");
-		System.out.println("What password is here : " + newPassword);
-		System.out.println("Username from the request " + username);
-		System.out.println("Username's email is also : " + userEmail);
-		System.out.println("Token is here " + request.getParameter("token"));
-		System.out.println("Why is the user nul?????!!!!" + userAccount.getUsername());
+//		System.out.println("What password is here : " + newPassword);
+//		System.out.println("Username from the request " + username);
+//		System.out.println("Username's email is also : " + userEmail);
+//		System.out.println("Token is here " + request.getParameter("token"));
+//		System.out.println("Why is the user nul?????!!!!" + userAccount.getUsername());
 		
 		person = persServ.findPersonByUserId(userAccount.getUserId());
 		userAccount.setPassword(bCryptEncoder.encode(newPassword));		

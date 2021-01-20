@@ -82,7 +82,7 @@
   	<body>
   		<div th:fragment="nav">
   		
-  			<nav class="navbar">
+  			<nav class="navbar" style="position:fixed">
   			
 	            <div class="brand-text">
 	                <a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" /></button></a>
@@ -105,8 +105,7 @@
 										
 					</li>
 
-					<li  
-						sec:authorize="hasAuthority('AGENCY')"> 
+					<li  sec:authorize="hasAuthority('AGENCY')"> 
 						<a  th:href="@{/agency/profile}">
 							<span  th:text="${agency.agencyName} +' \'s profile' "></span></a></li>
 					

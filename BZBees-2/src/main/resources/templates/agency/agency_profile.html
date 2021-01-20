@@ -21,7 +21,7 @@
 	<main>
 		<section th:object="${agency}" class="profile">
 
-			<h3>Profile</h3>
+			<h3> <span th:text="${agency.agencyName}">AGENCY</span>'s profile</h3>
 			<hr class="new_line">
 			
 			<div class="profile_top">
@@ -269,8 +269,8 @@
 
 
 				
-
-				<!-- MODAL for adding a JOB from profile -->
+<!--  
+ 				MODAL for adding a JOB from profile
 
 				<div class="modal fade" id="addJobModal" tabindex="-21"
 					aria-labelledby="addJobLabel">
@@ -383,7 +383,7 @@
 				</div>
 
 
-				<!-- ADD JOB MODAL ENDS HERE -->
+				ADD JOB MODAL ENDS HERE
 
 
 			</div>
@@ -396,10 +396,9 @@
 				<ul th:each="job : ${jobList}" class="job_list">
 
 
-
 					<li class="job_profile_card">
 						
-						<!-- this is where the editJob modal begins -->
+						this is where the editJob modal begins
 						<div class="modal fade" id="editJobModal" tabindex="-21"
 							th:attrappend="id=${job.jobId}" aria-labelledby="editJobLabel">
 
@@ -425,7 +424,7 @@
 
 													<div class="input_elements">
 														<div class="input_field">
-															<!-- radio buttons have only 2 values so don't do th:value -->
+															radio buttons have only 2 values so don't do th:value
 															<input th:id="jobPrivate" th:name="jobPrivate"
 																type="radio" value="true"> <label
 																th:for="jobPrivate">private</label>
@@ -516,7 +515,7 @@
 
 								</div>
 							</div>
-						</div> <!-- editJobModal ends --> 
+						</div> editJobModal ends 
 						
 						<a th:text="${job.jobTitle}"
 						class="job_profile_title">Value</a>
@@ -558,7 +557,7 @@
 								<form th:action="@{/person/makeJobPrivate(id=${job.jobId})}"
 									th:object="${job}" method="post">
 
-									<!-- este true  -->
+									este true 
 									<button th:if="${ job.isJobPrivate()==true}" th:id="jobPrivate"
 										th:name="jobPrivate" value="false" type="submit">
 										<span class="iconify" id="false"
@@ -566,7 +565,7 @@
 											data-inline="false"></span>
 									</button>
 
-									<!-- este false -->
+									este false
 									<button th:if="${ job.isJobPrivate()==false}"
 										th:id="jobPrivate" th:name="jobPrivate" value="true"
 										type="submit">
@@ -581,7 +580,7 @@
 
 
 
-								<!-- trigger the modal for jobEditModal -->
+								trigger the modal for jobEditModal
 								<button data-toggle="modal" data-target="#editJobModal"
 									th:attrappend="data-target=${job.jobId}">
 
@@ -611,9 +610,9 @@
 			
 			<h5 style="margin-left: auto;">... see all</h5>
 			
-			<hr class="new_line"> 
+ -->			<hr class="new_line"> 
 
-			<div class="skills_lang_desktop">
+<!-- 			<div class="skills_lang_desktop">
 
 				<div  id="skills_profile">
 
@@ -630,7 +629,7 @@
 							</button>
 
 
-							<!-- ADD SKILL MODAL -->
+							ADD SKILL MODAL
 							<div class="modal fade" id="addSkillModal" tabindex="-21"
 								aria-labelledby="editJobLabel">
 
@@ -675,14 +674,14 @@
 								</div>
 							</div>
 
-							<!-- END ADD SKILL MODAL -->
+							END ADD SKILL MODAL
 
 						</div>
-						<!-- 
+						
 		                TRIGGER THE EDIT SKILLS MODAL
 		                  <button data-toggle="modal" data-target="#editSkillsModal" >
 			                <img src="../css/graphic/edit.png" alt="user" />
-			              </button> -->
+			              </button>
 
 
 
@@ -735,7 +734,7 @@
 									data-inline="false"></span>
 							</button>
 			
-					<!-- ADD LANG MODAL STARTS HERE  -->
+					ADD LANG MODAL STARTS HERE 
 					<div class="modal fade" id="addLangModal" tabindex="-21"
 								aria-labelledby="editLangLabel">
 
@@ -837,7 +836,10 @@
 
 
 
-
+ -->
+ 
+ 
+ 
 			<div class="login-buttons">
 
 				<a th:href="@{/person/profilePDF}"  target="_blank">

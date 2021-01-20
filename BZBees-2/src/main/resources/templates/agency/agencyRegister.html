@@ -106,9 +106,9 @@
                         	</div>
                         	
                         	<div class="input_field">
-                            <input th:field="${agency.adminName}"  
-                            		type="text" required="required" autocomplete="off" 
-                            		placeholder="administrator"> 
+                            <input th:value="${userAccount.username}"  
+                            		type="text" required="required" readonly autocomplete="off" 
+                            		placeholder="administrator" style="color:gray"> 
                             <label>administrator (can change after registration)<span> *</span></label>
                         	</div>
                         	

@@ -182,6 +182,9 @@ public class UserController {
 				
 				User checkUser = entityManager.find(User.class, 1L);
 				System.out.println("What usery is this? : " + checkUser.getEmail());
+				
+				redirAttr.addAttribute("createdUser", "Thank you for signing up. The user account " + "'" + userAccount.getUsername() +"'" + " is created.");
+				redirAttr.addAttribute("activateUser", "We sent an email to " + userAccount.getEmail() + ". Please check your email to activate your account");
 
 						}
 							
@@ -264,7 +267,8 @@ public class UserController {
 	
 
 	@GetMapping("/skills")
-	public String displayAddSkill(Model model, Authentication auth) {
+	public String displayAddSkill(Model model, @ModelAttribute ("createdUser") String createdUser,
+									@ModelAttribute("activateUser") String activateUser ,Authentication auth) {
 		
 		if(auth != null) {
 			System.out.println("User is " + auth.getName());
@@ -293,6 +297,19 @@ public class UserController {
 		} else {
 			Skill whichSkill = (Skill) model.getAttribute("skill");
 			System.out.println("skill in getmapping 'skills' is " + whichSkill.getSkillName());
+		}
+		
+		//adding the messages for user creation and email activation 		
+		if (!model.containsAttribute("createdUser")) {
+			model.addAttribute("createdUser", null);
+		} else {
+			model.addAttribute("createdUser", createdUser);
+		}
+		
+		if (!model.containsAttribute("activateUser")) {
+			model.addAttribute("activateUser", null);
+		} else {
+			model.addAttribute("activateUser", activateUser);
 		}
 
 		System.out.println("Hitting skills endpoint");

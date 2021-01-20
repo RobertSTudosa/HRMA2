@@ -1,12 +1,9 @@
 package com.bzbees.hrma.controllers;
 
-import java.util.Iterator;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.Person;
@@ -25,7 +24,7 @@ import com.bzbees.hrma.services.UserService;
 
 @Controller
 @RequestMapping("/")
-//@SessionAttributes()
+@SessionAttributes({"agency"})
 public class HomeController {
 	
 	@Autowired
@@ -96,7 +95,8 @@ public class HomeController {
 	}
 	
 	@PostMapping("/changePassword")
-	public String changePassword(Model model, Authentication auth, HttpServletRequest request) {
+	public String changePassword(Model model, Authentication auth, HttpServletRequest request,
+					RedirectAttributes redirAttr) {
 		
 		User user = (User) userServ.loadUserByUsername(auth.getName());
 		user.setPassword(bCryptEncoder.encode(request.getParameter("newPassword")));
@@ -105,7 +105,10 @@ public class HomeController {
 		persServ.save(person);
 		userServ.save(user);
 		
-		return "home";
+		redirAttr.addAttribute("passChanged", "Password successfully updated.");
+		redirAttr.addAttribute("success", "Changed password for user: " + user.getUsername());
+		
+		return "redirect:/person/sprofile";
 		
 	}
 	

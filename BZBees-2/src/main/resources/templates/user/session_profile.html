@@ -20,7 +20,10 @@
 
 	<main>
 		<section th:object="${person}" class="profile">
-
+			
+			<h6 th:text="${success}"></h6>
+			<h6 th:text="${passChanged}"></h6>
+			
 			<h3>Profile</h3>
 			<hr class="new_line">
 			
@@ -117,7 +120,19 @@
 							<div class="profile_personal_fields">
 									<h6 th:if="${agency.agencyId != 0}" style="color:red">agency owner:</h6>
 									<label th:if="${agency.agencyId != 0}" th:text ="' ' + ${agency.agencyName}" 
-											id="agency">agency name</label>							
+											id="agency">agency name</label>
+											
+									
+										<a 
+										sec:authorize="hasAuthority('AGENCY')"
+										th:href="@{/agency/deleteAgency(id=${agency.agencyId})}"
+										onClick="if (! (confirm('Are you sure you want to delete this agency?'))) return false">
+										<span class="iconify" data-icon="jam:trash-alt-f"
+										data-inline="false"></span>
+										</a>
+									
+									
+																		
 							</div>
 							
 							<div class="profile_personal_fields">

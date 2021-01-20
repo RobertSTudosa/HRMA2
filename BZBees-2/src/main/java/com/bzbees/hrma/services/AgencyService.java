@@ -23,5 +23,9 @@ public class AgencyService {
 	public Agency findAgencyByID(long agencyId) {
 		return agencyRepo.findAgencyByagencyId(agencyId);
 	}
+	
+	public void deleteAgencyById(long agencyId) {
+		agencyRepo.deleteAgencyByagencyId(agencyId);
+	}
 
 }
