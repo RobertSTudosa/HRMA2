@@ -33,8 +33,13 @@ public class ProfileImgService {
 		return picList;
 	}
 	
-	public ProfileImg getLastPic (long personId) {
+	public ProfileImg getLastProfilePic (long personId) {
 		ProfileImg lastPicUploaded = (ProfileImg) picRepo.getLastProfilePic(personId);
+		return lastPicUploaded;
+	}
+	
+	public ProfileImg getLastAgencyPic (long agencyId) {
+		ProfileImg lastPicUploaded = (ProfileImg) picRepo.getLastAgencyPic(agencyId);
 		return lastPicUploaded;
 	}
 	
@@ -44,6 +49,11 @@ public class ProfileImgService {
 	
 	public List<ProfileImg> getPicsByPersonId(long personId) {
 		List<ProfileImg> picList = picRepo.getSavedPicsByPersonId(personId);
+		return picList;
+	}
+	
+	public List<ProfileImg> getPicsByAgencyId(long agencyId) {
+		List<ProfileImg> picList = picRepo.getSavedPicsByAgencyId(agencyId);
 		return picList;
 	}
 	

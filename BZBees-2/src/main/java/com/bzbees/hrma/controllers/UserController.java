@@ -1090,7 +1090,7 @@ public class UserController {
 			
 
 			List<ProfileImg> lastPicList = new ArrayList<>();
-			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
+			lastPicList.add(profileImgServ.getLastProfilePic(person.getPersonId()));
 			System.out.println("lastPicList size is " + lastPicList.size());
 
 			redirAttr.addFlashAttribute("lastPicList", lastPicList);

@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -57,8 +59,8 @@ public class Agency implements Serializable {
 	
 	private String shortDescription;
 	
-	//company certificate
-	private CompanyDoc companyRegCertif;
+//	//company certificate
+//	private CompanyDoc companyRegCertif;
 
 	private CompanyDoc userDocumentId;
 
@@ -77,7 +79,7 @@ public class Agency implements Serializable {
 	@Column(name="credentials_non_expired")
     private boolean credentialsNonExpired = true;
 	
-	private boolean active;
+	private boolean active=false;
 	
 	
 	@OneToMany(
@@ -98,6 +100,14 @@ public class Agency implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},optional = false)
 	@JoinColumn(name = "user_id", referencedColumnName="user_id", nullable = false )
 	private User user;
+	
+	
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
+			fetch = FetchType.LAZY)
+	@JoinTable(name="agency_pics",
+			joinColumns=@JoinColumn(name="agency_id"),
+			inverseJoinColumns=@JoinColumn(name="pic_id"))
+	private List<ProfileImg> pics= new ArrayList<>();
 	
 	
 	
@@ -267,14 +277,14 @@ public class Agency implements Serializable {
 	}
 
 
-	public CompanyDoc getCompanyRegCertif() {
-		return companyRegCertif;
-	}
-
-
-	public void setCompanyRegCertif(CompanyDoc companyRegCertif) {
-		this.companyRegCertif = companyRegCertif;
-	}
+//	public CompanyDoc getCompanyRegCertif() {
+//		return companyRegCertif;
+//	}
+//
+//
+//	public void setCompanyRegCertif(CompanyDoc companyRegCertif) {
+//		this.companyRegCertif = companyRegCertif;
+//	}
 
 
 	public CompanyDoc getUserId() {
@@ -374,6 +384,16 @@ public class Agency implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+
+	public List<ProfileImg> getPics() {
+		return pics;
+	}
+
+
+	public void setPics(List<ProfileImg> pics) {
+		this.pics = pics;
 	}
 	
 	

@@ -13,7 +13,7 @@ import com.bzbees.hrma.entities.Doc;
 public interface CompanyDocRepository extends JpaRepository<CompanyDoc, Long> {
 	
 	@Query(nativeQuery= true,
-			 value= "select company_docs.companydoc_id , compdoc_name, compdoc_type, data " +
+			 value= "select company_docs.companydoc_id , compdoc_name, compdoc_type, data, company_docs.agency_agency_id " +
 			 		"	FROM company_docs " + 
 			 		"	left outer join agency ON agency.agency_id = company_docs.agency_agency_id "+  
 			 		"	WHERE agency.agency_id = ?1 ;"		
@@ -22,5 +22,7 @@ public interface CompanyDocRepository extends JpaRepository<CompanyDoc, Long> {
 	
 	
 	public CompanyDoc findCompanyDocBycompDocId(long id);
+	
+	
 
 }

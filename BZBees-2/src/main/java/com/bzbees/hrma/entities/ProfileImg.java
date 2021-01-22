@@ -45,6 +45,15 @@ public class ProfileImg implements Serializable {
 			inverseJoinColumns=@JoinColumn(name="person_id"))
 	private List<Person> persons;
 	
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+			fetch = FetchType.LAZY)
+	@JoinTable(name="agency_pics",
+			joinColumns=@JoinColumn(name="pic_id"),
+			inverseJoinColumns=@JoinColumn(name="agency_id"))
+	private List<Agency> agencies;
+	
+	
+	
 	public ProfileImg () {
 		
 	}
@@ -101,6 +110,14 @@ public class ProfileImg implements Serializable {
 
 	public void setPersons(List<Person> persons) {
 		this.persons = persons;
+	}
+
+	public List<Agency> getAgencies() {
+		return agencies;
+	}
+
+	public void setAgencies(List<Agency> agencies) {
+		this.agencies = agencies;
 	}
 	
 	

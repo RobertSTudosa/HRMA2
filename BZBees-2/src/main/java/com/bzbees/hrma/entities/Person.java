@@ -92,6 +92,8 @@ public class Person implements Serializable {
 	@OneToOne(mappedBy="person")
 	private User user;
 	
+	
+	
 
 	public User getUser() {
 		return user;

@@ -38,5 +38,23 @@ public interface ProfileImgRepository extends CrudRepository<ProfileImg, Long> {
 	 
 	// must be camelcase or else it will not find the instance of the object
 	 public ProfileImg findProfileImgByPicId (long id);
+	 
+	 
+	 @Query(nativeQuery= true,
+			 value="select profile_img.pic_id , pic_name, pic_type, data " + 
+			 		"	FROM profile_img " + 
+			 		"	left outer join agency_pics ON profile_img.pic_id = agency_pics.pic_id " + 
+			 		"       WHERE agency_pics.agency_id = ?1 ;") 
+
+	public List<ProfileImg> getSavedPicsByAgencyId(long agencyId);
+
+	 @Query(nativeQuery= true,
+			 value="select profile_img.pic_id , pic_name, pic_type, data " + 
+			 		"	FROM profile_img " + 
+			 		"	left outer join agency_pics ON profile_img.pic_id = agency_pics.pic_id " + 
+			 		"  	left outer join agency ON agency_pics.agency_id = agency.agency_id   " +
+			 		" 	where agency.agency_id = ?1 		" + 
+			 		" ORDER BY pic_id DESC LIMIT 1;")  
+	public ProfileImg getLastAgencyPic(long agencyId);
 
 }

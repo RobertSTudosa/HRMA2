@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: left;
     text-align: left;
-    padding-top: 10%;
+    padding-top: 12%;
     padding-left: 5%;
     padding-right: 2%;
     /* width: 100vw; */ 
@@ -152,6 +152,10 @@
 .profile_docs {
     width: 95%;
     background-color: #ECECEC;
+}
+
+.profile_docs h5, h6 {
+	padding-left: 0.2 rem;
 }
 
 /* .profile_docs img {
@@ -402,9 +406,14 @@ td {
 		color:#1F9A01 ;
 		text-decoration: none;
 	}
-	
-	
-	
-	
 
+	
 }
+
+
+	@media screen and (max-width: 375px) {
+	.profile_docs_header  h6{
+		font-size: 0.8rem;
+	}
+	
+	}

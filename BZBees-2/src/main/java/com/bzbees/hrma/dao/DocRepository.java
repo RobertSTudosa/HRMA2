@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.bzbees.hrma.entities.CompanyDoc;
 import com.bzbees.hrma.entities.Doc;
 
 @Repository
@@ -43,5 +44,14 @@ public interface DocRepository extends JpaRepository<Doc, Long> {
 
 	// must be camelcase or else it will not find the instance of the object
 	public Doc findDocByDocId(long id);
+	
+
+
+
+		
+		
+	
+	
+	
 
 }

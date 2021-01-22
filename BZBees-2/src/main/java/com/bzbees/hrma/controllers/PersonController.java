@@ -124,13 +124,13 @@ public class PersonController {
 		List<ProfileImg> personPics = profileImgServ.getPicsByPersonId(personId);
 		
 		//get the last pic of the person's profile from profileImg repo
-		ProfileImg theImg = profileImgServ.getLastPic(personId);
+		ProfileImg theImg = profileImgServ.getLastProfilePic(personId);
 		if(theImg != null) {
 			System.out.println("in the if !null of the image");
 			model.addAttribute("img", theImg);	
 			
 			List<ProfileImg> lastPicList = new ArrayList<>();
-			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
+			lastPicList.add(profileImgServ.getLastProfilePic(person.getPersonId()));
 			model.addAttribute("lastPicList", lastPicList);
 			
 		} else {
@@ -139,6 +139,7 @@ public class PersonController {
 			model.addAttribute("img", new ProfileImg());
 			model.addAttribute("lastPicList", new ArrayList<>());
 		}
+		
 		
 		//get the agency is any is associated with current user 
 		if(agencyServ.findAgencyByUserId(user.getUserId()) !=null) {
@@ -501,7 +502,7 @@ public class PersonController {
 
 		if (!model.containsAttribute("lastPicList")) {
 			List<ProfileImg> lastPicList = new ArrayList<>();
-			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
+			lastPicList.add(profileImgServ.getLastProfilePic(person.getPersonId()));
 			model.addAttribute("lastPicList", lastPicList);
 		}
 		
@@ -605,7 +606,7 @@ public class PersonController {
 
 			List<ProfileImg> lastPicList = new ArrayList<>();
 
-			lastPicList.add(profileImgServ.getLastPic(person.getPersonId()));
+			lastPicList.add(profileImgServ.getLastProfilePic(person.getPersonId()));
 
 			person.setPics(picList);
 
@@ -621,7 +622,7 @@ public class PersonController {
 	@GetMapping(value = "/img")
 	public ResponseEntity<?> showProfileImg(@RequestParam("imgId") long id, Person person) {
 //		ProfileImg profilePic = profileImgServ.findProfilePicById(id);
-		ProfileImg profilePic = profileImgServ.getLastPic(person.getPersonId());
+		ProfileImg profilePic = profileImgServ.getLastProfilePic(person.getPersonId());
 		
 		System.out.println("profile pic that is not displaying is " + profilePic.getPicName());
 

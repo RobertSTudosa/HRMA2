@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bzbees.hrma.dao.CompanyDocRepository;
 import com.bzbees.hrma.entities.CompanyDoc;
@@ -42,5 +43,7 @@ public class CompanyDocService {
 		compDocRepo.delete(doc);
 	}
 	
-	
+	public void deleteAll(List<CompanyDoc> docList) {
+		compDocRepo.deleteAll(docList);
+	}
 }

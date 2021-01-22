@@ -1,0 +1,36 @@
+
+<html>
+<body>
+
+					<div  th:fragment="addRegCert" class="modal fade" id="addRegCertModal" tabindex="-21"
+					aria-labelledby="addJobLabel">
+
+					<div class="modal-dialog ">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add the company registration certificate</h5>
+
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+								<div>
+									<form id="uploadFiles" name="uploadFiles" method="POST" th:action="@{/agency/addRegCertModal}"
+									encType="multipart/form-data" multiple>
+										<input autofocus type="file" name="doc" placeholder="choose file" multiple  >
+										
+										<div class="input_elements">
+											<button class="upload" type="submit" ><p>upload</p>
+										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
+										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
+										</button>
+										</div>
+									</form>
+								</div>
+								</div>
+								</div>
+								</div>
+													
+</body>
+</html>
