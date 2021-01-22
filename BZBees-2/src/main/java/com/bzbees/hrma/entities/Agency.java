@@ -84,8 +84,8 @@ public class Agency implements Serializable {
 	
 	@OneToMany(
 	        mappedBy = "agency",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
+	        cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}
+//	        orphanRemoval = true
 	    )
 	private List<CompanyDoc> companyDocs = new ArrayList<>();
 	

@@ -193,19 +193,19 @@ public class AgencyController {
 			model.addAttribute("img", new ProfileImg());
 			model.addAttribute("lastAgencyPicList", new ArrayList<>());
 		}
-		
-
-		
-		if(!model.containsAttribute("companyDocList")) {
-			List<CompanyDoc> docList = agency.getCompanyDocs();
-			model.addAttribute("companyDocList", docList);
-			System.out.println("Existing comp doc list");
-		} 
-		
-//		else {
-//			
 			
-//		}
+		List<CompanyDoc> newDocList = new ArrayList<>();
+		
+		if(companyDocServ.getCompanyDocsByAgencyId(agency.getAgencyId()) == null) {
+			model.addAttribute("companyDocList", new ArrayList<>());
+			System.out.println("list is empty");
+		} else {
+			List<CompanyDoc> docList = companyDocServ.getCompanyDocsByAgencyId(agency.getAgencyId());
+			model.addAttribute("companyDocList", docList);
+				
+		}
+			
+		
 
 			
 		return "agency/agency_profile";
@@ -375,12 +375,11 @@ public class AgencyController {
 								}
 
 							}
-//							docServ.saveDoc(theDoc);
-							companyDocServ.saveAndFlush(theDoc);
-//							person.addDoc(theDoc);
+//							
+							companyDocServ.saveAndFlush(theDoc);						
+							companyDocServ.flushCompDocDb();
 							docList.add(theDoc);							
 							theDoc.setAgency(agency);
-							companyDocServ.flushCompDocDb();
 							
 						}
 					
