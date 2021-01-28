@@ -43,6 +43,8 @@ public class Person implements Serializable {
 
 	private String employmentStatus;
 	
+	private long lastImgId;
+	
 	
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
 			fetch = FetchType.LAZY)
@@ -419,6 +421,29 @@ public class Person implements Serializable {
 
 	public void setEndJob(Date endJob) {
 		this.endJob = endJob;
+	}
+
+
+
+
+
+	public long getLastImgId() {
+		return lastImgId;
+	}
+
+
+	public void setLastImgId(long lastImgId) {
+		this.lastImgId = lastImgId;
+	}
+
+
+	public List<SocialMedia> getSocialMedia() {
+		return socialMedia;
+	}
+
+
+	public void setSocialMedia(List<SocialMedia> socialMedia) {
+		this.socialMedia = socialMedia;
 	}
 	
 	

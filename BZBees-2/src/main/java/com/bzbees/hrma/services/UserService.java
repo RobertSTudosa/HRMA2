@@ -61,6 +61,10 @@ public class UserService implements UserDetailsService {
 		return userAccountRepo.findByEmailIgnoreCase(userEmail);
 	}
 	
+	public List<User> getAllAffiliatedUsersByAgencyId(long agencyId) {
+		return userAccountRepo.getAffiliatedUsersByAgencyID(agencyId);
+	}
+	
 	
 
 

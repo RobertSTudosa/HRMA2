@@ -34,3 +34,224 @@
 													
 </body>
 </html>
+
+<html>
+<body>
+					
+					<!-- THIS IS WHERE THE ADD COMPANY DETAILS CERT DOC MODAL BEGINS -->
+					
+					<div th:fragment="addCompDetails" class="modal fade" id="addCompDetailsModal" tabindex="-21"
+					aria-labelledby="addJobLabel">
+
+					<div class="modal-dialog ">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add the confirmation of company details</h5>
+
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+								<div>
+									<form id="uploadFiles" name="uploadFiles" method="POST" th:action="@{/agency/addCompDetailsModal}"
+									encType="multipart/form-data" multiple>
+										<input autofocus type="file" name="doc" placeholder="choose file" multiple  >
+										
+										<div class="input_elements">
+											<button class="upload" type="submit" ><p>upload</p>
+										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
+										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
+										</button>
+										</div>
+									</form>
+								</div>
+								</div>
+								</div>
+								</div>
+					
+					<!-- THIS IS WHERE THE COMPANY DETAILS CERT MODAL ENDS -->
+					
+					
+
+</body>
+
+</html>
+
+<html>
+<body>
+					<!-- THIS IS WHERE THE ADD COMPANY DETAILS CERT DOC MODAL BEGINS -->
+					<div th:fragment="addAdminId" class="modal fade" id="addAdminIdModal" tabindex="-21"
+					aria-labelledby="addJobLabel">
+
+					<div class="modal-dialog ">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add the agency's admin ID</h5>
+
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+								<div>
+									<form id="uploadFiles" name="uploadFiles" method="POST" th:action="@{/agency/addAdminIdModal}"
+									encType="multipart/form-data" multiple>
+										<input autofocus type="file" name="doc" placeholder="choose file" multiple  >
+										
+										<div class="input_elements">
+											<button class="upload" type="submit" ><p>upload</p>
+										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
+										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
+										</button>
+										</div>
+									</form>
+								</div>
+								</div>
+								</div>
+								</div>
+					
+					<!-- THIS IS WHERE THE COMPANY DETAILS CERT MODAL ENDS -->
+
+
+</body>
+</html>
+
+<html>
+<body>
+					<!-- THIS IS WHERE THE ADD COMPANY DETAILS CERT DOC MODAL BEGINS -->
+					<div th:fragment="addOtherDocs" class="modal fade" id="addOtherDocsModal" tabindex="-21"
+					aria-labelledby="addJobLabel">
+
+					<div class="modal-dialog ">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add the agency's other docs</h5>
+
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+								<div>
+									<form id="uploadFiles" name="uploadFiles" method="POST" th:action="@{/agency/addOtherDocsModal}"
+									encType="multipart/form-data" multiple>
+										<input autofocus type="file" name="doc" placeholder="choose file" multiple  >
+										
+										<div class="input_elements">
+											<button class="upload" type="submit" ><p>upload</p>
+										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
+										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
+										</button>
+										</div>
+									</form>
+								</div>
+								</div>
+								</div>
+								</div>
+					
+					<!-- THIS IS WHERE THE COMPANY DETAILS CERT MODAL ENDS -->
+
+
+</body>
+</html>
+
+
+<html>
+<body>
+
+						<!-- this is where the profile img modal begins -->
+						<div th:fragment="addAgencyProfileImg" class="modal fade" id="agencyPicModal" tabindex="-20"
+							aria-labelledby="profilePicLabel">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="profilePicTitle">Choose a
+											profile image</h5>
+
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									<form id="uploadFiles" name="uploadFiles" method="POST"
+										th:action="@{/agency/addAgencyImg}"
+										encType="multipart/form-data">
+										<div class="modal-body">
+
+											<input type="file" name="img" placeholder="choose file">
+
+
+										</div>
+
+										
+
+											
+												<div class="login-buttons" id="modal">
+													<button type="button" class="button-login" data-dismiss="modal">
+
+														<span class="iconify" id="next_desk"
+															data-icon="topcoat:cancel" data-inline="false"></span>
+
+														<p>close</p>
+
+													</button>
+													<button type="submit" class="button-login">
+														<span class="iconify" id="next_desk"
+															data-icon="ic:round-cloud-upload" data-inline="false"></span>
+														<p>upload</p>
+
+													</button>
+												
+												
+												</div>
+												
+										
+									</form>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- profile image modal ends -->
+
+</body>
+</html>
+
+<html>
+<body>
+					<!-- THIS IS WHERE THE ADD COMPANY DETAILS CERT DOC MODAL BEGINS -->
+					<div th:fragment="addFacebook" class="modal fade" id="addFacebook" tabindex="-21"
+					aria-labelledby="addFacebookLabel">
+
+					<div class="modal-dialog ">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">add social media url</h5>
+
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+								<div>
+									<form id="FBLink" name="addFacebookLink" method="POST" th:action="@{/agency/addSocialMediaFB}">
+										<input style="margin-left:0.8rem;width: 80%;" autofocus type="url" name="url" placeholder="link" >
+										<div class="input_elements">
+										<button style="margin-left:0.8rem;" class="upload" type="submit" ><p>save</p>
+										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
+										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
+										</button>
+										</div>
+									</form>
+								</div>
+								</div>
+								</div>
+								</div>
+					
+					<!-- THIS IS WHERE THE COMPANY DETAILS CERT MODAL ENDS -->
+
+
+</body>
+</html>

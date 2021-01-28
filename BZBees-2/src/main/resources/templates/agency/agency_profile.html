@@ -30,62 +30,7 @@
 
 
 
-						<!-- this is where the profile img modal begins -->
-						<div class="modal fade" id="agencyPicModal" tabindex="-20"
-							aria-labelledby="profilePicLabel">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="profilePicTitle">Choose a
-											profile image</h5>
-
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-
-									<form id="uploadFiles" name="uploadFiles" method="POST"
-										th:action="@{/agency/addAgencyImg}"
-										encType="multipart/form-data">
-										<div class="modal-body">
-
-											<input type="file" name="img" placeholder="choose file">
-
-
-										</div>
-
-										
-
-											
-												<div class="login-buttons" id="modal">
-													<button type="button" class="button-login" data-dismiss="modal">
-
-														<span class="iconify" id="next_desk"
-															data-icon="topcoat:cancel" data-inline="false"></span>
-
-														<p>close</p>
-
-													</button>
-													<button type="submit" class="button-login">
-														<span class="iconify" id="next_desk"
-															data-icon="ic:round-cloud-upload" data-inline="false"></span>
-														<p>upload</p>
-
-													</button>
-												
-												
-												</div>
-												
-										
-									</form>
-
-								</div>
-							</div>
-						</div>
-
-						<!-- profile image modal ends -->
-
+			<div th:replace="modals::addAgencyProfileImg"></div>
 
 						<!-- trigger the modal for profileImg chooser -->
 						<button data-toggle="modal" data-target="#agencyPicModal">
@@ -100,10 +45,8 @@
 
 							</ul>
 
-
 						</button>
-						
-							
+													
 						<a th:href="@{/person/sprofile}"><label th:text= "'agency admin: ' + ${agency.adminName}"
 							id="profile-avatar-text">firstName</label>
 						</a>
@@ -112,63 +55,128 @@
 
 
 					<div class="profile_details_desktop">
-					
+
 						<div class="profile_personal">
-						
+
 							<div class="profile_personal_fields">
-									<h6 th:if="${agency.agencyId != 0} and ${!agency.active}" style="color:red">agency owner:</h6>
-									<h6 th:if="${agency.agencyId != 0} and ${agency.active}" style="color:green">agency owner:</h6>
-									<label th:if="${agency.agencyId != 0}" th:text ="' ' + ${person.firstName} + ' ' + ${person.lastName}" 
-											id="agency">agency name</label>							
+								<h6 th:if="${agency.agencyId != 0} and ${!agency.active}"
+									style="color: red">agency owner:</h6>
+								<h6 th:if="${agency.agencyId != 0} and ${agency.active}"
+									style="color: green">agency owner:</h6>
+								<label th:if="${agency.agencyId != 0}"
+									th:text="' ' + ${person.firstName} + ' ' + ${person.lastName}"
+									id="agency">agency name</label>
 							</div>
-							
+
 							<div class="profile_personal_fields">
-								
-								<h6 th:if="${!agency.active}" style="color:red" >active:</h6>
-								<h6 th:if="${agency.active}" style="color:green" >active:</h6>
-								<address id="location" th:text="${agency.active}">Lima, Peru</address>
-																
+
+								<h6 th:if="${!agency.active}" style="color: red">active:</h6>
+								<h6 th:if="${agency.active}" style="color: green">active:</h6>
+								<address id="location" th:text="${agency.active}">Lima,
+									Peru</address>
+
 							</div>
-	
+
 							<div th:if="${!agency.active}" class="profile_personal_fields">
-							<details style="color:red" >Must upload company docs</details>
-							<br>
+								<details style="color: red">
+									<summary>To do for completing activation</summary>
+									<p style="color: red; margin-left: 1.5rem;">1. Must upload
+										all company docs</p>
+									<p style="color: red; margin-left: 1.5rem;">2. Must wait
+										for document validation</p>
+								</details>
+								<br>
 							</div>
-							
-							
+
+
 							<div class="profile_personal_fields">
-								
+
 								<h6>address:</h6>
-								<address id="location" th:text="${agency.legalAddress}">Lima, Peru</address>
-								
+								<address id="location" th:text="${agency.legalAddress}">Lima,
+									Peru</address>
+
 							</div>
-							
-							
-							
+
+
+
 							<div class="profile_personal_fields">
 								<h6>phone:</h6>
-								<div th:text="${agency.phoneNumber}" 
-								id="birthdate">15-05-2000</div>
+								<div th:text="${agency.phoneNumber}" id="birthdate">15-05-2000</div>
 
-								 
+
 							</div>
-							
+
 
 						</div>
 
 						<div class="profile_status">
-						
+
 							<div class="profile_personal_fields">
-							<h6>email:</h6>
-							<div th:text="${person.email}" id="email">jo@thePeru.com</div>
+								<h6>email:</h6>
+								<div th:text="${person.email}" id="email">jo@thePeru.com</div>
 							</div>
-							
+
 							<div class="profile_personal_fields">
-							<h6>web:</h6>
-							<div id="jobStatus" th:text=${agency.webAddress}>employeed</div>
+								<h6>web:</h6>
+								<div id="jobStatus" th:text=${agency.webAddress}>employeed</div>
 							</div>
 							<br>
+
+							<div class="profile_personal_fields" id="media_links">
+								<a data-toggle="modal"data-target="#addFacebook" id="editPencil"> 
+								<span class="iconify" data-icon="ant-design:edit-twotone" 
+									data-inline="false"></span>
+								add social media links</a>
+<!-- 								<h6 id="underline"> add social media links</h6>	 -->
+									
+									
+									<div class="social_media_links">
+
+								<ul>
+									<li 
+										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;FACEBook&quot;)]}">
+										<a class="doc_name d-inline-block text-truncate"
+										th:utext="${spanFB}" th:href="${aSocialMedia.urlAddress}" target="_blank">
+											social media address</a> 
+
+									</li>
+									<li 
+										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;LINKedin&quot;)]}">
+										<a class="doc_name d-inline-block text-truncate"
+										th:utext="${spanLN}" th:href="${aSocialMedia.urlAddress}" target="_blank">
+											social media address</a> 
+
+									</li>
+
+									<li 
+										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;TWITter&quot;)]}">
+										<a class="doc_name d-inline-block text-truncate"
+										th:utext="${spanTW}" th:href="${aSocialMedia.urlAddress}" target="_blank">
+											social media address</a> 
+
+									</li>
+
+									<li 
+										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;INSTAgram&quot;)]}">
+										<a class="doc_name d-inline-block text-truncate"
+										th:utext="${spanIN}" th:href="${aSocialMedia.urlAddress}" target="_blank">
+											social media address</a> 
+
+									</li>
+								</ul>
+
+							</div>
+									
+
+							</div>
+							
 						</div>
+							
+							
+							
+
+							<br>
+						
 
 					</div>
 
@@ -187,44 +195,20 @@
 							</button>
 						</div>
 					
-					
-					
-
-					
-					<!-- STARTING THE DOCUMENTS ADD SECTION -->
-					<ul>
-						<li th:each="aCompanyDoc : ${companyDocList}">
+										
+					<ul >
+ 						<li th:each="aCompanyDoc : ${companyDocList.?[docName.contains(&quot;reg_cert&quot;)]}"> 
+						<i th:if="${!aCompanyDoc.approved}"><span style="color: #FF3D40;" class="iconify" data-icon="bi:stopwatch" data-inline="false"></span>pending</i>
+						<i th:if="${aCompanyDoc.approved}"><span class="iconify" data-icon="bi:check2-circle" data-inline="false" style="color: #1f9a01;"></span></i>
 							<a
 							class="doc_name d-inline-block text-truncate"
 							th:text="${aCompanyDoc.docName}"
 							th:href="@{/agency/downloadFile(docId=${aCompanyDoc.compDocId})}">
-								Resume.pdf</a>
+								registration certificate</a>
 
-							<div class="profile_docs_buttons btn btn-toolbar" 
-								
+							<div class="profile_docs_buttons btn btn-toolbar" 								
 								role="toolbar">
-<!-- 								<form th:action="@{/person/makeDocPrivate(id=${aCompanyDoc.compDocId})}"
-									th:object="${aCompanyDoc}" method="post">
-
-									is true 
- 									<button th:if="${aCompanyDoc.isDocPrivate()==true}" 
-										th:id="docPrivate" th:name="docPrivate" value="false" 
-										type="submit">
-										<span class="iconify" id="false"
-											data-icon="ant-design:eye-invisible-outlined"
-											data-inline="false"></span>
-									</button>
-
-									is false
-									<button th:if="${aCompanyDoc.isDocPrivate()==false}"
-										th:id="docPrivate" th:name="docPrivate" value="true"
-										type="submit">
-										<span class="iconify" id="true"
-											data-icon="ant-design:eye-outlined" data-inline="false"></span>
-									</button>
-
-								</form> 
- --> 								
+ 								
 								<a 	th:href="@{/agency/displayFile(docId=${aCompanyDoc.compDocId})}"
 									role="button" data-toggle="tooltip" data-html="true"
 									title="see the document"
@@ -246,69 +230,210 @@
 						<div class="profile_docs_header">
 							<h6 style="font-style: italic;margin-left:0.2rem">confirmation of company details:</h6>
 							<button class="btn btn-sm btn-warning" id="addJob"
-							data-toggle="modal" data-target="#addDocModal">
+							data-toggle="modal" data-target="#addCompDetailsModal">
 							add <span class="iconify" data-icon="bi:node-plus"
 								data-inline="false"></span>
 						</button>
 						</div>
+						
+					<ul>
+						<li th:each="aCompanyDoc : ${companyDocList.?[docName.contains(&quot;comp_details&quot;)]}"> 	
+						<i th:if="${!aCompanyDoc.approved}"><span style="color: #FF3D40;" class="iconify" data-icon="bi:stopwatch" data-inline="false"></span>pending</i>
+						<i th:if="${aCompanyDoc.approved}"><span class="iconify" data-icon="bi:check2-circle" data-inline="false" style="color: #1f9a01;"></span></i>						
+							<a
+							class="doc_name d-inline-block text-truncate"
+							th:text="${aCompanyDoc.docName}"
+							th:href="@{/agency/downloadFile(docId=${aCompanyDoc.compDocId})}">
+								company details</a>
+
+							<div class="profile_docs_buttons btn btn-toolbar" 								
+								role="toolbar">
+ 								
+								<a 	th:href="@{/agency/displayFile(docId=${aCompanyDoc.compDocId})}"
+									role="button" data-toggle="tooltip" data-html="true"
+									title="see the document"
+									data-content="click to see the document"> <span
+									class="iconify" data-icon="ion:documents-outline"
+									data-inline="false"></span></a> 
+								<a
+									th:href="@{/agency/deleteAgencyDoc(id=${aCompanyDoc.compDocId})}"
+									onClick="if (! (confirm('Are you sure you want to delete this doc?'))) return false">
+									<span class="iconify" data-icon="jam:trash-alt-f"
+									data-inline="false"></span>
+								</a>
+
+							</div></li>
+							
+
+					</ul>
+					
+					
+						<div class="profile_docs_header">
+							<h6 style="font-style: italic;margin-left:0.2rem">agency's admin ID :</h6>
+							<button class="btn btn-sm btn-warning" id="addJob"
+							data-toggle="modal" data-target="#addAdminIdModal">
+							add <span class="iconify" data-icon="bi:node-plus"
+								data-inline="false"></span>
+						</button>
+						</div>
+						
+					<ul>
+						<li th:each="aCompanyDoc : ${companyDocList.?[docName.contains(&quot;admin_Id&quot;)]}"> 
+							<i th:if="${!aCompanyDoc.approved}"><span style="color: #FF3D40;" class="iconify" data-icon="bi:stopwatch" data-inline="false"></span>pending</i>
+							<i th:if="${aCompanyDoc.approved}"><span class="iconify" data-icon="bi:check2-circle" data-inline="false" style="color: #1f9a01;"></span></i>
+							<a
+							class="doc_name d-inline-block text-truncate"
+							th:text="${aCompanyDoc.docName}"
+							th:href="@{/agency/downloadFile(docId=${aCompanyDoc.compDocId})}">
+								Agency's admin ID</a>
+
+							<div class="profile_docs_buttons btn btn-toolbar" 								
+								role="toolbar">
+ 								
+								<a 	th:href="@{/agency/displayFile(docId=${aCompanyDoc.compDocId})}"
+									role="button" data-toggle="tooltip" data-html="true"
+									title="see the document"
+									data-content="click to see the document"> <span
+									class="iconify" data-icon="ion:documents-outline"
+									data-inline="false"></span></a> 
+								<a
+									th:href="@{/agency/deleteAgencyDoc(id=${aCompanyDoc.compDocId})}"
+									onClick="if (! (confirm('Are you sure you want to delete this doc?'))) return false">
+									<span class="iconify" data-icon="jam:trash-alt-f"
+									data-inline="false"></span>
+								</a>
+
+							</div></li>
+							
+
+					</ul>
+					
+					<div class="profile_docs_header">
+							<h6 style="font-style: italic;margin-left:0.2rem">other documents of the entity:</h6>
+							<button class="btn btn-sm btn-warning" id="addJob"
+							data-toggle="modal" data-target="#addOtherDocsModal">
+							add <span class="iconify" data-icon="bi:node-plus"
+								data-inline="false"></span>
+						</button>
+						</div>
+						
+					<ul>
+						<li th:each="aCompanyDoc : ${companyDocList.?[docName.contains(&quot;otherDoc&quot;)]}"> 
+							<i th:if="${!aCompanyDoc.approved}"><span style="color: #FF3D40;" class="iconify" data-icon="bi:stopwatch" data-inline="false"></span>pending</i>
+							<i th:if="${aCompanyDoc.approved}"><span class="iconify" data-icon="bi:check2-circle" data-inline="false" style="color: #1f9a01;"></span></i>
+							<a
+							class="doc_name d-inline-block text-truncate"
+							th:text="${aCompanyDoc.docName}"
+							th:href="@{/agency/downloadFile(docId=${aCompanyDoc.compDocId})}">
+								Other company documents</a>
+
+							<div class="profile_docs_buttons btn btn-toolbar" 								
+								role="toolbar">
+ 								
+								<a 	th:href="@{/agency/displayFile(docId=${aCompanyDoc.compDocId})}"
+									role="button" data-toggle="tooltip" data-html="true"
+									title="see the document"
+									data-content="click to see the document"> <span
+									class="iconify" data-icon="ion:documents-outline"
+									data-inline="false"></span></a> 
+								<a
+									th:href="@{/agency/deleteAgencyDoc(id=${aCompanyDoc.compDocId})}"
+									onClick="if (! (confirm('Are you sure you want to delete this doc?'))) return false">
+									<span class="iconify" data-icon="jam:trash-alt-f"
+									data-inline="false"></span>
+								</a>
+
+							</div></li>
+							
+
+					</ul>
+					
 
 				</div>
 			</div>
 			
 			<div th:replace="modals::addRegCert"></div>
 			
-
-					
-					
-					<!-- THIS IS WHERE THE ADD COMPANY DETAILS CERT DOC MODAL BEGINS -->
-					<div class="modal fade" id="addRegCertModal" tabindex="-21"
-					aria-labelledby="addJobLabel">
-
-					<div class="modal-dialog ">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Add the company registration certificate</h5>
-
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-								<div>
-									<form id="uploadFiles" name="uploadFiles" method="POST" th:action="@{/agency/addRegCertModal}"
-									encType="multipart/form-data" multiple>
-										<input autofocus type="file" name="doc" placeholder="choose file" multiple  >
+			<div th:replace="modals::addCompDetails"></div>
+			
+			<div th:replace="modals::addAdminId"></div>
+			
+			<div th:replace="modals::addOtherDocs"></div>
+			
+			<div th:replace="modals::addFacebook"></div>
 										
-										<div class="input_elements">
-											<button class="upload" type="submit" ><p>upload</p>
-										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
-										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
-										</button>
-										</div>
-									</form>
-								</div>
-								</div>
-								</div>
-								</div>
-					
-					<!-- THIS IS WHERE THE COMPANY DETAILS CERT MODAL ENDS -->
 			
 			<br>
-			<div class="profile_headline">
-				<div class="profile_work_addJob">
+			<div class="candidate_headline">
+				<div class="candidate_section">
 
-					<h3>work experience</h3>
+					<h3>Candidates</h3>
+					
+					<hr class="new_line">
+					
+					<ul  th:each="person : ${affiliatedPersonsList}" >
+						<li class="candidate-strip">
+						
+							<article class="candidate-pic">
+								<div th:if="${person.lastImgId < 1}">
+									<a> 
+									<span  class="iconify" data-icon="whh:profile" data-inline="false"></span>
+									</a>
+								</div>
+											
+								<a th:if="${person.lastImgId != null}">
+									<img th:if="${person.lastImgId > 0}" 
+									th:src="@{/agency/candidateImg(imgId=${person.lastImgId}, personId=${person.personId})}" >
+								</a>
+							</article>
+							
+							<article class="candidate-details">
+								<a  th:value="${person.personId}" 
+									th:text="${person.firstName} + ' ' + ${person.lastName}"
+									th:href="@{/person/profile(id=${person.personId})}">
+								First Name + Last Name</a>
+								
+								<div id="location">
+								<span>location: </span><p th:text="' ' + ${person.location}"></p>								
+								</div>
+
+								<p th:text="${#dates.format(person.BirthDate, 'dd-MMM-yyyy')}" ></p>			
+							</article>
+							
+							<article class="candidate-jobs">
+								<p id="current-job" th:text="${person.currentJob}"></p>
+								<p th:text="${person.workExperience} + ' years'"> years</p>
+								<p th:text="${#dates.format(person.availability, 'dd-MMM-yyyy')}"></p>
+							
+							</article>
+							
+										
+						</li>
+						
+						
+					</ul>
+					
+				</div>
+			 </div>		
+					
+					<!-- VERY GOOD CODE FOR POPULATING A LIST  -->
+					<!-- <div >
+    					<select   id="dropOperator">
+					    <option value="0">select operator</option>
+					    <option th:each="user : ${affiliatedUsersList}" th:value="${user.userId}" th:text="${user.userName}"></option>
+					    </select>
+					</div> -->
 
 
-					<button class="btn btn-sm btn-warning" id="addJob"
+<!-- 					<button class="btn btn-sm btn-warning" id="addJob"
 						data-toggle="modal" data-target="#addJobModal">
 						add job <span class="iconify" data-icon="bi:node-plus"
 							data-inline="false"></span>
-					</button>
+					</button> -->
 
 
 
-				</div>
+				
 
 
 				
@@ -653,7 +778,9 @@
 			
 			<h5 style="margin-left: auto;">... see all</h5>
 			
- -->			<hr class="new_line"> 
+ 			
+ 
+ <hr class="new_line"> -->
 
 <!-- 			<div class="skills_lang_desktop">
 
@@ -881,7 +1008,7 @@
 
  -->
  
- 
+
  
 			<div class="login-buttons">
 

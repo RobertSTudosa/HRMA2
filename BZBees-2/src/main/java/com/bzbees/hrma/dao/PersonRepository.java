@@ -15,7 +15,8 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 		
 		@Query(nativeQuery= true, value= "select persons.person_id, first_name, last_name, persons.email, app_status, "
 				+ "employment_status, location, current_job, private_currentjob, active_job, work_experience, "
-				+ " availability, birth_date, job_wish_desc, total_hours, status_start_date, start_job, end_job "				
+				+ " availability, birth_date, job_wish_desc, total_hours, status_start_date, start_job, end_job,"
+				+ " last_img_id "				
 				+ " FROM persons "  
 				+ " left outer join user_accounts ON  persons.person_id = user_accounts.user_id " 
 				+ " WHERE user_accounts.user_id = ?1 ;")

@@ -32,6 +32,9 @@ public class CompanyDoc  implements Serializable {
 	@Lob
 	private byte[] data;
 	
+	@Column(name="compdoc_approved")
+	private boolean approved = false;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     private Agency agency;
 	
@@ -87,6 +90,15 @@ public class CompanyDoc  implements Serializable {
 		this.agency = agency;
 	}
 	
+	
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;

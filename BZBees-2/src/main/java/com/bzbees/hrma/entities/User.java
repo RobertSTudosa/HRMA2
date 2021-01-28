@@ -15,11 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -64,6 +64,9 @@ public class User implements UserDetails, Serializable{
 	
 	@OneToOne(mappedBy="user")
 	private Agency agency;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional=true)
+	private Agency oneAgency;
 	
 	
 	public User() {
@@ -199,6 +202,40 @@ public class User implements UserDetails, Serializable{
 		// TODO Auto-generated method stub
 		return userId != 0L && userId == user.getUserId();
 	}
+
+	public Agency getAgency() {
+		return agency;
+	}
+
+	public void setAgency(Agency agency) {
+		this.agency = agency;
+	}
+
+	public Agency getOneAgency() {
+		return oneAgency;
+	}
+
+	public void setOneAgency(Agency oneAgency) {
+		this.oneAgency = oneAgency;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+	
+	
 	
 	
 	

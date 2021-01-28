@@ -59,17 +59,6 @@ public class Agency implements Serializable {
 	
 	private String shortDescription;
 	
-//	//company certificate
-//	private CompanyDoc companyRegCertif;
-
-	private CompanyDoc userDocumentId;
-
-	//constitutive act
-	private CompanyDoc articleOfIncorporation;
-	
-	//certificate of status (constatator)
-	private CompanyDoc confirmationOfCompanyDetails;
-	
 	@Column(name="account_non_expired")
     private boolean accountNonExpired = true;
 	
@@ -92,7 +81,7 @@ public class Agency implements Serializable {
 	
 	@OneToMany(
 	        mappedBy = "agency",
-	        cascade = CascadeType.ALL,
+	        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
 	        orphanRemoval = true
 	    )
 	private List<SocialMedia> socialMedia = new ArrayList<>();
@@ -109,7 +98,12 @@ public class Agency implements Serializable {
 			inverseJoinColumns=@JoinColumn(name="pic_id"))
 	private List<ProfileImg> pics= new ArrayList<>();
 	
-	
+	@OneToMany(
+	        mappedBy = "oneAgency",
+	        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+	        orphanRemoval = true
+	    )
+	private List<User> affiliatedUsers = new ArrayList<>();
 	
 	public Agency () {
 		
@@ -287,34 +281,34 @@ public class Agency implements Serializable {
 //	}
 
 
-	public CompanyDoc getUserId() {
-		return userDocumentId;
-	}
-
-
-	public void setUserId(CompanyDoc userId) {
-		this.userDocumentId = userId;
-	}
-
-
-	public CompanyDoc getArticleOfIncorporation() {
-		return articleOfIncorporation;
-	}
-
-
-	public void setArticleOfIncorporation(CompanyDoc articleOfIncorporation) {
-		this.articleOfIncorporation = articleOfIncorporation;
-	}
-
-
-	public CompanyDoc getConfirmationOfCompanyDetails() {
-		return confirmationOfCompanyDetails;
-	}
-
-
-	public void setConfirmationOfCompanyDetails(CompanyDoc confirmationOfCompanyDetails) {
-		this.confirmationOfCompanyDetails = confirmationOfCompanyDetails;
-	}
+//	public CompanyDoc getUserId() {
+//		return userDocumentId;
+//	}
+//
+//
+//	public void setUserId(CompanyDoc userId) {
+//		this.userDocumentId = userId;
+//	}
+//
+//
+//	public CompanyDoc getArticleOfIncorporation() {
+//		return articleOfIncorporation;
+//	}
+//
+//
+//	public void setArticleOfIncorporation(CompanyDoc articleOfIncorporation) {
+//		this.articleOfIncorporation = articleOfIncorporation;
+//	}
+//
+//
+//	public CompanyDoc getConfirmationOfCompanyDetails() {
+//		return confirmationOfCompanyDetails;
+//	}
+//
+//
+//	public void setConfirmationOfCompanyDetails(CompanyDoc confirmationOfCompanyDetails) {
+//		this.confirmationOfCompanyDetails = confirmationOfCompanyDetails;
+//	}
 
 
 	public User getUser() {
@@ -327,14 +321,14 @@ public class Agency implements Serializable {
 	}
 
 
-	public CompanyDoc getUserDocumentId() {
-		return userDocumentId;
-	}
-
-
-	public void setUserDocumentId(CompanyDoc userDocumentId) {
-		this.userDocumentId = userDocumentId;
-	}
+//	public CompanyDoc getUserDocumentId() {
+//		return userDocumentId;
+//	}
+//
+//
+//	public void setUserDocumentId(CompanyDoc userDocumentId) {
+//		this.userDocumentId = userDocumentId;
+//	}
 
 
 	public List<SocialMedia> getSocialMedia() {
@@ -394,6 +388,25 @@ public class Agency implements Serializable {
 
 	public void setPics(List<ProfileImg> pics) {
 		this.pics = pics;
+	}
+
+
+	public List<User> getAffiliatedUsers() {
+		return affiliatedUsers;
+	}
+
+
+	public void setAffiliatedUsers(List<User> affiliatedUsers) {
+		this.affiliatedUsers = affiliatedUsers;
+	}
+	
+	public void addUser (User user) {
+		if(this.affiliatedUsers == null) {
+			this.affiliatedUsers = new ArrayList<>();
+			this.affiliatedUsers.add(user);
+		}
+		
+		this.affiliatedUsers.add(user);
 	}
 	
 	

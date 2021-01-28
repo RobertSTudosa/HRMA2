@@ -1,4 +1,5 @@
 @import url("cards/job_list.css");
+@import url("cards/candidate_affiliated.css");
 @import url("buttons/buttons.css");
 @import url("forms/register.css");
 
@@ -146,7 +147,41 @@
 	justify-content: space-around;
 	align-items: baseline;
 	
+}
+
+ #media_links {
+	width: 80%;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 10%;
+	border: 2px solid gray;
 	
+
+}
+
+#media_links #editPencil, #underline{
+
+	position: relative;
+	top: -45px;
+	background-color: white;
+
+}
+
+
+.profile_personal_fields .iconify {
+	margin-top: 1rem;
+
+}
+
+.profile_personal_fields #underline{
+	positon:relative;
+	top: -15px;
+	padding-left: 3px;
+	padding-right: 5px;
+	border-bottom: 3px solid lightgray;
+  	padding-bottom: 2px;
+  	font-color: white;
 }
 
 .profile_docs {
@@ -156,6 +191,11 @@
 
 .profile_docs h5, h6 {
 	padding-left: 0.2 rem;
+}
+
+.profile_docs i {
+	font-size: 0.6rem;
+	
 }
 
 /* .profile_docs img {
@@ -260,7 +300,9 @@
 	align-self: left;
 }
 
-
+.profile_headline .profile_work_addJob li {
+	list-style:none;
+}
 
 .profile_headline .profile_work_addLang {
 	display:flex;
@@ -314,7 +356,34 @@ td {
 
 /* MODALS CSS */
 
+	.social_media_links {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: center;
+		background-color: white;
 
+	}
+	
+	.social_media_links .iconify {
+		width:44px;
+		height:44px;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.social_media_links ul {
+		display: flex;
+		flex-flow: row nowrap;
+
+	
+	}
+	
+	.social_media_links li {
+		list-style:none;
+		margin-left: 2rem;
+	
+	}
 
 
 @media screen and (min-width: 781px) {
@@ -389,7 +458,6 @@ td {
 	}
 	
 
-	
 	.profile_headline .profile_work_addlang { 
 		justify-content: space-between;
 		width: 100%;
@@ -406,14 +474,55 @@ td {
 		color:#1F9A01 ;
 		text-decoration: none;
 	}
+	
+	.social_media_links {
+		display: flex;
+		flex-flow: row wrap;
 
+	}
+	
+	#media_links #editPencil, #underline{
+
+	position: relative;
+	top: -45px;
+	background-color: white;
+
+	}
 	
 }
 
+	@media screen and (max-width: 781px) {	
+	.social_media_links .iconify {
+		width:36px;
+		height:36px;
+	}
+	
+	#media_links #editPencil, #underline{
 
+	position: relative;
+ 	top: -45px; 
+ 	left: 33px;
+	background-color: white;
+
+	}
+}
 	@media screen and (max-width: 375px) {
 	.profile_docs_header  h6{
 		font-size: 0.8rem;
 	}
 	
+	.social_media_links .iconify {
+		width:24px;
+		height:24px;
 	}
+	
+		#media_links #editPencil, #underline{
+
+	position: relative;
+	top: -45px;
+	left: 31px;
+	background-color: white;
+
+	}
+	
+}

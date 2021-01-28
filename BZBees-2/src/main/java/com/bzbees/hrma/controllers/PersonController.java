@@ -487,10 +487,6 @@ public class PersonController {
 	@GetMapping("/profile/{id}")
 	public String displayProfileById(@PathVariable ("id") Long id, Model model) {
 
-//		System.out.println("before whichPerson");
-//		Person whichPerson = (Person) model.getAttribute("person");
-//		System.out.println(
-//				"person in getmapping 'PROFILE' is " + whichPerson.getFirstName() + " " + whichPerson.getLastName());
 		
 		Person person = persServ.findPersonById(id);
 		model.addAttribute("person", person);

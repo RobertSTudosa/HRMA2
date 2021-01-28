@@ -1,0 +1,146 @@
+ @charset "ISO-8859-1"; 
+@import url("./text.css");
+
+* {
+	 box-sizing: border-box;
+	 margin: 0px;
+	 padding: 0px;
+	 border: 0px; 
+	 
+ }
+
+
+.candidate_headline {
+	margin-top: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    width:100%;
+}
+
+.candidate_section {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	width:95%;
+	align-items: baseline;
+	align-self: center; 
+}
+
+
+.candidate-strip {
+	display:flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+	list-style: none;
+	background-color: #f8eeb8;
+	border-radius: 3px;
+	width: 85vw;
+		
+}
+
+.candidate-pic  {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 100%;
+	width:25%;
+	height: auto;
+	margin-right: 1rem;
+	margin-top:1rem;
+	margin-left:0.5rem;
+	margin-bottom:1rem;
+	
+}
+
+.candidate-pic .iconify{
+	font-size: 4rem;
+	border: 2px solid #E9D415;
+	border-radius: 50%;
+	background-color: lightgray;
+}
+
+.candidate-pic a {
+	width: 60px;
+	height: 60px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+.candidate-pic img {
+	object-fit: cover;
+  	border-radius: 50%;
+  	width: 60px;
+  	height: 60px;
+	border: 2px solid #E9D415;
+}
+
+.candidate-details {
+	margin-left: 0.4rem;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width:60%;
+	
+}
+
+.candidate-details p {
+	color: #1F9A01;
+	margin: 0;
+}
+
+.candidate-details span {
+	font-size:0.7rem;	
+}
+
+.candidate-details #location {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: baseline;
+}
+
+.candidate-details a {
+	font-weight: 600;
+}
+
+.candidate-jobs {
+	margin-right: 0.4rem;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width:50%;
+}
+
+.candidate-jobs p {
+	color: #1F9A01;
+	margin: 0;
+	}
+	
+.candidate-jobs #current-job {
+	font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

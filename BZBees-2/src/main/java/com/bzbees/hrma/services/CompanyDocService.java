@@ -39,11 +39,20 @@ public class CompanyDocService {
 		return compDocRepo.findCompanyDocBycompDocId(id);
 	}
 	
-	public void deleteCompDocById(CompanyDoc doc) {
+	public void deleteCompDoc(CompanyDoc doc) {
 		compDocRepo.delete(doc);
 	}
 	
+	public void deleteCompanyDocById(long id) {
+		compDocRepo.deleteCompanyDocBycompDocId(id);
+	}
+
+	
 	public void deleteAll(List<CompanyDoc> docList) {
 		compDocRepo.deleteAll(docList);
+	}
+	
+	public CompanyDoc compDocByStringAndAgencyId(String compDocName, long agencyId) {
+		return compDocRepo.companyDocByStringAndAgencyId(compDocName, agencyId);
 	}
 }

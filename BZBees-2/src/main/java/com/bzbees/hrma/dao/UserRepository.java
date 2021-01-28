@@ -16,17 +16,26 @@ public interface UserRepository extends CrudRepository <User, Long> {
 	
 	
 	//create a left outer join to retrieve the user entity via person id. join tables user_accounts with persons
-	@Query(nativeQuery= true, value= "select user_accounts.user_id, username, user_accounts.email, password, active, account_non_expired, account_non_locked, credentials_non_expired "  
+	@Query(nativeQuery= true, value= "select user_accounts.user_id, username, user_accounts.email, password, active, account_non_expired, account_non_locked, credentials_non_expired, one_agency_agency_id "  
 						+ " FROM user_accounts "  
 						+ " left outer join persons ON user_accounts.user_id = persons.person_id " 
 						+ " WHERE persons.person_id = ?1 ;")
 	public User findUserFromPersonId(long personId);
 	
 	@Query(nativeQuery= true, value = "select user_accounts.user_id, username, user_accounts.email, password, active, " 
-						+ " account_non_expired, account_non_locked, credentials_non_expired, person_id "
+						+ " account_non_expired, account_non_locked, credentials_non_expired, person_id, one_agency_agency_id "
 						+ " FROM user_accounts "					 
 						+ " WHERE user_accounts.username = ?1 ;")
 	public User findUserByUsername(String username);
+	
+	
+	@Query(nativeQuery= true, value = "select user_accounts.user_id, username, user_accounts.email, password, user_accounts.active, " +
+			 			" user_accounts.account_non_expired, user_accounts.account_non_locked, "
+			 			+ "user_accounts.credentials_non_expired, user_accounts.one_agency_agency_id, user_accounts.person_id " + 
+			 			" FROM user_accounts " + 
+			 			" left outer join agency ON user_accounts.one_agency_agency_id = agency.agency_id " + 
+						" WHERE agency.agency_id = ?1 ;")
+	public List<User> getAffiliatedUsersByAgencyID(long agencyId);
 	
 	public User findByEmailIgnoreCase(String email);
 
