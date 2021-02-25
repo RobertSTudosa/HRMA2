@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/home").hasAuthority("USER")
-            .antMatchers("/","/**","/css/**","/js/**" ).permitAll()
+            .antMatchers("/","/**", "/css/**","/js/**" ).permitAll()
             .and()
             .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true)
             .and()

@@ -80,8 +80,11 @@ public class LoginController {
 	@PostMapping("/sendPassChange")
 	public String sendPassChangeEmail ( Model model, @RequestParam("emailAddress") String emailAddress, User userAccount, RedirectAttributes redirAttr ) {
 		
+		System.out.println("select agency query... 1");
 		if(userServ.findUserByEmailAddress(emailAddress) != null) {
+			System.out.println("select agency query... 2");
 			userAccount = userServ.findUserByEmailAddress(emailAddress);
+			System.out.println("user before sending email is ---> " + userAccount.getUsername());
 			ConfirmationToken confirmationToken = new ConfirmationToken(userAccount);
 			confTokenServ.saveToken(confirmationToken);
 			

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bzbees.hrma.dao.JobRepository;
+import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
 
 @Service
@@ -49,5 +50,19 @@ public class JobService {
 
 	public void deleteJobById(Job job) {
 		jobRepo.delete(job);
+	}
+	
+	public List<Job> findJobsByAgencyId(long agencyId) {
+		return jobRepo.findJobsByAgencyId(agencyId);
+	}
+	
+	public void flushJobDb() {
+		jobRepo.flush();
+		return;
+	}
+	
+	public void saveAndFlush(Job job) {
+		jobRepo.saveAndFlush(job);
+		return;
 	}
 }

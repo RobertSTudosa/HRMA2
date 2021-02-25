@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,24 +35,31 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.CompanyDoc;
+import com.bzbees.hrma.entities.Doc;
+import com.bzbees.hrma.entities.Job;
+import com.bzbees.hrma.entities.Language;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
+import com.bzbees.hrma.entities.Skill;
 import com.bzbees.hrma.entities.SocialMedia;
+import com.bzbees.hrma.entities.Tag;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.entities.UserRole;
 import com.bzbees.hrma.services.AgencyService;
 import com.bzbees.hrma.services.CompanyDocService;
 import com.bzbees.hrma.services.ImageResize;
+import com.bzbees.hrma.services.JobService;
 import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.ProfileImgService;
 import com.bzbees.hrma.services.RoleService;
 import com.bzbees.hrma.services.SocialMediaService;
+import com.bzbees.hrma.services.TagService;
 import com.bzbees.hrma.services.UserService;
 
 @Controller
 @RequestMapping("/agency")
 @SessionAttributes({ "person", "userAccount", "agency", "lastAgencyPicList", "lastPicList", "companyDocList",
-		"socialMediaList, affiliatedPersonsList" })
+		"socialMediaList", "affiliatedPersonsList","agencyJobList","jobTagsList","lastJobPicList" })
 public class AgencyController {
 
 	@Autowired
@@ -74,6 +85,12 @@ public class AgencyController {
 
 	@Autowired
 	private SocialMediaService socialMediaServ;
+	
+	@Autowired
+	private JobService jobServ;
+	
+	@Autowired
+	private TagService tagServ;
 	
 
 	@GetMapping("/register")
@@ -155,15 +172,17 @@ public class AgencyController {
 
 	@GetMapping("/profile")
 //	@Transactional
-	public String showAgencyProfile(Model model, RedirectAttributes redirAttr, Authentication auth, Agency agency,
+	public String showAgencyProfile(Model model, RedirectAttributes redirAttr, Authentication auth, 
+			Agency agency,
 			Person person) {
 
-		if (auth.getName() == null) {
-			return "home";
-		}
+		if (auth != null) {
+			
+		
 
 		// get the user from user Principal
 		User user = (User) userServ.loadUserByUsername(auth.getName());
+		model.addAttribute("userAccount", user);
 
 		// get the person from repo user query
 		person = persServ.findPersonByUserId(user.getUserId());
@@ -236,10 +255,7 @@ public class AgencyController {
 					String INIcon = "<span style=\"color: #E9D415;background-color: #484848;\" class=\"iconify\" data-icon=\"entypo-social:instagram\" data-inline=\"false\"></span>";
 					model.addAttribute("spanIN", INIcon);
 				}
-				
-				
-				
-				
+			
 			}
 			
 			model.addAttribute("socialMediaList", socList);
@@ -268,9 +284,34 @@ public class AgencyController {
 			model.addAttribute("affiliatedPersonsList", new ArrayList<Person>());
 		}
 		
+		//get the jobs of the agency in the profile
+		if(jobServ.findJobsByAgencyId(theAgency.getAgencyId()) !=null) {
+			List<Job> agencyJobs = jobServ.findJobsByAgencyId(theAgency.getAgencyId());
+			model.addAttribute("agencyJobList", agencyJobs);
+			List<Tag> agencyJobsTags = new ArrayList<>();
+			for(Job job : agencyJobs) {
+				List<Tag> jobsTags = tagServ.findTagsByJobId(job.getJobId());
+				agencyJobsTags.addAll(jobsTags);
+			}
+			
+			model.addAttribute("jobTagsList", agencyJobsTags);
+			
+		} else {
+			model.addAttribute("agencyJobList", new ArrayList<>());
+			model.addAttribute("jobTagsList", new ArrayList<>());
+		}
+		
+		if(!model.containsAttribute("job")) {
+			model.addAttribute("job", new Job());
+		}
 		
 
+
 		return "agency/agency_profile";
+		
+		}
+		
+		return "home";
 	}
 
 	// must implement another form of deleting/detaching an agency from the person
@@ -335,26 +376,27 @@ public class AgencyController {
 			e.printStackTrace();
 		}
 
-		System.out.println("newbytes ====== new money " + newBytes.toString());
 
 		ProfileImg smallImg = new ProfileImg(imgName, img.getContentType(), newBytes);
-
-		List<ProfileImg> picList = profileImgServ.getPicsByAgencyId(agency.getAgencyId());
-
+		
 		profileImgServ.savePic(smallImg);
 
+		
+		
+		List<ProfileImg> picList = profileImgServ.getPicsByAgencyId(agency.getAgencyId());
 		picList.add(smallImg);
-
+		
+		ProfileImg lastPic = profileImgServ.getLastAgencyPic(agency.getAgencyId());
+		
 		List<ProfileImg> lastPicList = new ArrayList<>();
-
-		System.out.println("last agency pic is " + profileImgServ.getLastAgencyPic(agency.getAgencyId()));
-
-		lastPicList.add(profileImgServ.getLastAgencyPic(agency.getAgencyId()));
-
+		lastPicList.add(lastPic);
+		agency.setLastImageId(smallImg.getPicId());
 		agency.setPics(picList);
-
+		
 		agencyServ.saveAgency(agency);
-
+		
+		
+		
 		model.addAttribute("lastAgencyPicList", lastPicList);
 		redirAttr.addFlashAttribute("lastAgencyPicList", lastPicList);
 		redirAttr.addFlashAttribute("picList", picList);
@@ -364,21 +406,27 @@ public class AgencyController {
 	}
 
 	@GetMapping(value = "/img")
-	public ResponseEntity<?> showAgencyImg(@RequestParam("imgId") long id, Person person, Model model, Agency agency) {
-
+	public ResponseEntity<?> showAgencyImg(@RequestParam("imgId") long id, 
+									@RequestParam("agencyId") long agencyId, Model model ) {
+		
+		Agency agency = agencyServ.findAgencyByID(agencyId);
 		
 		if (profileImgServ.getLastAgencyPic(agency.getAgencyId()) == null) {
+			System.out.println("Agency is not present when no one is logged in... OBVIOUSLY");
 			model.addAttribute("lastAgencyPicList", null);
 			return null;
 		}
 
 		ProfileImg agencyPic = profileImgServ.getLastAgencyPic(agency.getAgencyId());
+		System.out.println("did I get the last one or not?");
 
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(agencyPic.getPicType()))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename =\"" + agencyPic.getPicName() + "\"")
 				.body(new ByteArrayResource(agencyPic.getData()));
 
 	}
+	
+	
 
 	@PostMapping(value = "/addSocialMediaFB")
 	public String addSocialMediabyAgencyProfile(Model model, Agency agency, Person person,
@@ -812,5 +860,399 @@ public class AgencyController {
 
 	}
 	
+
+	@GetMapping(value="/cprofile")
+	public String showCandidateProfile (@RequestParam("id") long id, Model model) {
+		
+		Person person = persServ.findPersonById(id);
+		User userAccount = userServ.findUserByPersonId(id);
+		model.addAttribute("person", person);
+		model.addAttribute("userAccount", userAccount);
+
+
+		if (!model.containsAttribute("picList")) {
+			List<ProfileImg> picList = person.getPics();
+			model.addAttribute("picList", picList);
+		}
+		
+		//get the pics from the profileImg repo
+		List<ProfileImg> personPics = profileImgServ.getPicsByPersonId(id);
+
+		//get the last pic of the person's profile from profileImg repo
+		ProfileImg theImg = profileImgServ.getLastProfilePic(id);
+		if(theImg != null) {
+			System.out.println("in the if !null of the image");
+			model.addAttribute("img", theImg);	
+			
+			List<ProfileImg> lastPicList = new ArrayList<>();
+			lastPicList.add(profileImgServ.getLastProfilePic(person.getPersonId()));
+			model.addAttribute("lastPicList", lastPicList);
+			
+		} else {
+			personPics.clear();
+			System.out.println("ALL CLEAR");
+			model.addAttribute("img", new ProfileImg());
+			model.addAttribute("lastPicList", new ArrayList<>());
+		}
+		
+		if (!model.containsAttribute("img")) {
+			model.addAttribute("img", new ProfileImg());
+
+		}
+
+		
+		if (!model.containsAttribute("docList")) {
+			List<Doc> docList = person.getDocs();
+			model.addAttribute("docList", docList);
+		}
+	
+		
+		if(!model.containsAttribute("skillList")) {
+			List<Skill> skillList = person.getSkills();
+			model.addAttribute("skillsList", skillList);
+		}
+		
+		if(!model.containsAttribute("langList")) {
+			List<Language> langList = person.getLanguages();
+			model.addAttribute("langList", langList);
+		}
+		
+		if(!model.containsAttribute("jobList")) {
+			List<Job> jobList = person.getJobs();
+			model.addAttribute("jobList",jobList);
+		}
+		
+	
+			
+		
+		if (!model.containsAttribute("job")) {
+			Job job = new Job();
+			model.addAttribute("job", job);
+			System.out.println("New job created <------------");
+		}
+		
+		
+		if (!model.containsAttribute("skill")) {
+			Skill skill = new Skill();
+			model.addAttribute("skill", skill);
+			System.out.println("New skill created <------------");
+
+		}
+		
+		if (!model.containsAttribute("lang")) {
+			Language lang = new Language();
+			model.addAttribute("lang", lang);
+			System.out.println("New lang created <------------");
+		}
+		
+
+		
+		
+		return "user/session_profile";
+	}
+	
+	@PostMapping("/addModalJob")
+	public String addJobFromAgencyProfile(Model model, Agency agency, @RequestParam("img") MultipartFile img,
+			Job job, RedirectAttributes redirAttr) {
+
+		
+		List<Job> savedJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
+		
+		job.setCompanyName(agency.getAgencyName());
+
+		job.setTheAgency(agency);
+		
+//		jobServ.saveAndFlush(job);
+
+		savedJobs.add(job);
+
+		agency.setPostedJobs(savedJobs);
+		
+		//check if the img is not null 
+		if(!img.isEmpty()) {
+			//save the picture to the saved job
+			String imgName = StringUtils.cleanPath(img.getOriginalFilename());
+
+			// init a new byte array
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+			// the bytes you want for writing your class image
+			byte[] newBytes = null;
+
+			baos = imgResizerServ.resizeImage(img);
+
+			newBytes = baos.toByteArray();
+
+			try {
+				baos.close();
+			} catch (IOException e) {
+				System.out.println("ByteArrayOutputSteam is not closed ");
+				e.printStackTrace();
+			}
+
+
+			ProfileImg smallImg = new ProfileImg(imgName, img.getContentType(), newBytes);
+			
+			profileImgServ.savePic(smallImg);
+		
+			List<ProfileImg> picList = profileImgServ.getPicsByJobId(job.getJobId());
+			picList.add(smallImg);
+			
+			ProfileImg lastPic = profileImgServ.getLastJobPic(job.getJobId());
+			
+			List<ProfileImg> lastPicList = new ArrayList<>();
+			lastPicList.add(lastPic);
+			job.setLastImageId(smallImg.getPicId());
+			job.setPics(picList);
+			
+			model.addAttribute("lastJobPicList", lastPicList);
+			redirAttr.addFlashAttribute("lastJobPicList", lastPicList);
+			redirAttr.addFlashAttribute("picList", picList);
+			redirAttr.addFlashAttribute("jobimg", smallImg);
+
+			//ending the if for checking the image param if it's null
+		}
+		
+		
+
+		jobServ.save(job);
+
+		
+		List<Tag> jobTags = job.getJobTags();
+		
+		String [] trimmedTags = job.getTags().trim().split("\\s+");
+		for(String s : trimmedTags) {
+			Tag tag = new Tag(s);
+			tag.setTheJob(job);
+			jobTags.add(tag);
+			tagServ.tagSave(tag);
+		}
+
+		agencyServ.saveAgency(agency);
+		
+
+
+
+		redirAttr.addFlashAttribute("agencyJobList", savedJobs);
+		redirAttr.addFlashAttribute("jobTagsList", jobTags);
+
+		return "redirect:/agency/profile";
+	}
+	
+	@GetMapping("/deleteJobByModal")
+	public String deleteJobModalById(@RequestParam("id") long id, Model model, Agency agency,
+			RedirectAttributes redirAttr) {
+
+		List<Job> agencyJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
+		
+		for (Job job : agencyJobs) {
+			if(job.getJobId() == id) {
+				List<Tag> jobTags = tagServ.findTagsByJobId(job.getJobId());
+				tagServ.deleteJobTags(jobTags);
+				jobServ.deleteJobById(job);
+			}
+		}
+			
+		redirAttr.addFlashAttribute("agencyJobList", jobServ.findJobsByAgencyId(agency.getAgencyId()));
+
+		return "redirect:/agency/profile";
+				
+	}
+	
+	@PostMapping(value="/makeJobPrivate")
+	public String makePrivate(@Valid @ModelAttribute("job") Job setJob, 
+			BindingResult bindingResult, @RequestParam("id") long id, 
+			Model model, Person person, 
+			Agency agency, RedirectAttributes redirAttr ) throws ResourceNotFoundException {
+		
+		Job job = jobServ.findJobById(id);
+		
+		job.setJobPrivate(setJob.isJobPrivate());
+		jobServ.save(job);	
+		
+
+		List<Job> agencySavedJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
+		redirAttr.addFlashAttribute("agencyJobList", agencySavedJobs);
+		
+		return "redirect:/agency/profile";
+	}
+	
+	@PostMapping(value="/editJob", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, "multipart/form-data"})
+	public String partialUpdate(@Valid @ModelAttribute("job") Job patchJob, 
+//			@ModelAttribute("jobTagList") List<Tag> patchTags,
+			BindingResult bindingResult, @RequestParam("id") long id, 
+			@RequestParam("imgEdit") MultipartFile img,
+			Model model, Person person, 
+			Agency agency, RedirectAttributes redirAttr ) throws ResourceNotFoundException {
+		
+
+		
+		Job job = jobServ.findJobById(id);
+		
+		System.out.println("patch job is " + patchJob.getJobTitle());
+
+		job.setJobPrivate(patchJob.isJobPrivate());
+		job.setJobTitle(patchJob.getJobTitle());
+		job.setStartDate(patchJob.getStartDate());
+		job.setJobLocation(patchJob.getJobLocation());
+		job.setNecessaryDocuments(patchJob.getNecessaryDocuments());
+		job.setWorkingConditions(patchJob.getWorkingConditions());
+		job.setResponsabilities(patchJob.getResponsabilities());
+		
+		//check if the img is there or not
+		if(!img.isEmpty()) {
+			
+		
+		
+		job.setLastImageId(patchJob.getLastImageId());
+		
+		
+	
+		//save the picture to the saved job
+				String imgName = StringUtils.cleanPath(img.getOriginalFilename());
+
+				// init a new byte array
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+				// the bytes you want for writing your class image
+				byte[] newBytes = null;
+
+				baos = imgResizerServ.resizeImage(img);
+
+				newBytes = baos.toByteArray();
+
+				try {
+					baos.close();
+				} catch (IOException e) {
+					System.out.println("ByteArrayOutputSteam is not closed ");
+					e.printStackTrace();
+				}
+
+
+				ProfileImg smallImg = new ProfileImg(imgName, img.getContentType(), newBytes);
+				
+				profileImgServ.savePic(smallImg);
+			
+				List<ProfileImg> picList = profileImgServ.getPicsByJobId(job.getJobId());
+				picList.add(smallImg);
+				
+				ProfileImg lastPic = profileImgServ.getLastJobPic(job.getJobId());
+				
+				List<ProfileImg> lastPicList = new ArrayList<>();
+				lastPicList.add(lastPic);
+				job.setLastImageId(smallImg.getPicId());
+				job.setPics(picList);
+		
+				model.addAttribute("lastJobPicList", lastPicList);
+				redirAttr.addFlashAttribute("lastJobPicList", lastPicList);
+				redirAttr.addFlashAttribute("picList", picList);
+				redirAttr.addFlashAttribute("jobimg", smallImg);
+				
+		}
+				
+		job.setTags(patchJob.getTags());
+		
+		
+		List<Tag> jobTags = tagServ.findTagsByJobId(id);
+		tagServ.deleteJobTags(jobTags);
+		
+		
+
+		String [] trimmedTags = patchJob.getTags().trim().split("\\s+");
+
+		for(String s : trimmedTags) {
+			Tag tag = new Tag(s);
+			tag.setTheJob(job);
+			jobTags.add(tag);
+			tagServ.tagSave(tag);
+		}
+
+		jobServ.save(job);		
+		
+		
+		List<Job> agencySavedJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
+		
+		
+		
+		redirAttr.addFlashAttribute("agencyJobList", agencySavedJobs);
+		
+		return "redirect:/agency/profile";
+	}
+	
+	@GetMapping(value = "/jobimg")
+	public ResponseEntity<?> showJobImg(@RequestParam("imgId") long id, 
+									@RequestParam("jobId") long jobId, Model model ) {
+		
+		System.out.println("The job id from the view is " + jobId);
+		Job job = jobServ.findJobById(jobId);
+
+		if (profileImgServ.getLastJobPic(job.getJobId()) == null) {
+			System.out.println("Job is not present when no one is logged in... OBVIOUSLY");
+			model.addAttribute("lastJobPicList", null);
+			return null;
+		}
+
+		ProfileImg jobPic = profileImgServ.getLastJobPic(job.getJobId());
+		System.out.println("did I get the last job pic one or not?");
+
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(jobPic.getPicType()))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename =\"" + jobPic.getPicName() + "\"")
+				.body(new ByteArrayResource(jobPic.getData()));
+
+	}
+	
+	
+	@PostMapping(value = "/addJobImg", consumes = { "multipart/form-data" })
+	public String addJobImg(Model model, Person person, Job job, @RequestParam("img") MultipartFile img,
+			RedirectAttributes redirAttr) {
+
+		// test if agency is present in the method
+		System.out.println("Job is " + job.getJobTitle());
+
+		String imgName = StringUtils.cleanPath(img.getOriginalFilename());
+
+		// init a new byte array
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+		// the bytes you want for writing your class image
+		byte[] newBytes = null;
+
+		baos = imgResizerServ.resizeImage(img);
+
+		newBytes = baos.toByteArray();
+
+		try {
+			baos.close();
+		} catch (IOException e) {
+			System.out.println("ByteArrayOutputSteam is not closed ");
+			e.printStackTrace();
+		}
+
+
+		ProfileImg smallImg = new ProfileImg(imgName, img.getContentType(), newBytes);
+		
+		profileImgServ.savePic(smallImg);
+
+	
+		List<ProfileImg> picList = profileImgServ.getPicsByJobId(job.getJobId());
+		picList.add(smallImg);
+		
+		ProfileImg lastPic = profileImgServ.getLastJobPic(job.getJobId());
+		
+		List<ProfileImg> lastPicList = new ArrayList<>();
+		lastPicList.add(lastPic);
+		job.setLastImageId(smallImg.getPicId());
+		job.setPics(picList);
+		
+//		jobServ.save(job);
+
+		model.addAttribute("lastJobPicList", lastPicList);
+		redirAttr.addFlashAttribute("lastJobPicList", lastPicList);
+		redirAttr.addFlashAttribute("picList", picList);
+		redirAttr.addFlashAttribute("jobimg", smallImg);
+
+		return "/modals::addAgencyJob";
+	}
+
 
 }

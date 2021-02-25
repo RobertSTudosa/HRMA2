@@ -1,5 +1,7 @@
 package com.bzbees.hrma.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,10 @@ public class AgencyService {
 	
 	public void deleteAgencyById(long agencyId) {
 		agencyRepo.deleteAgencyByagencyId(agencyId);
+	}
+	
+	public List<Agency> findAll() {
+		return (List<Agency>) agencyRepo.findAll();
 	}
 
 }

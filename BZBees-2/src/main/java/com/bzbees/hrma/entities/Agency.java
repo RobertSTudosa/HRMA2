@@ -56,6 +56,8 @@ public class Agency implements Serializable {
 	
 	private String phoneNumber;
 	
+	private long lastImageId;
+	
 	
 	private String shortDescription;
 	
@@ -105,6 +107,14 @@ public class Agency implements Serializable {
 	    )
 	private List<User> affiliatedUsers = new ArrayList<>();
 	
+	
+	@OneToMany(
+	        mappedBy = "theAgency",
+	        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST},
+	        orphanRemoval = true
+	    )
+	private List<Job> postedJobs = new ArrayList<>();
+	
 	public Agency () {
 		
 	}
@@ -128,6 +138,7 @@ public class Agency implements Serializable {
 		this.phoneNumber = phoneNumber;
 		this.shortDescription = shortDescription;
 		this.active = active;
+		this.lastImageId=this.setAutoLastImageId();
 		
 	}
 
@@ -408,6 +419,43 @@ public class Agency implements Serializable {
 		
 		this.affiliatedUsers.add(user);
 	}
+
+
+	public long getLastImageId() {
+		return lastImageId;
+	}
+
+
+	public void setLastImageId(long lastImageId) {
+		
+		this.lastImageId = lastImageId;
+	}
+	
+	public long setAutoLastImageId() {
+		
+		if(!this.pics.isEmpty() && this.pics.size() > 0) {
+		
+			 this.lastImageId = this.pics.size()-1;
+			 
+			return this.lastImageId;
+		} 
+			return this.lastImageId = 0;
+	}
+
+
+	public List<Job> getPostedJobs() {
+		return postedJobs;
+	}
+
+
+	public void setPostedJobs(List<Job> postedJobs) {
+		this.postedJobs = postedJobs;
+	}
+
+
+
+	
+	
 	
 	
 	

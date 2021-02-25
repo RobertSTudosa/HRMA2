@@ -45,7 +45,7 @@ public class Person implements Serializable {
 	
 	private long lastImgId;
 	
-	
+		
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
 			fetch = FetchType.LAZY)
 	@JoinTable(name="person_docs",
@@ -81,6 +81,15 @@ public class Person implements Serializable {
 			joinColumns=@JoinColumn(name="person_id"),
 			inverseJoinColumns=@JoinColumn(name="job_id"))
 	private List<Job> jobs = new ArrayList<>();
+	
+	
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_notifications",
+			joinColumns=@JoinColumn(name="person_id"),
+			inverseJoinColumns=@JoinColumn(name="notification_id"))
+	private List<Notification> notifications = new ArrayList<>();
+	
 	
 	
 	@OneToMany(

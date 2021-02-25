@@ -83,53 +83,69 @@
   		<div th:fragment="nav">
   		
   			<nav class="navbar" style="position:fixed">
+				
+				<div class="notifications" sec:authorize="isAuthenticated()">	  			
+	  				<span class="iconify" data-icon="clarity:notification-outline-badged" data-inline="false"></span>
+	  			</div>
+				
+				 
+<!-- 	  			<div class="notifications-empty" sec:authorize="isAuthenticated()">	  			
+	  				<span class="iconify" data-icon="clarity:notification-outline-badged" data-inline="false"></span>
+	  			</div> -->
   			
-	            <div class="brand-text">
-	                <a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" /></button></a>
+ 				<div class="brand-text">
+	                <a th:href="@{/}"><button ><img src="../css/header/logo.svg" alt="logo" style="width:100%"/></button></a>
 	            </div>
             
             
             <div class="menu-userplus">
-            <button  class="button-userplus" name="button-userplus" id="button-userplus">
-				
-				<img sec:authorize="isAnonymous()" src="../css/buttons/user-plus.png" alt="header" /> 
-				<img sec:authorize="isAuthenticated()" src="../css/buttons/user-name.png" alt="header" />
-                 <span sec:authorize="isAuthenticated()" sec:authentication="name"></span></button>       
+	            <button  class="button-userplus" name="button-userplus" id="button-userplus">
+					
+					<img sec:authorize="isAnonymous()" src="../css/buttons/user-plus.png" alt="header" /> 
+					<img sec:authorize="isAuthenticated()" src="../css/buttons/user-name.png" alt="header" />
+	                 <span sec:authorize="isAuthenticated()" sec:authentication="name"></span></button>       
   			
-  			<div class="navbar-user-links" >
-
-				<ul sec:authorize="isAuthenticated()">
-
-					<li><a sec:authorize="isAuthenticated()"
-						th:href="@{/person/sprofile}"><span sec:authorize="isAuthenticated()" sec:authentication="name"></span>'s profile		</a>
-										
-					</li>
-
-					<li  sec:authorize="hasAuthority('AGENCY')"> 
-						<a  th:href="@{/agency/profile}">
-							<span  th:text="${agency.agencyName} +' \'s profile' "></span></a></li>
-					
-					<li><a
-						th:href="@{/showChangePassword}">change password</a></li>
-
-					<li>
-
-					<li><a>My jobs</a></li>
-					
-					<li sec:authorize="!hasAuthority('AGENCY')"><a
-						th:href="@{/agency/register}">Create agency</a></li>
+	  			<div class="navbar-user-links" >
+	
+					<ul sec:authorize="isAuthenticated()">
+	
+						<li><a sec:authorize="isAuthenticated()"
+							th:href="@{/person/sprofile}"><span sec:authorize="isAuthenticated()" sec:authentication="name"></span>'s profile		</a>
+											
+						</li>
+	
+						<li  sec:authorize="hasAuthority('AGENCY')"> 
+							<a  th:href="@{/agency/profile}">
+								<span  th:text="${agency.agencyName} +' \'s profile' "></span></a></li>
+								
+						<li sec:authorize="hasAuthority('USER')">
+							<a th:href="@{/person/notifications}">
+								<span>notifications</span>
+							</a>
 						
-					<li><a>Create employer</a></li>
-					
-						<form th:action="@{/logout}">
-							<button class="logout" type="submit">logout</button>
-						</form>
-					</li>
-
-				</ul>
-
-
-			</div>
+						</li>		
+						
+						<li><a
+							th:href="@{/showChangePassword}">change password</a></li>
+	
+						<li>
+	
+						<li><a>My jobs</a></li>
+						
+						<li sec:authorize="!hasAuthority('AGENCY')"><a
+							th:href="@{/agency/register}">Create agency</a></li>
+							
+						<li><a>Create employer</a></li>
+						
+							<form th:action="@{/logout}">
+								<button class="logout" type="submit">logout</button>
+							</form>
+						</li>
+	
+					</ul>
+	
+	
+				</div>
             </div>
              
          

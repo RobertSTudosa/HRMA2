@@ -1,8 +1,11 @@
 package com.bzbees.hrma.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -50,7 +55,7 @@ public class Job implements Serializable {
 
 	private double salary;
 
-	private double currency;
+	private String currency;
 	
 	@Size(min=2, max=4000)
 	private String responsabilities;
@@ -61,17 +66,29 @@ public class Job implements Serializable {
 	@Column(name="job_private")
 	private boolean jobPrivate=false;
 
-
-
 	private String skills;
 
 	private String tags;
 	
+	private long lastImageId;
+	
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
+			fetch = FetchType.LAZY)
+	@JoinTable(name="job_pics",
+			joinColumns=@JoinColumn(name="job_id"),
+			inverseJoinColumns=@JoinColumn(name="pic_id"))
+	private List<ProfileImg> pics= new ArrayList<>();
+	
+	@OneToMany(
+	        mappedBy = "theJob",
+	        cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST}
+//	        orphanRemoval = true
+	    )
+	private List<Tag> jobTags = new ArrayList<>();
+	
 	@Column(name="necessary_documents")
 	private String necessaryDocuments;
 	
-	
-
 
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
 			fetch = FetchType.LAZY)
@@ -79,13 +96,17 @@ public class Job implements Serializable {
 			joinColumns=@JoinColumn(name="job_id"),
 			inverseJoinColumns=@JoinColumn(name="person_id"))
 	private Set<Person> persons = new HashSet<>();
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional=true)
+	private Agency theAgency;
 
 	public Job() {
 
 	}
 
 	public Job(String jobTitle, String companyName, String jobLocation, Date startDate, Date endDate, double salary,
-			double currency, String responsabilities, String workingConditions, boolean privateJob, String skills, String tags,
+			String currency, String responsabilities, String workingConditions, boolean privateJob, String skills, String tags,
 			String necessaryDocuments) {
 		super();
 		this.jobTitle = jobTitle;
@@ -159,11 +180,11 @@ public class Job implements Serializable {
 		this.salary = salary;
 	}
 
-	public double getCurrency() {
+	public String getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(double currency) {
+	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
 
@@ -223,5 +244,62 @@ public class Job implements Serializable {
 	public void setPersons(Set<Person> persons) {
 		this.persons = persons;
 	}
+
+	public Agency getTheAgency() {
+		return theAgency;
+	}
+
+	public void setTheAgency(Agency theAgency) {
+		this.theAgency = theAgency;
+	}
+	
+	
+//	public void copyToArrayListOfTags(String tags) {
+//		String[] trimmedTags = tags.trim().split("\\s+");
+//		
+//		for(String s : trimmedTags) {
+//			Tag tag = new Tag(s);
+//			tag.setTheJob(this);
+//			this.jobTags.add(tag);
+//			System.out.println("Tag inserted here is ====> " + s);
+//		}
+//	}
+
+	public List<Tag> getJobTags() {
+		return jobTags;
+	}
+
+	public void setJobTags(List<Tag> jobTags) {
+		this.jobTags = jobTags;
+	}
+
+	public List<ProfileImg> getPics() {
+		return pics;
+	}
+
+	public void setPics(List<ProfileImg> pics) {
+		this.pics = pics;
+	}
+
+	public long getLastImageId() {
+		return lastImageId;
+	}
+
+	public void setLastImageId(long lastImageId) {
+		this.lastImageId = lastImageId;
+	}
+	
+	public long setAutoLastImageId() {
+		
+		if(!this.pics.isEmpty() && this.pics.size() > 0) {
+		
+			 this.lastImageId = this.pics.size()-1;
+			 
+			return this.lastImageId;
+		} 
+			return this.lastImageId = 0;
+	}
+	
+	
 
 }

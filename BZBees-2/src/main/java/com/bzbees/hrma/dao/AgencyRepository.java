@@ -21,5 +21,9 @@ public interface AgencyRepository extends CrudRepository<Agency, Long>{
 	public Agency findAgencyByagencyId(long agencyId);
 	
 	public void deleteAgencyByagencyId(long agencyId);
+	
+	
+	
+//	public Agency findAgencyByJobId(long jobId);
 
 }

@@ -46,7 +46,8 @@ public class ImageResize {
 	  			Thumbnails.of((BufferedImage)imgBuf)
 	  		    	.size(imgBuf.getWidth()/2, imgBuf.getHeight()/2)
 	  		    	.outputFormat(imageFormat)
-	  		    	.outputQuality(0.2)
+	  		    	.outputQuality(0.3)
+	  		    	.rotate(0)
 	  		    	.toOutputStream(baos);
 	  			
 	     		      		  

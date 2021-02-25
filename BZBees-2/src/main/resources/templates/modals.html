@@ -255,3 +255,493 @@
 
 </body>
 </html>
+
+
+<html>
+<body>
+
+
+
+ 				<!-- MODAL for adding a JOB from AGENCY profile -->
+
+	<div th:fragment="addAgencyJob" class="modal fade" id="addAgencyJob"
+		tabindex="-21" aria-labelledby="addJobLabel">
+
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add a new job</h5>
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form th:action="@{/agency/addModalJob}" th:object="${job}"
+					method="POST" encType="multipart/form-data" >
+
+					<div class="register_form">
+
+						<div class="input_jobinfo">
+
+							<div class="input_elements" id="job-image">
+
+
+								<div class="input_field">
+
+									<div class="job-image-upload">
+
+										<label for="img"> <img id="jobPic" style="size: 10%;"
+											src="../css/buttons/briefcase.png"> <!--th:if="${job.lastImageId > 0}"
+										th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}"  -->
+
+										</label> <input type="file" name="img" id="img"
+											placeholder="choose file"
+											
+								onchange="document.getElementById('jobPic').src = window.URL.createObjectURL(this.files[0])"> 
+									
+									</div>
+
+
+								</div>
+								
+
+
+
+
+								<div class="input_field" id="radio">
+
+									<label th:for="jobPrivate">make the job private</label> <input
+										th:field="${job.jobPrivate}" type="radio" value="true">
+
+								</div>
+
+							</div>
+							<div class="input_elements">
+
+								<div class="input_field">
+									<input th:field="${job.jobTitle}" type="text"
+										required="required" placeholder="job name*"> <label>job
+										name<span> *</span>
+									</label>
+								</div>
+							</div>
+
+							<div class="input_elements" id="salary_currency">
+								<div class="input_field">
+									<input id="salary" th:field="${job.salary}" type="number"
+										required="required" placeholder="salary"> <label>salary<span>
+											*</span>
+									</label>
+								</div>
+
+								<div class="input_field">
+									<input id="currency" th:field="${job.currency}" type="text"
+										required="required" placeholder="currency"> <label>currency<span>
+											*</span>
+									</label>
+								</div>
+
+
+							</div>
+
+
+						</div>
+
+
+						<div class="input_elements">
+							<div class="input_field">
+								<input th:field="${job.startDate}" type="text"
+									required="required" placeholder="Start Date"
+									onclick="(this.type='date')" onblur="(this.type='text')">
+								<label>Start Date<span> *</span></label>
+							</div>
+
+							<div class="input_field">
+								<input th:field="${job.jobLocation}" type="text"
+									required="required" placeholder="location"> <label>job
+									location<span> *</span>
+								</label>
+							</div>
+
+						</div>
+
+						<div class="input_elements">
+							<div class="input_field">
+								<input th:field="${job.necessaryDocuments}" type="text"
+									required="required" placeholder="documents required"> <label>documents<span>
+										*</span>
+								</label>
+							</div>
+
+							<div class="input_field">
+								<textarea th:field="${job.workingConditions}" type="text"
+									required="required" placeholder="working conditions"></textarea>
+								<label>working conditions<span> *</span>
+								</label>
+							</div>
+
+							<div class="input_field">
+								<input th:field="${job.tags}" type="text" required="required"
+									placeholder="tags"> <label>tags<span> *</span>
+								</label>
+							</div>
+
+
+
+						</div>
+						
+						<div class="input_elements">
+
+							<div class="input_field">
+								<textarea th:field="${job.responsabilities}" id="job_resp"
+									required="required"
+									placeholder="Job description, main responsibilities, achievements etc"></textarea>
+								<label>Job responsibilities<span> *</span></label>
+							</div>
+
+						</div>
+
+			<div class="login-buttons">
+				<button type="button" class="button-login" data-dismiss="modal">
+					<span class="iconify" id="next_mobile"
+						data-icon="ic:baseline-cancel" data-inline="false"></span> <span
+						class="iconify" id="next_desk" data-icon="topcoat:cancel"
+						data-inline="false"></span>
+
+					<p>close</p>
+
+				</button>
+				<button type="submit" class="button-login">
+					<span class="iconify" id="next_mobile"
+						data-icon="teenyicons:save-solid" data-inline="false"></span> <span
+						class="iconify" id="next_desk" data-icon="teenyicons:save-solid"
+						data-inline="false"></span>
+					<p>add job</p>
+
+				</button>
+
+			</div>
+
+
+			</div>
+
+			</form>
+
+
+
+		
+
+				
+
+
+
+
+
+		</div>
+
+		</div>
+	</div>
+	</div>
+
+	<!-- 
+				ADD JOB MODAL ENDS HERE
+ -->
+
+
+</body>
+</html>
+
+
+<!-- this is where the editJob modal begins -->
+
+
+<html>
+<body>
+	<div th:fragment="editAgencyJob" class="modal fade" id="editJobModal"
+		tabindex="-21" th:attrappend="id=${job.jobId}"
+		aria-labelledby="editJobLabel">
+
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edit</h5>
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form th:action="@{/agency/editJob(id=${job.jobId})}"
+					th:object="${job}" method="POST" encType="multipart/form-data" >
+
+					<div class="register_form">
+
+						<div class="input_jobinfo">
+			
+							<div class="input_elements" id="job-image">
+
+
+								<div class="input_field">
+								 
+								
+								
+								
+							
+									<div class="job-image-upload">
+									
+									
+											
+										<!-- 
+										 <img id="jobPicEdit" style="size: 10%;"
+											th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" >
+										<label for="jobPicBtn">button</label>	
+										<input type="file" name="imgEdit" id="jobPicBtn"   
+											placeholder="choose file"
+											onchange="document.getElementById('jobPicEdit').src = (window.URL || window.webkitURL).createObjectURL(this.files[0])"> 
+											 -->
+								
+									
+										
+									<!--	<script th:inline="javascript">
+											var loadImage = function(event) {
+												var image = document.getElementById('jobPicEdit');
+												image.src = (window.URL || window.webkitURL).createObjectURL(this.files[0]);
+											};
+										
+										</script> -->
+										
+										 										
+									</div> 
+									
+									<div class="input-group mb-3">
+									
+									<img th:if="${job.lastImageId > 0}" id="jobPicEdit" style="size: 10%;"
+											th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" >
+									<a th:if="${job.lastImageId < 1}">
+										<span  class="iconify" data-icon="bytesize:work" data-inline="false" style="font-size: 5rem;"></span>									
+									</a>		
+											
+									<label class="input-group-text" for="inputGroupFile02">
+									<span class="iconify" data-icon="ic:outline-change-circle" data-inline="false"></span></label>
+  									<input type="file" name="imgEdit" class="form-control" id="inputGroupFile02" 
+											onchange="document.getElementById('jobPicEdit').src = (window.URL || window.webkitURL).createObjectURL(this.files[0])"> 
+
+ 									</div>
+
+								</div>
+
+									<div class="input_field" id="radio">
+										<!-- radio buttons have only 2 values so don't do th:value -->
+										<input th:id="jobPrivate" th:name="jobPrivate" type="radio"
+											value="true"> <label th:for="jobPrivate">make job private</label>
+									</div>
+
+							</div>
+							
+							
+
+
+							<div class="input_elements">
+								
+
+								<div class="input_field">
+									<input th:value="*{jobTitle}" th:id="jobTitle"
+										th:name="jobTitle" type="text" required="required"
+										placeholder="job name*"> <label>job name<span>
+											*</span></label>
+								</div>
+
+								<div class="input_elements" id="salary_currency">
+
+									<div class="input_field">
+										<input th:value="*{salary}" th:id="salary" th:name="salary"
+											type="number" required="required" placeholder="hourly rate">
+										<label>salary per hour<span> *</span>
+										</label>
+									</div>
+
+									<div class="input_field">
+										<input id="currency" th:value="*{currency}"
+											th:id="*{currency}" th:name="*{currency}" type="text"
+											required="required" placeholder="currency"> <label>currency<span>
+												*</span>
+										</label>
+									</div>
+
+								</div>
+
+							</div>
+
+
+							<div class="input_elements">
+								<div class="input_field">
+									<input th:value="${{job.startDate}}" th:id="startDate"
+										th:name="startDate" type="text" required="required"
+										placeholder="Start Date" onclick="(this.type='date')"
+										onblur="(this.type='text')"> <label>Start Date<span>
+											*</span>
+									</label>
+								</div>
+
+								<div class="input_field">
+									<input th:value="*{jobLocation}" th:name="jobLocation"
+										th:id="jobLocation" type="text" required="required"
+										placeholder="location"> <label>job location<span>
+											*</span>
+									</label>
+								</div>
+
+							</div>
+
+							<div class="input_elements">
+								<div class="input_field">
+									<input th:value="*{necessaryDocuments}"
+										th:name="necessaryDocuments" th:id="necessaryDocuments"
+										type="text" required="required"
+										placeholder="documents required"> <label>documents<span>
+											*</span>
+									</label>
+								</div>
+
+								<div class="input_field">
+									<textarea th:text="*{workingConditions}"
+										th:name="workingConditions" th:id="workingConditions"
+										type="text" required="required"
+										placeholder="working conditions"></textarea>
+									<label>working conditions<span> *</span>
+									</label>
+								</div>
+
+								<div class="input_field">
+									<input th:value="*{tags}" th:name="tags" th:id="tags"
+										type="text" required="required" placeholder="tags"> <label>tags<span>
+											*</span>
+									</label>
+								</div>
+
+
+
+							</div>
+
+						</div>
+
+						<div class="input_elements">
+
+							<div class="input_field">
+								<textarea th:text="*{responsabilities}" th:id="responsabilities"
+									th:name="responsabilities" id="job_resp" required="required"
+									placeholder="Job description, main responsibilities, achievements etc"></textarea>
+								<label>Job responsibilities<span> *</span></label>
+							</div>
+
+						</div>						
+						
+					</div>
+					
+
+					<div class="login-buttons">
+
+						<button type="button" class="button-login" data-dismiss="modal">
+							<span class="iconify" id="next_mobile"
+								data-icon="ic:baseline-cancel" data-inline="false"></span>
+							<p>close</p>
+							<span class="iconify" id="next_desk" data-icon="topcoat:cancel"
+								data-inline="false">close</span>
+
+
+						</button>
+						<button type="submit" class="button-login">
+							<span class="iconify" id="next_mobile"
+								data-icon="teenyicons:save-solid" data-inline="false"></span> <span
+								class="iconify" id="next_desk" data-icon="teenyicons:save-solid"
+								data-inline="false"></span>
+							<p>save</p>
+
+						</button>
+
+
+
+
+					</div>
+
+
+				</form>
+				
+				
+				
+
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
+<!-- editJobModal ends  -->
+
+<html>
+<body>
+									<!-- this is where the add job img modal begins -->
+									
+						<div th:fragment="addJobImg" class="modal fade" id="jobPicModal" tabindex="-31"
+							aria-labelledby="profilePicLabel" th:attrappend="id=${job.jobId}" >
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="profilePicTitle">Choose a
+											job image</h5>
+
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									<form id="uploadFiles" name="uploadFiles" method="POST"
+										th:action="@{/agency/addJobImg}"
+										encType="multipart/form-data">
+										<div class="modal-body">
+											
+											
+											<!-- keep the name 'img' otherwise it doesn't work  -->
+											<input type="file" name="img" placeholder="choose file">
+
+
+										</div>
+
+										
+
+											
+												<div class="login-buttons" id="modal">
+													<button type="button" class="button-login" data-dismiss="modal">
+
+														<span class="iconify" id="next_desk"
+															data-icon="topcoat:cancel" data-inline="false"></span>
+
+														<p>close</p>
+
+													</button>
+													<button type="button" class="button-login">
+														<span class="iconify" id="next_desk"
+															data-icon="ic:round-cloud-upload" data-inline="false"></span>
+														<p>upload</p>
+
+													</button>
+												
+												
+												</div>
+												
+										
+									</form>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- profile image modal ends -->
+
+
+</body>
+</html>

@@ -20,12 +20,39 @@
 
 	<main>
 		<section th:object="${agency}" class="profile">
+			<div class="profile_above_line">
+				<h3> <span th:text="${agency.agencyName}">AGENCY</span>'s profile</h3>
+				
+				<div id="right_buttons">
+					<a th:if="${#authentication.name} != ${agency.user.userName}"	
+					id="affiliate" th:href="@{/agency/affiliate}"
+									name="affiliation">
+								<span class="iconify" data-icon="whh:affiliate" data-inline="false"></span>
+							get affiliated
+					</a>	
+					<p>|</p>
+					
+					<a id="export" th:href="@{/person/profilePDF}"  target="_blank">
+							<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
+		<!-- 					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>	 -->				
+						export to pdf
+					</a>
+				</div>
+				
+				
+						
+			</div>
 
-			<h3> <span th:text="${agency.agencyName}">AGENCY</span>'s profile</h3>
-			<hr class="new_line">
 			
+			<hr class="new_line">
+		
 			<div class="profile_top">
+				
+				
+						
+						
 				<div class="profile_details">
+		
 					<div class="profile_avatar">
 
 
@@ -33,23 +60,71 @@
 			<div th:replace="modals::addAgencyProfileImg"></div>
 
 						<!-- trigger the modal for profileImg chooser -->
-						<button data-toggle="modal" data-target="#agencyPicModal">
+			<!-- 			<p th:text="'auth name ' + ${#authentication.name}"></p>
+						<p th:text=" 'user : ' + ${agency.user.userName}"></p> -->
+						
 
-							<span th:if="${#lists.isEmpty(lastAgencyPicList)}" class="iconify"
+				
+						
+						<button sec:authorize="isAuthenticated()" 
+						th:if="${#authentication.name} != ${agency.user.userName}">
+
+						<span th:if="${#lists.isEmpty(lastAgencyPicList)}" class="iconify"
 								data-icon="whh:profile" data-inline="false"></span>
+			
+
 							<ul>
-								<li th:if="${not #lists.isEmpty(lastAgencyPicList)}"
-									th:each="thePic : ${lastAgencyPicList}"><img
-									th:src="@{/agency/img(imgId=${thePic.picId})}" style="size: 10%">
+								<li th:if="${agency.lastImageId != null}">
+								
+									<img th:if="${agency.lastImageId > 0}"
+										th:src="@{/agency/img(imgId=${agency.lastImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
 								</li>
 
-							</ul>
+							</ul> 
 
 						</button>
+						
+						
+						<button sec:authorize="isAuthenticated()" 
+						th:if="${#authentication.name} == ${agency.user.userName}"
+						data-toggle="modal" data-target="#agencyPicModal">
+
+						<span th:if="${#lists.isEmpty(lastAgencyPicList)}" class="iconify"
+								data-icon="whh:profile" data-inline="false"></span>
+			
+
+							<ul>
+								<li th:if="${agency.lastImageId != null}">
+								
+									<img th:if="${agency.lastImageId > 0}"
+										th:src="@{/agency/img(imgId=${agency.lastImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
+								</li>
+
+							</ul> 
+
+						</button>
+						
+						<button sec:authorize="isAnonymous()" >
+
+						<span th:if="${#lists.isEmpty(lastAgencyPicList)}" class="iconify"
+								data-icon="whh:profile" data-inline="false"></span>
+			
+
+							<ul>
+								<li th:if="${agency.lastImageId != null}">
+								
+									<img th:if="${agency.lastImageId > 0}"
+										th:src="@{/agency/img(imgId=${agency.lastImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
+								</li>
+
+							</ul> 
+
+						</button>
+						
+					
+						
 													
-						<a th:href="@{/person/sprofile}"><label th:text= "'agency admin: ' + ${agency.adminName}"
-							id="profile-avatar-text">firstName</label>
-						</a>
+
 							
 					</div>
 
@@ -58,14 +133,26 @@
 
 						<div class="profile_personal">
 
-							<div class="profile_personal_fields">
+							<div class="profile_personal_fields" 
+									sec:authorize="isAuthenticated()" >
+							<div th:if="${#authentication.name} == ${agency.user.userName}">
+							<h6>
+							<a  sec:authorize="isAuthenticated()" 
+							th:if="${#authentication.name} == ${agency.user.userName}"
+							th:href="@{/agency/cprofile(id=${person.personId})}">
+							<label th:text= "'agency admin: ' + ${agency.adminName}"
+							id="profile-avatar-text">firstName</label>
+							</a>
+							</h6>	
+									
 								<h6 th:if="${agency.agencyId != 0} and ${!agency.active}"
 									style="color: red">agency owner:</h6>
 								<h6 th:if="${agency.agencyId != 0} and ${agency.active}"
 									style="color: green">agency owner:</h6>
 								<label th:if="${agency.agencyId != 0}"
-									th:text="' ' + ${person.firstName} + ' ' + ${person.lastName}"
+									th:text="' ' + ${agency.user.userName} + ' ' + ${agency.user.person.lastName}"
 									id="agency">agency name</label>
+							</div>
 							</div>
 
 							<div class="profile_personal_fields">
@@ -78,7 +165,7 @@
 							</div>
 
 							<div th:if="${!agency.active}" class="profile_personal_fields">
-								<details style="color: red">
+								<details th:if="${#authentication.name} == ${agency.user.userName}" style="color: red">
 									<summary>To do for completing activation</summary>
 									<p style="color: red; margin-left: 1.5rem;">1. Must upload
 										all company docs</p>
@@ -111,7 +198,8 @@
 
 						<div class="profile_status">
 
-							<div class="profile_personal_fields">
+							<div class="profile_personal_fields"
+							sec:authorize="isAuthenticated()">
 								<h6>email:</h6>
 								<div th:text="${person.email}" id="email">jo@thePeru.com</div>
 							</div>
@@ -123,10 +211,12 @@
 							<br>
 
 							<div class="profile_personal_fields" id="media_links">
-								<a data-toggle="modal"data-target="#addFacebook" id="editPencil"> 
+								<a sec:authorize="isAuthenticated()" 
+									th:if="${#authentication.name} == ${agency.user.userName}"
+									data-toggle="modal"data-target="#addFacebook" id="editPencil"> 
 								<span class="iconify" data-icon="ant-design:edit-twotone" 
-									data-inline="false"></span>
-								add social media links</a>
+									data-inline="false"></span >
+								add social media</a>
 <!-- 								<h6 id="underline"> add social media links</h6>	 -->
 									
 									
@@ -182,7 +272,9 @@
 
 				</div>
 				
-				<div class="profile_docs">
+				<div sec:authorize="isAuthenticated()"
+					th:if="${#authentication.name} == ${agency.user.userName}"					
+					class="profile_docs">
 				
 					<h5 style="font-style: italic; margin-left:0.5rem">documents:</h5>	
 					
@@ -364,17 +456,21 @@
 										
 			
 			<br>
+			<hr class="new_line">
 			<div class="candidate_headline">
 				<div class="candidate_section">
-
-					<h3>Candidates</h3>
 					
-					<hr class="new_line">
+					<h3>Candidates affiliated</h3>
 					
-					<ul  th:each="person : ${affiliatedPersonsList}" >
-						<li class="candidate-strip">
+					
+					
+					<ul  class="candidate-list" >
+						<li class="candidate-strip" th:each="person : ${affiliatedPersonsList}" >
 						
-							<article class="candidate-pic">
+							<article 
+								sec:authorize="isAuthenticated()"
+								th:if="${#authentication.name} == ${agency.user.userName}"		
+								class="candidate-pic">
 								<div th:if="${person.lastImgId < 1}">
 									<a> 
 									<span  class="iconify" data-icon="whh:profile" data-inline="false"></span>
@@ -387,24 +483,42 @@
 								</a>
 							</article>
 							
-							<article class="candidate-details">
+							<article 
+							sec:authorize="isAuthenticated()"
+							th:if="${#authentication.name} == ${agency.user.userName}"		
+							class="candidate-details">
 								<a  th:value="${person.personId}" 
 									th:text="${person.firstName} + ' ' + ${person.lastName}"
-									th:href="@{/person/profile(id=${person.personId})}">
+									th:href="@{/agency/cprofile(id=${person.personId})}">
 								First Name + Last Name</a>
 								
-								<div id="location">
-								<span>location: </span><p th:text="' ' + ${person.location}"></p>								
+								<div id="reference">
+								<span>now in: </span><p th:text="' ' + ${person.location}"></p>								
 								</div>
-
-								<p th:text="${#dates.format(person.BirthDate, 'dd-MMM-yyyy')}" ></p>			
+								<div id="reference">
+								<span>born: </span><p th:text="' ' + ${#dates.format(person.BirthDate, 'dd-MMM-yyyy')}" ></p>
+								</div>			
 							</article>
 							
 							<article class="candidate-jobs">
-								<p id="current-job" th:text="${person.currentJob}"></p>
-								<p th:text="${person.workExperience} + ' years'"> years</p>
-								<p th:text="${#dates.format(person.availability, 'dd-MMM-yyyy')}"></p>
+								
+								<div id="reference">
+								<span>Job: </span> <p id="current-job" th:text="' ' + ${person.currentJob}"></p>
+								</div>
+								
+								<div id="reference">
+								<span>experience: </span><p th:text="' ' + ${person.workExperience} + ' years'"> years</p>
+								</div>
+								
+								<div id="reference">
+								<span>available: </span> <p th:text="' ' + ${#dates.format(person.availability, 'dd-MMM-yyyy')}"></p>
+								</div>
+							</article>
 							
+							<article class="candidate-jobDescription">
+								<div id="reference">
+								<span>job wish: </span> <p th:text="' ' + ${person.jobWishDesc}"></p>
+								</div>
 							</article>
 							
 										
@@ -414,7 +528,9 @@
 					</ul>
 					
 				</div>
-			 </div>		
+			 </div>	
+			 
+			 	<h5 style="margin-left: auto;">... see all</h5>	
 					
 					<!-- VERY GOOD CODE FOR POPULATING A LIST  -->
 					<!-- <div >
@@ -425,296 +541,242 @@
 					</div> -->
 
 
-<!-- 					<button class="btn btn-sm btn-warning" id="addJob"
-						data-toggle="modal" data-target="#addJobModal">
-						add job <span class="iconify" data-icon="bi:node-plus"
-							data-inline="false"></span>
-					</button> -->
+
 
 
 
 				
 
-
+	<div th:replace="modals::addAgencyJob"></div>
+	
+	<div th:replace="modals::addJobImg"></div>
 				
-<!--  
- 				MODAL for adding a JOB from profile
-
-				<div class="modal fade" id="addJobModal" tabindex="-21"
-					aria-labelledby="addJobLabel">
-
-					<div class="modal-dialog ">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Add a new job</h5>
-
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<form th:action="@{/person/addModalJob}" th:object="${job}"
-								method="POST">
-
-									<div class="register_form">
-
-										<div class="input_jobinfo">
-
-											<div class="input_elements">
-												<div class="input_field">
-
-													<input th:field="${job.jobPrivate}" type="radio"
-														value="true"> <label th:for="jobPrivate">private</label>
-												</div>
-
-												<div class="input_field">
-													<input th:field="${job.jobTitle}" type="text"
-														required="required" placeholder="job name*"> <label>job
-														name<span> *</span>
-													</label>
-												</div>
-
-												<div class="input_field">
-													<input th:field="${job.companyName}" type="text"
-														required="required" placeholder="company name"> <label>company
-														name<span> *</span>
-													</label>
-												</div>
-
-											</div>
-
-
-											<div class="input_elements">
-												<div class="input_field">
-													<input th:field="${job.startDate}" type="text"
-														required="required" placeholder="Start Date"
-														onclick="(this.type='date')" onblur="(this.type='text')">
-													<label>Start Date<span> *</span></label>
-												</div>
-
-												<div class="input_field">
-													<input th:field="${job.endDate}" type="text"
-														required="required" placeholder="End Date"
-														onclick="(this.type='date')" onblur="(this.type='text')">
-													<label>End Date<span> *</span></label>
-												</div>
-
-											</div>
-
-										</div>
-
-										<div class="input_elements">
-
-											<div class="input_field">
-												<textarea th:field="${job.responsabilities}" id="job_resp"
-													required="required"
-													placeholder="Job description, main responsibilities, achievements etc"></textarea>
-												<label>Job responsibilities<span> *</span></label>
-											</div>
-
-										</div>
-									</div>
-
-								
-
-								
-									<div class="login-buttons">
-										<button type="button" class="button-login" data-dismiss="modal">
-												<span class="iconify" id="next_mobile"
-													data-icon="ic:baseline-cancel" data-inline="false"></span>
-												<span class="iconify" id="next_desk"
-													data-icon="topcoat:cancel" data-inline="false"></span>
-
-												<p>close</p>
-
-											</button>
-											<button type="submit" class="button-login">
-												<span class="iconify" id="next_mobile"
-													data-icon="teenyicons:save-solid" data-inline="false"></span>
-												<span class="iconify" id="next_desk"
-													data-icon="teenyicons:save-solid" data-inline="false"></span>
-												<p>add job</p>
-
-											</button>
-
-										
-
-
-									</div>
-
-								
-								
-							</form>
-
-						</div>
-					</div>
-				</div>
-
-
-				ADD JOB MODAL ENDS HERE
-
-
-			</div>
-
-			<hr class="new_line">
-
+ 
+		
+		<hr class="new_line">	
+		<div class="agency_jobs_headline">	
+		
+			<h3>Agency's job</h3>
+				
+			<button
+				sec:authorize="isAuthenticated()"
+				th:if="${#authentication.name} == ${agency.user.userName}"	 
+				class="btn btn-sm btn-warning" id="addJob"
+							data-toggle="modal" data-target="#addAgencyJob">
+							add job <span class="iconify" data-icon="bi:node-plus"
+								data-inline="false"></span>
+			</button>
+		
+		</div>
+		
+		
 
 			<div class="job_list_desktop">
-
-				<ul th:each="job : ${jobList}" class="job_list">
-
-
-					<li class="job_profile_card">
-						
-						this is where the editJob modal begins
-						<div class="modal fade" id="editJobModal" tabindex="-21"
-							th:attrappend="id=${job.jobId}" aria-labelledby="editJobLabel">
-
-							<div class="modal-dialog ">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title">Edit</h5>
-
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<form th:action="@{/person/editJob(id=${job.jobId})}"
-										th:object="${job}" method="POST">
-
-									
+			
 
 
-											<div class="register_form">
+				<ul th:each="job : ${agencyJobList}" class="job-card-container">
+					
+					<li>
+					
+					
+					<div class="job-card">
+					
+                        <div id="agency-avatar">
+							
+							<a th:if="${agency.lastImageId < 1 }">
+								<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
+							</a>
+							
+							
+							
+							<img th:if="${agency.lastImageId > 0}"
+										th:src="@{/agency/img(imgId=${agency.lastImageId}, agencyId=${agency.agencyId})}">                         
+                           
+                           <div id="agency-avatar-text" 
+                           		
+								
+								th:text="${agency.agencyName}">
+                           
+                           </div>
+                           
+                            <div sec:authorize="isAuthenticated()" id="agency-avatar-text">
+                            	<div  th:text="'start date: ' + ${#dates.format(job.startDate, 'dd-MMM-yyyy')} " 
+                            			
+									id="startDate">14.05.2014</div>
+								
+                            </div>
+                            
+                            <div sec:authorize="isAuthenticated()" id="agency-avatar-text">
+                            	<div th:text="' salary: ' + ${job.salary} + ' ' + ${job.currency}" 
+                            			
+									id="startDate">14.05.2014</div>
+								
+                            </div>
+                        </div>
+                        
+                        <div id="job-card-main">
+                        
+	                        <a id="job-card-img" th:if="${job.lastImageId < 1}">
+											<span  class="iconify" data-icon="bytesize:work" data-inline="false" style="font-size: 5rem;"></span>
+							</a>
+		
+							<img id="job-card-img" th:if="${job.lastImageId > 0}"
+								th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" style="size: 10%">
+                            
+                            
+                            
+                            <a id="job-card-title" th:text="${job.jobTitle} + ' / ' + ${job.jobLocation}">Value</a>
+                            
+                            
+                            <div id="job-card-hashes">
+								<ul id="job-card-hashes" th:each="tag : ${jobTagsList}">
+									<li th:if="${job.jobId} == ${tag.theJob.jobId}"
+										th:text="'#'+${tag.tag}"></li>
 
-												<div class="input_jobinfo">
-
-													<div class="input_elements">
-														<div class="input_field">
-															radio buttons have only 2 values so don't do th:value
-															<input th:id="jobPrivate" th:name="jobPrivate"
-																type="radio" value="true"> <label
-																th:for="jobPrivate">private</label>
-														</div>
-
-														<div class="input_field">
-															<input th:value="*{jobTitle}" th:id="jobTitle"
-																th:name="jobTitle" type="text" required="required"
-																placeholder="job name*"> <label>job name<span>
-																	*</span></label>
-														</div>
-
-														<div class="input_field">
-															<input th:value="*{companyName}" th:id="companyName"
-																th:name="companyName" type="text" required="required"
-																placeholder="company name"> <label>company
-																name<span> *</span>
-															</label>
-														</div>
-
-													</div>
-
-
-													<div class="input_elements">
-														<div class="input_field">
-															<input th:value="${{job.startDate}}" th:id="startDate"
-																th:name="startDate" type="text" required="required"
-																placeholder="Start Date" onclick="(this.type='date')"
-																onblur="(this.type='text')"> <label>Start
-																Date<span> *</span>
-															</label>
-														</div>
-
-														<div class="input_field">
-															<input th:value="${{job.endDate}}" th:id="endDate"
-																th:name="endDate" type="text" required="required"
-																placeholder="End Date" onclick="(this.type='date')"
-																onblur="(this.type='text')"> <label>End
-																Date<span> *</span>
-															</label>
-														</div>
-
-													</div>
-
-												</div>
-
-												<div class="input_elements">
-
-													<div class="input_field">
-														<textarea th:text="*{responsabilities}"
-															th:id="responsabilities" th:name="responsabilities"
-															id="job_resp" required="required"
-															placeholder="Job description, main responsibilities, achievements etc"></textarea>
-														<label>Job responsibilities<span> *</span></label>
-													</div>
-
-												</div>
-											</div>
-
-
-
-											<div class="login-buttons">
-												
-													<button type="button" class="button-login" data-dismiss="modal">
-														<span class="iconify" id="next_mobile"
-															data-icon="ic:baseline-cancel" data-inline="false"></span><p>close</p>
-														<span class="iconify" id="next_desk"
-															data-icon="topcoat:cancel" data-inline="false">close</span>
-
-						
-													</button>
-													<button type="submit" class="button-login">
-														<span class="iconify" id="next_mobile"
-															data-icon="teenyicons:save-solid" data-inline="false"></span>
-														<span class="iconify" id="next_desk"
-															data-icon="teenyicons:save-solid" data-inline="false"></span>
-														<p>save</p>
-
-													</button>
-
-											
-
-
-											</div>
-
-										
-									</form>
-
-								</div>
+								</ul>
 							</div>
-						</div> editJobModal ends 
-						
+                            
+                            	
+                            	
+                            	<div id="read-more">
+                            <div id="job-card-text" th:text="${job.workingConditions}"> Project type, work type general conditions, special ... </div>
+                            <a>read more</a>
+                            </div>
+	                            
+	                            
+                            	
+                            	
+                            	
+                            
+                            
+                           
+                                             
+                        </div>
+
+                        <div id="job-card-footer">
+
+
+                            <div class="card-interact">
+
+                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
+                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+
+
+                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
+                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
+
+
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">256 likes</div>
+                            </div>
+
+                            <div class="apply">
+                            	
+                            		<div th:replace="modals::editAgencyJob"></div>
+	
+
+								<!-- trigger the modal for jobEditModal -->
+								<button sec:authorize="isAuthenticated()"
+							th:if="${#authentication.name} == ${agency.user.userName}"		 
+									data-toggle="modal" data-target="#editJobModal"
+									th:attrappend="data-target=${job.jobId}">
+									<span class="iconify" data-icon="ant-design:edit-outlined" data-inline="false" 
+									style="background-color: white;"></span>
+<!-- 									<img src="../css/graphic/edit.png" alt="user" /> -->
+								</button>
+								<form sec:authorize="isAuthenticated()"
+									th:if="${#authentication.name} == ${agency.user.userName}"		 
+									th:action="@{/agency/makeJobPrivate(id=${job.jobId})}"
+									th:object="${job}" method="post">
+
+ 									<!--este true  -->
+									<button th:if="${ job.isJobPrivate()==true}" th:id="jobPrivate"
+										th:name="jobPrivate" value="false" type="submit">
+										<span class="iconify" id="false"
+											data-icon="ant-design:eye-invisible-outlined"
+											data-inline="false"></span>
+									</button>
+
+									<!-- este false -->
+									<button th:if="${ job.isJobPrivate()==false}"
+										th:id="jobPrivate" th:name="jobPrivate" value="true"
+										type="submit">
+										<span class="iconify" id="true"
+											data-icon="ant-design:eye-outlined" data-inline="false"></span>
+									</button>
+
+
+
+								</form>
+								
+                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
+                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+                                
+                                
+								
+
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </li>
+
+					<!-- <li class="job_profile_card">
+							<a th:if="${job.lastImageId < 1}">
+											<span class="iconify" data-icon="bytesize:work" data-inline="false" style="font-size: 5rem;"></span>
+							</a>
+		
+							<img th:if="${job.lastImageId > 0}"
+								th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" style="size: 10%">
+
 						<a th:text="${job.jobTitle}"
 						class="job_profile_title">Value</a>
 
-						<div th:text="${job.companyName}" class="job_profile_location">Panama
+						<div th:text="${job.jobLocation}" class="job_profile_location">Panama
 							City, Panama</div>
+							
+							
 						<div class="job_profile_card_dates">
 							<div class="job_profile_card_dates_line">
 								<div class="register_subtitle_date">Start date:</div>
 								<div th:text="${#dates.format(job.startDate, 'dd-MMM-yyyy')}"
 									id="startDate">14.05.2014</div>
 							</div>
+								<div class="register_subtitle_date">Salary:</div>
+								<div th:text="${job.salary} + ' ' + ${job.currency}" class="job_profile_location">Panama
+							City, Panama</div>
+							
+							</div>	
 
-							<div class="job_profile_card_dates_line">
-								<div class="register_subtitle_date">End date:</div>
-								<div th:text="${#dates.format(job.endDate, 'dd-MMM-yyyy')}"
-									id="startDate">14.05.2014</div>
-							</div>
-
-						</div>
+					
+						<div class="register_subtitle_date">Documents:</div>	
+						<div th:text="${job.necessaryDocuments}" class="job_profile_description">Panama
+							City, Panama</div>
+						<div class="register_subtitle_date">Conditions:</div>	
+						<div th:text="${job.workingConditions}" class="job_profile_description">Panama
+							City, Panama</div>	
 
 						<div class="job_profile_description">
+						<div class="register_subtitle_date">Responsibilities:</div>	
 							<p th:text="${job.responsabilities}">Energistically optimize
 								corporate benefits with worldwide manufactured products.
 								Progressively transition.</p>
 						</div>
+						
+						<div class="register_subtitle_date">tags:</div>	
+						
+						<ul id="job_tags" th:each="tag : ${jobTagsList}">
+							<li   th:if="${job.jobId} == ${tag.theJob.jobId}" th:text="'#'+${tag.tag}"></li>
+						
+						</ul>
 
 						<div class="profile_icons">
 
 							<a id="deleteButton"
-								th:href="@{/person/deleteJobByModal(id=${job.jobId})}"
+								th:href="@{/agency/deleteJobByModal(id=${job.jobId})}"
 								onClick="if (! (confirm('Are you sure you want to delete this job?'))) return false">
 								<span class="iconify" data-icon="jam:trash-alt-f"
 								data-inline="false"></span>
@@ -722,7 +784,7 @@
 
 							<div class="profile_icons_right btn btn-toolbar" role="toolbar">
 
-								<form th:action="@{/person/makeJobPrivate(id=${job.jobId})}"
+								<form th:action="@{/agency/makeJobPrivate(id=${job.jobId})}"
 									th:object="${job}" method="post">
 
 									este true 
@@ -746,7 +808,11 @@
 								</form>
 
 
-
+			
+						
+						<div th:replace="modals::editAgencyJob"></div>
+						
+						
 
 								trigger the modal for jobEditModal
 								<button data-toggle="modal" data-target="#editJobModal"
@@ -763,18 +829,24 @@
 
 
 
-					</li>
+					</li> -->
 
 
 
 
 
 				</ul>
+				</div>
 				
 
 
 
-			</div>
+			
+			
+			
+
+						
+						
 			
 			<h5 style="margin-left: auto;">... see all</h5>
 			
@@ -1010,29 +1082,27 @@
  
 
  
-			<div class="login-buttons">
+		<!-- 	<div class="login-buttons">
 
-				<a th:href="@{/person/profilePDF}"  target="_blank">
-				<button type="submit" class="button_login" style="width:95%;" >
-					<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
-					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>
-					<p>export profile<p>
-				</button>
-				</a>
 				
 				
 				
-				<form th:action="@{/person/finishAccount}" th:object="${person}" method="post">
+				
+				<form 
+					sec:authorize="isAuthenticated()"
+					th:if="${#authentication.name} == ${agency.user.userName}"	
+					
+					th:action="@{/person/finishAccount}" th:object="${person}" method="post">
 					
 					<button type="submit" class="button_login" style="width:95%;" >
 					<span class="iconify"  id="next_mobile" data-icon="icons8:finish-flag" data-inline="false"></span>
 					<span class="iconify"  id="next_desk" data-icon="ic:sharp-done-all" data-inline="false"></span>
-					<p>save</p>
-					</button>
+					
+					save</button>
 				</form>
 				
 
-			</div>
+			</div> -->
 
 
 

@@ -2,15 +2,14 @@ package com.bzbees.hrma.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.bzbees.hrma.entities.Job;
-import com.bzbees.hrma.entities.Skill;
 
 @Repository
-public interface JobRepository extends CrudRepository<Job, Long>{
+public interface JobRepository extends JpaRepository<Job, Long>{
 	
 	@Query(nativeQuery= true, value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
 			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags "
@@ -20,7 +19,7 @@ public interface JobRepository extends CrudRepository<Job, Long>{
 	public List<Job> getjobsToSave ();
 	
 	@Query(nativeQuery= true, value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
-			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags "
+			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags, the_agency_agency_id "
 			+ " FROM jobs "
 			+ " left outer join person_jobs ON jobs.job_id = person_jobs.job_id " 
 			+ " WHERE person_jobs.person_id is NOT NULL;")
@@ -28,7 +27,8 @@ public interface JobRepository extends CrudRepository<Job, Long>{
 	
 	
 	@Query(nativeQuery= true, value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
-			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags "
+			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags, "
+			+ "the_agency_agency_id, last_image_id "
 			+ " FROM jobs "
 			+ " left outer join person_jobs ON jobs.job_id = person_jobs.job_id " 
 			+ " WHERE person_jobs.person_id = ?1 ;")
@@ -36,10 +36,22 @@ public interface JobRepository extends CrudRepository<Job, Long>{
 	
 	
 	@Query(nativeQuery= true, value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
-			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags "
+			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags, "
+			+ "the_agency_agency_id, last_image_id "
 			+ " FROM jobs ;")
 	public List<Job> getDbJobs ();
 	
 	public Job findJobByJobId(long id);
+	
+	@Query(nativeQuery= true, 
+			value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
+					+ "			job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags, "
+					+ "			the_agency_agency_id, last_image_id "
+					+ "			FROM jobs "
+					+ "WHERE the_agency_agency_id = ?1 ;")
+	public List<Job> findJobsByAgencyId(long agencyId);
+	
+	
+	
 
 }

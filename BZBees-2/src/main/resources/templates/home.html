@@ -44,17 +44,74 @@
                 <div class="main-yellow-text">jobs</div>
 
                 <div class="job-card-container">
-
-                    <div class="job-card">
+                
+                				<ul th:each="job : ${jobList}" class="job-card-container">
+					
+					<li>
+					
+					
+					<div class="job-card">
+					
                         <div id="agency-avatar">
-                            <img src="../css/cards/agency_avatar.png" alt="agency" />
-                            <div id="agency-avatar-text">prp solutions</div>
+							
+							<a th:if="${job.theAgency.lastImageId < 1 }">
+								<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
+							</a>
+							
+							
+							
+							<img th:if="${job.theAgency.lastImageId > 0}"
+										th:src="@{/agency/img(imgId=${job.theAgency.lastImageId}, agencyId=${job.theAgency.agencyId})}">                         
+                           
+                           <div id="agency-avatar-text" 
+                           		
+								
+								th:text="${job.theAgency.agencyName}">
+                           
+                           </div>
+                           
+                            <div sec:authorize="isAuthenticated()" id="agency-avatar-text">
+                            	<div  th:text="'start date: ' + ${#dates.format(job.startDate, 'dd-MMM-yyyy')} " 
+                            			
+									id="startDate">14.05.2014</div>
+								
+                            </div>
+                            
+                            <div sec:authorize="isAuthenticated()" id="agency-avatar-text">
+                            	<div th:text="' salary: ' + ${job.salary} + ' ' + ${job.currency} + '/h'" 
+                            			
+									id="startDate">14.05.2014</div>
+								
+                            </div>
                         </div>
+                        
                         <div id="job-card-main">
-                            <img id="job-card-img" src="../css/cards/jobCardMainPhoto.svg" alt="agency" />
-                            <div id="job-card-title">Java developer</div>
-                            <div id="job-card-hashes">#java #IT $20/h 40h/wk</div>
-                            <div id="job-card-text"> General description or an excerpt of the offered job. Project type, work type general conditions, special ... </div>
+                        
+	                        <a id="job-card-img" th:if="${job.lastImageId < 1}">
+											<span  class="iconify" data-icon="bytesize:work" data-inline="false" style="font-size: 5rem;"></span>
+							</a>
+		
+							<img id="job-card-img" th:if="${job.lastImageId > 0}"
+								th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" style="size: 10%">
+                            
+                            
+                            
+                            <a id="job-card-title" th:text="${job.jobTitle} + ' / ' + ${job.jobLocation}">Value</a>
+                            
+                            
+                            <div id="job-card-hashes">
+								<ul id="job-card-hashes" th:each="tag : ${jobTagsList}">
+									<li th:if="${job.jobId} == ${tag.theJob.jobId}"
+										th:text="'#'+${tag.tag}"></li>
+
+								</ul>
+							</div>
+                            
+                            <div id="read-more">
+                            <div id="job-card-text" th:text="${job.workingConditions}"> Project type, work type general conditions, special ... </div>
+                            <a>read more</a>
+                            </div>
+                                             
                         </div>
 
                         <div id="job-card-footer">
@@ -76,130 +133,56 @@
                             </div>
 
                             <div class="apply">
+                            	
+                            	<!-- 	<div th:replace="modals::editAgencyJob"></div>
+	
+
+								trigger the modal for jobEditModal
+								<button sec:authorize="isAuthenticated()"
+							th:if="${#authentication.name} == ${job.theAgency.user.userName}"		 
+									data-toggle="modal" data-target="#editJobModal"
+									th:attrappend="data-target=${job.jobId}">
+									<span class="iconify" data-icon="ant-design:edit-outlined" data-inline="false" 
+									style="background-color: white;"></span>
+									<img src="../css/graphic/edit.png" alt="user" />
+								</button>
+								<form sec:authorize="isAuthenticated()"
+									th:if="${#authentication.name} == ${job.theAgency.user.userName}"		 
+									th:action="@{/agency/makeJobPrivate(id=${job.jobId})}"
+									th:object="${job}" method="post">
+
+ 									este true 
+									<button th:if="${ job.isJobPrivate()==true}" th:id="jobPrivate"
+										th:name="jobPrivate" value="false" type="submit">
+										<span class="iconify" id="false"
+											data-icon="ant-design:eye-invisible-outlined"
+											data-inline="false"></span>
+									</button>
+
+									este false
+									<button th:if="${ job.isJobPrivate()==false}"
+										th:id="jobPrivate" th:name="jobPrivate" value="true"
+										type="submit">
+										<span class="iconify" id="true"
+											data-icon="ant-design:eye-outlined" data-inline="false"></span>
+									</button>
+
+
+
+								</form> -->
+								
                                 <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
                                 <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
-
 
                             </div>
                         </div>
                     </div>
+                    
+                    </li>
+                    
+                </ul>
 
-                    <div class="job-card">
-                        <div id="agency-avatar">
-                            <img src="../css/cards/agency_avatar.png" alt="agency" />
-                            <div id="agency-avatar-text">prp solutions</div>
-                        </div>
-                        <div id="job-card-main">
-                            <img id="job-card-img" src="../css/cards/jobCardMainPhoto.svg" alt="agency" />
-                            <div id="job-card-title">Java developer</div>
-                            <div id="job-card-hashes">#java #IT $20/h 40h/wk</div>
-                            <div id="job-card-text"> General description or an excerpt of the offered job. Project type, work type general conditions, special ... </div>
-                        </div>
-
-                        <div id="job-card-footer">
-
-
-                            <div class="card-interact">
-
-                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
-                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
-
-
-                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
-                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
-
-
-                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
-                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
-                                <div class="like-text">256 likes</div>
-                            </div>
-
-                            <div class="apply">
-                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
-                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="job-card">
-                        <div id="agency-avatar">
-                            <img src="../css/cards/agency_avatar.png" alt="agency" />
-                            <div id="agency-avatar-text">prp solutions</div>
-                        </div>
-                        <div id="job-card-main">
-                            <img id="job-card-img" src="../css/cards/jobCardMainPhoto.svg" alt="agency" />
-                            <div id="job-card-title">Java developer</div>
-                            <div id="job-card-hashes">#java #IT $20/h 40h/wk</div>
-                            <div id="job-card-text"> General description or an excerpt of the offered job. Project type, work type general conditions, special ... </div>
-                        </div>
-
-                        <div id="job-card-footer">
-
-
-                            <div class="card-interact">
-
-                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
-                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
-
-
-                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
-                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
-
-
-                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
-                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
-                                <div class="like-text">256 likes</div>
-                            </div>
-
-                            <div class="apply">
-                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
-                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="job-card">
-                        <div id="agency-avatar">
-                            <img src="../css/cards/agency_avatar.png" alt="agency" />
-                            <div id="agency-avatar-text">prp solutions</div>
-                        </div>
-                        <div id="job-card-main">
-                            <img id="job-card-img" src="../css/cards/jobCardMainPhoto.svg" alt="agency" />
-                            <div id="job-card-title">Java developer</div>
-                            <div id="job-card-hashes">#java #IT $20/h 40h/wk</div>
-                            <div id="job-card-text"> General description or an excerpt of the offered job. Project type, work type general conditions, special ... </div>
-                        </div>
-
-                        <div id="job-card-footer">
-
-
-                            <div class="card-interact">
-
-                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
-                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
-
-
-                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
-                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
-
-
-                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
-                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
-                                <div class="like-text">256 likes</div>
-                            </div>
-
-                            <div class="apply">
-                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
-                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
-
-
-                            </div>
-                        </div>
-                    </div>
+                 
 
 
 
@@ -211,9 +194,117 @@
             <section class="agencies">
                 <div class="main-yellow-text">agencies</div>
 
-                <div class="agencycard-container">
+                <ul  class="agencycard-container">
 
-                    <div class="agencycard">
+                    <li th:each="aAgency:${agenciesList}" class="agencycard">
+
+                        <div id="agencycard-bg">
+                            <div id="agencycard-header">
+
+                                <div id="agencycard-avatar">
+                                
+									<div id="agency-image-container">
+										<a th:if="${aAgency.lastImageId < 1}"
+											th:href="@{/agencyProfile(id=${aAgency.agencyId})}">
+											<span 
+											class="iconify" data-icon="whh:profile" data-inline="false">here</span>
+										</a>
+										
+										<a th:if="${aAgency.lastImageId != null}" 
+											th:href="@{/agencyProfile(id=${aAgency.agencyId})}">
+											<img th:if="${aAgency.lastImageId > 0}"
+											th:src="@{/agency/img(imgId=${aAgency.lastImageId}, agencyId=${aAgency.agencyId})}">
+										</a>
+											
+
+									</div>
+									
+									<div th:text="${aAgency.agencyName}" id="agencycard-avatar-text">the JobBoss</div>
+
+                                </div>
+
+                               	<div class="arrow">
+                                    <div class="line"></div>
+                                    <div class="point"></div>
+                                    <div class="point2"></div>
+                                </div>
+                            </div>
+
+
+
+                            <div id="agencycard-left-details">
+                                <div id="agencycard-location">
+                                    <h6>location:</h6>
+                                    <h4 th:text=${aAgency.legalAddress}>Denmark</h4>
+                                </div>
+
+                                <div id="agencycard-joblocation">
+                                    <h6>jobs location:</h6>
+                                    <ul th:each = "job: ${aAgency.postedJobs}">
+                                    	<li th:text="${job.jobLocation} + ', '">
+                                    	
+                                    	</li>
+                                    </ul>
+                                </div>
+
+                                <div id="agencycard-jobs">
+                                    <h6>jobs:</h6> 
+                                    
+                                    <ul th:each = "job: ${aAgency.postedJobs}">
+                                    	<li th:text="${job.jobTitle} + ', '">
+                                    	
+                                    	</li>
+                                    </ul>
+                                </div>
+
+                                <div id="agencycard-mainindustries">
+                                    <h6>main industries:</h6>
+                                    <h4>IT, software development</h4>
+                                </div>
+
+                            </div>
+
+                            <div id="agencycard-rightdetails">
+
+                                <div id="agencycard-icns">
+                                    <img src="../css/cards/agencycard_candidates.png" />
+                                    <h4 th:text="${#lists.size(aAgency.affiliatedUsers)}">357</h4>
+                                    <h6>candidates</h6>
+                                </div>
+
+                                <div id="agencycard-icns">
+                                    <img src="../css/cards/agencycard_avgSalary.png" />
+                                    <h4>$ 56/h</h4>
+                                    <h6>average salary</h6>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="agencycard-footer">
+                            <div id="agencycard-starRating">
+                                <p>4.5</p>
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/fullBlackStar.png" />
+                                <img src="../css/cards/halfBlackStar.png" />
+                            </div>
+
+                            <div id="agency-likes">
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">23 likes</div>
+                            </div>
+
+                        </div>
+                    </li>
+
+
+<!-- DUMMY AGENCY CARD - NO DETAILS FILLED IN (ORIGINAL STATE)  
+                    <li class="agencycard">
 
                         <div id="agencycard-bg">
                             <div id="agencycard-header">
@@ -292,91 +383,12 @@
                             </div>
 
                         </div>
-                    </div>
+                    </li>
 
-                    <div class="agencycard">
-
-                        <div id="agencycard-bg">
-                            <div id="agencycard-header">
-
-                                <div id="agencycard-avatar">
-                                    <img src="../css/cards/agencycard_avatar.svg" alt="agency" />
-                                    <div id="agencycard-avatar-text">the JobBoss</div>
-
-                                </div>
-
-                                <div class="arrow">
-                                    <div class="line"></div>
-                                    <div class="point"></div>
-                                    <div class="point2"></div>
-                                </div>
-                            </div>
-
-
-
-                            <div id="agencycard-left-details">
-                                <div id="agencycard-location">
-                                    <h6>location:</h6>
-                                    <h4>Denmark</h4>
-                                </div>
-
-                                <div id="agencycard-joblocation">
-                                    <h6>jobs location:</h6>
-                                    <h4>Denmark, Estonia, Germany</h4>
-                                </div>
-
-                                <div id="agencycard-jobs">
-                                    <h6>jobs:</h6>
-                                    <h4>webdesigner, wireframe, java developer</h4>
-                                </div>
-
-                                <div id="agencycard-mainindustries">
-                                    <h6>main industries:</h6>
-                                    <h4>IT, software development</h4>
-                                </div>
-
-                            </div>
-
-                            <div id="agencycard-rightdetails">
-
-                                <div id="agencycard-icns">
-                                    <img src="../css/cards/agencycard_candidates.png" />
-                                    <h4>357</h4>
-                                    <h6>candidates</h6>
-                                </div>
-
-                                <div id="agencycard-icns">
-                                    <img src="../css/cards/agencycard_avgSalary.png" />
-                                    <h4>$ 56/h</h4>
-                                    <h6>average salary</h6>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div id="agencycard-footer">
-                            <div id="agencycard-starRating">
-                                <p>4.5</p>
-                                <img src="../css/cards/fullBlackStar.png" />
-                                <img src="../css/cards/fullBlackStar.png" />
-                                <img src="../css/cards/fullBlackStar.png" />
-                                <img src="../css/cards/fullBlackStar.png" />
-                                <img src="../css/cards/halfBlackStar.png" />
-                            </div>
-
-                            <div id="agency-likes">
-                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
-                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
-                                <div class="like-text">23 likes</div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
+ -->
+                
+                
+                </ul>
 
 
 

@@ -43,6 +43,11 @@ public class ProfileImgService {
 		return lastPicUploaded;
 	}
 	
+	public ProfileImg getLastJobPic (long jobId) {
+		ProfileImg lastPicUploaded = (ProfileImg) picRepo.getLastJobPic(jobId);
+		return lastPicUploaded; 
+	}
+	
 	public ProfileImg findProfilePicById(long id) {
 		return picRepo.findProfileImgByPicId(id);
 	}
@@ -54,6 +59,11 @@ public class ProfileImgService {
 	
 	public List<ProfileImg> getPicsByAgencyId(long agencyId) {
 		List<ProfileImg> picList = picRepo.getSavedPicsByAgencyId(agencyId);
+		return picList;
+	}
+	
+	public List<ProfileImg> getPicsByJobId(long jobId) {
+		List<ProfileImg> picList = picRepo.getJobPicsByJobId(jobId);
 		return picList;
 	}
 	

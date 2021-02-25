@@ -9,6 +9,8 @@
      navbarLinks.classList.toggle('active');
      navbarUserLinks.classList.toggle('active');
  });
+
+
  
  
 /* //try to close when clicked outside the menu

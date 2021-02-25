@@ -489,6 +489,7 @@ public class PersonController {
 
 		
 		Person person = persServ.findPersonById(id);
+		System.out.println("Which person is here? " + " "+ person.getPersonId() + " " + person.getLastName());
 		model.addAttribute("person", person);
 
 		if (!model.containsAttribute("picList")) {
@@ -618,15 +619,20 @@ public class PersonController {
 	@GetMapping(value = "/img")
 	public ResponseEntity<?> showProfileImg(@RequestParam("imgId") long id, Person person) {
 //		ProfileImg profilePic = profileImgServ.findProfilePicById(id);
-		ProfileImg profilePic = profileImgServ.getLastProfilePic(person.getPersonId());
-		
-		System.out.println("profile pic that is not displaying is " + profilePic.getPicName());
+		if(profileImgServ.getLastProfilePic(person.getPersonId()) != null) {
+			ProfileImg profilePic = profileImgServ.getLastProfilePic(person.getPersonId());
+			
+			System.out.println("profile pic that is not displaying is " + profilePic.getPicName());
 
-		return ResponseEntity.ok()
-				.contentType(MediaType
-						.parseMediaType(profilePic.getPicType()))
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename =\"" + profilePic.getPicName() + "\"")
-				.body(new ByteArrayResource(profilePic.getData()));
+			return ResponseEntity.ok()
+					.contentType(MediaType
+							.parseMediaType(profilePic.getPicType()))
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename =\"" + profilePic.getPicName() + "\"")
+					.body(new ByteArrayResource(profilePic.getData()));
+			
+		}
+		
+		return null;
 
 	}
 	

@@ -22,13 +22,61 @@
 }
 
 #agencycard-avatar {
-    margin-left: 2rem;
-    width: 70%;
+    margin-left: 0.5rem;
+    width: 80%;
+    height: 50px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+    align-items: baseline;
+    padding: 0.3rem;
+  /*   border: 1px solid black; */
+  
+}
+
+#agency-image-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: baseline;
+	width:20%;
+	height: 40px;
+ 	margin-right: 1rem;
+	margin-top:0rem;
+	margin-left:0.5rem;
+	margin-bottom:1rem; 
+/* 	border: 1px solid red;  */
+}
+
+#agency-image-container .iconify {
+	font-size: 3.6rem; 
+	border: 2px solid gray;
+	border-radius: 50%;
+	background-color: lightgray;
+	width: 40px;
+	height: 40px;
+	object-fit:cover;
+}
+
+#agency-image-container a:link, a:visited {
+	width: 40px;
+	height: 40px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+	text-decoration:none;
+	color: gray;
+
+}
+
+
+#agency-image-container  img {
+	object-fit: cover;
+  	border-radius: 50%;
+  	width: 40px;
+  	height: 40px;
+	border: 2px solid gray ;	
+/* 	#E9D415 */
 }
 
 #agencycard-avatar-text {
@@ -38,6 +86,7 @@
     font-weight: 650;
     font-size: 24px;
     line-height: 29px;
+ /*    border: 1px solid blue; */
 }
 
 #agencycard-left-details {
@@ -52,6 +101,40 @@
     line-height: 9px;
     color: #716D6D;
 }
+
+#agencycard-jobs > ul {
+	list-style: none;
+	display:inline-block;
+    flex-flow: row wrap;
+	font-family: Imprima;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: .5rem;
+    max-width: 60vw;
+   
+}
+
+#agencycard-joblocation > ul {
+	list-style: none;
+	display:inline-block;
+    flex-flow: row wrap;
+	font-family: Imprima;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: .5rem;
+    max-width: 60vw;
+	
+	}
+
+#agencycard-jobs > li {
+/* 	display:flex;
+    flex-flow: row nowrap;
+ */
+ }
 
 .agencycard h4 {
     font-family: Imprima;
