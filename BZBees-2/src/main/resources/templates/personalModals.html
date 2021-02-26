@@ -1,0 +1,189 @@
+
+
+
+<!-- MODAL for EDITING PERSONAL DETAILS from profile -->
+
+
+
+<html id="editing personal details">
+<body>
+
+
+
+
+
+				<div th:fragment="personalDetails" class="modal fade" id="personalDetails" tabindex="-21"
+					aria-labelledby="addJobLabel">
+
+					<div class="modal-dialog ">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Edit your profile</h5>
+
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form th:action="@{/person/editProfile}" th:object="${person}"
+								method="POST">
+
+					<div class="register_form">
+
+						<div class="input_jobinfo">
+
+							<div class="input_elements" id="first-last-name">
+
+								<div class="input_field">
+
+									<input th:field="${person.firstName}" id="first-name"
+										type="text" placeholder="first name*"> <label>first
+										name<span>*</span>
+									</label>
+
+
+
+								</div>
+
+								<div class="input_field">
+									<input th:field="${person.lastName}" id="last-name" type="text"
+										required="required" placeholder="last name*"> <label>last
+										name<span> *</span>
+									</label>
+								</div>
+
+							</div>
+
+							<div class="input_elements">
+
+								<div class="input_field">
+									<input th:field="${person.location}" type="text"
+										required="required" placeholder="current location"> <label>current
+										location<span> *</span>
+									</label>
+								</div>
+
+								<div class="input_field">
+									<input th:field="${person.currentJob}" type="text"
+										required="required" placeholder="current job"> <label>current
+										job<span> *</span>
+									</label>
+								</div>
+
+								<div class="input_field">
+									<input th:field="${person.privateCurrentjob}" type="radio"
+										id="private" value="true"> <label for="private">Make
+										this info private?</label>
+								</div>
+
+							</div>
+
+
+							<div class="input_elements">
+
+								<div class="input_field">
+									<input id="date" th:field="${person.availability}"
+										type="datetime" required="required"
+										onclick="(this.type='date')" onblur="(this.type='text')"
+										placeholder="available since ..."> <label>Availability<span>
+											*</span></label>
+								</div>
+
+								<div class="input_field">
+									<input id="work_number" th:field="${person.workExperience}"
+										type="text" required="required" onclick="(this.type='number')"
+										onblur="(this.type='text')"
+										placeholder="working years, months"> <label>work
+										experience<span> *</span>
+									</label>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="input_elements">
+							<div class="input_field">
+								<textarea id="description" th:field="${person.jobWishDesc}"
+									required="required"
+									placeholder="Describe the job you are searching for"></textarea>
+								<label>What kind of job do you want?<span> *</span></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="login-buttons">
+										<button type="button" class="button-login" data-dismiss="modal">
+												<span class="iconify" id="next_mobile"
+													data-icon="ic:baseline-cancel" data-inline="false"></span>
+												<span class="iconify" id="next_desk"
+													data-icon="topcoat:cancel" data-inline="false"></span>
+
+												<p>close</p>
+
+											</button>
+											<button type="submit" class="button-login">
+												<span class="iconify" id="next_mobile"
+													data-icon="teenyicons:save-solid" data-inline="false"></span>
+												<span class="iconify" id="next_desk"
+													data-icon="teenyicons:save-solid" data-inline="false"></span>
+												<p>save</p>
+
+											</button>
+
+										
+
+
+									</div>
+
+								
+								
+							</form>
+
+						</div>
+					</div>
+				</div>
+
+
+				<!-- EDIT PERSOANL MODAL ENDS HERE -->
+
+</body>
+</html>
+
+
+
+<html>
+<body>
+					<!-- THIS IS WHERE THE ADD PERSON SOCIAL MEDIA DETAILS CERT DOC MODAL BEGINS -->
+					<div th:fragment="addFacebook" class="modal fade" id="addFacebook" tabindex="-21"
+					aria-labelledby="addFacebookLabel">
+
+					<div class="modal-dialog ">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">add social media url</h5>
+
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+								<div>
+									<form id="FBLink" name="addFacebookLink" method="POST" th:action="@{/person/addSocialMediaFB}">
+										<input style="margin-left:0.8rem;width: 80%;" autofocus type="url" name="url" placeholder="link" >
+										<div class="input_elements">
+										<button style="margin-left:0.8rem;" class="upload" type="submit" ><p>save</p>
+										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
+										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
+										</button>
+										</div>
+									</form>
+								</div>
+								</div>
+								</div>
+								</div>
+					
+					<!-- THIS IS WHERE THE PERSON SOCIAL MEDIA DETAILS CERT MODAL ENDS -->
+
+
+</body>
+</html>
