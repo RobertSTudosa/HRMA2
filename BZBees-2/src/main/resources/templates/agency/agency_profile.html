@@ -59,12 +59,7 @@
 
 			<div th:replace="modals::addAgencyProfileImg"></div>
 
-						<!-- trigger the modal for profileImg chooser -->
-			<!-- 			<p th:text="'auth name ' + ${#authentication.name}"></p>
-						<p th:text=" 'user : ' + ${agency.user.userName}"></p> -->
-						
-
-				
+				<div id="edit-profile-details">
 						
 						<button sec:authorize="isAuthenticated()" 
 						th:if="${#authentication.name} != ${agency.user.userName}">
@@ -102,6 +97,9 @@
 
 							</ul> 
 
+					<span id="reload" class="iconify" data-icon="ic:outline-change-circle" data-inline="false"
+					 style="background-color:lightgray;"></span> 
+						
 						</button>
 						
 						<button sec:authorize="isAnonymous()" >
@@ -122,10 +120,18 @@
 						</button>
 						
 					
-						
+						<button sec:authorize="isAuthenticated()" id="edit-profile-details-button" 
+								th:if="${#authentication.name} == ${agency.user.userName}"
+								data-toggle="modal" data-target="#editAgencyDetails">
+								<span id="pencil" class="iconify" data-icon="carbon:edit" data-inline="false"></span>
+							</button>
+							
+							<div th:replace="modals::editAgencyDetails"></div>
 													
 
 							
+					</div>
+					
 					</div>
 
 
@@ -150,7 +156,7 @@
 								<h6 th:if="${agency.agencyId != 0} and ${agency.active}"
 									style="color: green">agency owner:</h6>
 								<label th:if="${agency.agencyId != 0}"
-									th:text="' ' + ${agency.user.userName} + ' ' + ${agency.user.person.lastName}"
+									th:text="' ' + ${agency.user.person.firstName} + ' ' + ${agency.user.person.lastName}"
 									id="agency">agency name</label>
 							</div>
 							</div>
@@ -210,13 +216,17 @@
 							</div>
 							<br>
 
-							<div class="profile_personal_fields" id="media_links">
-								<a sec:authorize="isAuthenticated()" 
+
+							<a sec:authorize="isAuthenticated()" 
 									th:if="${#authentication.name} == ${agency.user.userName}"
-									data-toggle="modal"data-target="#addFacebook" id="editPencil"> 
+									data-toggle="modal"data-target="#addFacebook" id="editPencil"
+									style="background-color:lightgray;"> 
 								<span class="iconify" data-icon="ant-design:edit-twotone" 
-									data-inline="false"></span >
-								add social media</a>
+									data-inline="false" style="background-color:lightgray;"></span >
+								social media</a>
+
+							<div class="profile_personal_fields" id="media_links">
+								
 <!-- 								<h6 id="underline"> add social media links</h6>	 -->
 									
 									
@@ -227,14 +237,22 @@
 										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;FACEBook&quot;)]}">
 										<a class="doc_name d-inline-block text-truncate"
 										th:utext="${spanFB}" th:href="${aSocialMedia.urlAddress}" target="_blank">
-											social media address</a> 
+											social media address</a>
+											<a sec:authorize="isAuthenticated()" 
+												th:if="${#authentication.name} == ${agency.user.userName}"
+											th:href="@{/agency/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
+											id="minus-socialFB"	></span></a> 
 
 									</li>
 									<li 
 										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;LINKedin&quot;)]}">
 										<a class="doc_name d-inline-block text-truncate"
 										th:utext="${spanLN}" th:href="${aSocialMedia.urlAddress}" target="_blank">
-											social media address</a> 
+											social media address</a>
+										<a sec:authorize="isAuthenticated()" 
+										th:if="${#authentication.name} == ${agency.user.userName}" 
+										th:href="@{/agency/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
+											id="minus-socialLN"	></span></a>  
 
 									</li>
 
@@ -242,7 +260,11 @@
 										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;TWITter&quot;)]}">
 										<a class="doc_name d-inline-block text-truncate"
 										th:utext="${spanTW}" th:href="${aSocialMedia.urlAddress}" target="_blank">
-											social media address</a> 
+											social media address</a>
+										<a sec:authorize="isAuthenticated()" 
+										th:if="${#authentication.name} == ${agency.user.userName}"
+										th:href="@{/agency/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"> <span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
+											id="minus-socialTW"	></span></a>   
 
 									</li>
 
@@ -250,7 +272,11 @@
 										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;INSTAgram&quot;)]}">
 										<a class="doc_name d-inline-block text-truncate"
 										th:utext="${spanIN}" th:href="${aSocialMedia.urlAddress}" target="_blank">
-											social media address</a> 
+											social media address</a>
+										<a sec:authorize="isAuthenticated()" 
+										th:if="${#authentication.name} == ${agency.user.userName}" 
+										th:href="@{/agency/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
+											id="minus-socialIG"	></span></a>   
 
 									</li>
 								</ul>

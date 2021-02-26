@@ -26,6 +26,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -426,7 +427,106 @@ public class AgencyController {
 
 	}
 	
-	
+	@GetMapping(value="/deleteSocialMedia")
+	public String deleteSocialMediaAgencyProfile (@RequestParam("url") String url, Model model, Agency agency, 
+			Person person, RedirectAttributes redirAttr) {
+		
+		if(url.contains("https://www.facebook.com/")) {
+			
+			String name = "FACEBook";
+			System.out.println("Hey Zucke? Are you here? ");
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId()).remove(link.getSocialMediaId());
+					agencyServ.saveAgency(agency);
+					
+				}
+			}
+			
+			
+			redirAttr.addFlashAttribute("span", url);
+			
+			
+		}
+		
+		if(url.contains("https://www.linkedin.com/")) {
+			String name="LINKedin";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId()).remove(link.getSocialMediaId());
+					agencyServ.saveAgency(agency);
+					
+				}
+			}
+			
+			
+			model.addAttribute("span", url);
+		}
+		
+		if(url.contains("https://www.linkedin.com/")) {
+			String name="LINKedin";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId()).remove(link.getSocialMediaId());
+					agencyServ.saveAgency(agency);
+					
+				}
+			}
+			
+
+			
+			model.addAttribute("span", url);
+		}
+		
+		if(url.contains("https://twitter.com/")) {
+			String name="TWITter";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId()).remove(link.getSocialMediaId());
+					agencyServ.saveAgency(agency);
+					
+				}
+			}
+			model.addAttribute("span", url);
+
+		}
+		
+		if(url.contains("https://www.instagram.com/")) {
+			
+			String name="INSTAgram";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId()).remove(link.getSocialMediaId());
+					agencyServ.saveAgency(agency);
+					
+				}
+			}
+			model.addAttribute("span", url);
+
+		}
+
+		
+		List<SocialMedia> socList = socialMediaServ.getSocialMediaByAgencyId(agency.getAgencyId());
+		
+		redirAttr.addFlashAttribute("socialMediaList", socList);
+		
+		return "redirect:/agency/profile";
+	}
 
 	@PostMapping(value = "/addSocialMediaFB")
 	public String addSocialMediabyAgencyProfile(Model model, Agency agency, Person person,
@@ -446,7 +546,7 @@ public class AgencyController {
 				}
 			}
 			
-			SocialMedia FBSocMedia = new SocialMedia(name,url,agency,person);
+			SocialMedia FBSocMedia = new SocialMedia(name,url,agency,null);
 			
 			socialMediaServ.saveAndFlush(FBSocMedia);
 			
@@ -469,7 +569,7 @@ public class AgencyController {
 				}
 			}
 			
-			SocialMedia LNSocMedia = new SocialMedia(name, url, agency, person);
+			SocialMedia LNSocMedia = new SocialMedia(name, url, agency, null);
 			
 			socialMediaServ.saveAndFlush(LNSocMedia);
 			
@@ -489,7 +589,7 @@ public class AgencyController {
 				}
 			}
 			
-			SocialMedia TWSocMedia = new SocialMedia(name, url, agency, person);
+			SocialMedia TWSocMedia = new SocialMedia(name, url, agency, null);
 			
 			socialMediaServ.saveAndFlush(TWSocMedia);
 		}
@@ -508,7 +608,7 @@ public class AgencyController {
 				}
 			}
 			
-			SocialMedia INSocMedia = new SocialMedia(name, url, agency, person);
+			SocialMedia INSocMedia = new SocialMedia(name, url, agency, null);
 			
 			socialMediaServ.saveAndFlush(INSocMedia);
 		}
@@ -1094,6 +1194,7 @@ public class AgencyController {
 		job.setJobPrivate(patchJob.isJobPrivate());
 		job.setJobTitle(patchJob.getJobTitle());
 		job.setStartDate(patchJob.getStartDate());
+		job.setSalary(patchJob.getSalary());
 		job.setJobLocation(patchJob.getJobLocation());
 		job.setNecessaryDocuments(patchJob.getNecessaryDocuments());
 		job.setWorkingConditions(patchJob.getWorkingConditions());
@@ -1202,57 +1303,54 @@ public class AgencyController {
 	}
 	
 	
-	@PostMapping(value = "/addJobImg", consumes = { "multipart/form-data" })
-	public String addJobImg(Model model, Person person, Job job, @RequestParam("img") MultipartFile img,
-			RedirectAttributes redirAttr) {
-
-		// test if agency is present in the method
-		System.out.println("Job is " + job.getJobTitle());
-
-		String imgName = StringUtils.cleanPath(img.getOriginalFilename());
-
-		// init a new byte array
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-		// the bytes you want for writing your class image
-		byte[] newBytes = null;
-
-		baos = imgResizerServ.resizeImage(img);
-
-		newBytes = baos.toByteArray();
-
-		try {
-			baos.close();
-		} catch (IOException e) {
-			System.out.println("ByteArrayOutputSteam is not closed ");
-			e.printStackTrace();
-		}
-
-
-		ProfileImg smallImg = new ProfileImg(imgName, img.getContentType(), newBytes);
+	@PostMapping(value="/affiliate")
+	public String affiliateUser(@PathVariable("id") long agencyId, Model model, Agency agency, Authentication auth) {
+		//get the user that is logged in
 		
-		profileImgServ.savePic(smallImg);
-
-	
-		List<ProfileImg> picList = profileImgServ.getPicsByJobId(job.getJobId());
-		picList.add(smallImg);
+		//get the agency which is clicked
 		
-		ProfileImg lastPic = profileImgServ.getLastJobPic(job.getJobId());
+		/*
+		 * create notification for user admin of the agency and make it is_read = false
+		 * get the admin username and save the notification on his side
+		 */
 		
-		List<ProfileImg> lastPicList = new ArrayList<>();
-		lastPicList.add(lastPic);
-		job.setLastImageId(smallImg.getPicId());
-		job.setPics(picList);
 		
-//		jobServ.save(job);
-
-		model.addAttribute("lastJobPicList", lastPicList);
-		redirAttr.addFlashAttribute("lastJobPicList", lastPicList);
-		redirAttr.addFlashAttribute("picList", picList);
-		redirAttr.addFlashAttribute("jobimg", smallImg);
-
-		return "/modals::addAgencyJob";
+		
+		/*
+		 * notify the user that he's request is on the agency's admin side waiting to be
+		 * approved
+		 */
+		
+		
+		
+		return "redirect:/agency/profile";
+		
 	}
+	
+	@PostMapping(value="/editAgencyDetails")
+	public String editAgencyDetails (@Valid @ModelAttribute("agency") Agency patchAgency,
+			Model model, Person person, Agency agency,
+			RedirectAttributes redirAttr ) {
+		
+		agency.setAgencyName(patchAgency.getAgencyName());
+		agency.setAdminName(patchAgency.getAdminName());
+		agency.setUniqueRegCode(patchAgency.getUniqueRegCode());
+		agency.setRegComNumber(patchAgency.getRegComNumber());
+		agency.setLegalAddress(patchAgency.getLegalAddress());
+		agency.setPhoneNumber(patchAgency.getPhoneNumber());
+		agency.setEmail(patchAgency.getEmail());
+		agency.setWebAddress(patchAgency.getWebAddress());
+		agency.setShortDescription(patchAgency.getShortDescription());
+
+		
+		
+		agencyServ.saveAgency(agency);
+		
+		redirAttr.addFlashAttribute("agency", agency);
+		
+		return "redirect:/agency/profile";
+	}
+	
 
 
 }

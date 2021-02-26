@@ -27,18 +27,7 @@
         <section class="top-main">
 			
             <section class="jobs">
-            <div sec:authorize="isAuthenticated()">
- 				 This content is only shown only when authentication occurs.
-			</div>
-            <div sec:authorize="hasAuthority('USER')">
-  			This content is only shown to USER.
-			</div>
-			<div sec:authorie="isAuthenticated()">
-				<span sec:authentication="name">[USER, ADMIN]</span>
-			</div> 
-			 <div sec:authorize="hasAuthority('ADMIN')">
-  			This content is only shown to admins.
-			</div>
+            
 			
 
                 <div class="main-yellow-text">jobs</div>

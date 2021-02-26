@@ -3,6 +3,7 @@ package com.bzbees.hrma.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import com.bzbees.hrma.dao.SocialMediaRepository;
@@ -47,5 +48,10 @@ public class SocialMediaService {
 		
 	public SocialMedia socMediaByStringAndAgencyId(String socMediaName, long agencyId) {
 		return socialMediaRepo.socialMediaByStringAndAgencyId(socMediaName, agencyId); 	
+	}
+
+	public List<SocialMedia> getSocialMediaByPersonId(long personId) {
+		List<SocialMedia> links = socialMediaRepo.getSocialMediaByPersonId(personId);
+		return links;
 	}
 }

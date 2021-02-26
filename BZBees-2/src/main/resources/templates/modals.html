@@ -257,6 +257,10 @@
 </html>
 
 
+
+
+
+
 <html>
 <body>
 
@@ -482,12 +486,7 @@
 			
 							<div class="input_elements" id="job-image">
 
-
 								<div class="input_field">
-								 
-								
-								
-								
 							
 									<div class="job-image-upload">
 									
@@ -741,6 +740,198 @@
 						</div>
 
 						<!-- profile image modal ends -->
+
+
+</body>
+</html>
+
+
+<!-- EDITING AGENCY INPUT DETAILS  -->
+
+<html>
+<body>
+
+	<div th:fragment="editAgencyDetails" class="modal fade" id="editAgencyDetails"
+		tabindex="-31" aria-labelledby="profilePicLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="profilePicTitle">Edit agency's details
+						</h5>
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<section class="register_form" >
+
+					<form data-persist="garlic" th:action="@{/agency/editAgencyDetails}"
+						th:object="${agency}" method="POST">
+
+						<!--  <input type="hidden" name="_csrf" th:value="$(_csrf.token)" /> -->
+
+						<div class="account_profile">
+
+							<div class="account" id="profile">
+
+								<h3 class="register_home">agency's legal</h3>
+
+								<input type="hidden" th:field="${agency.agencyId}" />
+								
+								<div class="input_elements">
+									<div class="input_field">
+										<input type="text" required="required"
+											th:field="${agency.agencyName}"
+											placeholder="agency's legal name"> <label>agency's
+											legal name<span> *</span>
+										</label>
+									</div>
+
+									<div class="input_field">
+										<input th:value="${agency.adminName}" type="text"
+											required="required"
+											placeholder="administrator" style="color: red"
+											id="email"> <label>administrator
+											<span> *</span>
+										</label>
+									</div>
+
+
+									<div class="input_field">
+										<input type="text" th:field="${agency.uniqueRegCode}"
+											id="uniqueRegCode" placeholder="unique registration code">
+
+										<label for="uniqueRegCode">Unique Registration Code<span>
+												*</span></label>
+									</div>
+
+									<div class="input_field">
+										<input th:field="${agency.regComNumber}" type="text"
+											required="required"
+											placeholder="Registration of Commercial Number"> <label>Chamber of commerce
+											<span> *</span>
+										</label>
+									</div>
+
+									<!--                          	<input type="text" th:field="${agency.userFullName}"> 
+                         	<input type="text" th:field="${agency.userCredentials}">
+                        	
+                        	 	<div class="input_field">
+				                    <input id="date" th:field="${agency.userBirthDate}" type="datetime" required="required"  onclick="(this.type='date')" onblur="(this.type='text')" placeholder="user birth date...">
+									<label>user birth date<span> *</span></label>
+	                     		</div> -->
+
+
+
+
+								</div>
+
+							</div>
+
+
+
+						</div>
+						<br>
+
+						<h3 class="register_home">agency's info</h3>
+
+						<hr
+							style="height: 1px; border-width: 0; color: gray; background-color: gray">
+
+
+						<div class="register_form2" id="register-form2-id">
+
+							<div class="input_jobinfo" id="job-info">
+
+								<div class="input_elements">
+
+									<div class="input_field">
+										<input th:field="${agency.legalAddress}" type="text"
+											required="required" placeholder="legal address"> <label>legal
+											address<span> *</span>
+										</label>
+									</div>
+
+									<div class="input_field">
+										<input id="phoneNumber" th:field="${agency.phoneNumber}"
+											type="text" required="required"
+											onclick="(this.type='number')" onblur="(this.type='text')"
+											placeholder="official phone number"> <label>company's
+											phone number<span> *</span>
+										</label>
+									</div>
+
+
+								</div>
+
+								<div class="input_elements"></div>
+
+								<div class="input_field">
+									<input id="email" th:field="${agency.email}" type="email"
+										required="required" placeholder="email"> <label>company's
+										email<span> *</span>
+									</label>
+								</div>
+
+							<div class="input_elements">
+
+								<div class="input_field">
+									<input id="url" th:field="${agency.webAddress}" type="url"
+										required="required" placeholder="website"> <label>company's
+										website<span> *</span>
+									</label>
+								</div>
+								<div class="input_field">
+									<textarea id="description"
+										th:field="${agency.shortDescription}" required="required"
+										placeholder="Describe the jobs your agency is providing"></textarea>
+									<label>What kind of jobs do provide?<span> *</span></label>
+								</div>
+							</div>
+
+							</div>
+
+						</div>
+
+						<div class="login-buttons">
+
+							<button type="button" class="button_login">
+								<p>Cancel</p>
+								<span class="iconify" id="next_desk" data-icon="topcoat:cancel"
+									data-inline="false"></span> <span class="iconify"
+									id="next_mobile" data-icon="ic:sharp-cancel"
+									data-inline="false"></span>
+
+							</button>
+
+							<button type="submit" class="button_login">
+								<p>Next</p>
+								<span class="iconify" id="next_mobile"
+									data-icon="bx:bxs-skip-next-circle" data-inline="false"></span>
+								<span class="iconify" id="next_desk"
+									data-icon="ic:baseline-navigate-next" data-inline="false"></span>
+							</button>
+
+
+
+						</div>
+						
+						<br>
+
+
+					</form>
+
+				</section>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
 
 
 </body>

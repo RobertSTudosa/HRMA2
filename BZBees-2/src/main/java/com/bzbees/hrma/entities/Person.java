@@ -94,7 +94,7 @@ public class Person implements Serializable {
 	
 	@OneToMany(
 	        mappedBy = "person",
-	        cascade = CascadeType.ALL,
+	        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
 	        orphanRemoval = true
 	    )
 	private List<SocialMedia> socialMedia = new ArrayList<>();

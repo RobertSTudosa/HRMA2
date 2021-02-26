@@ -30,6 +30,24 @@ public interface SocialMediaRepository extends JpaRepository<SocialMedia, Long> 
 				 		"   AND (agency.agency_id= ?2 ) ;")
 	public SocialMedia socialMediaByStringAndAgencyId(String doc_name, long agencyId);
 	
+	@Query(nativeQuery= true,
+			 value= "select social_media.social_media_id, social_media.name, social_media.agency_agency_id, " + 
+					"	social_media.person_person_id, social_media.url_address " + 
+			 		"		FROM social_media " + 
+			 		"		left outer join persons ON persons.person_id = social_media.person_person_id " + 
+			 		"		WHERE persons.person_id = ?1 ;"
+			 ) 
+	public List<SocialMedia> getSocialMediaByPersonId (long personId);
+	
+	@Query(nativeQuery=true,
+			value = "select social_media.social_media_id, social_media.name, social_media.agency_agency_id, " + 
+					"	social_media.person_person_id, social_media.url_address " + 
+			 		"		FROM social_media " + 
+			 		"		left outer join persons ON persons.person_id = social_media.person_person_id " + 
+			 		"		WHERE INSTR(social_media.name , ?1) " + 
+			 		"   AND (persons.person_id= ?2 ) ;")
+public SocialMedia socialMediaByStringAndPersonId(String doc_name, long personId);
+	
 	public SocialMedia findSocialMediaBysocialMediaId(long id);
 	
 	public void deleteSocialMediaBysocialMediaId(long id);

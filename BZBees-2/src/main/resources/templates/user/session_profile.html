@@ -90,42 +90,51 @@
 
 						<!-- profile image modal ends -->
 
-
-						<!-- trigger the modal for profileImg chooser -->
-						<button th:if="${#authentication.name} == ${userAccount.userName}" 
-							data-toggle="modal" data-target="#profilePicModal">
-
-							<span th:if="${#lists.isEmpty(lastPicList)} OR ${lastPicList == null}"
-							class="iconify"
-								data-icon="whh:profile" data-inline="false"></span>
-							<ul>
-								<li th:if="${not #lists.isEmpty(lastPicList)}"
-									th:each="thePic : ${lastPicList}"><img
-									th:src="@{/person/img(imgId=${thePic.picId})}" style="size: 10%">
-								</li>
-
-							</ul>
-
-
-						</button>
+						<div id="edit-profile-details">
+							<!-- trigger the modal for profileImg chooser -->
+							<button th:if="${#authentication.name} == ${userAccount.userName}" 
+								data-toggle="modal" data-target="#profilePicModal">
+	
+								<span th:if="${#lists.isEmpty(lastPicList)} OR ${lastPicList == null}"
+								class="iconify" style="color:darkgray;" id="user-span"
+									data-icon="whh:profile" data-inline="false"></span>
+								<ul>
+									<li th:if="${not #lists.isEmpty(lastPicList)}"
+										th:each="thePic : ${lastPicList}"><img
+										th:src="@{/person/img(imgId=${thePic.picId})}" style="size: 10%">
+									</li>
+	
+								</ul>
+							<span id="reload" class="iconify" data-icon="ic:outline-change-circle" data-inline="false" 
+							style="background-color:lightgray;"></span>
+							
+							</button>
+							
+							<button  th:if="${#authentication.name} != ${userAccount.userName}"
+								data-toggle="modal" data-target="#profilePicModal">
+	
+								<span th:if="${#lists.isEmpty(lastPicList)} OR ${lastPicList == null}"
+								class="iconify"
+									data-icon="whh:profile" data-inline="false"></span>
+								<ul>
+									<li th:if="${not #lists.isEmpty(lastPicList)}"
+										th:each="thePic : ${lastPicList}"><img
+										th:src="@{/person/img(imgId=${thePic.picId})}" style="size: 10%">
+									</li>
+	
+								</ul>
+	
+	
+							</button>
+							
+							<button id="edit-profile-details-button" th:if="${#authentication.name} == ${userAccount.userName}"
+								data-toggle="modal" data-target="#personalDetails">
+								<span id="pencil" class="iconify" data-icon="carbon:edit" data-inline="false"></span>
+							</button>
+							
+							<div th:replace="personalModals::personalDetails"></div>
 						
-						<button  th:if="${#authentication.name} != ${userAccount.userName}"
-							data-toggle="modal" data-target="#profilePicModal">
-
-							<span th:if="${#lists.isEmpty(lastPicList)} OR ${lastPicList == null}"
-							class="iconify"
-								data-icon="whh:profile" data-inline="false"></span>
-							<ul>
-								<li th:if="${not #lists.isEmpty(lastPicList)}"
-									th:each="thePic : ${lastPicList}"><img
-									th:src="@{/person/img(imgId=${thePic.picId})}" style="size: 10%">
-								</li>
-
-							</ul>
-
-
-						</button>
-						
+						</div>
 						
 							
 						
@@ -138,20 +147,20 @@
 						<div class="profile_personal">
 							<label th:text="${person.firstName} +' '+ ${person.lastName}"
 							id="profile-avatar-text">firstName</label>
-							<div th:if="${#authentication.name} == ${userAccount.userName}"
+							<div th:if="${#authentication.name} == ${agency.adminName}"
 							class="profile_personal_fields">
 									<h6 style="color:red">agency owner:</h6>
 									<label  th:text ="' ' + ${agency.agencyName}" 
 											id="agency">agency name</label>
 											
 									
-										<a 
+									<!-- 	<a 
 										sec:authorize="hasAuthority('AGENCY')"
 										th:href="@{/agency/deleteAgency(id=${agency.agencyId})}"
 										onClick="if (! (confirm('Are you sure you want to delete this agency?'))) return false">
 										<span class="iconify" data-icon="jam:trash-alt-f"
 										data-inline="false"></span>
-										</a>
+										</a> -->
 									
 									
 																		
@@ -187,6 +196,79 @@
 							<div id="jobStatus">employeed</div>
 							</div>
 							<br>
+							
+							<a sec:authorize="isAuthenticated()" 
+									th:if="${#authentication.name} == ${userAccount.userName}"
+									data-toggle="modal"data-target="#addFacebook" id="editPencil"
+									style="background-color:lightgray;"> 
+								<span class="iconify" data-icon="ant-design:edit-twotone" 
+									data-inline="false" style="background-color:lightgray;"></span >
+								social media</a>
+
+							<div class="profile_personal_fields" id="media_links">
+								
+<!-- 								<h6 id="underline"> add social media links</h6>	 -->
+									
+									
+									<div class="social_media_links">
+
+								<ul>
+									<li 
+										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;FACEBook&quot;)]}">
+										<a class="doc_name d-inline-block text-truncate"
+										th:utext="${spanFB}" th:href="${aSocialMedia.urlAddress}" target="_blank">
+											social media address</a>
+											<a sec:authorize="isAuthenticated()" 
+												th:if="${#authentication.name} == ${agency.user.userName}"
+											th:href="@{/person/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
+											id="minus-socialFB"	></span></a> 
+
+									</li>
+									<li 
+										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;LINKedin&quot;)]}">
+										<a class="doc_name d-inline-block text-truncate"
+										th:utext="${spanLN}" th:href="${aSocialMedia.urlAddress}" target="_blank">
+											social media address</a>
+										<a sec:authorize="isAuthenticated()" 
+										th:if="${#authentication.name} == ${agency.user.userName}" 
+										th:href="@{/person/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
+											id="minus-socialLN"	></span></a>  
+
+									</li>
+
+									<li 
+										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;TWITter&quot;)]}">
+										<a class="doc_name d-inline-block text-truncate"
+										th:utext="${spanTW}" th:href="${aSocialMedia.urlAddress}" target="_blank">
+											social media address</a>
+										<a sec:authorize="isAuthenticated()" 
+										th:if="${#authentication.name} == ${agency.user.userName}"
+										th:href="@{/person/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"> <span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
+											id="minus-socialTW"	></span></a>   
+
+									</li>
+
+									<li 
+										th:each="aSocialMedia : ${socialMediaList.?[name.contains(&quot;INSTAgram&quot;)]}">
+										<a class="doc_name d-inline-block text-truncate"
+										th:utext="${spanIN}" th:href="${aSocialMedia.urlAddress}" target="_blank">
+											social media address</a>
+										<a sec:authorize="isAuthenticated()" 
+										th:if="${#authentication.name} == ${agency.user.userName}" 
+										th:href="@{/person/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
+											id="minus-socialIG"	></span></a>   
+
+									</li>
+								</ul>
+
+							</div>
+									
+
+							</div>
+							
+							
+							<div th:replace="personalModals::addFacebook"></div>
+				
 						</div>
 
 					</div>
@@ -198,7 +280,7 @@
 						<h5 style="font-style: italic">documents:</h5>
 						<button th:if="${#authentication.name} == ${userAccount.userName}" class="btn btn-sm btn-warning" id="addJob"
 							data-toggle="modal" data-target="#addDocModal">
-							add a new document <span class="iconify" data-icon="bi:node-plus"
+							add <span class="iconify" data-icon="bi:node-plus"
 								data-inline="false"></span>
 						</button>
 					</div>
@@ -210,7 +292,7 @@
 					<div class="modal-dialog ">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Add a new job</h5>
+								<h5 class="modal-title">Add a new document to your profile</h5>
 
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">

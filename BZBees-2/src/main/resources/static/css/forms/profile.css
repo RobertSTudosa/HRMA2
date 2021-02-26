@@ -75,6 +75,7 @@
 .profile_top {
     display: flex;
     flex-flow: column nowrap;
+    justify-content: space-between;
     /* padding-top: 0.3rem; */
     color: #888686;
     width:100%;
@@ -90,10 +91,14 @@
 /*     height: 10rem; */
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
+    justify-content: space-around;
     /* align-items: inherit; */
     /* align-content: space-between; */
     color: #888686;
+    background-color: lightgray;
+    flex: 0 1 40%;
+     margin-right: 20rem; 
+     border-radius: 10px;
 }
 
 .profile_details_desktop {
@@ -127,9 +132,44 @@
     padding: .5rem;
     margin-left: .2rem;
     
-   
-    
 }
+
+.profile_avatar #edit-profile-details {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-bewteen;
+	width: 100%;
+	background-color: lightgray;
+}
+
+.profile_avatar #reload {
+	position:absolute;
+	font-size: 1.5rem;
+	margin-left:-1rem;
+	margin-top:-1.5rem;
+	border-radius: 1rem;
+}
+
+.profile_avatar #user-span {
+	margin-left: .30rem;
+	margin-top: .5rem;
+}
+
+ 
+ .profile_avatar #pencil {
+	font-size: 1rem;
+	background-color: lightgray;
+	
+}
+
+.profile_avatar #edit-profile-details #edit-profile-details-button {
+	width: 2rem;
+	flex: 0 1 10%;
+	margin-left: 10rem;
+	height: 2rem;
+	background-color: lightgray;
+}
+
 .profile_avatar button {
 	 overflow: hidden;
     -webkit-border-radius: 10%;
@@ -138,6 +178,7 @@
     -o-border-radius: 10%;
     border-radius: 10%;
 	width: 30%;
+	
 }
 
 
@@ -193,7 +234,7 @@
 }
 
  #media_links {
-	width: 80%;
+	width: 90%;
 	flex-flow: row nowrap;
 	justify-content: space-around;
 	align-items: center;
@@ -207,13 +248,14 @@
 
 	position: relative;
 	top: -45px;
-	background-color: white;
+	background-color: lightgray;
 
 }
 
 
 .profile_personal_fields .iconify {
-	margin-top: 1rem;
+	margin-top: 1.2rem;
+	
 
 }
 
@@ -413,13 +455,56 @@ td {
 		flex-flow: row wrap;
 		justify-content: space-between;
 		align-items: center;
-		background-color: white;
+		background-color: lightgray;
 
 	}
 	
+
+	
+	.social_media_links #minus-socialFB {
+		position: absolute;
+		margin-top:3.5rem;
+		background-color: white;
+		margin-left:-0.8rem;
+		border-radius:2rem;
+		width:20px;
+		height:20px;
+	}
+	
+	.social_media_links #minus-socialLN {
+		position: absolute;
+		margin-top:3.5rem;
+		background-color: white;
+		margin-left:-0.8rem;
+		border-radius:2rem;
+		width:20px;
+		height:20px;
+	}
+	
+	.social_media_links #minus-socialIG {
+		position: absolute;
+		margin-top:3.5rem;
+		background-color: white;
+		margin-left:-0.8rem;
+		border-radius:2rem;
+		width:20px;
+		height:20px;
+	}
+	
+	.social_media_links #minus-socialTW {
+		position: absolute;
+		margin-top:3.5rem;
+		background-color: white;
+		margin-left:-0.8rem;
+		border-radius:2rem;
+		width:20px;
+		height:20px;
+	}
+	
+	
 	.social_media_links .iconify {
-		width:44px;
-		height:44px;
+		width:42px;
+		height:42px;
 		justify-content: space-between;
 		align-items: center;
 	}
@@ -433,7 +518,7 @@ td {
 	
 	.social_media_links li {
 		list-style:none;
-		margin-left: 2rem;
+		margin-left: 1rem;
 	
 	}
 
@@ -474,7 +559,7 @@ td {
 	} 
 	
 	.profile_avatar	.iconify {
-	font-size: 5rem;
+	font-size: 4rem;
 	margin-right: 1rem;
 
 	}
@@ -547,6 +632,7 @@ td {
 		flex-flow: row wrap;
 		justify-content:space-around;
 		align-items:center;
+		
 
 	}
 	
@@ -606,6 +692,10 @@ td {
 }
 }
 	@media screen and (max-width: 425px) {
+	
+	.profile_details_desktop {
+		margin-left: .3rem;
+	}
 	
 	
 	.profile_above_line {
@@ -672,6 +762,49 @@ td {
 	.profile_personal_fields a {
 		font-size: 0.5rem;
 	
+	}
+	
+	.social_media_links li {
+		list-style:none;
+		margin-left: 1.5rem;
+	
+	}
+	
+	.social_media_links a > #minus-socialFB {
+		position: absolute;
+		margin-top:2.5rem;
+		background-color: white;
+		margin-left: -0.5rem;	
+		width:15px;
+		height:15px;
+	}
+	
+	.social_media_links a > #minus-socialLN {
+		position: absolute;
+		margin-top:2.5rem;
+		background-color: white;
+		margin-left: -0.5rem;	
+		width:15px;
+		height:15px;
+	}
+	
+	.social_media_links a > #minus-socialTW {
+		position: absolute;
+		margin-top:2.5rem;
+		background-color: white;
+		margin-left: -0.5rem;	
+		width:15px;
+		height:15px;
+	}
+	
+	
+	.social_media_links a > #minus-socialIG {
+		position: absolute;
+		margin-top:2.5rem;
+		background-color: white;
+		margin-left: -0.5rem;	
+		width:15px;
+		height:15px;
 	}
 	
 	.profile_personal_fields #editPencil .iconify{

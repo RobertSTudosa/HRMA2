@@ -44,6 +44,23 @@
 	
 }
 
+.input_elements #first-last-name {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.input_elements #first-name {
+	display:flex;
+	flex: 0 0 40%;
+}
+
+.input_elements #last-name {
+	display:flex;
+	flex: 0 0 40%;
+}
+
 .input_elements #salary_currency {
 	display: flex;
 	flex-flow: row nowrap;
@@ -478,22 +495,32 @@
 		width: 40%;
 	}
 	
+	.account_profile #profile {
+		width: 90%;
+	}
+	
 	.register_form2 {
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
 		align-items: center; 
-		height: 300px;
+		height: 550px;
 	
 	}
 	
+
 	.register_form2 .input_jobinfo {
 		width: 45%;
 	
 	}
 	
-
+	.register_form2 #job-info {
+		width: 85%;
+		
 	
+	}
+	
+
 	.register_form2 .input_elements #job_resp {
 	width: 55vw;
 	height: 50vh;
@@ -536,13 +563,6 @@
 }
 
 
-	
-	
-	
-	
-	
-	
 
-	
 
 }

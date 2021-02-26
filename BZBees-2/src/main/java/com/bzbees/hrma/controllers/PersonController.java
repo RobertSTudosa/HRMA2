@@ -17,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -39,6 +38,7 @@ import com.bzbees.hrma.entities.Language;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.Skill;
+import com.bzbees.hrma.entities.SocialMedia;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.services.AgencyService;
 import com.bzbees.hrma.services.DocService;
@@ -49,10 +49,11 @@ import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.ProfileImgService;
 import com.bzbees.hrma.services.ProfileToPDF;
 import com.bzbees.hrma.services.SkillService;
+import com.bzbees.hrma.services.SocialMediaService;
 import com.bzbees.hrma.services.UserService;
 
 @Controller
-@SessionAttributes({ "person", "userAccount","picList", "lastPicList", "jobList"})
+@SessionAttributes({ "person", "userAccount","picList", "lastPicList", "jobList","socialMediaList"})
 //, "skillsList", "langList", "docList",  
 @RequestMapping("/person")
 public class PersonController {
@@ -83,6 +84,9 @@ public class PersonController {
 	
 	@Autowired
 	AgencyService agencyServ;
+	
+	@Autowired
+	SocialMediaService socialMediaServ;
 
 	
 	@GetMapping("/sprofile")
@@ -91,7 +95,7 @@ public class PersonController {
 			@ModelAttribute("success") String success,
 			Authentication auth) {
 	
-		if(auth.getName() ==null) {
+		if(auth ==null) {
 			return "home";
 		}
 		//get the user from user Principal
@@ -186,6 +190,44 @@ public class PersonController {
 			Language lang = new Language();
 			model.addAttribute("lang", lang);
 			System.out.println("New lang created <------------");
+		}
+		
+		
+		if (socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).isEmpty()) {
+			System.out.println("Social Media List is empty");
+			model.addAttribute("socialMediaList", new ArrayList<>());
+			
+		} else {
+			List<SocialMedia> socList = socialMediaServ.getSocialMediaByPersonId(person.getPersonId());
+			for(SocialMedia link : socList) {
+				System.out.println("name of the link --->" + link.getName());
+				if(link.getName().contains("FACEBook")) {
+					System.out.println("Inside facebook");
+					String FBIcon = "<span style=\"color: #E9D415;background-color: #484848\" class=\"iconify\" data-inline=\"false\" data-icon=\"dashicons:facebook\"></span>";
+					model.addAttribute("spanFB", FBIcon);
+				}
+				
+				if(link.getName().contains("LINKedin")) {
+					System.out.println("Finding nemo on linkedin");
+					String LNIcon = "<span style=\"color: #E9D415;background-color: #484848;\" class=\"iconify\" data-inline=\"false\" data-icon=\"el:linkedin\"></span>";
+					model.addAttribute("spanLN", LNIcon);
+				}
+				
+				if(link.getName().contains("TWITter")) {
+					System.out.println("Fly little bird, fly");
+					String TWIcon = "<span style=\"color:#484848;background-color: #E9D415;\" class=\"iconify\" data-inline=\"false\" data-icon=\"vaadin:twitter-square\"></span>";
+					model.addAttribute("spanTW", TWIcon);
+				}
+				
+				if(link.getName().contains("INSTAgram")) {
+					System.out.println("It's all for the gram");
+					String INIcon = "<span style=\"color: #E9D415;background-color: #484848;\" class=\"iconify\" data-icon=\"entypo-social:instagram\" data-inline=\"false\"></span>";
+					model.addAttribute("spanIN", INIcon);
+				}
+			
+			}
+			
+			model.addAttribute("socialMediaList", socList);
 		}
 		
 		
@@ -652,7 +694,228 @@ public class PersonController {
 		return "redirect:/";
 	}
 	
+	@PostMapping("/editProfile")
+	public String updatePersonDetails (@Valid @ModelAttribute Person patchPerson, Model model, Person person, 
+			User user,	RedirectAttributes redirAttr) {
+		
+		person.setFirstName(patchPerson.getFirstName());
+		person.setLastName(patchPerson.getLastName());
+		person.setLocation(patchPerson.getLocation());
+		person.setCurrentJob(patchPerson.getCurrentJob());
+		person.setPrivateCurrentjob(patchPerson.isPrivateCurrentjob());
+		person.setAvailability(patchPerson.getAvailability());
+		person.setWorkExperience(patchPerson.getWorkExperience());
+		person.setJobWishDesc(patchPerson.getJobWishDesc());
+		
+		
+		
+		
+		persServ.save(person);
+
+		
+		redirAttr.addFlashAttribute("person", person);
+		
+		return "redirect:/person/sprofile";
+	}
 	
+	
+	@PostMapping(value = "/addSocialMediaFB")
+	public String addSocialMediabyAgencyProfile(Model model, Agency agency, Person person,
+			@RequestParam("url") String url, RedirectAttributes redirAttr) {
+		
+		if(url.contains("https://www.facebook.com/")) {
+			
+			String name = "FACEBook";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			
+			SocialMedia FBSocMedia = new SocialMedia(name,url,null,person);
+			
+			socialMediaServ.saveAndFlush(FBSocMedia);
+			
+//			model.addAttribute("span", url);
+			redirAttr.addFlashAttribute("span", url);
+			
+			
+		}
+		
+		if(url.contains("https://www.linkedin.com/")) {
+			String name="LINKedin";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			
+			SocialMedia LNSocMedia = new SocialMedia(name, url, null, person);
+			
+			socialMediaServ.saveAndFlush(LNSocMedia);
+			
+			model.addAttribute("span", url);
+		}
+		
+		if(url.contains("https://twitter.com/")) {
+			String name="TWITter";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			
+			SocialMedia TWSocMedia = new SocialMedia(name, url, null, person);
+			
+			socialMediaServ.saveAndFlush(TWSocMedia);
+			
+			model.addAttribute("span", url);
+		}
+		
+		if(url.contains("https://www.instagram.com/")) {
+			
+			String name="INSTAgram";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			
+			SocialMedia INSocMedia = new SocialMedia(name, url, null, person);
+			
+			socialMediaServ.saveAndFlush(INSocMedia);
+			
+			model.addAttribute("span", url);
+		}
+		
+		
+		List<SocialMedia> socList = socialMediaServ.getSocialMediaByPersonId(person.getPersonId());
+			
+		redirAttr.addFlashAttribute("socialMediaList", socList);
+
+		return "redirect:/person/sprofile";
+	}
+	
+	@GetMapping(value="/deleteSocialMedia")
+	public String deleteSocialMediaPersonProfile (@RequestParam("url") String url, Model model, Agency agency, 
+			Person person, RedirectAttributes redirAttr) {
+		
+		if(url.contains("https://www.facebook.com/")) {
+			
+			String name = "FACEBook";
+			System.out.println("Hey Zucke? Are you here? ");
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			
+			
+			redirAttr.addFlashAttribute("span", url);
+			
+			
+		}
+		
+		if(url.contains("https://www.linkedin.com/")) {
+			String name="LINKedin";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			
+			
+			model.addAttribute("span", url);
+		}
+		
+		if(url.contains("https://www.linkedin.com/")) {
+			String name="LINKedin";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			
+
+			
+			model.addAttribute("span", url);
+		}
+		
+		if(url.contains("https://twitter.com/")) {
+			String name="TWITter";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			model.addAttribute("span", url);
+
+		}
+		
+		if(url.contains("https://www.instagram.com/")) {
+			
+			String name="INSTAgram";
+			
+			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
+				if(link.getName().contains(name)) {
+					socialMediaServ.deleteSocialMedia(link);
+					socialMediaServ.flushSocMediaDb();
+					socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).remove(link.getSocialMediaId());
+					persServ.save(person);
+					
+				}
+			}
+			model.addAttribute("span", url);
+
+		}
+
+		
+		List<SocialMedia> socList = socialMediaServ.getSocialMediaByPersonId(person.getPersonId());
+		
+		redirAttr.addFlashAttribute("socialMediaList", socList);
+		
+		return "redirect:/person/sprofile";
+	}
 	
 
 
