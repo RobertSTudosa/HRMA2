@@ -1,5 +1,5 @@
  const userPlus = document.getElementsByClassName('button-userplus')[0];
-// const userNormal = document.getElementsByClassName('button-user')[0];
+
  
  const navbarLinks = document.getElementsByClassName('navbar-links')[0];
  const navbarUserLinks = document.getElementsByClassName('navbar-user-links')[0];
@@ -10,17 +10,33 @@
      navbarUserLinks.classList.toggle('active');
  });
 
+const notifButton = document.getElementsByClassName('notif-button')[0];
 
- 
- 
-/* //try to close when clicked outside the menu
- document.addEventListener('click', (event) => {
-	 if(!userPlus.contains(event.target)); 
-		 navbarLinks.classList.toggle('');
-		 navbarUserLinks.classList.toggle('');
- })*/
- 
- 
+const notifLinks = document.getElementsByClassName('notifications-links')[0];
+
+notifButton.addEventListener('click', () => {
+	notifLinks.classList.toggle('active');
+});
+
+
+//click out close for all interactive elements
+$(document).mouseup (e => {
+	if(!$('.navbar-user-links').is(e.target) &&
+		$('.navbar-user-links').has(e.target).length === 0) {
+		$('.navbar-user-links').removeClass('active');
+	}
+	
+	if(!$('.navbar-links').is(e.target) &&
+		$('.navbar-links').has(e.target).length === 0) {
+		$('.navbar-links').removeClass('active');
+	}
+	
+	if(!$('.notifications-links').is(e.target) &&
+		$('.notifications-links').has(e.target).length === 0) {
+		$('.notifications-links').removeClass('active');
+	}
+})
+
 
 
 
@@ -44,8 +60,3 @@
  
  
 
- //var userPlus = document.getElementsByClassName('button-userplus')[0];
- //var navbarLinks = document.getElementsByClassName('navbar-links')[0];
- //userPlus.addEventListener('click', function() {
- //    navbarLinks.classList.toggle('active');
- //});

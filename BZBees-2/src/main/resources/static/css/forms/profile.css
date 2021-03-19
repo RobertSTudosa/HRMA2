@@ -27,7 +27,7 @@
     padding-top: 15%;
     padding-left: 5%;
     padding-right: 2%;
-    /* width: 100vw; */ 
+    width: 90vw;
     
 }
 
@@ -96,7 +96,7 @@
     /* align-content: space-between; */
     color: #888686;
     background-color: lightgray;
-    flex: 0 1 40%;
+    flex: 0 1 45%;
      margin-right: 20rem; 
      border-radius: 10px;
 }

@@ -31,8 +31,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Job implements Serializable {
 
 	@Id()
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "job_generator")
-	@SequenceGenerator(name = "job_generator", sequenceName = "job_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jobs_generator")
+	@SequenceGenerator(name = "jobs_generator", sequenceName = "jobs_seq", allocationSize = 1)
 	@Column(name="job_id")
 	private long jobId;
 	
@@ -74,7 +74,7 @@ public class Job implements Serializable {
 	
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
 			fetch = FetchType.LAZY)
-	@JoinTable(name="job_pics",
+	@JoinTable(name="jobs_pics",
 			joinColumns=@JoinColumn(name="job_id"),
 			inverseJoinColumns=@JoinColumn(name="pic_id"))
 	private List<ProfileImg> pics= new ArrayList<>();
@@ -96,8 +96,7 @@ public class Job implements Serializable {
 			joinColumns=@JoinColumn(name="job_id"),
 			inverseJoinColumns=@JoinColumn(name="person_id"))
 	private Set<Person> persons = new HashSet<>();
-	
-	
+		
 	@ManyToOne(fetch = FetchType.LAZY, optional=true)
 	private Agency theAgency;
 

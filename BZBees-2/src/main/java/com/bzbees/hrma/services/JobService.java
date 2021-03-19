@@ -65,4 +65,8 @@ public class JobService {
 		jobRepo.saveAndFlush(job);
 		return;
 	}
+	
+	public List<Job> findJobsPostedByAgencies() {
+		return jobRepo.findJobsPostedByAgencies();
+	}
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.CompanyDoc;
 import com.bzbees.hrma.entities.Job;
+import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.SocialMedia;
@@ -30,6 +33,7 @@ import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.services.AgencyService;
 import com.bzbees.hrma.services.CompanyDocService;
 import com.bzbees.hrma.services.JobService;
+import com.bzbees.hrma.services.NotificationService;
 import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.ProfileImgService;
 import com.bzbees.hrma.services.SocialMediaService;
@@ -39,7 +43,7 @@ import com.bzbees.hrma.services.UserService;
 @Controller
 @RequestMapping("/")
 @SessionAttributes({"agency", "agenciesList","person","userAccount","lastAgencyPicList",
-			"agencyJobList","jobTagsList","jobList"})
+			"agencyJobList","jobTagsList", "jobList","userNotifs"})
 public class HomeController {
 	
 	@Autowired
@@ -69,6 +73,9 @@ public class HomeController {
 	@Autowired
 	TagService tagServ;
 	
+	@Autowired
+	NotificationService notifServ;
+	
 //	@Value("${version}")
 //	private String ver;
 	
@@ -89,6 +96,10 @@ public class HomeController {
 			
 			//get authorities to string 			
 			System.out.println("User's role in my home controller are: " + user.getRoles().toString());
+			
+			model.addAttribute("person", persServ.findPersonByUserId(user.getUserId()));
+			model.addAttribute("userAccount", user);
+			
 				
 			
 			//get the agency if any is associated with current user 
@@ -115,15 +126,22 @@ public class HomeController {
 			
 			//get all the jobs in a list when authenticated()
 			if(!jobServ.getAll().isEmpty()) {
-				List<Job> allJobs = jobServ.getAll();
+				List<Job> allJobs = jobServ.findJobsPostedByAgencies();
 				model.addAttribute("jobList", allJobs);
 				
 			} else {
 				model.addAttribute("jobList", new ArrayList<Job>());
 			}
 			
-		}
+			//get the logged in user notifs
+			if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
+				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
+				model.addAttribute("userNotifs", allUserNotif);
+			} else {
+				model.addAttribute("userNotifs", new ArrayList<>());
+			}
 		
+		}
 		
 		
 		//get all the agencies in a list 
@@ -138,17 +156,19 @@ public class HomeController {
 		}
 		
 		
-		//get all the jobs in a list when anonymous()
+		// get all the jobs in a list when anonymous() or not - 
+		// get all the jobs that are posted by agencies !!!! 
+		// otherwise calling lastAgencyImageId on null will not work
 		if(!jobServ.getAll().isEmpty()) {
-			List<Job> allJobs = jobServ.getAll();
+			List<Job> allJobs = jobServ.findJobsPostedByAgencies();
 			model.addAttribute("jobList", allJobs);
+			System.out.println("There are jobs in the list");
 			
 		} else {
 			model.addAttribute("jobList", new ArrayList<Job>());
 		}
 		
-				
-		
+	
 //		System.out.println("Name of the user : " + auth.getName());
 //		model.addAttribute("localVerNumber", ver);
 		
@@ -186,11 +206,13 @@ public class HomeController {
 	}
 	
 
-	@GetMapping("/agencyProfile")
+	@GetMapping(value="/agencyProfile")
 	public String showAgencyProfile(@RequestParam("id") long id, Model model, Authentication auth) {
 		
+		User user = null;
+		
 		if(auth != null) {
-			User user = (User) userServ.loadUserByUsername(auth.getName());
+			user = (User) userServ.loadUserByUsername(auth.getName());
 
 			// get the person from repo user query
 			Person person = persServ.findPersonByUserId(user.getUserId());
@@ -318,9 +340,130 @@ public class HomeController {
 					model.addAttribute("job", new Job());
 				}
 				
+				
+				// get all the names of the users that hit 'get affiliated' on this agency
+				if(auth !=null) {
+					
+					//implement a db query to get all pending users for the agency via agency id
+					if(!userServ.getAllPendingUsersByAgencyId(agency.getAgencyId()).isEmpty()  ) {				
+						
+					List<User> pendingUsers = userServ.getAllPendingUsersByAgencyId(id);
+						for(User pendingUser : pendingUsers) {
+							if(pendingUser.getUserId() == user.getUserId()) {
+								System.out.println("match is true");
+								model.addAttribute("match", true);
+								model.addAttribute("agencyMessage", "You're affiliation with this agency is in pending. Please wait until the agency will approve your request.");
+							} else {
+								System.out.println("match is false from within pending users");
+								model.addAttribute("match", false);
+							}
+						}
+					
+					} else {
+						System.out.println("match is false because the pending user list is empty");
+						model.addAttribute("match", false);
+					}
+				
+				}
+				
+				
+					if(auth !=null) {
+					
+					//implement a db query to get all pending users for the agency via agency id
+					if(!userServ.getAllAffiliatedUsersByAgencyId(agency.getAgencyId()).isEmpty()) {				
+						
+					List<User> affiliatedUsers = userServ.getAllAffiliatedUsersByAgencyId(id);
+						for(User affiliatedUser : affiliatedUsers) {
+							if(affiliatedUser.getUserId() == user.getUserId()) {
+								System.out.println("affiliate is true");
+								model.addAttribute("affiliate", true);
+								model.addAttribute("agencyMessage", "You are affiliated with this agency. Now you can apply to this agency's jobs. \n "
+										+ "If you no longer want to be affiliated please click the 'disaffiliate' button above.");
+							} else {
+								System.out.println("match is false from within affiliated users");
+								model.addAttribute("affiliate", false);
+							}
+						}
+					
+					} else {
+						System.out.println("match is false because the affiliated user list is empty");
+						model.addAttribute("affiliate", false);
+					}
+				
+				}
+					
+					if(auth != null) {
+						if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
+							List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
+							model.addAttribute("userNotifs", allUserNotif);
+						} else {
+							model.addAttribute("userNotifs", new ArrayList<>());
+						}
+						
+					}
+				
+
+				
 					
 		
 		return "agency/agency_profile";
+	}
+	
+	@GetMapping(value="/notifMarkRead")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void markNotificationAsRead(@RequestParam("id") long notificationId, Authentication auth ) {
+		if(auth == null) {
+			
+		}
+		
+		User user = (User) userServ.loadUserByUsername(auth.getName());
+		System.out.println("User is here =====> " + user.getUsername());
+		System.out.println("Notification id in the model is ============> " + notificationId);
+		
+		Notification hitNotif = notifServ.findNotifByNotifId(notificationId);
+		hitNotif.setRead(true);
+		notifServ.saveNotif(hitNotif);
+		System.out.println("Notification saved is ===> " + hitNotif.getNotificationId());
+		
+		Person userPerson = persServ.findPersonByUserId(user.getUserId());
+		
+		//get all notifications of the user in REVERSE and if all are read then
+		//save for the user PERSON set the unread_notif to false and save person and user. 
+		
+
+		List<Notification> userNotifs = userPerson.getNotifications();
+		
+		System.out.println("Notification list size ====> " + userNotifs.size());
+
+		boolean unreadNotifs = true; 
+		
+		for(int i = 0 ; i < userNotifs.size(); i++) {
+			System.out.println("IN for loop");
+			if(!userNotifs.get(i).isRead()) {
+				System.out.println("This notification ---> " + userNotifs.get(i).getNotificationId() + " is unread");
+				unreadNotifs = true;
+				break;		
+				
+			} else {
+				unreadNotifs = false;
+				System.out.println("This notification ---> " + userNotifs.get(i).getNotificationId() + "is read");
+			}
+			
+			}
+		
+		if(!unreadNotifs) {
+			System.out.println("All notifications for " + user.getUsername() + " are read");
+			
+			userPerson.setUnreadNotifs(false);
+			persServ.save(userPerson);
+			userServ.save(user);
+			
+		}
+		
+
+		
+		
+		
 	}
 	
 	

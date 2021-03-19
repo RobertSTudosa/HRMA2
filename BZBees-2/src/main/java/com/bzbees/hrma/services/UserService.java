@@ -65,6 +65,10 @@ public class UserService implements UserDetailsService {
 		return userAccountRepo.getAffiliatedUsersByAgencyID(agencyId);
 	}
 	
+	public List<User> getAllPendingUsersByAgencyId(long agencyId) {
+		return userAccountRepo.getPendingUsersByAgencyID(agencyId);
+	}
+	
 	
 
 

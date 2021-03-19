@@ -68,6 +68,10 @@ public class User implements UserDetails, Serializable{
 	@ManyToOne(fetch = FetchType.LAZY, optional=true)
 	private Agency oneAgency;
 	
+	@ManyToOne(fetch = FetchType.LAZY, optional=true)
+	private Agency pendingAgency;
+	
+	
 	
 	public User() {
 		
@@ -233,6 +237,14 @@ public class User implements UserDetails, Serializable{
 
 	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
 		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	public Agency getPendingAgency() {
+		return pendingAgency;
+	}
+
+	public void setPendingAgency(Agency pendingAgency) {
+		this.pendingAgency = pendingAgency;
 	}
 	
 	

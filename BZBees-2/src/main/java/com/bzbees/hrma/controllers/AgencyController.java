@@ -1,8 +1,12 @@
 package com.bzbees.hrma.controllers;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +14,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -26,7 +31,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +43,8 @@ import com.bzbees.hrma.entities.CompanyDoc;
 import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Language;
+import com.bzbees.hrma.entities.Message;
+import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.Skill;
@@ -50,8 +56,11 @@ import com.bzbees.hrma.services.AgencyService;
 import com.bzbees.hrma.services.CompanyDocService;
 import com.bzbees.hrma.services.ImageResize;
 import com.bzbees.hrma.services.JobService;
+import com.bzbees.hrma.services.MessageService;
+import com.bzbees.hrma.services.NotificationService;
 import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.ProfileImgService;
+import com.bzbees.hrma.services.ProfileToPDF;
 import com.bzbees.hrma.services.RoleService;
 import com.bzbees.hrma.services.SocialMediaService;
 import com.bzbees.hrma.services.TagService;
@@ -60,7 +69,7 @@ import com.bzbees.hrma.services.UserService;
 @Controller
 @RequestMapping("/agency")
 @SessionAttributes({ "person", "userAccount", "agency", "lastAgencyPicList", "lastPicList", "companyDocList",
-		"socialMediaList", "affiliatedPersonsList","agencyJobList","jobTagsList","lastJobPicList" })
+		"socialMediaList", "affiliatedPersonsList","agencyJobList","jobTagsList","lastJobPicList","userNotifs" })
 public class AgencyController {
 
 	@Autowired
@@ -92,6 +101,12 @@ public class AgencyController {
 	
 	@Autowired
 	private TagService tagServ;
+	
+	@Autowired
+	private NotificationService notifServ;
+	
+	@Autowired
+	private MessageService messServ;
 	
 
 	@GetMapping("/register")
@@ -174,23 +189,26 @@ public class AgencyController {
 	@GetMapping("/profile")
 //	@Transactional
 	public String showAgencyProfile(Model model, RedirectAttributes redirAttr, Authentication auth, 
-			Agency agency,
+			
 			Person person) {
 
 		if (auth != null) {
 			
-		
+
 
 		// get the user from user Principal
 		User user = (User) userServ.loadUserByUsername(auth.getName());
 		model.addAttribute("userAccount", user);
 
+		
+		Agency agency = agencyServ.findAgencyByUserId(user.getUserId());
+		
 		// get the person from repo user query
 		person = persServ.findPersonByUserId(user.getUserId());
 		model.addAttribute("person", person);
 
-		Agency theAgency = agencyServ.findAgencyByID(agency.getAgencyId());
-		model.addAttribute("agency", theAgency);
+//		Agency theAgency = agencyServ.findAgencyByID(agency.getAgencyId());
+		model.addAttribute("agency", agency);
 
 		// get the agency pics from the profileImg repo
 		List<ProfileImg> agencyPics = profileImgServ.getPicsByAgencyId(agency.getAgencyId());
@@ -286,8 +304,8 @@ public class AgencyController {
 		}
 		
 		//get the jobs of the agency in the profile
-		if(jobServ.findJobsByAgencyId(theAgency.getAgencyId()) !=null) {
-			List<Job> agencyJobs = jobServ.findJobsByAgencyId(theAgency.getAgencyId());
+		if(jobServ.findJobsByAgencyId(agency.getAgencyId()) !=null) {
+			List<Job> agencyJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
 			model.addAttribute("agencyJobList", agencyJobs);
 			List<Tag> agencyJobsTags = new ArrayList<>();
 			for(Job job : agencyJobs) {
@@ -306,7 +324,35 @@ public class AgencyController {
 			model.addAttribute("job", new Job());
 		}
 		
-
+		
+		//get the logged in user notifs
+		if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
+			List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
+			model.addAttribute("userNotifs", allUserNotif);
+			for(Notification notif : allUserNotif) {
+				System.out.println(notif.getMessages());
+			}
+		} else {
+			model.addAttribute("userNotifs", new ArrayList<>());
+		}
+		
+		
+			
+			//implement a db query to get all pending users for the agency via agency id
+			if(userServ.getAllPendingUsersByAgencyId(agency.getAgencyId()) != null) {						
+			List<User> pendingUsers = userServ.getAllPendingUsersByAgencyId(agency.getAgencyId());
+				for(User pendingUser : pendingUsers) {
+					if(pendingUser.getUserId() == user.getUserId()) {
+						model.addAttribute("match", true);
+						model.addAttribute("agencyMessage", "You're affiliation with this agency is in pending. Please wait until the agency will approve your request.");
+					} else {
+						model.addAttribute("match", false);
+					}
+				}
+			
+			} else {
+				model.addAttribute("match", false);
+			}
 
 		return "agency/agency_profile";
 		
@@ -314,6 +360,9 @@ public class AgencyController {
 		
 		return "home";
 	}
+	
+	
+	
 
 	// must implement another form of deleting/detaching an agency from the person
 	// keep in place to resolve the profile menu null's profile
@@ -391,7 +440,7 @@ public class AgencyController {
 		
 		List<ProfileImg> lastPicList = new ArrayList<>();
 		lastPicList.add(lastPic);
-		agency.setLastImageId(smallImg.getPicId());
+		agency.setLastAgencyImageId(smallImg.getPicId());
 		agency.setPics(picList);
 		
 		agencyServ.saveAgency(agency);
@@ -962,7 +1011,7 @@ public class AgencyController {
 	
 
 	@GetMapping(value="/cprofile")
-	public String showCandidateProfile (@RequestParam("id") long id, Model model) {
+	public String showCandidateProfile (@RequestParam("id") long id, Model model, Authentication auth) {
 		
 		Person person = persServ.findPersonById(id);
 		User userAccount = userServ.findUserByPersonId(id);
@@ -1045,7 +1094,55 @@ public class AgencyController {
 			System.out.println("New lang created <------------");
 		}
 		
-
+		if (socialMediaServ.getSocialMediaByPersonId(person.getPersonId()).isEmpty()) {
+			System.out.println("Social Media List is empty");
+			model.addAttribute("socialMediaList", new ArrayList<>());
+			
+		} else {
+			List<SocialMedia> socList = socialMediaServ.getSocialMediaByPersonId(person.getPersonId());
+			for(SocialMedia link : socList) {
+				System.out.println("name of the link --->" + link.getName());
+				if(link.getName().contains("FACEBook")) {
+					System.out.println("Inside facebook");
+					String FBIcon = "<span style=\"color: #E9D415;background-color: #484848\" class=\"iconify\" data-inline=\"false\" data-icon=\"dashicons:facebook\"></span>";
+					model.addAttribute("spanFB", FBIcon);
+				}
+				
+				if(link.getName().contains("LINKedin")) {
+					System.out.println("Finding nemo on linkedin");
+					String LNIcon = "<span style=\"color: #E9D415;background-color: #484848;\" class=\"iconify\" data-inline=\"false\" data-icon=\"el:linkedin\"></span>";
+					model.addAttribute("spanLN", LNIcon);
+				}
+				
+				if(link.getName().contains("TWITter")) {
+					System.out.println("Fly little bird, fly");
+					String TWIcon = "<span style=\"color:#484848;background-color: #E9D415;\" class=\"iconify\" data-inline=\"false\" data-icon=\"vaadin:twitter-square\"></span>";
+					model.addAttribute("spanTW", TWIcon);
+				}
+				
+				if(link.getName().contains("INSTAgram")) {
+					System.out.println("It's all for the gram");
+					String INIcon = "<span style=\"color: #E9D415;background-color: #484848;\" class=\"iconify\" data-icon=\"entypo-social:instagram\" data-inline=\"false\"></span>";
+					model.addAttribute("spanIN", INIcon);
+				}
+			
+			}
+			
+			model.addAttribute("socialMediaList", socList);
+		}
+		
+		
+		//get the logged in user notifs
+		if(auth != null) {
+			User user = (User) userServ.loadUserByUsername(auth.getName());
+			if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
+				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
+				model.addAttribute("userNotifs", allUserNotif);
+			} else {
+				model.addAttribute("userNotifs", new ArrayList<>());
+			}
+		
+		}
 		
 		
 		return "user/session_profile";
@@ -1303,29 +1400,327 @@ public class AgencyController {
 	}
 	
 	
-	@PostMapping(value="/affiliate")
-	public String affiliateUser(@PathVariable("id") long agencyId, Model model, Agency agency, Authentication auth) {
+	@GetMapping(value="/affiliate", produces = MediaType.TEXT_HTML_VALUE)
+	public String affiliateUser(@RequestParam("id") long agencyId, Model model, Agency agency, Authentication auth) {
+		
+		if(auth == null) {
+			System.out.println("No user is logged in. Testing the affiliate button");
+			return "home";
+		}
+		
 		//get the user that is logged in
+		String name = auth.getName();
 		
-		//get the agency which is clicked
+		User loggedInUser = (User) userServ.loadUserByUsername(name);
+		Person userPerson = (Person) persServ.findPersonByUserId(loggedInUser.getUserId());
+
+		//get the user that is an admin for the agency
+		User agencyAdmin = (User) userServ.loadUserByUsername(agency.getAdminName());//Robert
+		Person agencyPerson = persServ.findPersonByUserId(agencyAdmin.getUserId());
 		
-		/*
-		 * create notification for user admin of the agency and make it is_read = false
-		 * get the admin username and save the notification on his side
-		 */
+		
+		//!!!!!!!check is the candidate is not already approved. 
+		Person loggedInPerson = persServ.findPersonByUserId(loggedInUser.getUserId());
+	
+		//!!!!!if approved then 
+			//hasApprove = false 
+			//send message to model
+			//return to profile
+		
+		
+		//get the id of the logged in user and create messages
+		//for the admin user of the agency
+		long candidateId = loggedInUser.getUserId();
+		Message shortHref = new Message("/agency/cprofile?id=" + Long.toString(candidateId));
+		Message messageText = new Message("Candidate");
+		Message longText = new Message("is requesting to affiliate with " + agency.getAgencyName() + ".");
+		Message nameText = new Message(loggedInUser.getUsername());
+		
+		//add messages to a list so it can be passed to a
+		// notification object
+		List<Message> candidateNotifs = new ArrayList<>();
+		candidateNotifs.add(0, messageText);
+		candidateNotifs.add(1, nameText);
+		candidateNotifs.add(2, shortHref);
+		candidateNotifs.add(3, longText);
+
+		Notification adminNotif = new Notification(candidateNotifs,false, true, messageText.getMessage(), new Date());
+
+		notifServ.saveNotif(adminNotif);
+		messageText.setNotification(adminNotif);
+		nameText.setNotification(adminNotif);
+		shortHref.setNotification(adminNotif);
+		longText.setNotification(adminNotif);
+		
+		//get the notifications of the present agency admin user notification
+		//add the above created notification object - 
+		List<Notification> agencyPersonNotifs = notifServ.findNotificationsByUserId(agencyAdmin.getUserId());
+		agencyPersonNotifs.add(adminNotif);
+		
+		//set the notification object to the agency
+		//so hibernate mapping takes effect and write corectly to db
+		agencyPerson.setNotifications(agencyPersonNotifs);
+		agencyPerson.setUnreadNotifs(true);
+		
+		//get the logged in person object
+		//and the agency id and create message for the logged in user
+		
+		long agencyID = agency.getAgencyId();
+		Message agencyShortHref = new Message("/agencyProfile?id=" + Long.toString(agencyID));				
+		Message agencyMessage = new Message("Agency");
+		Message agencyLongText = new Message("received your request to affiliate.");
+		Message agencyName = new Message(agency.getAgencyName());
+		//create a list of messages so it can be added to the notification object 
+		List<Message> userNotifsMessages = new ArrayList<> ();
+		userNotifsMessages.add(0,agencyMessage);
+		userNotifsMessages.add(1, agencyName);
+		userNotifsMessages.add(2, agencyShortHref);
+		userNotifsMessages.add(3, agencyLongText);
+		 
+		//create notification object for the agency admin user		
+		Notification userNotif = new Notification(userNotifsMessages,false,false, agencyMessage.getMessage(), new Date());				
+		List<Notification> userNotifs = notifServ.findNotificationsByUserId(loggedInUser.getUserId());
+		
+
+		
+		//add the notification object to the logged in user notifications
+		userNotifs.add(userNotif);
+		
+		
+		loggedInPerson.setNotifications(userNotifs);
+		loggedInPerson.setUnreadNotifs(true);
+		
+		//add the pending user to the agency
+		List<User> pendingUsers = new ArrayList<User> ();
+		pendingUsers.add(loggedInUser);
+		agency.setPendingUsers(pendingUsers);
+		loggedInUser.setPendingAgency(agency);
+
+		//set the messages to the notification object of the logged in user
+		agencyMessage.setNotification(userNotif);
+		agencyName.setNotification(userNotif);		
+		agencyShortHref.setNotification(userNotif);
+		agencyLongText.setNotification(userNotif);
+		
+		
+		//save the messages (2 of them will suffice)---> because hibernate cascade
+		messServ.messageSave(agencyMessage);
+		messServ.messageSave(agencyShortHref);
+	
+		notifServ.saveNotif(userNotif);
+		userServ.save(loggedInUser);
+		agencyServ.saveAgency(agency);
+		
+		List<Notification> reverseUserNotifs = notifServ.reverseFindNotificationsByUserId(loggedInUser.getUserId());
 		
 		
 		
-		/*
-		 * notify the user that he's request is on the agency's admin side waiting to be
-		 * approved
-		 */
+		model.addAttribute("agencyPersonNotifs", agencyPersonNotifs);
+
+		model.addAttribute("userNotifs", reverseUserNotifs);
+;
+		
+			
+		return "redirect:/agencyProfile?id=" + agency.getAgencyId();
+		
+	}
+	
+	@GetMapping(value="/affiliateCandidate")
+	public String approveAffiliationRequest(@RequestParam("id") long notifId, Model model, Agency agency, Authentication auth) {
+		if(auth == null) {
+			return "user/login";
+		}
+		
+		//get the user that is an admin for the agency
+		User agencyAdmin = (User) userServ.loadUserByUsername(agency.getAdminName());//Robert
+		Person agencyPerson = persServ.findPersonByUserId(agencyAdmin.getUserId());
+		//get the loggedinUser
+		User loggedInUser = (User) userServ.loadUserByUsername(auth.getName());
+		
+		
+		Notification notifToAprove = notifServ.findNotifByNotifId(notifId);
+		
+			if(notifToAprove.getFirstText().contains("Candidate")) {
+				List<Message> messagesToApprove = notifToAprove.getMessages();
+				User userToApprove = (User) userServ.loadUserByUsername(messagesToApprove.get(1).getMessage());
+				System.out.println("Check user to approve ======> " + userToApprove.getUsername());
+				
+				if(userServ.getAllPendingUsersByAgencyId(agency.getAgencyId()) != null) {
+					List<User> pendingUsersList = userServ.getAllPendingUsersByAgencyId(agency.getAgencyId());
+					for(User pendingUser : pendingUsersList) {
+						System.out.println("Pending user ----------> " + pendingUser.getUsername());
+					}
+					if(!pendingUsersList.contains(userToApprove)) {
+						notifToAprove.setHasApprove(false);	
+						System.out.println("in the false approve");
+						return "redirect:/agency/profile";
+					}
+				}
+
+		
+				//we set the notification is_read to true
+				notifToAprove.setRead(true);
+				
+				List<Message> getMessages = messServ.findMessagesByNotificationId(notifToAprove.getNotificationId());
+				String candidateName = getMessages.get(1).getMessage();
+				User candidate = (User) userServ.loadUserByUsername(candidateName.toLowerCase());
+				
+				//add the retrived user to the affiliated users of the agency
+				List<User> affiliatedUsers = userServ.getAllAffiliatedUsersByAgencyId(agency.getAgencyId());
+				candidate.setOneAgency(agency);
+				affiliatedUsers.add(candidate);
+				agency.setAffiliatedUsers(affiliatedUsers);
+				
+				
+				//remove the recently affiliated user from the pending affiliation users list
+				List<User> pendingUsers = userServ.getAllPendingUsersByAgencyId(agency.getAgencyId());
+				pendingUsers.remove(candidate);
+				agency.setPendingUsers(pendingUsers);
+				candidate.setPendingAgency(null);
+		
+				//give a new notification for the candidate that he was accepted				
+				Message textMessage = new Message ("Agency");
+				Message agencyName = new Message(agency.getAgencyName());
+				long agencyID = agency.getAgencyId();
+				Message agencyShortHref = new Message("/agencyProfile?id=" + Long.toString(agencyID));		
+				Message agencyLongText = new Message("accepted your request to affiliate.");
+				List<Message> messageList = new ArrayList<>();
+				messageList.add(0, textMessage);
+				messageList.add(1, agencyName);
+				messageList.add(2, agencyShortHref);
+				messageList.add(3, agencyLongText);
+								
+				Notification candidateAccepted = new Notification(messageList,false,false,textMessage.getMessage(), new Date());
+				List<Notification> candidateNotifs = notifServ.findNotificationsByUserId(candidate.getUserId());
+				candidateNotifs.add(candidateAccepted);
+								
+				textMessage.setNotification(candidateAccepted);
+				agencyName.setNotification(candidateAccepted);
+				agencyShortHref.setNotification(candidateAccepted);
+				agencyLongText.setNotification(candidateAccepted);
+				
+				//set the notification to the person so Hibernate can persist
+				Person candidatePerson = persServ.findPersonByUserId(candidate.getUserId());
+				candidatePerson.setNotifications(candidateNotifs);
+				candidatePerson.setUnreadNotifs(true);
+				
+				//give also a new notification to the agency admin ?
+				
+				
+				
+				notifServ.saveNotif(candidateAccepted);				
+				userServ.save(candidate);
+				agencyServ.saveAgency(agency);
+				
+				List<Notification> reverseCandidateNotifs = notifServ.reverseFindNotificationsByUserId(candidate.getUserId());
+				
+				model.addAttribute("userNotifs", reverseCandidateNotifs);				
+				
+				
+				
+			}
 		
 		
 		
 		return "redirect:/agency/profile";
-		
 	}
+	
+	@GetMapping(value="/disaffiliate")
+	public String disaffiliateCandidate(@RequestParam("id") long agencyId, Model model,  Authentication auth ) {
+		
+		if(auth == null) {
+			return "user/login";
+		}
+		
+		User user = (User) userServ.loadUserByUsername(auth.getName());
+		Agency agency = agencyServ.findAgencyByID(agencyId);
+		
+		User agencyAdmin = (User) userServ.loadUserByUsername(agency.getAdminName());
+		Person agencyPerson = persServ.findPersonByUserId(agencyAdmin.getUserId());
+		List<Notification> agencyPersonNotifs = notifServ.findNotificationsByUserId(agencyAdmin.getUserId());
+		
+		System.out.println("where my users at? ----> " + user.getUsername());
+		Person loggedInPerson = persServ.findPersonByUserId(user.getUserId());
+		List<Notification> loggedInPersonNotifs = notifServ.findNotificationsByUserId(user.getUserId());
+		
+		
+		//send notification to agency admin that the user has dissafliated
+		
+		//create notification object with messages for agency admin
+		long userId = user.getUserId();
+		Message shortHref = new Message("/agency/cprofile?id=" + Long.toString(userId));
+		Message messageText = new Message("Candidate");
+		Message longText = new Message("has been  disaffiliated from " + agency.getAgencyName() + ".");
+		Message nameText = new Message(user.getUsername());
+		List<Message> adminMessages = new ArrayList<>();
+		adminMessages.add(0, messageText);
+		adminMessages.add(1, nameText);
+		adminMessages.add(2, shortHref);
+		adminMessages.add(3, longText);		
+		Notification agencyNotif = new Notification(adminMessages, false,false, messageText.getMessage(), new Date());
+		messageText.setNotification(agencyNotif);
+		longText.setNotification(agencyNotif);
+		nameText.setNotification(agencyNotif);
+		shortHref.setNotification(agencyNotif);
+		
+		//add notification to the list of agency admin notifications
+		List<Notification> agencyNotifs = agencyPerson.getNotifications();
+		agencyNotifs.add(agencyNotif);
+		
+		//set notification to agency admin
+		agencyPerson.setNotifications(agencyNotifs);
+		agencyPerson.setUnreadNotifs(true);
+		notifServ.saveNotif(agencyNotif);
+		persServ.save(agencyPerson);
+		userServ.save(agencyAdmin);
+		
+		//send notification to logged in user that he dissafliated 
+		
+		//create notification object with messages for user
+		long agencyAdminId = agency.getAgencyId();
+		shortHref = new Message("/agencyProfile?id=" + Long.toString(agencyAdminId));
+		messageText = new Message("Agency");
+		longText = new Message("is no longer affiliated with you. ");
+		nameText = new Message(agency.getAgencyName());
+		List<Message> userMessages = new ArrayList<>();
+		adminMessages.add(0, messageText);
+		adminMessages.add(1, nameText);
+		adminMessages.add(2, shortHref);
+		adminMessages.add(3, longText);		
+		Notification userNotif = new Notification(userMessages, false,false, messageText.getMessage(), new Date());
+		messageText.setNotification(userNotif);
+		longText.setNotification(userNotif);
+		nameText.setNotification(userNotif);
+		shortHref.setNotification(userNotif);
+		
+		//add notification to the list of user notifications
+		List<Notification> userNotifs = loggedInPerson.getNotifications();
+		userNotifs.add(userNotif);
+		
+		//set notification to agency admin
+		loggedInPerson.setNotifications(userNotifs);
+		loggedInPerson.setUnreadNotifs(true);
+		
+		
+		//make one_agency null for logged in user 
+		user.setOneAgency(null);
+		
+		notifServ.saveNotif(userNotif);
+		
+		persServ.save(loggedInPerson);
+		userServ.save(user);
+		agencyServ.saveAgency(agency);
+		
+		List<Notification> reverseUserNotifs = notifServ.reverseFindNotificationsByUserId(user.getUserId());
+	
+		model.addAttribute("userNotifs", reverseUserNotifs);
+
+
+		
+		
+		return "redirect:/person/sprofile";
+	}
+	
 	
 	@PostMapping(value="/editAgencyDetails")
 	public String editAgencyDetails (@Valid @ModelAttribute("agency") Agency patchAgency,
@@ -1350,6 +1745,61 @@ public class AgencyController {
 		
 		return "redirect:/agency/profile";
 	}
+	
+	
+	@GetMapping("/profilePDF")
+	public ResponseEntity<?> displayProfilePDF(Agency agency) {
+		
+		ProfileImg img = null;
+		
+		List<CompanyDoc> compdocs = new ArrayList<CompanyDoc>();
+
+		List<Job> agencyJobs = new ArrayList<Job>();
+
+		List<Person> affiliatedCandidates = new ArrayList<Person>();
+
+		
+		if(profileImgServ.getLastAgencyPic(agency.getAgencyId()) != null) {
+			img = profileImgServ.getLastAgencyPic(agency.getAgencyId());
+		}
+		
+		if(jobServ.findJobsByAgencyId(agency.getAgencyId()) != null) {
+			agencyJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
+		}
+		
+		if(companyDocServ.getCompanyDocsByAgencyId(agency.getAgencyId()) != null) {
+			companyDocServ.getCompanyDocsByAgencyId(agency.getAgencyId());
+		}
+		
+		
+		if(userServ.getAllAffiliatedUsersByAgencyId(agency.getAgencyId()) != null) {
+			List<User> affiliatedUsersList = userServ.getAllAffiliatedUsersByAgencyId(agency.getAgencyId());
+			affiliatedCandidates = new ArrayList<>();
+			Person affiliatedPerson = new Person ();
+			for (User affUser : affiliatedUsersList) {
+				affiliatedPerson = persServ.findPersonByUserId(affUser.getUserId());
+				affiliatedCandidates.add(affiliatedPerson);
+				if(profileImgServ.getLastProfilePic(affiliatedPerson.getPersonId()) != null) {
+					ProfileImg lastImg = profileImgServ.getLastProfilePic(affiliatedPerson.getPersonId());
+					affiliatedPerson.setLastImgId(lastImg.getPicId());
+				}
+		
+		
+			
+			}
+			
+		}
+
+		ByteArrayInputStream ptf = ProfileToPDF.exportAgencyProfile(agency, img, agencyJobs, affiliatedCandidates, compdocs); 
+
+		return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF)
+				.header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename =\"" + "profilePDF" + "\"")
+				.body(new InputStreamResource(ptf));
+		
+
+	
+	}
+
 	
 
 

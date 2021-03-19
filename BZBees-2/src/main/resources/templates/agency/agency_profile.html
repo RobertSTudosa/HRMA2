@@ -24,15 +24,94 @@
 				<h3> <span th:text="${agency.agencyName}">AGENCY</span>'s profile</h3>
 				
 				<div id="right_buttons">
-					<a th:if="${#authentication.name} != ${agency.user.userName}"	
-					id="affiliate" th:href="@{/agency/affiliate}"
+				
+				<a 	sec:authorize="isAnonymous()" 
+					id="affiliate" th:href="@{/login}"
 									name="affiliation">
 								<span class="iconify" data-icon="whh:affiliate" data-inline="false"></span>
 							get affiliated
-					</a>	
+					</a>
+					<a 	sec:authorize="isAuthenticated()"
+						id="affiliate"
+						th:if ="${match} == true" 
+									name="affiliation">
+								<span 								
+								class="iconify" data-icon="ic:outline-pending-actions" data-inline="false"></span>
+							pending affiliation
+					</a>
+					
+					<div sec:authorize="isAuthenticated()" 
+						th:if="${userAccount.oneAgency} != null"
+						id="affiliate" name="affiliation">
+						<a th:if="${userAccount.oneAgency.agencyId} == ${agency.agencyId}" 
+							style="color:orange;" 
+							id="disaffiliate" onclick="disaffiliate()" href="" >
+							<span class="iconify" data-icon="whh:affiliate" data-inline="false" style="color:orange;"></span>
+					
+						disaffiliate</a>
+						
+						<script th:inline="javascript" type="text/javascript">
+						
+							var anchorTag = document.getElementById('disaffiliate');
+									
+									function disaffiliate() {
+        								alert('disaffiliate was clicked');
+        								var agencyId = [[${agency.agencyId}]]; 
+        								event.preventDefault();
+        								
+				
+										$.ajax({
+											type:"GET",
+											url:"/agency/disaffiliate?id=" + agencyId,
+											success:function(data) {
+												$( "#affiliate").load(window.location.href + " #affiliate" );
+												$( ".profile_docs").load(window.location.href + " .profile_docs" );
+												$( "#userNotification").load(window.location.href + " #userNotification" );
+												$( ".notifications-list").load(window.location.href + " .notifications-list" );
+												
+											}
+										});
+    								}
+						
+						</script>
+					</div>
+					
+					<div sec:authorize = "isAuthenticated()" th:if="${#authentication.name} != ${agency.user.userName}">					
+					<a 	th:if ="${match} == false" th:unless="${userAccount.oneAgency} != null"
+					id="affiliate" onclick="affiliate()" href=""
+									name="affiliation">
+								<span class="iconify" data-icon="whh:affiliate" data-inline="false"></span>
+							get affiliated
+					</a>
+					
+					<script th:inline="javascript" type="text/javascript">
+							var anchorTag = document.getElementById('affiliate');
+									
+									function affiliate() {
+        								alert('affiliate was clicked');
+        								var agencyId = [[${agency.agencyId}]]; 
+        								event.preventDefault();
+        								
+				
+										$.ajax({
+											type:"GET",
+											url:"/agency/affiliate?id=" + agencyId,
+											success:function(data) {
+												$( "#affiliate").load(window.location.href + " #affiliate" );
+												$( ".profile_docs").load(window.location.href + " .profile_docs" );
+												$( "#userNotification").load(window.location.href + " #userNotification" );
+												$( ".notifications-list").load(window.location.href + " .notifications-list" );
+											}
+										});
+    								}
+					
+					</script>
+					
+					</div>
+						
 					<p>|</p>
 					
-					<a id="export" th:href="@{/person/profilePDF}"  target="_blank">
+					<a id="export" th:href="@{/agency/profilePDF}"  target="_blank">
 							<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
 		<!-- 					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>	 -->				
 						export to pdf
@@ -69,10 +148,10 @@
 			
 
 							<ul>
-								<li th:if="${agency.lastImageId != null}">
+								<li th:if="${agency.lastAgencyImageId != null}">
 								
-									<img th:if="${agency.lastImageId > 0}"
-										th:src="@{/agency/img(imgId=${agency.lastImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
+									<img th:if="${agency.lastAgencyImageId > 0}"
+										th:src="@{/agency/img(imgId=${agency.lastAgencyImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
 								</li>
 
 							</ul> 
@@ -89,10 +168,10 @@
 			
 
 							<ul>
-								<li th:if="${agency.lastImageId != null}">
+								<li th:if="${agency.lastAgencyImageId != null}">
 								
-									<img th:if="${agency.lastImageId > 0}"
-										th:src="@{/agency/img(imgId=${agency.lastImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
+									<img th:if="${agency.lastAgencyImageId > 0}"
+										th:src="@{/agency/img(imgId=${agency.lastAgencyImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
 								</li>
 
 							</ul> 
@@ -109,10 +188,10 @@
 			
 
 							<ul>
-								<li th:if="${agency.lastImageId != null}">
+								<li th:if="${agency.lastAgencyImageId != null}">
 								
-									<img th:if="${agency.lastImageId > 0}"
-										th:src="@{/agency/img(imgId=${agency.lastImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
+									<img th:if="${agency.lastAgencyImageId > 0}"
+										th:src="@{/agency/img(imgId=${agency.lastAgencyImageId}, agencyId=${agency.agencyId})}" style="size: 10%">
 								</li>
 
 							</ul> 
@@ -298,6 +377,12 @@
 
 				</div>
 				
+					<div sec:authorize="isAuthenticated()" 
+					th:if="${#authentication.name} != ${agency.user.userName}"					
+					class="profile_docs">
+					<p class="profile_docs_header" th:text="${agencyMessage}" style="font-style:italic;"></p>
+					</div>
+									
 				<div sec:authorize="isAuthenticated()"
 					th:if="${#authentication.name} == ${agency.user.userName}"					
 					class="profile_docs">
@@ -610,14 +695,14 @@
 					
                         <div id="agency-avatar">
 							
-							<a th:if="${agency.lastImageId < 1 }">
+							<a th:if="${agency.lastAgencyImageId < 1 }">
 								<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
 							</a>
 							
 							
 							
-							<img th:if="${agency.lastImageId > 0}"
-										th:src="@{/agency/img(imgId=${agency.lastImageId}, agencyId=${agency.agencyId})}">                         
+							<img th:if="${agency.lastAgencyImageId > 0}"
+										th:src="@{/agency/img(imgId=${agency.lastAgencyImageId}, agencyId=${agency.agencyId})}">                         
                            
                            <div id="agency-avatar-text" 
                            		
@@ -878,233 +963,8 @@
 			
  			
  
- <hr class="new_line"> -->
+ <hr class="new_line">
 
-<!-- 			<div class="skills_lang_desktop">
-
-				<div  id="skills_profile">
-
-					<div class="profile_headline">
-						<div class="profile_work_addJob">
-
-							<h3>skills</h3>
-
-
-							<button class="btn btn-sm btn-warning" id="addSkill"
-								data-toggle="modal" data-target="#addSkillModal">
-								add skill <span class="iconify" data-icon="bi:node-plus"
-									data-inline="false"></span>
-							</button>
-
-
-							ADD SKILL MODAL
-							<div class="modal fade" id="addSkillModal" tabindex="-21"
-								aria-labelledby="editJobLabel">
-
-								<div class="modal-dialog ">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">Edit</h5>
-
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-
-										<form class="register_form" th:action="@{/person/addSkillModal}"
-											th:object="${skill}" method="POST">
-
-											<div class="input_elements">
-
-												<div class="input_field">
-													<input th:field="${skill.skillName}" type="text"
-														placeholder="skill name"> <label>skill
-														name</label>
-												</div>
-
-												<div class="input_field">
-													<textarea id="skill" th:field="${skill.skillDescription}"
-														placeholder="short description, tools used, location etc"></textarea>
-													<label>a good description:</label>
-												</div>
-
-												<button type="submit">
-													<p>add skill</p>
-													<span class="iconify" id="add_mobile"
-														data-icon="ant-design:plus-circle-filled"
-														data-inline="false"></span> <span class="iconify"
-														id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
-												</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-
-							END ADD SKILL MODAL
-
-						</div>
-						
-		                TRIGGER THE EDIT SKILLS MODAL
-		                  <button data-toggle="modal" data-target="#editSkillsModal" >
-			                <img src="../css/graphic/edit.png" alt="user" />
-			              </button>
-
-
-
-
-					</div>
-					
-					
-					<hr class="new_line"> 
-					
-					
-					<div class="skill_profile">
-						<table class="table table-striped">
-							<thead>
-
-							</thead>
-							<tbody>
-								<tr th:each="aSkill : ${skillsList}">
-									<th th:text="${aSkill.skillName}">Java</th>
-									<td th:text="${aSkill.skillDescription}">Basic knowledge</td>
-									<td><a id="deleteButton"
-										th:href="@{/person/deleteSkillbyProfile(id=${aSkill.skillId})}"
-										onClick="if (! (confirm('Are you sure you want to delete this job?'))) return false">
-											<span class="iconify" data-icon="jam:trash-alt-f"
-											data-inline="false"></span>
-									</a></td>
-								</tr>
-							</tbody>
-						</table>
-
-					</div>
-
-
-
-
-				</div>
-
-
-				<div  id="lang_profile">
-
-					<div class="profile_headline">
-
-						<div class="profile_work_addLang">
-
-							<h3>language</h3>
-
-
-							<button class="btn btn-sm btn-warning" id="addLang"
-								data-toggle="modal" data-target="#addLangModal">
-								add lang <span class="iconify" data-icon="bi:node-plus"
-									data-inline="false"></span>
-							</button>
-			
-					ADD LANG MODAL STARTS HERE 
-					<div class="modal fade" id="addLangModal" tabindex="-21"
-								aria-labelledby="editLangLabel">
-
-								<div class="modal-dialog ">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">Edit</h5>
-
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										
-										
-											<form class="register_form" th:action="@{/person/addLangModal}" th:object="${lang}"
-												method="POST">
-						
-										
-										
-										
-										<div>
-											
-												<div class="input_elements">
-													<div class="input_field">
-														<input type="text" th:field="${lang.name}" placeholder="language" class="select_lang">
-														<label>language</label>
-													</div>
-													
-													 <div class="input_field">
-														<select th:field="${lang.level}" class="select_lang" placeholder="please choose one level">
-															<option th:value="LevelBasic">Basic</option>
-															<option th:value="LevelCommunicative">Communicative</option>
-															<option th:value="LevelAdvanced">Advanced</option>
-															<option th:value="LevelNative">Native</option>
-														</select>
-														<label>language level</label>
-													</div>
-							
-							
-													</div>
-																
-												
-												
-									
-										</div>
-										
-												<br>
-											<div class="input_elements">
-												<button id="addlanguage" type="submit" >
-													<p>add language</p>
-											<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
-											<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
-											</button>
-											</div>
-											<br><br><br><br>
-										
-										
-										</form>
-																
-										
-									</div>
-								</div>
-							</div>
-										
-
-						</div>
-
-						
-
-					</div>
-					
-					<hr class="new_line">
-
-					<div class="lang_profile">
-						<table class="table table-striped">
-							<thead>
-
-							</thead>
-							<tbody>
-								<tr th:each="aLang : ${langList}">
-									<th th:text="${aLang.name}" scope="row">English</th>
-									<td th:text="${aLang.level}">Communicative</td>
-									<td><a id="deleteButton"
-										th:href="@{/person/deleteLangbyProfile(id=${aLang.langId})}"
-										onClick="if (! (confirm('Are you sure you want to delete this job?'))) return false">
-											<span class="iconify" data-icon="jam:trash-alt-f"
-											data-inline="false"></span>
-									</a></td>
-							</tbody>
-						</table>
-
-					</div>
-
-				</div>
-
-			</div>
-
-
-
-
- -->
  
 
  

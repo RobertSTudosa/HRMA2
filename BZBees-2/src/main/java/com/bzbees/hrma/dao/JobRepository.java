@@ -51,7 +51,13 @@ public interface JobRepository extends JpaRepository<Job, Long>{
 					+ "WHERE the_agency_agency_id = ?1 ;")
 	public List<Job> findJobsByAgencyId(long agencyId);
 	
-	
+	@Query(nativeQuery = true, 
+			value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
+					+ " job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags, "
+					+ "	the_agency_agency_id, last_image_id "
+					+ "	FROM jobs "
+					+ "	WHERE the_agency_agency_id is NOT NULL")
+	public List<Job> findJobsPostedByAgencies();
 	
 
 }

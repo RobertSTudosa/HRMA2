@@ -19,19 +19,41 @@
 	</header>
 
 	<main>
+	
 		<section th:object="${person}" class="profile">
-			
+				
 			<h6 th:text="${success}"></h6>
 			<h6 th:text="${passChanged}"></h6>
 			
-			<h3>Profile</h3>
+			<div class="profile_above_line">
+				<h3> <span th:text="${userAccount.userName}">AGENCY</span>'s profile</h3>
+				
+				<div id="right_buttons">
+					<a th:if="${#authentication.name} != ${userAccount.userName}"	
+					id="affiliate" 
+									name="affiliation">
+								<span class="iconify" data-icon="whh:affiliate" data-inline="false"></span>
+							get affiliated
+					</a>	
+					<p>|</p>
+					
+					<a id="export" th:href="@{/person/profilePDF}"  target="_blank">
+							<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
+		<!-- 					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>	 -->				
+						export to pdf
+					</a>
+				</div>
+				
+				
+						
+			</div>
+			
+			
 			<hr class="new_line">
 			
 			<div class="profile_top">
 				<div class="profile_details">
 					<div class="profile_avatar">
-
-
 
 						<!-- this is where the profile img modal begins -->
 						<div th:if="${#authentication.name} == ${userAccount.userName}" 
@@ -219,7 +241,7 @@
 										th:utext="${spanFB}" th:href="${aSocialMedia.urlAddress}" target="_blank">
 											social media address</a>
 											<a sec:authorize="isAuthenticated()" 
-												th:if="${#authentication.name} == ${agency.user.userName}"
+												th:if="${#authentication.name} == ${userAccount.userName}"
 											th:href="@{/person/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
 											id="minus-socialFB"	></span></a> 
 
@@ -230,7 +252,7 @@
 										th:utext="${spanLN}" th:href="${aSocialMedia.urlAddress}" target="_blank">
 											social media address</a>
 										<a sec:authorize="isAuthenticated()" 
-										th:if="${#authentication.name} == ${agency.user.userName}" 
+										th:if="${#authentication.name} == ${userAccount.userName}"
 										th:href="@{/person/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
 											id="minus-socialLN"	></span></a>  
 
@@ -242,7 +264,7 @@
 										th:utext="${spanTW}" th:href="${aSocialMedia.urlAddress}" target="_blank">
 											social media address</a>
 										<a sec:authorize="isAuthenticated()" 
-										th:if="${#authentication.name} == ${agency.user.userName}"
+										th:if="${#authentication.name} == ${userAccount.userName}"
 										th:href="@{/person/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"> <span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
 											id="minus-socialTW"	></span></a>   
 
@@ -254,7 +276,7 @@
 										th:utext="${spanIN}" th:href="${aSocialMedia.urlAddress}" target="_blank">
 											social media address</a>
 										<a sec:authorize="isAuthenticated()" 
-										th:if="${#authentication.name} == ${agency.user.userName}" 
+										th:if="${#authentication.name} == ${userAccount.userName}"
 										th:href="@{/person/deleteSocialMedia(url=${aSocialMedia.urlAddress})}"><span class="iconify" data-icon="ant-design:minus-circle-outlined" data-inline="false"
 											id="minus-socialIG"	></span></a>   
 
@@ -967,15 +989,8 @@
 
 			<div class="login-buttons">
 
-				<a th:href="@{/person/profilePDF}"  target="_blank">
-				<button  type="submit" class="button_login" style="width:95%;" >
-					<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
-					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>
-					<p>export profile<p>
-				</button>
-				</a>
 				
-				<form th:action="@{/person/finishAccount}" th:object="${person}" method="post">
+<!-- 				<form th:action="@{/person/finishAccount}" th:object="${person}" method="post">
 					
 					<button th:if="${#authentication.name} == ${userAccount.userName}" 
 					type="submit" class="button_login" style="width:95%;" >
@@ -984,7 +999,7 @@
 					<p>save</p>
 					</button>
 				</form>
-				
+ -->				
 
 			</div>
 

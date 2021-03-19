@@ -45,6 +45,7 @@ public class Person implements Serializable {
 	
 	private long lastImgId;
 	
+	private boolean unreadNotifs = false;	
 		
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
 			fetch = FetchType.LAZY)
@@ -103,17 +104,7 @@ public class Person implements Serializable {
 	@OneToOne(mappedBy="person")
 	private User user;
 	
-	
-	
-
-	public User getUser() {
-		return user;
-	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	private boolean isAffiliatedToAgency = false;
 
 	private String location;
 
@@ -152,8 +143,6 @@ public class Person implements Serializable {
 	}
 	
 
-
-
 	public Person(long personId, String firstName, String lastName, String email, int appStatus,
 			String employmentStatus, String location, String currentJob, boolean privateCurrentjob,
 			boolean activeJob, int workExperience, @FutureOrPresent Date availability, Date birthDate,
@@ -177,6 +166,15 @@ public class Person implements Serializable {
 		this.statusStartDate = statusStartDate;
 		this.startJob = startJob;
 		this.endJob = endJob;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
@@ -454,6 +452,46 @@ public class Person implements Serializable {
 	public void setSocialMedia(List<SocialMedia> socialMedia) {
 		this.socialMedia = socialMedia;
 	}
+
+
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
+
+
+	public void setPersonId(long personId) {
+		this.personId = personId;
+	}
+
+
+	public boolean isUnreadNotifs() {
+		return unreadNotifs;
+	}
+
+
+	public void setUnreadNotifs(boolean unreadNotifs) {
+		this.unreadNotifs = unreadNotifs;
+	}
+
+
+
+
+	public boolean isAffiliatedToAgency() {
+		return isAffiliatedToAgency;
+	}
+
+
+
+
+	public void setAffiliatedToAgency(boolean isAffiliatedToAgency) {
+		this.isAffiliatedToAgency = isAffiliatedToAgency;
+	}
+	
 	
 	
 

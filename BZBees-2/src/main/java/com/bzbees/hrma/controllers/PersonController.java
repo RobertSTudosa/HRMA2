@@ -35,6 +35,7 @@ import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Language;
+import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
 import com.bzbees.hrma.entities.Skill;
@@ -45,6 +46,7 @@ import com.bzbees.hrma.services.DocService;
 import com.bzbees.hrma.services.ImageResize;
 import com.bzbees.hrma.services.JobService;
 import com.bzbees.hrma.services.LanguageService;
+import com.bzbees.hrma.services.NotificationService;
 import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.ProfileImgService;
 import com.bzbees.hrma.services.ProfileToPDF;
@@ -53,7 +55,7 @@ import com.bzbees.hrma.services.SocialMediaService;
 import com.bzbees.hrma.services.UserService;
 
 @Controller
-@SessionAttributes({ "person", "userAccount","picList", "lastPicList", "jobList","socialMediaList"})
+@SessionAttributes({ "person", "userAccount","picList", "lastPicList", "jobList","socialMediaList","userNotifs"})
 //, "skillsList", "langList", "docList",  
 @RequestMapping("/person")
 public class PersonController {
@@ -87,6 +89,9 @@ public class PersonController {
 	
 	@Autowired
 	SocialMediaService socialMediaServ;
+	
+	@Autowired
+	NotificationService notifServ;
 
 	
 	@GetMapping("/sprofile")
@@ -145,7 +150,7 @@ public class PersonController {
 		}
 		
 		
-		//get the agency is any is associated with current user 
+		//get the agency if any is associated with current user 
 		if(agencyServ.findAgencyByUserId(user.getUserId()) !=null) {
 			Agency agency = agencyServ.findAgencyByUserId(user.getUserId());
 			model.addAttribute("agency", agency);
@@ -156,7 +161,6 @@ public class PersonController {
 			System.out.println("NEW Agency in the PersonController is added ");
 		}
 
-		
 
 		model.addAttribute("picList", personPics);
 		model.addAttribute("docList", personDocs);
@@ -229,6 +233,16 @@ public class PersonController {
 			
 			model.addAttribute("socialMediaList", socList);
 		}
+		
+		
+		//get the logged in user notifs
+		if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
+			List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
+			model.addAttribute("userNotifs", allUserNotif);
+		} else {
+			model.addAttribute("userNotifs", new ArrayList<>());
+		}
+
 		
 		
 
@@ -635,6 +649,7 @@ public class PersonController {
 		    
 		    System.out.println("newbytes ====== new money " + newBytes.toString());   
 		    
+		    
 			ProfileImg smallImg = new ProfileImg(imgName, img.getContentType(), newBytes);
 
 			List<ProfileImg> picList = profileImgServ.getPicsByPersonId(person.getPersonId());
@@ -677,14 +692,58 @@ public class PersonController {
 		return null;
 
 	}
-	
+		
 	@GetMapping("/profilePDF")
 	public ResponseEntity<?> displayProfilePDF(Person person) {
-		ByteArrayInputStream ptf = ProfileToPDF.exportProfile(person);
+		
+		ProfileImg img = null;
+		
+		List<Doc> docs = new ArrayList<Doc>();
+
+		List<Job> jobs = new ArrayList<Job>();
+
+		List<Skill> skills = new ArrayList<Skill>();
+
+		List<Language> langs = new ArrayList<Language>();
+		
+		
+		
+		if(profileImgServ.getLastProfilePic(person.getPersonId()) != null) { 
+		
+			if(profileImgServ.getLastProfilePic(person.getPersonId()) != null) {
+				img = profileImgServ.getLastProfilePic(person.getPersonId());
+			} 
+			
+			if(docServ.getDocsByPersonId(person.getPersonId()) != null) {
+				docs = docServ.getDocsByPersonId(person.getPersonId());
+			
+			}
+			
+			if(jobServ.getJobsByPersonId(person.getPersonId()) != null) {
+				jobs = jobServ.getJobsByPersonId(person.getPersonId());
+			}
+			
+			if(langServ.getLangsSavedByPersonId(person.getPersonId()) != null) {
+				langs = langServ.getLangsSavedByPersonId(person.getPersonId());
+			}
+			
+			if(skillServ.getSavedSkillsByPersonId(person.getPersonId()) != null) {
+				skills = skillServ.getSavedSkillsByPersonId(person.getPersonId());
+			}
+			
+			
+		
+		}	
+		
+
+		ByteArrayInputStream ptf = ProfileToPDF.exportProfile(person, img, docs, jobs, skills, langs);
 
 		return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF)
 				.header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename =\"" + "profilePDF" + "\"")
 				.body(new InputStreamResource(ptf));
+		
+
+	
 	}
 	
 	@PostMapping("/finishAccount")
@@ -823,7 +882,6 @@ public class PersonController {
 		if(url.contains("https://www.facebook.com/")) {
 			
 			String name = "FACEBook";
-			System.out.println("Hey Zucke? Are you here? ");
 			
 			for(SocialMedia link : socialMediaServ.getSocialMediaByPersonId(person.getPersonId())) {
 				if(link.getName().contains(name)) {

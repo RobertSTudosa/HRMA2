@@ -1120,11 +1120,55 @@ public class UserController {
 	
 	@GetMapping("/profilePDF")
 	public ResponseEntity<?> displayProfilePDF(Person person) {
-		ByteArrayInputStream ptf = ProfileToPDF.exportProfile(person);
+
+		ProfileImg img = null;
+		
+		List<Doc> docs = new ArrayList<Doc>();
+
+		List<Job> jobs = new ArrayList<Job>();
+
+		List<Skill> skills = new ArrayList<Skill>();
+
+		List<Language> langs = new ArrayList<Language>();
+		
+		
+		
+		if(profileImgServ.getLastProfilePic(person.getPersonId()) != null) { 
+		
+			if(profileImgServ.getLastProfilePic(person.getPersonId()) != null) {
+				img = profileImgServ.getLastProfilePic(person.getPersonId());
+			}
+			
+			if(docServ.getDocsByPersonId(person.getPersonId()) != null) {
+				docs = docServ.getDocsByPersonId(person.getPersonId());
+			
+			}
+			
+			if(jobServ.getJobsByPersonId(person.getPersonId()) != null) {
+				jobs = jobServ.getJobsByPersonId(person.getPersonId());
+			}
+			
+			if(langServ.getLangsSavedByPersonId(person.getPersonId()) != null) {
+				langs = langServ.getLangsSavedByPersonId(person.getPersonId());
+			}
+			
+			if(skillServ.getSavedSkillsByPersonId(person.getPersonId()) != null) {
+				skills = skillServ.getSavedSkillsByPersonId(person.getPersonId());
+			}
+			
+		}	
+		
+
+		ByteArrayInputStream ptf = ProfileToPDF.exportProfile(person, img, docs, jobs, skills, langs);
 
 		return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF)
 				.header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename =\"" + "profilePDF" + "\"")
 				.body(new InputStreamResource(ptf));
+
+			
+			
+		
+		
 	}
 	
 	@PostMapping("/finishAccount")

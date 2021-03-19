@@ -60,16 +60,16 @@ public interface ProfileImgRepository extends CrudRepository<ProfileImg, Long> {
 	 @Query(nativeQuery = true,
 			 value = "select profile_img.pic_id, pic_name, pic_type, data " + 
 			 			" FROM profile_img " + 
-			 			" left outer join job_pics ON profile_img.pic_id = job_pics.pic_id " +	
-			 			" where job_pics.job_id = ?1  ")
+			 			" left outer join jobs_pics ON profile_img.pic_id = jobs_pics.pic_id " +	
+			 			" where jobs_pics.job_id = ?1  ")
 	 public List<ProfileImg> getJobPicsByJobId (long jobId);
 	 
 	 
 	 @Query(nativeQuery= true,
 			 value="select profile_img.pic_id , pic_name, pic_type, data " + 
 			 		"	FROM profile_img " + 
-			 		"	left outer join job_pics ON profile_img.pic_id = job_pics.pic_id " + 
-			 		"  	left outer join jobs ON job_pics.job_id = jobs.job_id   " +
+			 		"	left outer join jobs_pics ON profile_img.pic_id = jobs_pics.pic_id " + 
+			 		"  	left outer join jobs ON jobs_pics.job_id = jobs.job_id   " +
 			 		" 	where jobs.job_id = ?1 		" + 
 			 		" ORDER BY pic_id DESC LIMIT 1;")  
 	public ProfileImg getLastJobPic(long jobId);

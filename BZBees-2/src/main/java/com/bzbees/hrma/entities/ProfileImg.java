@@ -54,7 +54,7 @@ public class ProfileImg implements Serializable {
 	
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
 			fetch = FetchType.LAZY)
-	@JoinTable(name="job_pics",
+	@JoinTable(name="jobs_pics",
 			joinColumns=@JoinColumn(name="pic_id"),
 			inverseJoinColumns=@JoinColumn(name="job_id"))
 	private List<Job> jobs;

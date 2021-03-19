@@ -56,7 +56,7 @@ public class Agency implements Serializable {
 	
 	private String phoneNumber;
 	
-	private long lastImageId;
+	private long lastAgencyImageId;
 	
 	
 	private String shortDescription;
@@ -71,6 +71,8 @@ public class Agency implements Serializable {
     private boolean credentialsNonExpired = true;
 	
 	private boolean active=false;
+	
+	
 	
 	
 	@OneToMany(
@@ -107,6 +109,13 @@ public class Agency implements Serializable {
 	    )
 	private List<User> affiliatedUsers = new ArrayList<>();
 	
+	@OneToMany(
+	        mappedBy = "pendingAgency",
+	        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH},
+	        orphanRemoval = true
+	    )
+	private List<User> pendingUsers = new ArrayList<>();
+	
 	
 	@OneToMany(
 	        mappedBy = "theAgency",
@@ -138,7 +147,7 @@ public class Agency implements Serializable {
 		this.phoneNumber = phoneNumber;
 		this.shortDescription = shortDescription;
 		this.active = active;
-		this.lastImageId=this.setAutoLastImageId();
+		this.lastAgencyImageId=this.setAutoLastImageId();
 		
 	}
 
@@ -421,25 +430,25 @@ public class Agency implements Serializable {
 	}
 
 
-	public long getLastImageId() {
-		return lastImageId;
+	public long getLastAgencyImageId() {
+		return lastAgencyImageId;
 	}
 
 
-	public void setLastImageId(long lastImageId) {
+	public void setLastAgencyImageId(long lastImageId) {
 		
-		this.lastImageId = lastImageId;
+		this.lastAgencyImageId = lastImageId;
 	}
 	
 	public long setAutoLastImageId() {
 		
 		if(!this.pics.isEmpty() && this.pics.size() > 0) {
 		
-			 this.lastImageId = this.pics.size()-1;
+			 this.lastAgencyImageId = this.pics.size()-1;
 			 
-			return this.lastImageId;
+			return this.lastAgencyImageId;
 		} 
-			return this.lastImageId = 0;
+			return this.lastAgencyImageId = 0;
 	}
 
 
@@ -450,6 +459,21 @@ public class Agency implements Serializable {
 
 	public void setPostedJobs(List<Job> postedJobs) {
 		this.postedJobs = postedJobs;
+	}
+
+
+	public List<User> getPendingUsers() {
+		return pendingUsers;
+	}
+
+
+	public void setPendingUsers(List<User> pendingUsers) {
+		this.pendingUsers = pendingUsers;
+	}
+	
+	public List<User> removeFromPendingUsers(User user) {
+		this.pendingUsers.remove(user);
+		return this.pendingUsers;
 	}
 
 

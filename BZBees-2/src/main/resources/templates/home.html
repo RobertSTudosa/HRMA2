@@ -43,14 +43,13 @@
 					
                         <div id="agency-avatar">
 							
-							<a th:if="${job.theAgency.lastImageId < 1 }">
+							<a th:if="${job.theAgency.lastAgencyImageId < 0}">
 								<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
-							</a>
+							</a> 
 							
-							
-							
-							<img th:if="${job.theAgency.lastImageId > 0}"
-										th:src="@{/agency/img(imgId=${job.theAgency.lastImageId}, agencyId=${job.theAgency.agencyId})}">                         
+	
+							 <img th:if="${job.theAgency.lastAgencyImageId > 0}"
+										th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">                         
                            
                            <div id="agency-avatar-text" 
                            		
@@ -58,6 +57,7 @@
 								th:text="${job.theAgency.agencyName}">
                            
                            </div>
+                          
                            
                             <div sec:authorize="isAuthenticated()" id="agency-avatar-text">
                             	<div  th:text="'start date: ' + ${#dates.format(job.startDate, 'dd-MMM-yyyy')} " 
@@ -193,16 +193,16 @@
                                 <div id="agencycard-avatar">
                                 
 									<div id="agency-image-container">
-										<a th:if="${aAgency.lastImageId < 1}"
+										<a th:if="${aAgency.lastAgencyImageId < 1}"
 											th:href="@{/agencyProfile(id=${aAgency.agencyId})}">
 											<span 
 											class="iconify" data-icon="whh:profile" data-inline="false">here</span>
 										</a>
 										
-										<a th:if="${aAgency.lastImageId != null}" 
+										<a th:if="${aAgency.lastAgencyImageId != null}" 
 											th:href="@{/agencyProfile(id=${aAgency.agencyId})}">
-											<img th:if="${aAgency.lastImageId > 0}"
-											th:src="@{/agency/img(imgId=${aAgency.lastImageId}, agencyId=${aAgency.agencyId})}">
+											<img th:if="${aAgency.lastAgencyImageId > 0}"
+											th:src="@{/agency/img(imgId=${aAgency.lastAgencyImageId}, agencyId=${aAgency.agencyId})}">
 										</a>
 											
 
