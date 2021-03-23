@@ -404,7 +404,7 @@ public class HomeController {
 				
 
 				
-					
+		model.addAttribute("progressCount", 100);			
 		
 		return "agency/agency_profile";
 	}

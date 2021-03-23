@@ -484,9 +484,14 @@ public class PersonController {
 		
 		Doc doc = docServ.findDocById(id);
 		
+		System.out.println("is the doc in the browser private?" + setDoc.isDocPrivate());
+		
 		doc.setDocPrivate(setDoc.isDocPrivate());
 		docServ.saveDoc(doc);
+		System.out.println("Saving doc " + doc.getDocId() + " id");
+		persServ.save(person);
 		
+		System.out.println("Saving person inside profile");
 		
 		redirAttr.addFlashAttribute("docList", docServ.getDocsByPersonId(person.getPersonId()));
 		

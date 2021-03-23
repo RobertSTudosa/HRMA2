@@ -51,6 +51,14 @@
 					<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
 					<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
 					</button>
+
+
+
+
+
+
+
+
 					</div>
 				</form>
 				</div>
@@ -58,9 +66,10 @@
 
 				<table class="docs_table">
 					<tbody>
-					<tr th:each="aDoc : ${docList}">
+					<tr th:each="aDoc : ${docList}" style="height: 4rem;">
 						<td> <a th:text="${aDoc.docName} " th:href="@{/user/downloadFile(docId=${aDoc.docId})}">English</a></td>
 						<td> <a th:href="@{/user/deleteDoc(id=${aDoc.docId})}"
+								
 								class="btn btn-danger btn-sm"
 								onClick="if (! (confirm('Are you sure you want to delete this job?'))) return false">
 								<span class="iconify" data-icon="jam:trash-alt-f" data-inline="false"></span>

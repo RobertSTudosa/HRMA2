@@ -16,29 +16,59 @@
 
 	<header>
 		 <div th:replace="header::nav"></div>
+		 
+		 
 	</header>
 
 	<main>
 		<section th:object="${agency}" class="profile">
+		
+		
 			<div class="profile_above_line">
+			
 				<h3> <span th:text="${agency.agencyName}">AGENCY</span>'s profile</h3>
+				 
 				
 				<div id="right_buttons">
 				
 				<a 	sec:authorize="isAnonymous()" 
 					id="affiliate" th:href="@{/login}"
 									name="affiliation">
-								<span class="iconify" data-icon="whh:affiliate" data-inline="false"></span>
+								<i id="toSpin" class="fas fa-people-carry fa-2x"></i>
 							get affiliated
 					</a>
 					<a 	sec:authorize="isAuthenticated()"
 						id="affiliate"
 						th:if ="${match} == true" 
 									name="affiliation">
-								<span 								
-								class="iconify" data-icon="ic:outline-pending-actions" data-inline="false"></span>
+								<i id="pending" class="fa fa-2x"></i>
+								
 							pending affiliation
 					</a>
+					
+					<script th:inline="javascript" type="text/javascript">
+						function pendingaffiliation() {
+						  var a;
+						  a = document.getElementById("pending");
+						  a.innerHTML = "&#xf251;";
+						  setTimeout(function () {
+						      a.innerHTML = "&#xf251;";
+						    }, 1000);
+						  setTimeout(function () {
+						      a.innerHTML = "&#xf252;";
+						    }, 2000);
+						  setTimeout(function () {
+						      a.innerHTML = "&#xf253;";
+						    }, 3000);
+						  setTimeout(function () {
+						      a.innerHTML = "&#xf254;";
+						    }, 4000);
+						}
+						pendingaffiliation();
+						setInterval(pendingaffiliation, 5000);
+						
+					
+					</script>
 					
 					<div sec:authorize="isAuthenticated()" 
 						th:if="${userAccount.oneAgency} != null"
@@ -46,16 +76,18 @@
 						<a th:if="${userAccount.oneAgency.agencyId} == ${agency.agencyId}" 
 							style="color:orange;" 
 							id="disaffiliate" onclick="disaffiliate()" href="" >
-							<span class="iconify" data-icon="whh:affiliate" data-inline="false" style="color:orange;"></span>
+							<i id="toSpin" class="fas fa-people-arrows fa-2x" style="color:orange;"></i>
+<!-- 							<span class="iconify" data-icon="whh:affiliate" data-inline="false" style="color:orange;"></span> -->
 					
 						disaffiliate</a>
 						
 						<script th:inline="javascript" type="text/javascript">
-						
+							
+							
 							var anchorTag = document.getElementById('disaffiliate');
 									
 									function disaffiliate() {
-        								alert('disaffiliate was clicked');
+        								//alert('disaffiliate was clicked');
         								var agencyId = [[${agency.agencyId}]]; 
         								event.preventDefault();
         								
@@ -63,9 +95,22 @@
 										$.ajax({
 											type:"GET",
 											url:"/agency/disaffiliate?id=" + agencyId,
+											beforeSend: function () {
+												document.getElementById('toSpin').classList.add('fa-sync-alt');
+												document.getElementById('toSpin').classList.remove('fa-people-arrows');
+												document.getElementById('toSpin').classList.add('fa-spin');
+											},
+											completed: function (){
+												document.getElementById('toSpin').classList.add('fa-sync-alt');
+												document.getElementById('toSpin').classList.add('fa-people-arrows');
+												document.getElementById('toSpin').classList.remove('fa-spin');
+											},
+											
 											success:function(data) {
+												
 												$( "#affiliate").load(window.location.href + " #affiliate" );
 												$( ".profile_docs").load(window.location.href + " .profile_docs" );
+												$( ".candidate-list").load(window.location.href + " .candidate-list" );
 												$( "#userNotification").load(window.location.href + " #userNotification" );
 												$( ".notifications-list").load(window.location.href + " .notifications-list" );
 												
@@ -80,15 +125,17 @@
 					<a 	th:if ="${match} == false" th:unless="${userAccount.oneAgency} != null"
 					id="affiliate" onclick="affiliate()" href=""
 									name="affiliation">
-								<span class="iconify" data-icon="whh:affiliate" data-inline="false"></span>
-							get affiliated
+	 
+							<i id="toSpin" class="fas fa-people-carry fa-2x"></i>
+<!-- 							<span class="iconify" data-icon="whh:affiliate" data-inline="false"></span> -->
+							<b>get affiliated</b>
 					</a>
 					
 					<script th:inline="javascript" type="text/javascript">
 							var anchorTag = document.getElementById('affiliate');
 									
 									function affiliate() {
-        								alert('affiliate was clicked');
+        								//alert('affiliate was clicked');
         								var agencyId = [[${agency.agencyId}]]; 
         								event.preventDefault();
         								
@@ -96,7 +143,21 @@
 										$.ajax({
 											type:"GET",
 											url:"/agency/affiliate?id=" + agencyId,
+											beforeSend: function () {
+												document.getElementById('toSpin').classList.add('fa-sync-alt');
+												document.getElementById('toSpin').classList.remove('fa-people-carry');
+												document.getElementById('toSpin').classList.add('fa-spin');
+												
+											},
+											completed: function (){
+												document.getElementById('toSpin').classList.remove('fa-sync-alt');
+												document.getElementById('toSpin').classList.remove('fa-spin');
+												document.getElementById('toSpin').classList.add('fa-people-carry');
+											},
 											success:function(data) {
+												
+												
+
 												$( "#affiliate").load(window.location.href + " #affiliate" );
 												$( ".profile_docs").load(window.location.href + " .profile_docs" );
 												$( "#userNotification").load(window.location.href + " #userNotification" );
@@ -112,15 +173,18 @@
 					<p>|</p>
 					
 					<a id="export" th:href="@{/agency/profilePDF}"  target="_blank">
-							<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
+							<i class="fas fa-file-export fa-2x"></i>
+							<!-- <span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span> -->
 		<!-- 					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>	 -->				
-						export to pdf
+						<b>export to pdf</b>
 					</a>
 				</div>
 				
 				
 						
 			</div>
+			
+			
 
 			
 			<hr class="new_line">
@@ -294,19 +358,24 @@
 								<div id="jobStatus" th:text=${agency.webAddress}>employeed</div>
 							</div>
 							<br>
-
-
-							<a sec:authorize="isAuthenticated()" 
+							<fieldset>
+							
+							<legend><a sec:authorize="isAuthenticated()" 
 									th:if="${#authentication.name} == ${agency.user.userName}"
 									data-toggle="modal"data-target="#addFacebook" id="editPencil"
 									style="background-color:lightgray;"> 
 								<span class="iconify" data-icon="ant-design:edit-twotone" 
 									data-inline="false" style="background-color:lightgray;"></span >
-								social media</a>
+								</a>social media links</legend>
 
-							<div class="profile_personal_fields" id="media_links">
+							
+
+							<div class="profile_personal_fields" >
 								
 <!-- 								<h6 id="underline"> add social media links</h6>	 -->
+									
+									
+									
 									
 									
 									<div class="social_media_links">
@@ -361,9 +430,13 @@
 								</ul>
 
 							</div>
+							
+							
 									
 
 							</div>
+							
+							</fieldset>
 							
 						</div>
 							
@@ -380,7 +453,8 @@
 					<div sec:authorize="isAuthenticated()" 
 					th:if="${#authentication.name} != ${agency.user.userName}"					
 					class="profile_docs">
-					<p class="profile_docs_header" th:text="${agencyMessage}" style="font-style:italic;"></p>
+					<i th:text="${agencyMessage}"  class="fas fa-quote-left fa-2x fa-pull-left profile_docs_header" style="font-size: 1.2rem;"></i>
+					<p class="profile_docs_header"  style="font-style:italic;"></p>
 					</div>
 									
 				<div sec:authorize="isAuthenticated()"
@@ -682,7 +756,7 @@
 		
 		
 
-			<div class="job_list_desktop">
+			<div class=" job-card-container">
 			
 
 

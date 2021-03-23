@@ -37,6 +37,31 @@ $(document).mouseup (e => {
 	}
 })
 
+/* code for progress bar 
+
+var progressBar = {
+	value: '',
+	
+	progressBarCount() {
+		
+		console.log('Progress count is ${this.ProgressCount}')
+		},
+		
+		get progressCount () {
+			this.value;
+		},
+		
+		set progressCount (value) {
+			this.value = value;
+			this.progressBarCount();
+		}
+	
+}
+*/
+
+
+
+
 
 
 

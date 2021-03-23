@@ -38,9 +38,10 @@
 					<p>|</p>
 					
 					<a id="export" th:href="@{/person/profilePDF}"  target="_blank">
-							<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
+							<i class="fas fa-file-export fa-2x"></i>
+							<!-- span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span> -->
 		<!-- 					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>	 -->				
-						export to pdf
+						<b>export to pdf</b>
 					</a>
 				</div>
 				
@@ -340,24 +341,113 @@
 					
 					<!-- THIS IS WHERE THE ADD DOC MODAL ENDS -->
 					<ul>
-						<li th:each="aDoc : ${docList}">
-							<a
+						<li th:each="aDoc : ${docList}" id="userDoc">
+							<a 	th:if="${#authentication.name} == ${userAccount.userName}" 
+								 
+								
 							class="doc_name d-inline-block text-truncate"
 							th:text="${aDoc.docName}"
 							th:href="@{/person/downloadFile(docId=${aDoc.docId})}">
 								Resume.pdf</a>
+								
+							<a 	th:if="${#authentication.name} != ${userAccount.userName}" 
+								 th:unless="${aDoc.docPrivate}"
+							class="doc_name d-inline-block text-truncate" 
+							th:text="${aDoc.docName}"
+							th:href="@{/person/downloadFile(docId=${aDoc.docId})}">
+								Resume.pdf</a>	
 
 							<div class="profile_docs_buttons btn btn-toolbar" 
 								
 								role="toolbar">
 								<form th:if="${#authentication.name} == ${userAccount.userName}"
 									th:action="@{/person/makeDocPrivate(id=${aDoc.docId})}"
+									th:id="'makeDocPrivate' + ${aDoc.docId}"
 									th:object="${aDoc}" method="post">
+									
+									<script type="text/javascript" th:inline="javascript">
+									
+									var formMakeDocPrivate = document.getElementById('makeDocPrivate' + '[[${aDoc.docId}]]' );
+									
+									
+									var spinFalse = document.getElementById('toSpinFalse');
+									var spinTrue = document.getElementById('toSpinTrue');
+									
+									formMakeDocPrivate.addEventListener('submit', submitDocPrivate);
+									
+									function submitDocPrivate () {
+										event.preventDefault();
+										alert('doc selected is' + [[${aDoc.docId}]]);	
+										$.ajax ({
+											type: "POST",
+											url: "/person/makeDocPrivate?id=" + [[${aDoc.docId}]] ,
+											data: $(formMakeDocPrivate).serialize(),
+											
+											beforeSend: function() {
+												
+												if(!(spinFalse == null)) {
+												
+												 	if(spinFalse.id == 'toSpinFalse' ) {
+													console.log($(formMakeDocPrivate).attr('action'));
+													document.getElementById('toSpinFalse').classList.add('fa-sync-alt','fa-spin','fa-lg');
+													document.getElementById('false').style.display='none';
+													}
+												
+												};
+												
+												if(!(spinTrue == null)) {
+												
+													if( spinTrue.id == 'toSpinTrue' ) {
+													console.log($(formMakeDocPrivate).attr('action'));
+													document.getElementById('toSpinTrue').classList.add('fa-sync-alt','fa-spin','fa-lg');
+													document.getElementById('true').style.display='none';
+													}
+												};
+												
+
+												},
+												
+										complete: function() {
+										
+										if(!(spinFalse == null)) {
+												
+												 	if(spinFalse.id == 'toSpinFalse' ) {
+													console.log($(formMakeDocPrivate).attr('action'));
+													document.getElementById('toSpinFalse').classList.remove('fa-sync-alt','fa-spin','fa-lg');
+													document.getElementById('false').style.display='flex';
+													}
+												
+												};
+												
+												if(!(spinTrue == null)) {
+												
+													if( spinTrue.id == 'toSpinTrue' ) {
+													console.log($(formMakeDocPrivate).attr('action'));
+													document.getElementById('toSpinTrue').classList.remove('fa-sync-alt','fa-spin','fa-lg');
+													document.getElementById('true').style.display='flex';
+													}
+												};
+												
+										},
+										success:function(data) {
+										
+										console.log($(formMakeDocPrivate).attr('action'));
+												$( "#makeDocPrivate" + "[[${aDoc.docId}]]").load(window.location.href + " #makeDocPrivate" + "[[${aDoc.docId}]]");
+										}
+								
+										});
+									
+									}
+									
+									
+									
+									</script>
 
 									<!-- is true  -->
 									<button th:if="${ aDoc.isDocPrivate()==true}" 
 										th:id="docPrivate" th:name="docPrivate" value="false" 
 										type="submit">
+										<i class="fas" id="toSpinFalse"></i>
 										<span class="iconify" id="false"
 											data-icon="ant-design:eye-invisible-outlined"
 											data-inline="false"></span>
@@ -367,18 +457,33 @@
 									<button th:if="${ aDoc.isDocPrivate()==false}"
 										th:id="docPrivate" th:name="docPrivate" value="true"
 										type="submit">
+										<i class="fas" id="toSpinTrue"></i>
 										<span class="iconify" id="true"
 											data-icon="ant-design:eye-outlined" data-inline="false"></span>
 									</button>
+									
+									
 
 								</form>
 								
-								<a 	th:href="@{/person/displayFile(docId=${aDoc.docId})}"
+								<a 	th:if="${#authentication.name} == ${userAccount.userName}" 
+									
+									th:href="@{/person/displayFile(docId=${aDoc.docId})}"
 									role="button" data-toggle="tooltip" data-html="true"
 									title="see the document"
 									data-content="click to see the document"> <span
 									class="iconify" data-icon="ion:documents-outline"
 									data-inline="false"></span></a> 
+									
+								<a 	th:if="${#authentication.name} != ${userAccount.userName}" 
+								 	th:unless="${aDoc.docPrivate}"
+									th:href="@{/person/displayFile(docId=${aDoc.docId})}"
+									role="button" data-toggle="tooltip" data-html="true"
+									title="see the document"
+									data-content="click to see the document"> <span
+									class="iconify" data-icon="ion:documents-outline"
+									data-inline="false"></span></a> 
+									
 								<a
 									th:if="${#authentication.name} == ${userAccount.userName}"
 									th:href="@{/person/deleteProfileDoc(id=${aDoc.docId})}"

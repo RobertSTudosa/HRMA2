@@ -19,8 +19,13 @@
     </header>
 
 	<main>
+	
+	
+		
+		
 		<section class="register_form">
-				<div class="account">
+				
+				<div class="account" style="margin-top: 2rem;">
 				<h6 th:text="${createdUser}" style="color:red"></h6>
 				<h6 th:text="${activateUser}"></h6>
 				</div>
@@ -37,15 +42,16 @@
 				
 					<h4>You can definitely add a skill now or... later</h4>
  					<button type="submit" name="next" class="button_login"><p>Next</p>
- 					<span class="iconify" id="next_mobile" data-icon="bx:bxs-skip-next-circle" data-inline="false"></span>
- 					<span class="iconify" id="next_desk" data-icon="ic:baseline-navigate-next" data-inline="false"></span>
+ 					<i class="fas fa-angle-right fa-2x"></i>
+<!--  					<span class="iconify" id="next_mobile" data-icon="bx:bxs-skip-next-circle" data-inline="false"></span>
+ 					<span class="iconify" id="next_desk" data-icon="ic:baseline-navigate-next" data-inline="false"></span> -->
  					</button> 
  		
 				</div>
 
 			</form>
 
-			<form th:action="@{/user/addSkill}" th:object="${skill}"
+			<form th:action="@{/user/addSkill}"  id="form-skill-submit" th:object="${skill}"
 				method="POST">
 				<div class="input_elements">
 						
@@ -58,31 +64,113 @@
 							<textarea id="skill" th:field="${skill.skillDescription}" placeholder="short description, tools used, location etc"></textarea>
 							<label>a good description:</label>
 	                     </div>
+
+
+					<button type="submit" class="btn">
+						<p>
+							add skill </p><i
+					 id="toSpin" class="fas fa-plus"></i>
+						</button>
+
+
+
+					<script type="text/javascript" th:inline="javascript">
+				
+				const formSubmitSkill = document.getElementById('form-skill-submit');
+				var formData = $(formSubmitSkill).serialize();
+				
+				formSubmitSkill.addEventListener('submit', submitSkill);
+				
+				function submitSkill () {
 					
-					<button type="submit" ><p>add skill</p>
-					<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
-					<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
-					</button>
+					event.preventDefault();	
+					console.log('I get called')
+					 
+					$.ajax({
+						type:"POST",
+						url: $(formSubmitSkill).attr('action'),
+						
+						data: $(formSubmitSkill).serialize(),		
+						datatype: "application/javascript",
+						beforeSend: function() {
+				
+							document.getElementById('toSpin').classList.add('fa-spin');
+
+						},
+						complete: function() {
+							
+						document.getElementById('toSpin').classList.remove('fa-spin');
+							
+						},
+ 						success:function(data) {
+							
+							
+						
+						$( "#skills_table").load(window.location.href + " #skills_table" );
+						
+						$( "#form-skill-submit").load( " #form-skill-submit" );
+						
+						
+						
+						
+						}
+					});
+				
+				}
+				
+				
+			
+			</script>
+					
 				</div>
 			</form>
 			
+		
 			
-
+			
+			
+			
 			<table class="skill_table" id="skills_table">
-			<caption style="text-align:left">Skills table</caption>
+			
+			<caption style="text-align:left;">Skills table</caption>
+			
 				<tbody>
 
-					<tr th:each="aSkill : ${skillsList}">
+					<tr th:each="aSkill : ${skillsList}" style="height: 4rem;">
 						<th id="skill_name" th:text="${aSkill.skillName}">Java</th>
 						<td id="skill_description" th:text="${aSkill.skillDescription}">Basic knowledge</td>
 						<td type="hidden" th:value="${aSkill.skillId}" style="width: 2%"></td>
 
 						<td>
-						<a th:href="@{/user/deleteSkill(id=${aSkill.skillId})}"
+						<a  
+							th:attr="onclick=|deleteSkill('${aSkill.skillId}')|"
 								class="btn btn-danger btn-sm"
+
 								onClick="if (! (confirm('Are you sure you want to delete this skill?'))) return false">
-							<span class="iconify" data-icon="jam:trash-alt-f" data-inline="false"></span>
+							<i class="fas fa-trash-alt" style="color:white"></i>
 							</a>
+							
+							<script>
+							function deleteSkill(skillId) {		
+										
+        								alert('delete -' + skillId +  '- was clicked');
+        								console.log(skillId);
+										event.preventDefault();	
+										
+										$.ajax({
+											type:"GET",
+											url:"/user/deleteSkill?id=" + skillId,											
+											async: false,
+											success:function(data) {
+											
+											$( "#skills_table").load( " #skills_table" );
+						
+										
+											}
+										});
+    								}
+							
+							</script>
 
 						</td>
 					</tr>
@@ -91,6 +179,8 @@
 				</tbody>
 
 			</table>
+			
+		
 			
 		</section>
 
@@ -131,6 +221,7 @@
 
 
 	<script src="../css/script.js" defer></script>
+
 </body>
 
 </html>

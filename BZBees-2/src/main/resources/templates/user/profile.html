@@ -23,6 +23,26 @@
 		<section th:object="${person}" class="profile">
 
 			<h3>Profile</h3>
+			
+						<div class="profile_above_line">
+				<h3> <span th:text="${userAccount.userName}">AGENCY</span>'s profile</h3>
+				
+				<div id="right_buttons">
+				<form th:action="@{/user/finishAccount}" th:object="${person}" method="post">
+					<button type="submit" id="export"  style ="width: 100px;height: 30px;color: red;">
+							<span class="iconify" id="next_mobile" data-icon="clarity:export-solid" data-inline="false"></span>
+		<!-- 					<span class="iconify" id="next_desk" data-icon="carbon:export" data-inline="false"></span>	 -->				
+						finish account
+					</button>
+				</form>
+					
+				
+				</div>
+				
+				
+						
+			</div>
+			
 			<hr class="new_line">
 			
 			<div class="profile_top">
@@ -827,7 +847,7 @@
 
 
 
-			<div class="login-buttons">
+		<!-- 	<div class="login-buttons">
 
 				<a th:href="@{/user/profilePDF}"  target="_blank">
 				<button type="submit" class="button_login" style="width:95%;" >
@@ -849,7 +869,7 @@
 				</form>
 				
 
-			</div>
+			</div> -->
 
 
 

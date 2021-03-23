@@ -60,7 +60,7 @@
 	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
-	width: 25%;
+	width: 30%;
 	margin-bottom:-45px;
 	color: DarkGray;
 	text-decoration: none;
@@ -238,8 +238,8 @@
 	flex-flow: row nowrap;
 	justify-content: space-around;
 	align-items: center;
-	border-radius: 10%;
-	border: 2px solid gray;
+	/* border-radius: 10%;
+	border: 2px solid gray; */
 	
 
 }
@@ -336,6 +336,10 @@
 	margin-left:auto;
      
 } 
+
+.color {
+	color: lightgray;
+}
 
 
 
@@ -575,7 +579,7 @@ td {
 	
 	.job_list_desktop {
 		display: flex;
-		flex-flow: row nowrap;
+		flex-flow: row wrap;
 		justify-content: space-evenly;
 	}
 	
@@ -644,6 +648,11 @@ td {
 
 	}
 	
+	.profile_status fielset {
+		border: 1px solid black;
+	
+	}
+	
 }
 
 	@media screen and (max-width: 781px) {	
@@ -708,10 +717,13 @@ td {
 	
 	.profile_above_line #right_buttons {
 		margin-bottom: -30px;
-		font-size:0;
-		width: 20%;
+	/* 	font-size:0; */
+		width: 35%;
 	}
 	
+	.profile_above_line #right_buttons b {
+		font-size: 0;
+	}
 	.profile_above_line #right_buttons p {
 		font-size:1.5rem;
 		margin-bottom: 5px;
@@ -826,4 +838,13 @@ td {
 		.agency_jobs_headline #addJob .iconify {
 			font-size: 0.7rem;
 		}
+	
+	
+
+	
+	
+	
+	
+	
+	
 }

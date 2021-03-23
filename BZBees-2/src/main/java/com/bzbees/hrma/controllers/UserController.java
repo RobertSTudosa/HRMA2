@@ -544,7 +544,9 @@ public class UserController {
 			model.addAttribute("jobList", jobList);
 			System.out.println("added 'jobList' to model");
 		} else {
-			List<Job> whichJobSet = (List<Job>) model.getAttribute("jobList");
+			List<Job> whichJobSet = jobServ.getJobsByPersonId(whichPerson.getPersonId());
+			/* List<Job> whichJobSet = (List<Job>) model.getAttribute("jobList"); */
+			model.addAttribute("jobList", whichJobSet);
 			System.out.println("GetMapping 'job' getJobs() " + whichPerson.getJobs().toString());
 
 			System.out.println("whichJobSet is " + whichJobSet.toString());
@@ -698,7 +700,7 @@ public class UserController {
 	}
 
 
-	@GetMapping("/upload")
+	@GetMapping(value = "/upload")
 	public String displayUploadForm(Model model) {
 		System.out.println("before whichPerson");
 		Person whichPerson = (Person) model.getAttribute("person");

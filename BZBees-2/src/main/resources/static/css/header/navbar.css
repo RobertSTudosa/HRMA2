@@ -275,9 +275,30 @@
 	 	
 	 	/* border: 1px solid black; */
 	 }
+	 
+	 #progress-bar {
+	 	position: fixed;
+    	margin-top: 47px;
+   	 	display: flex;
+    	flex-flow: row wrap;
+    	width: 100%;
+
+	
+		}
     
-    
-    
+    .approve:hover {
+  transform: scale(1.3);
+  animation-name: approve-text;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes approve-text {
+  100% {
+    color: #1F9A01;
+    /* color: white; */
+  }
+}
     
     
     @media (max-width: 780px) {
@@ -367,6 +388,16 @@
      .notifications-item #text-name {
      	margin-top: -1rem;
      }
+     
+     	 #progress-bar {
+	 	position: fixed;
+    	margin-top: 47px;
+   	 	display: flex;
+    	flex-flow: row wrap;
+    	width: 100%;
+
+	
+		}
     
     
 }

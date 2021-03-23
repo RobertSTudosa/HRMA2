@@ -38,7 +38,7 @@
 				</form>
 						
 						
-				<form th:action="@{/user/addLang}" th:object="${language}"
+				<form th:action="@{/user/addLang}" th:object="${language}" id="form-lang-submit" 
 				method="POST">
 
 				
@@ -72,11 +72,62 @@
 				
 						<br>
 					<div class="input_elements">
+					
+
+					
+					
+					
 						<button type="submit" >
 							<p>add language</p>
-					<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
-					<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
+							 <i id="toSpin" class="fas fa-plus "></i>
 					</button>
+					
+				<script type="text/javascript" th:inline="javascript">
+				
+				const formSubmitLang = document.getElementById('form-lang-submit');
+				var formData = $(formSubmitLang).serialize();
+				
+				formSubmitLang.addEventListener('submit', submitLang);
+				
+				function submitLang () {
+					
+					event.preventDefault();	
+					
+				
+					$.ajax({
+						type:"POST",
+						url: $(formSubmitLang).attr('action'),
+						
+						data: $(formSubmitLang).serialize(),		
+						datatype: "application/javascript",
+						beforeSend: function() {
+				
+							document.getElementById('toSpin').classList.add('fa-spin');
+
+						},
+						complete: function() {
+							
+						document.getElementById('toSpin').classList.remove('fa-spin');
+							
+						},
+						success:function(data) {
+						
+							$( "#form-lang-submit").load(window.location.href + " #form-lang-submit");
+						$( ".lang_table").load(window.location.href + " .lang_table" );
+						
+						
+						
+						}
+					});
+				
+				}
+				
+				
+			
+			</script>
+					
+					
+			
 					</div>
 					<br><br><br><br>
 				
@@ -86,15 +137,39 @@
 			<table class="lang_table">
 			<caption style="text-align:left">Languages </caption>
 					<tbody>
-					<tr th:each="aLang : ${langList}">
+					<tr th:each="aLang : ${langList}" style="height: 4rem;">
 						<td th:text="${aLang.name}" >English</td>
 						<td th:text="${aLang.level}" >Basic</td>
 						
-						<td> <a th:href="@{/user/deleteLang(id=${aLang.langId})}"
+						<td> <a th:attr="onclick=|deleteLang('${aLang.langId}')|"
+						
 								class="btn btn-danger btn-sm"
 								onClick="if (! (confirm('Are you sure you want to delete this language?'))) return false">
-								<span class="iconify" data-icon="jam:trash-alt-f" data-inline="false"></span>
-							</a>		
+								<i class="fas fa-trash-alt" style="color:white"></i>
+							</a>
+							
+								<script>
+							function deleteLang(langId) {		
+										
+        								alert('delete -' + langId +  '- was clicked');
+        								console.log(langId);
+										event.preventDefault();	
+										
+										$.ajax({
+											type:"GET",
+											url:"/user/deleteLang?id=" + langId,											
+											async: false,
+											success:function(data) {
+											
+										
+											$( ".lang_table").load(window.location.href + " .lang_table" );
+						
+										
+											}
+										});
+    								}
+							
+							</script>		
 						</td>
 					</tr>
 					

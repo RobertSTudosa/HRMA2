@@ -1452,6 +1452,8 @@ public class AgencyController {
 		shortHref.setNotification(adminNotif);
 		longText.setNotification(adminNotif);
 		
+		model.addAttribute("progressCount", 20);
+		
 		//get the notifications of the present agency admin user notification
 		//add the above created notification object - 
 		List<Notification> agencyPersonNotifs = notifServ.findNotificationsByUserId(agencyAdmin.getUserId());
@@ -1481,7 +1483,7 @@ public class AgencyController {
 		Notification userNotif = new Notification(userNotifsMessages,false,false, agencyMessage.getMessage(), new Date());				
 		List<Notification> userNotifs = notifServ.findNotificationsByUserId(loggedInUser.getUserId());
 		
-
+		model.addAttribute("progressCount", 40);
 		
 		//add the notification object to the logged in user notifications
 		userNotifs.add(userNotif);
@@ -1506,14 +1508,14 @@ public class AgencyController {
 		//save the messages (2 of them will suffice)---> because hibernate cascade
 		messServ.messageSave(agencyMessage);
 		messServ.messageSave(agencyShortHref);
-	
+		model.addAttribute("progressCount", 60);
 		notifServ.saveNotif(userNotif);
 		userServ.save(loggedInUser);
 		agencyServ.saveAgency(agency);
 		
 		List<Notification> reverseUserNotifs = notifServ.reverseFindNotificationsByUserId(loggedInUser.getUserId());
 		
-		
+		model.addAttribute("progressCount", 80);
 		
 		model.addAttribute("agencyPersonNotifs", agencyPersonNotifs);
 

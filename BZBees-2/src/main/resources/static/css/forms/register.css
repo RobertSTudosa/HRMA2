@@ -25,6 +25,23 @@
 	width: 90%;
 }
 
+#loader {
+	display:none;
+	
+	margin-top: .1rem;
+	margin-left: .4rem;
+	height:24px;
+	
+}
+
+
+
+#success {
+	display:none;
+
+	
+}
+
 #job-image {
 	display: flex;
 	flex-flow: row nowrap;
@@ -82,6 +99,7 @@
 
 	.input_elements button {
     display:flex;
+    position:relative;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
@@ -100,12 +118,18 @@
     background-color: #E9D415;
 }
 
-.input_elements button p {
+.input_elements  p {
 	display: none;
-	margin-right: 2px;
-	font-size: 0.8rem;
+	
 }
 
+.fa-spin {
+	
+}
+
+.fas {
+	display: flex;
+}
 
 .input_elements button a {
     text-decoration: none;
@@ -177,10 +201,10 @@
 	width: 65%;
 	}
 	
-.register_form .account h4 {
+.register_form .account h6 {
 	font-style: italic;
 	align-self: center;
-	font-size: .5rem;
+	font-size: 1.1rem;
 }	
 	
 
@@ -499,6 +523,14 @@
 	.account_profile .account {
 		width: 40%;
 	}
+	
+	#loader {
+	display: none;
+	position: relative;
+	margin-top: -19%;
+	margin-left: 150px;
+	height:24px;
+}
 	
 	.account_profile #profile {
 		width: 90%;
