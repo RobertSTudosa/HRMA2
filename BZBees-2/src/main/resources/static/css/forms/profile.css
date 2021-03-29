@@ -445,11 +445,11 @@
 	}
  */
 
-.table th,
+/* .table th,
 td {
 	
     color: #1F9A01;
-}
+} */
 
 
 /* MODALS CSS */
@@ -494,7 +494,7 @@ td {
 		width:20px;
 		height:20px;
 	}
-	
+		
 	.social_media_links #minus-socialTW {
 		position: absolute;
 		margin-top:3.5rem;
@@ -605,7 +605,8 @@ td {
 		display: flex;
 		flex-flow: column wrap;
 		flex-basis: 450px;
-		margin-left: 5rem;
+		height:auto;
+		/* margin-left: 5rem; */
 	}
 	
 	.profile_headline .profile_work_addJob {

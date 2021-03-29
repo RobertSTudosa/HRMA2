@@ -358,8 +358,8 @@ public class PersonController {
 		return "redirect:/person/sprofile";
 	}
 	
-	
-	@PostMapping(value="/editJob", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+	//, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+	@GetMapping(value="/editJob")
 	public String partialUpdate(@Valid @ModelAttribute("job") Job patchJob, 
 			BindingResult bindingResult, @RequestParam("id") long id, 
 			Model model, Person person, RedirectAttributes redirAttr ) throws ResourceNotFoundException {
@@ -377,6 +377,7 @@ public class PersonController {
 
 		
 		jobServ.save(job);
+		persServ.save(person);
 		
 		List<Job> savedJobs = jobServ.getJobsByPersonId(person.getPersonId());
 		
@@ -386,15 +387,21 @@ public class PersonController {
 	}
 	
 	
-	@PostMapping(value="/makeJobPrivate")
+	@GetMapping(value="/makeJobPrivate")
 	public String makePrivate(@Valid @ModelAttribute("job") Job setJob, 
 			BindingResult bindingResult, @RequestParam("id") long id, 
 			Model model, Person person, RedirectAttributes redirAttr ) throws ResourceNotFoundException {
 		
 		Job job = jobServ.findJobById(id);
 		
-		job.setJobPrivate(setJob.isJobPrivate());
-		jobServ.save(job);	
+		if(job.isJobPrivate()) {
+			job.setJobPrivate(false);
+			jobServ.save(job);	
+			
+		} else {
+			job.setJobPrivate(true);
+			jobServ.save(job);	
+		}
 		
 		List<Job> savedJobs = jobServ.getJobsByPersonId(person.getPersonId());
 		redirAttr.addFlashAttribute("jobList", savedJobs);
@@ -477,21 +484,23 @@ public class PersonController {
 	}
 
 	
-	@PostMapping(value="/makeDocPrivate")
-	public String makeDocPrivate(@Valid @ModelAttribute("doc") Doc setDoc, 
-			BindingResult bindingResult, @RequestParam("id") long id, 
+	@GetMapping(value="/makeDocPrivate")
+	public String makeDocPrivate(
+			@RequestParam("id") long id, 
 			Model model, Person person, RedirectAttributes redirAttr ) throws ResourceNotFoundException {
 		
 		Doc doc = docServ.findDocById(id);
 		
-		System.out.println("is the doc in the browser private?" + setDoc.isDocPrivate());
+		if(doc.isDocPrivate()) {
+			doc.setDocPrivate(false);
+			System.out.println("This document is set false (cut) ====> " + doc.getDocId());
+			docServ.saveDoc(doc);
+		} else {
+			doc.setDocPrivate(true);
+			System.out.println("This document is set true (cut) ====> " + doc.getDocId());
+			docServ.saveDoc(doc);
+		}
 		
-		doc.setDocPrivate(setDoc.isDocPrivate());
-		docServ.saveDoc(doc);
-		System.out.println("Saving doc " + doc.getDocId() + " id");
-		persServ.save(person);
-		
-		System.out.println("Saving person inside profile");
 		
 		redirAttr.addFlashAttribute("docList", docServ.getDocsByPersonId(person.getPersonId()));
 		
@@ -701,6 +710,9 @@ public class PersonController {
 	@GetMapping("/profilePDF")
 	public ResponseEntity<?> displayProfilePDF(Person person) {
 		
+		
+		
+		
 		ProfileImg img = null;
 		
 		List<Doc> docs = new ArrayList<Doc>();
@@ -758,7 +770,7 @@ public class PersonController {
 		return "redirect:/";
 	}
 	
-	@PostMapping("/editProfile")
+	@GetMapping("/editProfile")
 	public String updatePersonDetails (@Valid @ModelAttribute Person patchPerson, Model model, Person person, 
 			User user,	RedirectAttributes redirAttr) {
 		

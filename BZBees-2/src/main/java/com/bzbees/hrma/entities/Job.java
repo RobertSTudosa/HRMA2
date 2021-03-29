@@ -206,6 +206,8 @@ public class Job implements Serializable {
 	public boolean isJobPrivate() {
 		return jobPrivate;
 	}
+	
+	
 
 	public void setJobPrivate(boolean jobPrivate) {
 		this.jobPrivate = jobPrivate;

@@ -49,20 +49,22 @@
 					<script th:inline="javascript" type="text/javascript">
 						function pendingaffiliation() {
 						  var a;
-						  a = document.getElementById("pending");
-						  a.innerHTML = "&#xf251;";
-						  setTimeout(function () {
-						      a.innerHTML = "&#xf251;";
-						    }, 1000);
-						  setTimeout(function () {
-						      a.innerHTML = "&#xf252;";
-						    }, 2000);
-						  setTimeout(function () {
-						      a.innerHTML = "&#xf253;";
-						    }, 3000);
-						  setTimeout(function () {
-						      a.innerHTML = "&#xf254;";
-						    }, 4000);
+						  if(document.getElementById("pending") != null) {
+							  a = document.getElementById("pending");
+							  a.innerHTML = "&#xf251;";
+							  setTimeout(function () {
+							      a.innerHTML = "&#xf251;";
+							    }, 1000);
+							  setTimeout(function () {
+							      a.innerHTML = "&#xf252;";
+							    }, 2000);
+							  setTimeout(function () {
+							      a.innerHTML = "&#xf253;";
+							    }, 3000);
+							  setTimeout(function () {
+							      a.innerHTML = "&#xf254;";
+							    }, 4000);
+							}
 						}
 						pendingaffiliation();
 						setInterval(pendingaffiliation, 5000);

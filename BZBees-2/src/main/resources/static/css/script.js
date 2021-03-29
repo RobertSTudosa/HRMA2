@@ -35,9 +35,11 @@ $(document).mouseup (e => {
 		$('.notifications-links').has(e.target).length === 0) {
 		$('.notifications-links').removeClass('active');
 	}
-})
+});
 
-/* code for progress bar 
+
+
+/* code for 
 
 var progressBar = {
 	value: '',
@@ -58,8 +60,6 @@ var progressBar = {
 	
 }
 */
-
-
 
 
 

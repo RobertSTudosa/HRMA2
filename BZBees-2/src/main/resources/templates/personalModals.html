@@ -12,7 +12,7 @@
 
 
 
-				<div th:fragment="personalDetails" class="modal fade" id="personalDetails" tabindex="-21"
+				<div th:fragment="personalDetails" class="modal fade" id="personalDetails" tabindex="22"
 					aria-labelledby="addJobLabel">
 
 					<div class="modal-dialog ">
@@ -20,13 +20,13 @@
 							<div class="modal-header">
 								<h5 class="modal-title">Edit your profile</h5>
 
-								<button type="button" class="close" data-dismiss="modal"
+								<button type="button" class="close" id="closeModalEditDetails" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<form th:action="@{/person/editProfile}" th:object="${person}"
-								method="POST">
+							<form th:action="@{/person/editProfile}" th:object="${person}" id="personalDetailsForm"
+								method="GET">
 
 					<div class="register_form">
 
@@ -35,6 +35,8 @@
 							<div class="input_elements" id="first-last-name">
 
 								<div class="input_field">
+								
+								
 
 									<input th:field="${person.firstName}" id="first-name"
 										type="text" placeholder="first name*"> <label>first
@@ -122,6 +124,7 @@
 
 											</button>
 											<button type="submit" class="button-login">
+												<i id="toSpinSave" class="fas fa-2x" ></i>
 												<span class="iconify" id="next_mobile"
 													data-icon="teenyicons:save-solid" data-inline="false"></span>
 												<span class="iconify" id="next_desk"
@@ -129,15 +132,71 @@
 												<p>save</p>
 
 											</button>
-
+											
+													<script type="text/javascript" th:inline="javascript">
+										
+											const formSubmitPersDetails = document.getElementById('personalDetailsForm');
+											
+											
+											
+											formSubmitPersDetails.addEventListener('submit', submitDetails);
+											
+						//						$(function() {
+						//						    var token = $("meta[name='_csrf']").attr("content");
+						//						    var header = $("meta[name='_csrf_header']").attr("content");
+						//						    $(document).ajaxSend(function(e, xhr, options) {
+						//						       
+						//						            xhr.setRequestHeader(header, token);
+						//						        
+						//						    });
+						//						});
+											
+											function submitDetails () {
+												
+												event.preventDefault();	
+									 
+												$.ajax({
+													type:"GET",
+													url: $(formSubmitPersDetails).attr('action'),
+													
+													//contentType:"application/json",
+													//data : JSON.stringify(formData),
+													data: $(formSubmitPersDetails).serialize(),
+													//dataType : "application/json",
+													datatype: "application/javascript",
+													beforeSend: function() {
+											
+														document.getElementById('toSpinSave').classList.add('fa-spin','fa-sync-alt');
+							
+													},
+													complete: function(data) {
+														
+														$("#closeModalEditDetails").trigger("click");
+														document.getElementById('toSpinSave').classList.remove('fa-spin','fa-sync-alt');
+														
+														
+													},
+							 						success:function(data) {
+														
+														
+														$( " #profile_details_reload").load(window.location.href + " #profile_details_reload");
+														
+													
+													
+													}
+												});
+											
+											}
 										
 
+										</script>
+											
 
-									</div>
+										</div>
 
 								
-								
-							</form>
+
+				</form>
 
 						</div>
 					</div>
@@ -154,7 +213,7 @@
 <html>
 <body>
 					<!-- THIS IS WHERE THE ADD PERSON SOCIAL MEDIA DETAILS CERT DOC MODAL BEGINS -->
-					<div th:fragment="addFacebook" class="modal fade" id="addFacebook" tabindex="-21"
+					<div th:fragment="addFacebook" class="modal fade" id="addFacebook" tabindex="21"
 					aria-labelledby="addFacebookLabel">
 
 					<div class="modal-dialog ">
@@ -162,22 +221,80 @@
 							<div class="modal-header">
 								<h5 class="modal-title">add social media url</h5>
 
-								<button type="button" class="close" data-dismiss="modal"
+								<button type="button" id="closeModalURL" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 								<div>
-									<form id="FBLink" name="addFacebookLink" method="POST" th:action="@{/person/addSocialMediaFB}">
-										<input style="margin-left:0.8rem;width: 80%;" autofocus type="url" name="url" placeholder="link" >
-										<div class="input_elements">
-										<button style="margin-left:0.8rem;" class="upload" type="submit" ><p>save</p>
-										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
-										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
-										</button>
-										</div>
-									</form>
-								</div>
+					<fieldset>
+					
+							
+					<form id="FBLink" name="addFacebookLink" method="POST"
+						th:action="@{/person/addSocialMediaFB}">
+						<input style="margin-left: 0.8rem; width: 80%;" autofocus
+							type="url" name="url" placeholder="link">
+						<div class="input_elements">
+							<button style="margin-left: 0.8rem;" class="upload" type="submit">
+								<p>save</p>
+								
+								<i id="toSpinURL" class="fas fa-plus"></i>
+							</button>
+							<script type="text/javascript" th:inline="javascript">
+				
+				const formSubmitUrl = document.getElementById('FBLink');
+				var formData = $(formSubmitUrl).serialize();
+				
+				formSubmitUrl.addEventListener('submit', submitUrl);
+				
+				function submitUrl () {
+					
+					event.preventDefault();	
+					console.log('I get called')
+					
+
+					
+					$.ajax({
+						type:"POST",
+						url: $(formSubmitUrl).attr('action'),
+						
+						data: $(formSubmitUrl).serialize(),		
+						datatype: "application/javascript",
+						beforeSend: function() {
+				
+							document.getElementById('toSpinURL').classList.add('fa-spin');
+
+						},
+						complete: function() {
+							
+							$( "#closeModalURL").trigger("click");
+							document.getElementById('toSpinURL').classList.remove('fa-spin');
+							
+							
+						},
+ 						success:function(data) {
+							
+								
+						$( " .social-media-list").load(window.location.href + " .social-media-list");
+						
+						
+						
+						}
+					});
+					
+					
+				}
+				
+				
+			
+			</script> 
+
+
+						</div>
+					</form>
+					
+					</fieldset>	
+				</div>
 								</div>
 								</div>
 								</div>
