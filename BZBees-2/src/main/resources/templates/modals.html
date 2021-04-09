@@ -230,19 +230,70 @@
 							<div class="modal-header">
 								<h5 class="modal-title">add social media url</h5>
 
-								<button type="button" class="close" data-dismiss="modal"
+								<button type="button" class="close" data-dismiss="modal" id="closeModalAgencyURL"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 								<div>
-									<form id="FBLink" name="addFacebookLink" method="POST" th:action="@{/agency/addSocialMediaFB}">
+									<form id="FBAgencyLink" name="addFacebookLink" method="POST" th:action="@{/agency/addSocialMediaFB}">
 										<input style="margin-left:0.8rem;width: 80%;" autofocus type="url" name="url" placeholder="link" >
 										<div class="input_elements">
-										<button style="margin-left:0.8rem;" class="upload" type="submit" ><p>save</p>
-										<span class="iconify" id="add_mobile" data-icon="ant-design:plus-circle-filled" data-inline="false"></span>
-										<span class="iconify" id="add_desk" data-icon="bx:bx-plus" data-inline="false"></span>
-										</button>
+											<button style="margin-left: 0.8rem;" class="upload" type="submit">
+												
+												<i id="toSpinAgencyURL" class="fas fa-lg"></i> 
+													<span class="iconify"
+													id="saveAgencyDetails" data-icon="teenyicons:save-solid"
+													data-inline="false"></span>				
+												<p>save</p>
+											</button>
+
+							<script type="text/javascript" th:inline="javascript">
+				
+				const formSubmitUrl = document.getElementById('FBAgencyLink');
+
+				formSubmitUrl.addEventListener('submit', submitAgencyUrl);
+				
+				function submitAgencyUrl () {
+					
+					event.preventDefault();	
+
+		
+					$.ajax({
+						type:"POST",
+						url: $(formSubmitUrl).attr('action'),
+						
+						data: $(formSubmitUrl).serialize(),		
+						datatype: "application/javascript",
+						beforeSend: function() {
+				
+							document.getElementById('toSpinAgencyURL').classList.add('fa-spin', 'fa-sync-alt');
+							document.getElementById('saveAgencyDetails').style.display='none';
+						},
+						complete: function() {
+							
+							$( "#closeModalAgencyURL").trigger("click");
+							document.getElementById('toSpinAgencyURL').classList.remove('fa-spin','fa-sync-alt');
+							document.getElementById('saveAgencyDetails').style.display='flex';
+							
+						},
+ 						success:function(data) {
+						
+						$( " .agency_social_media_list").load(window.location.href + " .agency_social_media_list");
+						
+						
+						
+						}
+					});
+					
+					
+				}
+				
+				
+			
+			</script> 
+			
+			
 										</div>
 									</form>
 								</div>
@@ -277,13 +328,13 @@
 					<h5 class="modal-title">Add a new job</h5>
 
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+						aria-label="Close" id="closeModalAgencyAddJob">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 
 				<form th:action="@{/agency/addModalJob}" th:object="${job}"
-					method="POST" encType="multipart/form-data" >
+					method="POST" encType="multipart/form-data"  id="formSubmitAgencyJob">
 
 					<div class="register_form">
 
@@ -303,7 +354,10 @@
 										</label> <input type="file" name="img" id="img"
 											placeholder="choose file"
 											
-								onchange="document.getElementById('jobPic').src = window.URL.createObjectURL(this.files[0])"> 
+											
+											onchange="document.getElementById('jobPic').src = window.URL.createObjectURL(this.files[0])"> 
+											
+		
 									
 									</div>
 
@@ -316,7 +370,8 @@
 
 								<div class="input_field" id="radio">
 
-									<label th:for="jobPrivate">make the job private</label> <input
+									<label th:for="jobPrivate">make the job private</label> 
+									<input name="radio"
 										th:field="${job.jobPrivate}" type="radio" value="true">
 
 								</div>
@@ -325,7 +380,7 @@
 							<div class="input_elements">
 
 								<div class="input_field">
-									<input th:field="${job.jobTitle}" type="text"
+									<input th:field="${job.jobTitle}" type="text" name="jobTitle" id="agencyJobTitle"
 										required="required" placeholder="job name*"> <label>job
 										name<span> *</span>
 									</label>
@@ -399,7 +454,7 @@
 						<div class="input_elements">
 
 							<div class="input_field">
-								<textarea th:field="${job.responsabilities}" id="job_resp"
+								<textarea th:field="${job.responsabilities}" id="job_resp" 
 									required="required"
 									placeholder="Job description, main responsibilities, achievements etc"></textarea>
 								<label>Job responsibilities<span> *</span></label>
@@ -417,14 +472,73 @@
 					<p>close</p>
 
 				</button>
-				<button type="submit" class="button-login">
-					<span class="iconify" id="next_mobile"
-						data-icon="teenyicons:save-solid" data-inline="false"></span> <span
-						class="iconify" id="next_desk" data-icon="teenyicons:save-solid"
-						data-inline="false"></span>
-					<p>add job</p>
+							<button type="submit" class="button-login" id="addAgencyJob">
+								<i id="toSpinAgencyAddJob" class="fas fa-2x"></i> <span
+									class="iconify" id="save_details"
+									data-icon="teenyicons:save-solid" data-inline="false"></span>
 
-				</button>
+
+								<p>add job</p>
+
+							</button>
+
+							<script type="text/javascript" th:inline="javascript">
+				
+									var formSubmitAgencyJob = document.getElementById('formSubmitAgencyJob');
+									
+									formSubmitAgencyJob.addEventListener('submit', submitAgencyJob);
+									
+									function submitAgencyJob (event) {
+										
+										event.preventDefault();
+										
+										let formSubmit = event.target;
+										let formData = new FormData(formSubmit);
+										
+										$('#addAgencyJob').prop("disabled",true); 	
+										
+										for(let key of formData.keys()) {
+											console.log(key, formData.get(key));
+										}
+																				
+										$.ajax({
+											type:"POST",
+											url: $(formSubmitAgencyJob).attr('action'),
+											enctype: 'multipart/form-data',
+											data: formData,		
+											datatype: "application/javascript",
+											processData: false,
+        									contentType: false,
+											beforeSend: function() {
+									
+												document.getElementById('toSpinAgencyAddJob').classList.add('fa-spin','fa-sync-alt');
+												document.getElementById('addAgencyJob').disabled='disabled';
+												$(" #save_details").css("display","none");
+					
+											},
+											complete: function() {
+												
+												$( "#closeModalAgencyAddJob").trigger("click");
+												document.getElementById('toSpinAgencyAddJob').classList.remove('fa-spin','fa-sync-alt');
+												
+												
+											},
+					 						success:function(data) {
+																									
+												$( " .job-card-container").load(window.location.href + " .job-card-container");
+
+																						
+											}
+										});
+										
+										
+									}
+				
+				
+			
+			</script>
+				
+				
 
 			</div>
 
@@ -473,12 +587,20 @@
 					<h5 class="modal-title">Edit</h5>
 
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+						aria-label="Close" th:id="'closeModalAgencyEditJob' + ${job.jobId}">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form th:action="@{/agency/editJob(id=${job.jobId})}"
-					th:object="${job}" method="POST" encType="multipart/form-data" >
+
+
+
+<!-- 				th:attr="onsubmit=|editAgencyJob(${job.jobId})|" -->
+				
+				<form 
+					th:action="@{/agency/editJob(id=${job.jobId})}"
+					
+					th:object="${job}" method="post" encType="multipart/form-data" 
+					th:id="'form-edit-agencyJob' + ${job.jobId}" >
 
 					<div class="register_form">
 
@@ -489,44 +611,31 @@
 								<div class="input_field">
 							
 									<div class="job-image-upload">
-									
-									
-											
-										<!-- 
-										 <img id="jobPicEdit" style="size: 10%;"
-											th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" >
-										<label for="jobPicBtn">button</label>	
-										<input type="file" name="imgEdit" id="jobPicBtn"   
-											placeholder="choose file"
-											onchange="document.getElementById('jobPicEdit').src = (window.URL || window.webkitURL).createObjectURL(this.files[0])"> 
-											 -->
-								
-									
-										
-									<!--	<script th:inline="javascript">
-											var loadImage = function(event) {
-												var image = document.getElementById('jobPicEdit');
-												image.src = (window.URL || window.webkitURL).createObjectURL(this.files[0]);
-											};
-										
-										</script> -->
-										
-										 										
+		 										
 									</div> 
 									
 									<div class="input-group mb-3">
 									
-									<img th:if="${job.lastImageId > 0}" id="jobPicEdit" style="size: 10%;"
+									<img th:if="${job.lastImageId > 0}" th:id="'jobPicEdit' + ${job.jobId}" style="size: 10%;"
 											th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" >
+									
 									<a th:if="${job.lastImageId < 1}">
 										<span  class="iconify" data-icon="bytesize:work" data-inline="false" style="font-size: 5rem;"></span>									
 									</a>		
 											
-									<label class="input-group-text" for="inputGroupFile02">
+									<label class="input-group-text" th:for="'inputGroupFile02' + ${job.jobId}">
 									<span class="iconify" data-icon="ic:outline-change-circle" data-inline="false"></span></label>
-  									<input type="file" name="imgEdit" class="form-control" id="inputGroupFile02" 
-											onchange="document.getElementById('jobPicEdit').src = (window.URL || window.webkitURL).createObjectURL(this.files[0])"> 
-
+  									<input type="file" name="imgEdit" class="form-control" th:id="'inputGroupFile02' + ${job.jobId}" 
+  																				
+										th:onchange="document.getElementById(&#39;jobPicEdit&#39; + [[${job.jobId}]]).src = (window.URL || window.webkitURL).createObjectURL(this.files[0])"> 
+											
+									<!-- <script th:inline="javascript" type="text/javascript">
+										function onchangePic(jobId) {
+											document.getElementById('jobPicEdit' + jobId).src = (window.URL || window.webkitURL).createObjectURL(this.files[0]);
+										}
+									
+									</script> -->
+							
  									</div>
 
 								</div>
@@ -651,16 +760,86 @@
 
 
 						</button>
-						<button type="submit" class="button-login">
-							<span class="iconify" id="next_mobile"
-								data-icon="teenyicons:save-solid" data-inline="false"></span> <span
-								class="iconify" id="next_desk" data-icon="teenyicons:save-solid"
-								data-inline="false"></span>
-							<p>save</p>
+						<button type="submit" class="button-login" th:id="'editAgencyJob' + ${job.jobId}">
+								<i th:id="'toSpinAgencyEditJob' + ${job.jobId}" class="fas fa-2x"></i> <span
+									class="iconify" th:id="'save_details' + ${job.jobId}"
+									data-icon="teenyicons:save-solid" data-inline="false"></span>
 
-						</button>
+								<p>save</p>
 
+							</button>
+							
+							<script th:inline="javascript" type="text/javascript">
+								console.log('hitting the button')
+								$(" #editAgencyJob" + [[${job.jobId}]]).on("click", function () {
+									$(" #toSpinAgencyEditJob" + [[${job.jobId}]]).addClass("fa-spin","fa-sync-alt");
+								
+									$(" #save_details" + [[${job.jobId}]]).hide();
+									console.log('show is over');
+									
+								})
+								
+								
+							</script>
+							
+							
+<!-- 							<script th:inline="javascript" type="text/javascript">
+									
 
+									function editAgencyJob(jobId) {
+										
+										event.preventDefault();
+										
+										let formSubmit = event.target;
+										let formData = new FormData(formSubmit);
+										console.log(formData);
+										
+										
+										
+										
+										for(let key of formData.keys()) {
+											console.log(key, formData.get(key));
+										}
+																				
+										$.ajax({
+											type:"PUT",
+											
+											url:"/agency/editJob?id=" + jobId,
+											//enctype: 'multipart/form-data',
+											data: formData,		
+											//datatype: "application/javascript",
+											//datatype:"application/x-www-form-urlencoded",
+											cache: false,
+											processData: false,
+        									contentType: "multipart/form-data, boundary="+formData.boundary,
+											beforeSend: function() {
+									
+												document.getElementById('toSpinAgencyEditJob' + jobId).classList.add('fa-spin','fa-sync-alt');
+												document.getElementById('editAgencyJob' + jobId).disabled='disabled';
+												//$('#editAgencyJob' + jobId).prop("disabled",true); 	
+												$(" #save_details" + jobId).css("display","none");
+					
+											},
+											complete: function() {
+												
+												$( "#closeModalAgencyEditJob" + jobId).trigger("click");
+												document.getElementById('toSpinAgencyEditJob' + jobId).classList.remove('fa-spin','fa-sync-alt');
+												
+												
+											},
+					 						success:function(data) {
+																									
+												$( " .job-card-container").load(window.location.href + " .job-card-container");
+
+																						
+											}
+										});
+										
+										
+									}
+							
+							
+							</script> -->
 
 
 					</div>
@@ -760,15 +939,15 @@
 						</h5>
 
 					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+						aria-label="Close" id="closeEditAgencyDetails">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 
 				<section class="register_form" >
 
-					<form data-persist="garlic" th:action="@{/agency/editAgencyDetails}"
-						th:object="${agency}" method="POST">
+					<form  th:action="@{/agency/editAgencyDetails}"
+						th:object="${agency}" method="GET" id="submitAgencyDetails">
 
 						<!--  <input type="hidden" name="_csrf" th:value="$(_csrf.token)" /> -->
 
@@ -907,13 +1086,67 @@
 							</button>
 
 							<button type="submit" class="button_login">
-								<p>Next</p>
-								<span class="iconify" id="next_mobile"
-									data-icon="bx:bxs-skip-next-circle" data-inline="false"></span>
-								<span class="iconify" id="next_desk"
-									data-icon="ic:baseline-navigate-next" data-inline="false"></span>
+								<i id="toSpinSave" class="fas fa-2x"></i> <span class="iconify"
+									id="save_details" data-icon="teenyicons:save-solid"
+									data-inline="false"></span>
+
+								<p>save</p>
+
 							</button>
 
+
+								
+								<script type="text/javascript" th:inline="javascript">
+										
+								const formEditAgencyDetails = document.getElementById('submitAgencyDetails');
+
+								formEditAgencyDetails.addEventListener('submit', submitAgencyEditDetails);
+											
+											
+											function submitAgencyEditDetails () {
+												
+												event.preventDefault();	
+									 
+												$.ajax({
+													type:"GET",
+													url: $(formEditAgencyDetails).attr('action'),
+																								
+													data: $(formEditAgencyDetails).serialize(),
+													
+													datatype: "application/javascript",
+													beforeSend: function() {
+											
+														document.getElementById('toSpinSave').classList.add('fa-spin','fa-sync-alt');
+														
+														document.getElementById('save_details').style.display='none';
+							
+													},
+													complete: function(data) {
+													
+														
+														
+														$("#closeEditAgencyDetails").trigger("click");
+														document.getElementById('toSpinSave').classList.remove('fa-spin','fa-sync-alt');
+														document.getElementById('save_details').style.display='flex';
+														
+														
+													},
+							 						success:function(data) {
+														
+														
+														$( " #profile_details_reload").load(window.location.href + " #profile_details_reload");
+														$( " #agency_name").load(window.location.href + " #agency_name");
+														
+														
+													
+													
+													}
+												});
+											
+											}
+										
+
+										</script>
 
 
 						</div>

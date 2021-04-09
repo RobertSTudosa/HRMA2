@@ -2,6 +2,8 @@ package com.bzbees.hrma.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -27,4 +29,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
 		 public List<Notification> reverseFindNotificationsByUserId(long userId);
 	 
 	 public Notification findNotificationByNotificationId(long notificationId);
+	 
+	 
+	// public Slice<Notification> findByUserId(long userId, org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable pageable);
+	 
 }

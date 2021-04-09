@@ -23,7 +23,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity()
 @Table(name="notifications")
@@ -41,6 +41,7 @@ public class Notification implements Serializable {
 	        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST},
 	        orphanRemoval = true
 	    )
+	@JsonIgnore
 	private List<Message> messages = new ArrayList<Message>();
 	
 	private boolean isRead;

@@ -23,6 +23,8 @@ import javax.validation.constraints.FutureOrPresent;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="persons")
 public class Person implements Serializable {
@@ -36,7 +38,7 @@ public class Person implements Serializable {
 	private String firstName;
 
 	private String lastName;
-
+	
 	private String email;
 
 	private int appStatus;

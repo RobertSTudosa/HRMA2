@@ -1,5 +1,8 @@
 package com.bzbees.hrma.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,16 +24,18 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bzbees.hrma.entities.ConfirmationToken;
+import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.services.ConfirmationTokenService;
 import com.bzbees.hrma.services.EmailService;
+import com.bzbees.hrma.services.NotificationService;
 import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.UserService;
 
 @Controller
 @RequestMapping("/login")
-@SessionAttributes({"emailAddress","userAccount","newPassword","token"})
+@SessionAttributes({"emailAddress","userAccount","newPassword","token","userNotifs", "person"})
 public class LoginController {
 	
 	@Autowired
@@ -48,7 +53,8 @@ public class LoginController {
 	@Autowired
 	BCryptPasswordEncoder bCryptEncoder;
 	
-	
+	@Autowired
+	NotificationService notifServ;
 	
 	
 	@GetMapping(value={"","/"})
@@ -100,12 +106,25 @@ public class LoginController {
 	
 	@GetMapping("/emailChangePassword")
 	public String showPasswordChange(Model model, @RequestParam("c4") String confirmationToken,  
-			 HttpSession session, HttpServletRequest request,
+			 HttpSession session, HttpServletRequest request, Authentication auth, 
 			 RedirectAttributes redirAttr) {
 		
 		ConfirmationToken checkedToken = confTokenServ.findConfirmationTokenByConfirmationToken(confirmationToken);
 		User userAccount = checkedToken.getUser();
 		System.out.println("User found by token " + userAccount.getUsername());
+		
+		
+		if(auth != null) {
+			if(!notifServ.findNotificationsByUserId(userAccount.getUserId()).isEmpty()) {
+				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(userAccount.getUserId());
+				model.addAttribute("userNotifs", allUserNotif);
+			} else {
+				model.addAttribute("userNotifs", new ArrayList<>());
+			}
+			
+		} else {
+			model.addAttribute("userNotifs", new ArrayList<>());
+		}
 				
 //		request.getSession();		
 //		Authentication authentication = new UsernamePasswordAuthenticationToken(userAccount,null, userAccount.getAuthorities());
@@ -125,7 +144,7 @@ public class LoginController {
 	@PostMapping("/changePassword")
 	public String changePassword(Model model, @ModelAttribute("userAccount") User userAccount, HttpServletRequest request, 
 			Person person,
-			 RedirectAttributes redirAttr) {
+			 RedirectAttributes redirAttr, Authentication auth) {
 		
 		String newPassword = request.getParameter("newPassword");
 		String username = request.getParameter(userAccount.getUsername());
@@ -140,11 +159,25 @@ public class LoginController {
 		userAccount.setPassword(bCryptEncoder.encode(newPassword));		
 		persServ.save(person);
 		userServ.save(userAccount);
-
+		
+		if(auth != null) {
+			if(!notifServ.findNotificationsByUserId(userAccount.getUserId()).isEmpty()) {
+				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(userAccount.getUserId());
+				model.addAttribute("userNotifs", allUserNotif);
+			} else {
+				model.addAttribute("userNotifs", new ArrayList<>());
+			}
+			
+		} else {
+			model.addAttribute("userNotifs", new ArrayList<>());
+		}
+		
+		
 		
 		redirAttr.addAttribute("passChanged", "Password successfully updated.");
 		redirAttr.addAttribute("success", "Changed password for user: " + userAccount.getUsername());
 		model.addAttribute("userAccount", userAccount);
+		model.addAttribute("person", person);
 		
 		return "redirect:/login/confirmation";
 	}
@@ -155,10 +188,23 @@ public class LoginController {
 			@ModelAttribute("passChanged") String passChanged,
 			@ModelAttribute("success") String success,
 			@ModelAttribute("userAccount") User userAccount, 
+			Authentication auth,
 			HttpServletRequest request) {
 		
 		System.out.println("User in the confirmation page: " + userAccount.getUsername());
 		User user = userServ.findUserByEmailAddress(userAccount.getEmail());
+		
+		if(auth != null) {
+			if(!notifServ.findNotificationsByUserId(userAccount.getUserId()).isEmpty()) {
+				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(userAccount.getUserId());
+				model.addAttribute("userNotifs", allUserNotif);
+			} else {
+				model.addAttribute("userNotifs", new ArrayList<>());
+			}
+			
+		} else {
+			model.addAttribute("userNotifs", new ArrayList<>());
+		}
 		
 		request.getSession();		
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user,null, user.getAuthorities());

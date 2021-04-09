@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,9 +20,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.CompanyDoc;
@@ -43,7 +48,7 @@ import com.bzbees.hrma.services.UserService;
 @Controller
 @RequestMapping("/")
 @SessionAttributes({"agency", "agenciesList","person","userAccount","lastAgencyPicList",
-			"agencyJobList","jobTagsList", "jobList","userNotifs"})
+			"agencyJobList","jobTagsList", "jobList","userNotifs","jobTagsList"})
 public class HomeController {
 	
 	@Autowired
@@ -136,7 +141,12 @@ public class HomeController {
 			//get the logged in user notifs
 			if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
-				model.addAttribute("userNotifs", allUserNotif);
+				List<Notification> showUserNotifs = new ArrayList<>();
+				for(int i = 0; i < 4; i++) {
+					showUserNotifs.add(allUserNotif.get(i));					
+				}
+
+				model.addAttribute("userNotifs", showUserNotifs);
 			} else {
 				model.addAttribute("userNotifs", new ArrayList<>());
 			}
@@ -162,10 +172,18 @@ public class HomeController {
 		if(!jobServ.getAll().isEmpty()) {
 			List<Job> allJobs = jobServ.findJobsPostedByAgencies();
 			model.addAttribute("jobList", allJobs);
+			List<Tag> agencyJobsTags = new ArrayList<>();
+			for(Job job : allJobs) {
+				List<Tag> jobsTags = tagServ.findTagsByJobId(job.getJobId());
+				agencyJobsTags.addAll(jobsTags);
+			}
+			
+			model.addAttribute("jobTagsList", agencyJobsTags);
 			System.out.println("There are jobs in the list");
 			
 		} else {
 			model.addAttribute("jobList", new ArrayList<Job>());
+			model.addAttribute("jobTagsList", new ArrayList<Tag>());
 		}
 		
 	
@@ -395,7 +413,13 @@ public class HomeController {
 					if(auth != null) {
 						if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 							List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
-							model.addAttribute("userNotifs", allUserNotif);
+							List<Notification> showUserNotifs = new ArrayList<>();
+							for(int i = 0; i < 4; i++) {
+								showUserNotifs.add(allUserNotif.get(i));					
+							}
+
+							model.addAttribute("userNotifs", showUserNotifs);
+							
 						} else {
 							model.addAttribute("userNotifs", new ArrayList<>());
 						}
@@ -412,6 +436,7 @@ public class HomeController {
 	@GetMapping(value="/notifMarkRead")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void markNotificationAsRead(@RequestParam("id") long notificationId, Authentication auth ) {
+		
 		if(auth == null) {
 			
 		}
@@ -467,7 +492,82 @@ public class HomeController {
 	}
 	
 	
+	@GetMapping(value="/getAllNotifications")
+	@ResponseStatus(value = HttpStatus.OK)
+	public  String  getAllUserNotifs (@RequestParam ("notifId") long notifId, Model model, Authentication auth,
+			RedirectAttributes redirAttr) {
+		
+		List<Notification> showUserNotifs = new ArrayList<>();
+		
+		if(auth != null) {
+			
+			System.out.println("notification id is -----> " + notifId);
+			
+			User loggedInUser = (User) userServ.loadUserByUsername(auth.getName());
+			
+			
+			
+			List<Notification> reverseUserNotifs = notifServ.reverseFindNotificationsByUserId(loggedInUser.getUserId());
+						
+			
+			
+			int count = 0;
+			
+			for(int i = 0; i < reverseUserNotifs.size(); i++) {
+				
+				
+				
+				if(count < 4)
+					
+				{
+					//while count is not smaller than 4 
+					showUserNotifs.add(reverseUserNotifs.get(i)); //get 221 
+					System.out.println("Notification id added ===> " + reverseUserNotifs.get(i).getNotificationId());
+			
+					//get the biggest notifId first 
+					//add it to the list 
+					//check if it is smaller than the notifId I have in the the method
+					//if it is smaller add it and count++
+					if(reverseUserNotifs.get(i).getNotificationId() < notifId) {
+						count++;
+						
+						System.out.println("count is -----> " + count);
+					}
+					
+				}
+							
+			}
+
+			for(Notification notif : showUserNotifs) {
+				System.out.println("Notification id is ===? " + notif.getNotificationId());
+			}
+			
+//			redirAttr.addFlashAttribute("userNotifs", showUserNotifs);
+			model.addAttribute("userNotifs", showUserNotifs);
+
+			
+
+		}
+		
+		return "header :: #updatedNotifs";
+		//return showUserNotifs;
 	
+	}
+	
+	
+	@GetMapping("/deleteNotif")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void deleteNotifs(@RequestParam ("notifId") long notifId, Authentication auth, Model model) {
+		
+		Notification notif = notifServ.findNotifByNotifId(notifId);
+		notifServ.deleteNotificationById(notif);
+		User loggedInUser = (User) userServ.loadUserByUsername(auth.getName());
+
+		List<Notification> reverseUserNotifs = notifServ.reverseFindNotificationsByUserId(loggedInUser.getUserId());
+		
+		model.addAttribute("userNotifs", reverseUserNotifs);
+		
+	}
 
 
 	

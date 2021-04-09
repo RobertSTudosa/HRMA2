@@ -46,6 +46,11 @@
 	color: #C80000;
 }
 
+.profile_above_line #affiliate p{
+	font-size: 0.5rem;
+		
+}
+
 .profile #export {
 	text-decoration: none;
 }
@@ -536,7 +541,7 @@ td {
     color: #888686;
 	}
 	
-		.profile_above_line #right_buttons {
+	.profile_above_line #right_buttons {
 		margin-bottom: -30px;
 		font-size:0.7rem;
 	}
@@ -839,6 +844,11 @@ td {
 		.agency_jobs_headline #addJob .iconify {
 			font-size: 0.7rem;
 		}
+		
+	.profile_above_line #affiliate {
+		text-decoration: none;
+		color: #C80000;
+	}	
 	
 	
 

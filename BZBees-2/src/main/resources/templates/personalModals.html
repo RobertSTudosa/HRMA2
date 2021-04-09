@@ -125,20 +125,17 @@
 											</button>
 											<button type="submit" class="button-login">
 												<i id="toSpinSave" class="fas fa-2x" ></i>
-												<span class="iconify" id="next_mobile"
+												<span class="iconify" id="save_details"
 													data-icon="teenyicons:save-solid" data-inline="false"></span>
-												<span class="iconify" id="next_desk"
-													data-icon="teenyicons:save-solid" data-inline="false"></span>
+												
 												<p>save</p>
 
 											</button>
 											
-													<script type="text/javascript" th:inline="javascript">
+									<script type="text/javascript" th:inline="javascript">
 										
 											const formSubmitPersDetails = document.getElementById('personalDetailsForm');
-											
-											
-											
+					
 											formSubmitPersDetails.addEventListener('submit', submitDetails);
 											
 						//						$(function() {
@@ -167,12 +164,15 @@
 													beforeSend: function() {
 											
 														document.getElementById('toSpinSave').classList.add('fa-spin','fa-sync-alt');
+														
+														document.getElementById('save_details').style.display='none';
 							
 													},
 													complete: function(data) {
 														
 														$("#closeModalEditDetails").trigger("click");
 														document.getElementById('toSpinSave').classList.remove('fa-spin','fa-sync-alt');
+														document.getElementById('save_details').style.display='flex';
 														
 														
 													},
@@ -240,7 +240,7 @@
 								
 								<i id="toSpinURL" class="fas fa-plus"></i>
 							</button>
-							<script type="text/javascript" th:inline="javascript">
+				<script type="text/javascript" th:inline="javascript">
 				
 				const formSubmitUrl = document.getElementById('FBLink');
 				var formData = $(formSubmitUrl).serialize();

@@ -29,8 +29,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0;">
 	
-<meta th:name="_csrf" th:content="${_csrf.token}"/>
-<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+<!-- <meta th:name="_csrf" th:content="${_csrf.token}"/>
+<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/> -->
 
 <link rel="stylesheet" href="../css/main.css">
 
@@ -120,9 +120,9 @@
   			<nav class="navbar" style="position:fixed">
 				
 				<button class="notif-button" 
-						sec:authorize="isAuthenticated()">
+						sec:authorize="isAuthenticated()" style="background-color: white;">
 
-				<div id="userNotification">
+				<div id="userNotification" >
 				<div class="notifications" 
 					sec:authorize="isAuthenticated()"
 					th:if="${person.unreadNotifs}">  			
@@ -137,17 +137,17 @@
 	  			</div>
 	  			
 	  			</button>
-	  			
-	  			
-				<div class="notifications-links">
+
 				
-					<ul class= notifications-list 
-						 >
+				<div class="notifications-links" 
+					sec:authorize="isAuthenticated()">
+				
+					<ul class= "notifications-list" id="updatedNotifs">
 <!-- 						th:unless="${nStat.index > 3}" > -->
 						
 						<li class="notifications-item" 
-							th:each="notification, nStat : ${userNotifs}" 
-							th:unless = "${nStat.index > 4}">
+							th:each="notification, nStat : ${userNotifs}" >
+<!-- 							th:unless = "${nStat.index > 4}"> -->
 							<div 
 							id="notifItem" th:if="${not #lists.isEmpty(notification.messages)}"
 							th:classappend="${notification.isRead()} ? 'isRead' "> 
@@ -163,9 +163,9 @@
 							<div class="notification-buttons" style="font-size: 0.8rem;">
 								<p th:text="${#dates.format(notification.dateCreated, 'dd-MM-yyyy HH:mm')}"></p>
 								
-								<div class="notification-button-left" th:if="${notification.hasApprove} == true" >
-									<a id="toFill" class=" " 
-									 style="cursor:pointer;" th:attr="onclick=|approve('${notification.notificationId}')|" >approve</a>
+								<div class="notification-button-left btn-group btn-group-sm" th:if="${notification.hasApprove} == true" >
+									<button id="toFill" class="btn btn-xs btn-primary" 
+									 style="cursor:pointer;" th:attr="onclick=|approve('${notification.notificationId}')|" >approve</button>
 								</div>
 								
 								<script th:inline="javascript" type="text/javascript">
@@ -186,11 +186,12 @@
 												document.getElementById('toFill').classList.add('approve');
 											},
 											completed: function (){
+												document.getElementById('toFill').classList.add('btn-success');
 												
 											},
 											
 											success:function(data) {
-												
+												document.getElementById('toFill').classList.remove('btn-primary');
 												$( ".notifications-list").load(window.location.href + " .notifications-list" );
 
 												$( "#userNotification").load(window.location.href + " #userNotification" );
@@ -202,8 +203,11 @@
 								
 								</script>
 								
-								<div class="notification-button-right">
-									<a id="markAsRead" 
+								
+								
+								
+								<div class="notification-button-right btn-group btn-group-sm">
+									<a id="markAsRead" class="btn btn-primary "
 									style="cursor:pointer;"
 									th:attr="onclick=|markRead('${notification.notificationId}')|"  >mark as read</a>
 								
@@ -213,6 +217,7 @@
 									function markRead(notifId) {		
 										
         								//alert('mark as read -' + notifId +  '- was clicked');
+        								
         								console.log(notifId);
 										event.preventDefault();	
 										var progressBar = ''; 
@@ -230,7 +235,8 @@
 											
 											},
 											completed: function (){
-												$( "#progress-bar").hide();												progressBar.progressCount = [[${progressCount}]];
+												$( "#progress-bar").hide();	
+												progressBar.progressCount = [[${progressCount}]];
 											},
 											
 											success:function(data) {
@@ -244,6 +250,54 @@
 		
 								</script>
 								
+								<a id="deleteButton" style="cursor: pointer;"									
+									th:attr="onclick=|deleteNotification('${notification.notificationId}')|">
+									<i class="fas fa-lg" th:id="'toSpinDeleteNotif' + ${notification.notificationId}" style="color:gray;"></i>
+									<span class="iconify" data-icon="jam:trash-alt-f" th:id="'trashIconNotif' + ${notification.notificationId}"
+									data-inline="false"></span>
+								</a>
+								
+									<script th:inline="javascript" type="text/javascript">
+									
+										function deleteNotification(notifId) {
+											
+											event.preventDefault();
+											
+											Pace.restart();
+											
+											Pace.track(function () {
+											
+											$.ajax({
+												type:"GET",
+												url: "/deleteNotif?notifId=" + notifId,
+												
+												beforeSend: function () {
+													if($("#toSpinDeleteNotification") + notifId != null) {
+													
+														$("#toSpinDeleteNotification" + notifId).addClass('fa-sync-alt fa-spin');
+														
+														$("#trashIconNotification" + notifId).css("display","none");
+	
+													}
+												
+												},
+												completed: function () {
+													$("#toSpinDeleteNotification" + notifId).removeClass('fa-sync-alt fa-spin');
+												
+													$("#trashIconNotification" + notifId).css("display","flex");
+												},
+												success: function () {
+								
+												//$( ".notifications-list").load(window.location.href + " .notifications-list" );
+												
+
+												$( "#userNotification").load(window.location.href + " #userNotification" );
+												}
+											});
+											});
+										
+										}
+						</script>
 								
 								
 								</div>
@@ -251,16 +305,75 @@
 							</div>
 							
 							</div>
+
 						</li>
 						
-						<h5 style="margin-left: auto; background-color: lightgray;">
-						<a  href="" style="cursor:pointer;" ></a>... see all notifications</h5>
+
+						
+						<h5 style="margin-left: auto; " >
+						<button  th:if="${not #lists.isEmpty(userNotifs)}" class="btn btn-outline-dark btn-sm"
+							th:attr="onclick=|seeMoreNotifs('${userNotifs[#lists.size(userNotifs)-1].notificationId}')|"
+							style="cursor:pointer;margin-top: 1rem;" >... load more</button>
+							
+							<script th:inline="javascript" type="text/javascript">
+								
+								
+									function seeMoreNotifs(notifId) {		
+
+        								console.log('notification is ' + notifId);
+										event.preventDefault();	
+
+										$.ajax({
+											type:"GET",
+											
+											url:"/getAllNotifications?notifId=" + notifId,
+											dataType: "html",											
+											
+											beforeSend: function () {
+												
+											
+											},
+											completed: function (){
+												
+												
+												
+													
+											},
+											
+											success:function(data) {
+
+											
+												var newNotifs = document.createElement("div");
+												newNotifs.innerHTML = data; 
+												console.log(newNotifs);
+												
+												
+												
+												$(  " .notifications-list").html(data);
+
+												
+											},
+											
+											
+										});
+    								}
+		
+								</script>
+								
+							
+							</h5>
 					
 					</ul>
+					
+				
+					<div id="toAppend"></div>
+					
+					
 				
 				
 				
 				</div>
+				
   			
  				<div class="brand-text">
 	                <a th:href="@{/}"><button ><img src="../css/header/BZBees_logo 1.svg" alt="logo" style="width:100%;height:auto;"/></button></a>
@@ -354,5 +467,183 @@
   </html>
   
   
-    
+  <html>
+  <body>
+  <ul th:framgent="appendedNotifs" th:unless="${#lists.isEmpty(appendNotifs)}" id="toAppend">
+  
+  
+  						<li 
+  							
+  							class="notifications-item" 
+							th:each="notification, nStat : ${appendNotifs}" >
+<!-- 							th:unless = "${nStat.index > 4}"> -->
+							<div 
+							id="notifItem" th:if="${not #lists.isEmpty(notification.messages)}"
+							th:classappend="${notification.isRead()} ? 'isRead' "> 
+							
+				
+							<div class="notification-message" 
+									th:classappend="${notification.isRead()} ? 'isRead' ">
+								<p   th:text = "${notification.messages[0].message} + '&nbsp' "></p> 
+								<a th:text="${notification.messages[1].message} + '&nbsp'" th:href="@{${notification.messages[2].message}}" ></a>
+								<p id="text-name" th:text ="${notification.messages[3].message}"></p>
+							</div>
+							
+							<div class="notification-buttons" style="font-size: 0.8rem;">
+								<p th:text="${#dates.format(notification.dateCreated, 'dd-MM-yyyy HH:mm')}"></p>
+								
+								<div class="notification-button-left btn-group btn-group-sm" th:if="${notification.hasApprove} == true" >
+									<button id="toFill" class="btn btn-xs btn-primary" 
+									 style="cursor:pointer;" th:attr="onclick=|approve('${notification.notificationId}')|" >approve</button>
+								</div>
+								
+								<script th:inline="javascript" type="text/javascript">
+									
+									function approve(notifId) {		
+									var progressBar = ''; 
+									progressBar.progressCount = [[${progressCount}]];
+										
+        								//alert('approve -' + notifId +  '- was clicked');
+        								console.log(notifId);
+										event.preventDefault();	
+										
+										$.ajax({
+											type:"GET",
+											url:"/agency/affiliateCandidate?id=" + notifId,											
+											
+											beforeSend: function () {
+												document.getElementById('toFill').classList.add('approve');
+											},
+											completed: function (){
+												document.getElementById('toFill').classList.add('btn-success');
+												
+											},
+											
+											success:function(data) {
+												document.getElementById('toFill').classList.remove('btn-primary');
+												$( ".notifications-list").load(window.location.href + " .notifications-list" );
 
+												$( "#userNotification").load(window.location.href + " #userNotification" );
+												$( ".candidate-list").load(window.location.href + " .candidate-list" );
+											}
+										});
+    								}
+								
+								
+								</script>
+								
+								
+								
+								
+								<div class="notification-button-right btn-group btn-group-sm">
+									<a id="markAsRead" class="btn btn-primary "
+									style="cursor:pointer;"
+									th:attr="onclick=|markRead('${notification.notificationId}')|"  >mark as read</a>
+								
+								<script th:inline="javascript" type="text/javascript">
+								
+								
+									function markRead(notifId) {		
+										
+        								//alert('mark as read -' + notifId +  '- was clicked');
+        								
+        								console.log(notifId);
+										event.preventDefault();	
+										var progressBar = ''; 
+										progressBar.progressCount = [[${progressCount}]];
+										
+										$.ajax({
+											type:"GET",
+											url:"/notifMarkRead?id=" + notifId,											
+											
+											beforeSend: function () {
+												$( "#progress-bar").show();
+												 
+												var progressBar = [[${progressCount}]];
+												$( "#progress-bar").attr('value',$(progressBar));
+											
+											},
+											completed: function (){
+												$( "#progress-bar").hide();	
+												progressBar.progressCount = [[${progressCount}]];
+											},
+											
+											success:function(data) {
+
+												$( ".notifications-list").load(window.location.href + " .notifications-list" );
+
+												$( "#userNotification").load(window.location.href + " #userNotification" );
+											}
+										});
+    								}
+		
+								</script>
+								
+								<a id="deleteButton" style="cursor: pointer;"									
+									th:attr="onclick=|deleteNotification('${notification.notificationId}')|">
+									<i class="fas fa-lg" th:id="'toSpinDeleteNotif' + ${notification.notificationId}" style="color:gray;"></i>
+									<span class="iconify" data-icon="jam:trash-alt-f" th:id="'trashIconNotif' + ${notification.notificationId}"
+									data-inline="false"></span>
+								</a>
+								
+									<script th:inline="javascript" type="text/javascript">
+									
+										function deleteNotification(notifId) {
+											
+											event.preventDefault();
+											
+											Pace.restart();
+											
+											Pace.track(function () {
+											
+											$.ajax({
+												type:"GET",
+												url: "/deleteNotif?notifId=" + notifId,
+												
+												beforeSend: function () {
+													if($("#toSpinDeleteNotification") + notifId != null) {
+													
+														$("#toSpinDeleteNotification" + notifId).addClass('fa-sync-alt fa-spin');
+														
+														$("#trashIconNotification" + notifId).css("display","none");
+	
+													}
+												
+												},
+												completed: function () {
+													$("#toSpinDeleteNotification" + notifId).removeClass('fa-sync-alt fa-spin');
+												
+													$("#trashIconNotification" + notifId).css("display","flex");
+												},
+												success: function () {
+								
+												//$( ".notifications-list").load(window.location.href + " .notifications-list" );
+												
+
+												$( "#userNotification").load(window.location.href + " #userNotification" );
+												}
+											});
+											});
+										
+										}
+						</script>
+								
+								
+								</div>
+							
+							</div>
+							
+							</div>
+
+						</li>
+						
+						</ul>
+  
+  </body>
+  </html>
+  
+  
+  
+  
+  
+ 

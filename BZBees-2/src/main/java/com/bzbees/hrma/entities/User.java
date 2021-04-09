@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,6 +39,9 @@ public class User implements UserDetails, Serializable{
 	@Column(name="username")
 	private String userName;
 	
+	@NotNull
+	@Email
+	@Column(unique=true)
 	private String email;
 	
 	private String password;

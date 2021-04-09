@@ -4,8 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +13,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -328,10 +327,13 @@ public class AgencyController {
 		//get the logged in user notifs
 		if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 			List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
-			model.addAttribute("userNotifs", allUserNotif);
-			for(Notification notif : allUserNotif) {
-				System.out.println(notif.getMessages());
+			List<Notification> showUserNotifs = new ArrayList<>();
+			for(int i = 0; i < 4; i++) {
+				showUserNotifs.add(allUserNotif.get(i));					
 			}
+
+			model.addAttribute("userNotifs", showUserNotifs);
+			
 		} else {
 			model.addAttribute("userNotifs", new ArrayList<>());
 		}
@@ -1137,7 +1139,12 @@ public class AgencyController {
 			User user = (User) userServ.loadUserByUsername(auth.getName());
 			if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
-				model.addAttribute("userNotifs", allUserNotif);
+				List<Notification> showUserNotifs = new ArrayList<>();
+				for(int i = 0; i < 4; i++) {
+					showUserNotifs.add(allUserNotif.get(i));					
+				}
+
+				model.addAttribute("userNotifs", showUserNotifs);
 			} else {
 				model.addAttribute("userNotifs", new ArrayList<>());
 			}
@@ -1245,8 +1252,14 @@ public class AgencyController {
 		for (Job job : agencyJobs) {
 			if(job.getJobId() == id) {
 				List<Tag> jobTags = tagServ.findTagsByJobId(job.getJobId());
-				tagServ.deleteJobTags(jobTags);
-				jobServ.deleteJobById(job);
+				
+				try {
+					tagServ.deleteJobTags(jobTags);
+					jobServ.deleteJobById(job);					
+				} catch(EmptyResultDataAccessException e) {
+					e.printStackTrace();
+				}
+
 			}
 		}
 			
@@ -1256,7 +1269,7 @@ public class AgencyController {
 				
 	}
 	
-	@PostMapping(value="/makeJobPrivate")
+	@GetMapping(value="/makeJobPrivate")
 	public String makePrivate(@Valid @ModelAttribute("job") Job setJob, 
 			BindingResult bindingResult, @RequestParam("id") long id, 
 			Model model, Person person, 
@@ -1264,8 +1277,16 @@ public class AgencyController {
 		
 		Job job = jobServ.findJobById(id);
 		
-		job.setJobPrivate(setJob.isJobPrivate());
-		jobServ.save(job);	
+		if(job.isJobPrivate()) {
+			job.setJobPrivate(false);
+			jobServ.save(job);	
+			
+		} else {
+			job.setJobPrivate(true);
+			jobServ.save(job);	
+		}
+		
+			
 		
 
 		List<Job> agencySavedJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
@@ -1273,8 +1294,8 @@ public class AgencyController {
 		
 		return "redirect:/agency/profile";
 	}
-	
-	@PostMapping(value="/editJob", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, "multipart/form-data"})
+	//MediaType.APPLICATION_FORM_URLENCODED_VALUE, { "multipart/form-data"}
+	@PostMapping(value="/editJob" , consumes = {MediaType.ALL_VALUE,  "multipart/form-data" })
 	public String partialUpdate(@Valid @ModelAttribute("job") Job patchJob, 
 //			@ModelAttribute("jobTagList") List<Tag> patchTags,
 			BindingResult bindingResult, @RequestParam("id") long id, 
@@ -1518,9 +1539,16 @@ public class AgencyController {
 		model.addAttribute("progressCount", 80);
 		
 		model.addAttribute("agencyPersonNotifs", agencyPersonNotifs);
+		
+		List<Notification> showUserNotifs = new ArrayList<>();
+		for(int i = 0; i < 4; i++) {
+			showUserNotifs.add(reverseUserNotifs.get(i));					
+		}
 
-		model.addAttribute("userNotifs", reverseUserNotifs);
-;
+		model.addAttribute("userNotifs", showUserNotifs);
+		
+		
+
 		
 			
 		return "redirect:/agencyProfile?id=" + agency.getAgencyId();
@@ -1724,8 +1752,8 @@ public class AgencyController {
 	}
 	
 	
-	@PostMapping(value="/editAgencyDetails")
-	public String editAgencyDetails (@Valid @ModelAttribute("agency") Agency patchAgency,
+	@GetMapping(value="/editAgencyDetails")
+	public String editAgencyDetails (@Valid @ModelAttribute Agency patchAgency,
 			Model model, Person person, Agency agency,
 			RedirectAttributes redirAttr ) {
 		
@@ -1738,11 +1766,12 @@ public class AgencyController {
 		agency.setEmail(patchAgency.getEmail());
 		agency.setWebAddress(patchAgency.getWebAddress());
 		agency.setShortDescription(patchAgency.getShortDescription());
-
 		
-		
+		System.out.println("PathcAgency is ---->" + patchAgency.getAgencyName() );
+		System.out.println("Agency to save ---->" + agency.getAgencyName() );
 		agencyServ.saveAgency(agency);
-		
+		System.out.println("Saving agency?!?!?!");
+				
 		redirAttr.addFlashAttribute("agency", agency);
 		
 		return "redirect:/agency/profile";

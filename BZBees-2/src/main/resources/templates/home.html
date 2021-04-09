@@ -34,9 +34,9 @@
 
                 <div class="job-card-container">
                 
-                				<ul th:each="job : ${jobList}" class="job-card-container">
+                				<ul  class="job-card-container">
 					
-					<li>
+					<li th:each="job : ${jobList}">
 					
 					
 					<div class="job-card">
@@ -58,20 +58,7 @@
                            
                            </div>
                           
-                           
-                            <div sec:authorize="isAuthenticated()" id="agency-avatar-text">
-                            	<div  th:text="'start date: ' + ${#dates.format(job.startDate, 'dd-MMM-yyyy')} " 
-                            			
-									id="startDate">14.05.2014</div>
-								
-                            </div>
-                            
-                            <div sec:authorize="isAuthenticated()" id="agency-avatar-text">
-                            	<div th:text="' salary: ' + ${job.salary} + ' ' + ${job.currency} + '/h'" 
-                            			
-									id="startDate">14.05.2014</div>
-								
-                            </div>
+
                         </div>
                         
                         <div id="job-card-main">
@@ -95,8 +82,27 @@
 
 								</ul>
 							</div>
+							
+								
+						
+							
                             
                             <div id="read-more">
+                            
+                            <div sec:authorize="isAuthenticated()"  id="agency-avatar-text">
+	                            	<div  th:text="'start: ' + ${#dates.format(job.startDate, 'dd-MMM-yyyy')} " 
+	                            			
+										id="startDate">14.05.2014</div>
+									
+	                            </div>
+	                            
+	                            <div sec:authorize="isAuthenticated()"  id="agency-avatar-text">
+	                            	<div th:text="' salary: ' + ${job.salary} + ' ' + ${job.currency} + '/h'" 
+	                            			
+										id="salary">14.05.2014</div>
+									
+	                            </div> 
+							
                             <div id="job-card-text" th:text="${job.workingConditions}"> Project type, work type general conditions, special ... </div>
                             <a>read more</a>
                             </div>
