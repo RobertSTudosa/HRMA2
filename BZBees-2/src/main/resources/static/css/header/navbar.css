@@ -206,6 +206,11 @@
 		color: lightgray;
 	}
 	
+	.displayNONE {
+		display: none;
+		
+	}
+	
 	.notifications-item.active {
 		background-color: gray;
 		

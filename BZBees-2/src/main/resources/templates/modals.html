@@ -1,3 +1,169 @@
+<html name="showJobModal">
+<body>
+
+<div th:fragment="showJob" class="modal fade" id="showJobCard" tabindex="-33" aria-labelledby="showJobDetails">
+
+<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+				
+					<h5 class="modal-title" id="modal-title-jobShow">
+					
+					        <div id="agency-avatar">
+							
+							<a th:if="${job.theAgency.lastAgencyImageId < 0}">
+								<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
+							</a> 
+							
+	
+							 <img th:if="${job.theAgency.lastAgencyImageId > 0}"
+										th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">                         
+                           
+                           <div id="agency-avatar-text" 
+								th:text="${job.theAgency.agencyName}">
+                           
+                           </div>
+
+                        </div>
+                        
+                          <a id="job-card-title" th:text="'position: ' + ${job.jobTitle}">Value</a>
+
+					</h5>
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close" id="closeModalAgencyAddJob">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				
+				
+
+			<div class="job-card-container">
+                
+                	
+							
+					<div class="job-card" >
+      
+                        <div id="job-card-main">
+                        
+	                        <a id="job-card-img" th:if="${job.lastImageId < 1}">
+											<span  class="iconify" data-icon="bytesize:work" data-inline="false" style="font-size: 5rem;"></span>
+							</a>
+		
+							<img id="job-card-img" th:if="${job.lastImageId > 0}"
+								th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" style="size: 10%">
+ 	
+                            
+                            <div id="read-more-modal">
+                            
+                            <a id="agency-avatar-text" th:text="'location: ' + ${job.jobLocation}">Value</a>
+                            
+                            <div sec:authorize="isAuthenticated()"  id="agency-avatar-text">
+	                            	<div  th:text="'start: ' + ${#dates.format(job.startDate, 'dd-MMM-yyyy')} " 
+	                            			
+										id="startDate">14.05.2014</div>
+									
+	                         </div>
+	                            
+	                            <div sec:authorize="isAuthenticated()"  id="agency-avatar-text">
+	                            	<div th:text="' salary: ' + ${job.salary} + ' ' + ${job.currency} + '/h'" 
+	                            			
+										id="salary">14.05.2014</div>
+									
+	                            </div> 
+	                            							
+                            </div>                     
+                           
+
+                           
+                          </div>  
+                          
+                         <div class="job-card-text-body">
+                        
+                         <h5>working conditions:</h5>
+                            <div id="job-card-text" th:text="${job.workingConditions}"> Project type, work type general conditions, special ... </div>
+							<br>
+							<h5>necessary documents:</h5>
+                            <div id="job-card-text" th:text="${job.necessaryDocuments}"> Project type, work type general conditions, special ... </div>
+                            <br>
+                            <h5>job tasks:</h5>                            
+                            <div id="job-card-text" th:text="${job.responsabilities}"> Project type, work type general conditions, special ... </div>
+                            <!-- <a>read more</a> -->
+                            
+                             <div id="job-card-hashes">
+								<ul id="job-card-hashes" th:each="tag : ${jobTagsList}">
+									<li th:if="${job.jobId} == ${tag.theJob.jobId}"
+										th:text="'#'+${tag.tag}"></li>
+
+								</ul>
+							</div>
+                         </div>                   
+
+                        <div id="job-card-footer" style="margin-bottom: 2rem;">
+
+
+                            <div class="card-interact">
+
+                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
+                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+
+
+                                <button class="button-shareActive"><img src="../css/buttons/share_active.png" alt="like"/></button>
+                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
+
+
+                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
+                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
+                                <div class="like-text">256 likes</div>
+                            </div>
+
+                            <div class="apply" >
+					
+                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
+                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+
+                 
+
+
+
+                    <br><br><br>
+                </div>
+
+
+
+
+		
+
+				
+
+
+
+
+
+		</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
 
 <html>
 <body>
@@ -561,7 +727,7 @@
 
 		</div>
 	</div>
-	</div>
+	
 
 	<!-- 
 				ADD JOB MODAL ENDS HERE

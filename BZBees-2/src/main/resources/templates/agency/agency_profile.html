@@ -921,10 +921,27 @@
                            
                            </div>
                            
+                            <div th:replace="modals::editAgencyJob"></div>
+		
+	
+									<!-- trigger the modal for jobEditModal -->
+									<button sec:authorize="isAuthenticated()" th:id="editButton"
+								th:if="${#authentication.name} == ${agency.user.userName}"		 
+										data-toggle="modal" data-target="#editJobModal"
+										th:attrappend="data-target=${job.jobId}">
+										<span class="iconify" data-icon="ant-design:edit-outlined" data-inline="false" 
+										style="background-color: white;"></span>
+	<!-- 									<img src="../css/graphic/edit.png" alt="user" /> -->
+									</button>
+                           
                             
                         </div>
                         
                         <div id="job-card-main">
+                        
+                        	<div id="job-card-header">
+                        	
+                        	
                         
 	                        <a id="job-card-img" th:if="${job.lastImageId < 1}">
 											<span  class="iconify" data-icon="bytesize:work" data-inline="false" style="font-size: 5rem;"></span>
@@ -937,19 +954,17 @@
                             
                             <a id="job-card-title" th:text="${job.jobTitle} + ' / ' + ${job.jobLocation}">Value</a>
                             
-                            
-                            <div id="job-card-hashes">
-								<ul id="job-card-hashes" th:each="tag : ${jobTagsList}">
-									<li th:if="${job.jobId} == ${tag.theJob.jobId}"
-										th:text="'#'+${tag.tag}"></li>
 
-								</ul>
-							</div>
-
+							 </div> 				
+					
+                           
                             
+                          	
                             	
-                            	
-                            	<div id="read-more">
+                           <div id="read-more">
+                           
+                           
+                           
                             	
                             	<div sec:authorize="isAuthenticated()" id="agency-avatar-text">
                             	<div  th:text="'start date: ' + ${#dates.format(job.startDate, 'dd-MMM-yyyy')} " 
@@ -964,8 +979,19 @@
 									id="startDate">14.05.2014</div>
 								
                             </div>
+                            
+                             <div id="job-card-hashes">
+								<ul id="job-card-hashes" th:each="tag : ${jobTagsList}">
+									<li th:if="${job.jobId} == ${tag.theJob.jobId}"
+										th:text="'#'+${tag.tag}"></li>
+
+								</ul>
+							</div>
+							
                             <div id="job-card-text" th:text="${job.workingConditions}"> Project type, work type general conditions, special ... </div>
-                            <a>read more</a>
+                             <button data-toggle="modal" data-target="#showJobCard" >read more</button>
+                            
+                            <div th:replace="modals::showJob"></div>
                             </div>
 	                            
 	                            
@@ -1044,20 +1070,7 @@
 						</script>
 	                            	
 	                            	
-	                            		<div th:replace="modals::editAgencyJob"></div>
-		
-	
-									<!-- trigger the modal for jobEditModal -->
-									<button sec:authorize="isAuthenticated()"
-								th:if="${#authentication.name} == ${agency.user.userName}"		 
-										data-toggle="modal" data-target="#editJobModal"
-										th:attrappend="data-target=${job.jobId}">
-										<span class="iconify" data-icon="ant-design:edit-outlined" data-inline="false" 
-										style="background-color: white;"></span>
-	<!-- 									<img src="../css/graphic/edit.png" alt="user" /> -->
-									</button>
-									
-									
+				
 									
 									<div sec:authorize="isAuthenticated()"
 										th:if="${#authentication.name} == ${agency.user.userName}">		 
@@ -1101,7 +1114,7 @@
 												},
 												success: function () {
 													//$( " .job_list_desktop").load(window.location.href + " .job_list_desktop");
-													$( " #job-card-reloader" + jobId).load(window.location.href + " #job-card-footer" + jobId);
+													$( " #job-card-reloader" + jobId).load(window.location.href + " #job-card-reloader" + jobId);
 												}
 											});
 											
@@ -1153,7 +1166,7 @@
 												},
 												success: function () {
 													//$( " .job_list_desktop").load(window.location.href + " .job_list_desktop");
-													$( " #job-card-reloader" + jobId).load(window.location.href + " #job-card-footer" + jobId);
+													$( " #job-card-reloader" + jobId).load(window.location.href + " #job-card-reloader" + jobId);
 												}
 											});
 										

@@ -36,10 +36,11 @@
                 
                 				<ul  class="job-card-container">
 					
-					<li th:each="job : ${jobList}">
+					<li th:each="job : ${jobList}" th:style="${job.isJobPrivate()} ? 'display:none'  ">
 					
 					
-					<div class="job-card">
+					<div class="job-card" 
+						>
 					
                         <div id="agency-avatar">
 							
@@ -103,8 +104,13 @@
 									
 	                            </div> 
 							
-                            <div id="job-card-text" th:text="${job.workingConditions}"> Project type, work type general conditions, special ... </div>
-                            <a>read more</a>
+                            <div id="job-card-text" th:text="${job.workingConditions}"> 
+                            Project type, work type general conditions, special ... </div>
+                            <button data-toggle="modal" data-target="#showJobCard" >read more</button>
+                            
+                            <div th:replace="modals::showJob"></div>
+                            
+                            
                             </div>
                                              
                         </div>

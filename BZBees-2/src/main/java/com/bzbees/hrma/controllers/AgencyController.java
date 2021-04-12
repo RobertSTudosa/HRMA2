@@ -324,6 +324,9 @@ public class AgencyController {
 		}
 		
 		
+		
+		
+		
 		//get the logged in user notifs
 		if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 			List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());

@@ -145,7 +145,7 @@
 					<ul class= "notifications-list" id="updatedNotifs">
 <!-- 						th:unless="${nStat.index > 3}" > -->
 						
-						<li class="notifications-item" 
+						<li class="notifications-item" th:id="'notificationId' + ${notification.notificationId}"
 							th:each="notification, nStat : ${userNotifs}" >
 <!-- 							th:unless = "${nStat.index > 4}"> -->
 							<div 
@@ -154,7 +154,7 @@
 							
 				
 							<div class="notification-message" 
-									th:classappend="${notification.isRead()} ? 'isRead' ">
+								 th:classappend="${notification.isRead()} ? 'isRead' ">
 								<p   th:text = "${notification.messages[0].message} + '&nbsp' "></p> 
 								<a th:text="${notification.messages[1].message} + '&nbsp'" th:href="@{${notification.messages[2].message}}" ></a>
 								<p id="text-name" th:text ="${notification.messages[3].message}"></p>
@@ -240,8 +240,9 @@
 											},
 											
 											success:function(data) {
-
-												$( ".notifications-list").load(window.location.href + " .notifications-list" );
+													
+												$("#notificationId" + notifId).load(" #notificationId" + notifId);	
+												//$( ".notifications-list").load(window.location.href + " .notifications-list" );
 
 												$( "#userNotification").load(window.location.href + " #userNotification" );
 											}
@@ -289,7 +290,7 @@
 												success: function () {
 								
 												//$( ".notifications-list").load(window.location.href + " .notifications-list" );
-												
+												$("#notificationId" + notifId).load(" #notificationId" + notifId);
 
 												$( "#userNotification").load(window.location.href + " #userNotification" );
 												}
@@ -313,7 +314,7 @@
 						<h5 style="margin-left: auto; " >
 						<button  th:if="${not #lists.isEmpty(userNotifs)}" class="btn btn-outline-dark btn-sm"
 							th:attr="onclick=|seeMoreNotifs('${userNotifs[#lists.size(userNotifs)-1].notificationId}')|"
-							style="cursor:pointer;margin-top: 1rem;" >... load more</button>
+							style="cursor:pointer;margin-top: 1rem;margin-right: 2rem;" >... load more</button>
 							
 							<script th:inline="javascript" type="text/javascript">
 								
