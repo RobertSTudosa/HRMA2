@@ -139,9 +139,7 @@ public class HomeController {
 				Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
 				Set<Like> userJobsLiked = likeServ.findLikesByUsername(auth.getName());
 				model.addAttribute("userJobsLiked", userJobsIdLiked);
-				for(Long jobId:userJobsIdLiked) {System.out.println("jobid from query is " + jobId);}
-
-				
+		
 			} else {
 				model.addAttribute("jobList", new ArrayList<Job>());
 				model.addAttribute("userJobsLiked", new HashSet<String>());
@@ -583,7 +581,7 @@ public class HomeController {
 	public void likedJob(@RequestParam ("jobId") long jobId, Authentication auth, Model model) {
 		if(auth != null) {
 			Job theJob = (Job) jobServ.findJobById(jobId);
-			User loggedInUser = (User) userServ.loadUserByUsername(auth.getName());
+			
 			if(likeServ.findLikeByJobIdAndUsername(jobId, auth.getName()) == null) {
 				Like newLike = new Like(new Date(),theJob,null,auth.getName());
 				likeServ.saveLike(newLike);
