@@ -172,6 +172,7 @@ max-height: 48px;
 
 .job-card #read-more button {
 	color: #1F9A01;
+	background-color: f3f3f3;
 	font-weight: 600;
 	transform: scale(1.2);
   	animation-name: read-more-text;

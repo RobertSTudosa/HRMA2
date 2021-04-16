@@ -15,7 +15,7 @@ public interface AgencyRepository extends CrudRepository<Agency, Long>{
 				" agency.user_credentials, agency.user_full_name, agency.user_id, agency.unique_reg_code, "
 				+ " agency.reg_com_number, agency.legal_address, agency.web_address, agency.email, agency.phone_number,"
 				+ " agency.last_agency_image_id, agency.short_description, agency.account_non_expired, agency.account_non_locked,"
-				+ " agency.credentials_non_expired, agency.active " +
+				+ " agency.credentials_non_expired, agency.active, agency_likes_count " +
 				" FROM agency " + 
 				" left outer join user_accounts ON user_accounts.user_id = agency.user_id " +
 				" WHERE user_accounts.user_id = ?1 ;")

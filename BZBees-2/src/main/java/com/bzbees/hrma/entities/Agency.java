@@ -3,7 +3,9 @@ package com.bzbees.hrma.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -72,7 +74,7 @@ public class Agency implements Serializable {
 	
 	private boolean active=false;
 	
-	
+	private int agencyLikesCount = 0;
 	
 	
 	@OneToMany(
@@ -124,6 +126,13 @@ public class Agency implements Serializable {
 	    )
 	private List<Job> postedJobs = new ArrayList<>();
 	
+	@OneToMany(
+	        mappedBy = "likedAgency",
+	        cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST}
+//	        orphanRemoval = true
+	    )
+	private Set<Like> agencyLikes = new HashSet<>();
+	
 	public Agency () {
 		
 	}
@@ -131,7 +140,7 @@ public class Agency implements Serializable {
 
 	public Agency(long agencyId, String agencyName, String adminName, String userFullName, String userCredentials,
 			Date userBirthDate, String uniqueRegCode, String regComNumber, String legalAddress, String webAddress,
-			String email, String phoneNumber,  String shortDescription, boolean active) {
+			String email, String phoneNumber,  String shortDescription, boolean active, int agencyLikesCount) {
 		super();
 		this.agencyId = agencyId;
 		this.agencyName = agencyName;
@@ -148,6 +157,8 @@ public class Agency implements Serializable {
 		this.shortDescription = shortDescription;
 		this.active = active;
 		this.lastAgencyImageId=this.setAutoLastImageId();
+		this.agencyLikesCount = agencyLikesCount;
+		
 		
 	}
 
@@ -474,6 +485,26 @@ public class Agency implements Serializable {
 	public List<User> removeFromPendingUsers(User user) {
 		this.pendingUsers.remove(user);
 		return this.pendingUsers;
+	}
+
+
+	public int getAgencyLikesCount() {
+		return agencyLikesCount;
+	}
+
+
+	public void setAgencyLikesCount(int agencyLikesCount) {
+		this.agencyLikesCount = agencyLikesCount;
+	}
+
+
+	public Set<Like> getAgencyLikes() {
+		return agencyLikes;
+	}
+
+
+	public void setAgencyLikes(Set<Like> agencyLikes) {
+		this.agencyLikes = agencyLikes;
 	}
 
 

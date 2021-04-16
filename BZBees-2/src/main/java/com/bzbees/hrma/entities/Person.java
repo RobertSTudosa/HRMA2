@@ -23,7 +23,7 @@ import javax.validation.constraints.FutureOrPresent;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="persons")
@@ -101,6 +101,8 @@ public class Person implements Serializable {
 	        orphanRemoval = true
 	    )
 	private List<SocialMedia> socialMedia = new ArrayList<>();
+	
+
 	
 	
 	@OneToOne(mappedBy="person")
@@ -493,8 +495,9 @@ public class Person implements Serializable {
 	public void setAffiliatedToAgency(boolean isAffiliatedToAgency) {
 		this.isAffiliatedToAgency = isAffiliatedToAgency;
 	}
-	
-	
+
+
+
 	
 
 }

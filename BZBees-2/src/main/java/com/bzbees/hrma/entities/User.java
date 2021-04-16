@@ -57,6 +57,7 @@ public class User implements UserDetails, Serializable{
 	
 	private boolean active;
 	
+	
 	@ManyToMany
 	@JoinTable(name="user_role",
 			joinColumns=@JoinColumn(name="user_id"),

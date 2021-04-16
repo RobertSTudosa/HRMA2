@@ -86,6 +86,17 @@ public class Job implements Serializable {
 	    )
 	private List<Tag> jobTags = new ArrayList<>();
 	
+	
+	@OneToMany(
+	        mappedBy = "likedJob",
+	        cascade= {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST}
+//	        orphanRemoval = true
+	    )
+	private Set<Like> jobLikes = new HashSet<>();
+	
+	private int jobLikesCount = 0;
+	
+	
 	@Column(name="necessary_documents")
 	private String necessaryDocuments;
 	
@@ -106,7 +117,7 @@ public class Job implements Serializable {
 
 	public Job(String jobTitle, String companyName, String jobLocation, Date startDate, Date endDate, double salary,
 			String currency, String responsabilities, String workingConditions, boolean privateJob, String skills, String tags,
-			String necessaryDocuments) {
+			String necessaryDocuments, int jobLikesCount) {
 		super();
 		this.jobTitle = jobTitle;
 		this.companyName = companyName;
@@ -121,6 +132,7 @@ public class Job implements Serializable {
 		this.skills = skills;
 		this.tags = tags;
 		this.necessaryDocuments = necessaryDocuments;
+		this.jobLikesCount = jobLikesCount;
 	}
 
 	public long getJobId() {
@@ -300,6 +312,26 @@ public class Job implements Serializable {
 		} 
 			return this.lastImageId = 0;
 	}
+
+	public Set<Like> getJobLikes() {
+		return jobLikes;
+	}
+
+	public void setJobLikes(Set<Like> jobLikes) {
+		this.jobLikes = jobLikes;
+	}
+
+	public int getJobLikesCount() {
+		return jobLikesCount;
+	}
+
+	public void setJobLikesCount(int jobLikesCount) {
+		this.jobLikesCount = jobLikesCount;
+	}
+	
+	
+	
+	
 	
 	
 

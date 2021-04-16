@@ -1,16 +1,16 @@
 package com.bzbees.hrma.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,15 +20,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.CompanyDoc;
 import com.bzbees.hrma.entities.Job;
+import com.bzbees.hrma.entities.Like;
 import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
@@ -38,6 +37,7 @@ import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.services.AgencyService;
 import com.bzbees.hrma.services.CompanyDocService;
 import com.bzbees.hrma.services.JobService;
+import com.bzbees.hrma.services.LikeService;
 import com.bzbees.hrma.services.NotificationService;
 import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.ProfileImgService;
@@ -80,6 +80,9 @@ public class HomeController {
 	
 	@Autowired
 	NotificationService notifServ;
+	
+	@Autowired
+	LikeService likeServ;
 	
 //	@Value("${version}")
 //	private String ver;
@@ -133,9 +136,15 @@ public class HomeController {
 			if(!jobServ.getAll().isEmpty()) {
 				List<Job> allJobs = jobServ.findJobsPostedByAgencies();
 				model.addAttribute("jobList", allJobs);
+				Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
+				Set<Like> userJobsLiked = likeServ.findLikesByUsername(auth.getName());
+				model.addAttribute("userJobsLiked", userJobsIdLiked);
+				for(Long jobId:userJobsIdLiked) {System.out.println("jobid from query is " + jobId);}
+
 				
 			} else {
 				model.addAttribute("jobList", new ArrayList<Job>());
+				model.addAttribute("userJobsLiked", new HashSet<String>());
 			}
 			
 			//get the logged in user notifs
@@ -152,6 +161,8 @@ public class HomeController {
 			}
 		
 		}
+		
+		//NULL AUTH STARTS HERE ---
 		
 		
 		//get all the agencies in a list 
@@ -186,9 +197,7 @@ public class HomeController {
 			model.addAttribute("jobTagsList", new ArrayList<Tag>());
 		}
 		
-	
-//		System.out.println("Name of the user : " + auth.getName());
-//		model.addAttribute("localVerNumber", ver);
+
 		
 		return "home";
 	}
@@ -550,7 +559,7 @@ public class HomeController {
 		}
 		
 		return "header :: #updatedNotifs";
-		//return showUserNotifs;
+		
 	
 	}
 	
@@ -567,6 +576,29 @@ public class HomeController {
 		
 		model.addAttribute("userNotifs", reverseUserNotifs);
 		
+	}
+	
+	@GetMapping("/likeJob")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void likedJob(@RequestParam ("jobId") long jobId, Authentication auth, Model model) {
+		if(auth != null) {
+			Job theJob = (Job) jobServ.findJobById(jobId);
+			User loggedInUser = (User) userServ.loadUserByUsername(auth.getName());
+			if(likeServ.findLikeByJobIdAndUsername(jobId, auth.getName()) == null) {
+				Like newLike = new Like(new Date(),theJob,null,auth.getName());
+				likeServ.saveLike(newLike);
+				theJob.setJobLikesCount(theJob.getJobLikesCount() + 1);
+				jobServ.save(theJob);
+				
+								
+			} else {
+				Like unLike = likeServ.findLikeByJobIdAndUsername(jobId, auth.getName());
+				likeServ.deleteLike(unLike);
+				theJob.setJobLikesCount(theJob.getJobLikesCount() - 1);
+				jobServ.save(theJob);
+				
+			}
+		} 
 	}
 
 
