@@ -29,9 +29,13 @@ public interface LikeRepository extends JpaRepository<Like, Long>{
 	@Query(nativeQuery= true, value="select likes.liked_job_job_id "
 			+ " FROM likes "
 			+ " WHERE likes.like_owner = ?1 ; ")
-	public Set<Long> findLikedJobIdbyUsername(String username);
+	public Set<Long> findLikedJobIdbyUsername(String username);			
 	
 	
+	@Query(nativeQuery= true, value="select likes.liked_agency_agency_id "
+			+ " FROM likes "
+			+ " WHERE likes.like_owner = ?1 ; ")
+	public Set<Long> findLikedAgencyIdbyUsername(String username);
 	
 	@Query(nativeQuery= true, value="select likes.like_id, likes.date_created, likes.liked_job_job_id, likes.liked_agency_agency_id, likes.like_owner "
 			+ " FROM likes "

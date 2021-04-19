@@ -989,19 +989,11 @@
 							</div>
 							
                             <div id="job-card-text" th:text="${job.workingConditions}"> Project type, work type general conditions, special ... </div>
-                             <button data-toggle="modal" data-target="#showJobCard" >read more</button>
+                             <button data-toggle="modal" th:data-target="'#showJobCard' + ${job.jobId}" >read more</button>
                             
                             <div th:replace="modals::showJob"></div>
                             </div>
-	                            
-	                            
-                            	
-                            	
-                            	
-                            
-                            
-                           
-                                             
+	                                         
                         </div>
                         
                          <div th:id="'job-card-reloader' + ${job.jobId}">
@@ -1009,7 +1001,7 @@
 							<div id="job-card-footer">
 
 
-	                            <div class="card-interact">
+	                            <div class="card-interact" th:id="'card-interact' + ${job.jobId}">
 	
 	                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
 	                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
@@ -1019,9 +1011,112 @@
 	                                <button class="button-share"><img src="../css/buttons/share.png" alt="like"/></button>
 	
 	
-	                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
-	                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
-	                                <div class="like-text">256 likes</div>
+	                                <button sec:authorize="isAnonymous()" class="button-like" 
+									th:onclick="@{/login}">
+								<span class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303"></span>
+								</button>
+												
+                                <button sec:authorize="isAuthenticated()"  th:if="${#lists.contains(userJobsLiked, job.jobId)}"
+                                	th:attr="onclick=|(pressunlikeJob(${job.jobId}))|" class="button-like" th:id="likeButton + ${job.jobId}">
+                                	<span 
+                                			th:id="'jobidfull' + ${job.jobId}"  style="color:#B10303;"
+                                			class="iconify" data-icon="clarity:heart-solid" data-inline="false"></span>
+                                			
+                                	<span 
+                                			th:id="'jobidempty' + ${job.jobId}" 
+                                		class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303;display:none"></span>
+                                	
+                                	</button>  
+                                	
+                                <script th:inline="javascript" type="text/javascript" >
+                                		
+                                function pressunlikeJob(jobId) {
+                                	
+                                	console.log('heart pressed')
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+                                	
+                                	
+                                	$.ajax({
+                                		type: "GET",
+                                		url:"/likeJob?jobId=" + jobId,
+                                		beforeSend: function() {
+                                			
+                                			$(" #jobidempty" + jobId).css('display','flex');
+                                			$(" #jobidfull" + jobId).css('display','none');
+                                			
+
+                                		},
+                                		completed: function () {
+                                		                            			
+                                		
+                                			
+                                		},
+                                		success: function () {
+                                			$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
+                                			$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
+                                		},
+                                		
+                                	
+                                	});
+                                	          
+                                }
+                                
+                                </script>
+                                
+                                
+                                 <button sec:authorize="isAuthenticated()" th:if="${not #lists.contains(userJobsLiked, job.jobId)}"
+                                	th:attr="onclick=|(presslikeJob(${job.jobId}))|" class="button-like" th:id="likeButton + ${job.jobId}">
+                                	<span  
+                                			th:id="'jobidfull' + ${job.jobId}"  style="color:#B10303;display:none;"
+                                			class="iconify" data-icon="clarity:heart-solid" data-inline="false"></span>
+                                	<span 
+                                			th:id="'jobidempty' + ${job.jobId}" 
+                                		class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303;"></span>
+                                	</button>  
+                                	
+                                <script th:inline="javascript" type="text/javascript" >
+                                		
+                                function presslikeJob(jobId) {
+                                	
+                                	console.log('heart pressed')
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+                                	
+                                	
+                                	$.ajax({
+                                		type: "GET",
+                                		url:"/likeJob?jobId=" + jobId,
+                                		beforeSend: function() {
+                                			
+                                			$(" #jobidfull" + jobId).css('display','flex');
+                                			$(" #jobidempty" + jobId).css('display','none');
+
+                                		},
+                                		completed: function () {
+                                		                            			
+                                			
+                                			
+                                		},
+                                		success: function () {
+	                                		$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
+											$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
+                                		},
+                                		
+                                	
+                                	});
+                                	          
+                                }
+                                
+                                </script>
+                                                             
+                               
+                                                             
+                                <div class="like-text" th:id="likes + ${job.jobId}" th:text="${job.jobLikesCount} + ' likes'">256 likes</div>
+                                
+
 	                            </div>
 
 	                            <div class="apply">

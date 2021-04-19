@@ -5,7 +5,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -42,6 +44,7 @@ import com.bzbees.hrma.entities.CompanyDoc;
 import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Language;
+import com.bzbees.hrma.entities.Like;
 import com.bzbees.hrma.entities.Message;
 import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
@@ -55,6 +58,7 @@ import com.bzbees.hrma.services.AgencyService;
 import com.bzbees.hrma.services.CompanyDocService;
 import com.bzbees.hrma.services.ImageResize;
 import com.bzbees.hrma.services.JobService;
+import com.bzbees.hrma.services.LikeService;
 import com.bzbees.hrma.services.MessageService;
 import com.bzbees.hrma.services.NotificationService;
 import com.bzbees.hrma.services.PersonService;
@@ -68,7 +72,7 @@ import com.bzbees.hrma.services.UserService;
 @Controller
 @RequestMapping("/agency")
 @SessionAttributes({ "person", "userAccount", "agency", "lastAgencyPicList", "lastPicList", "companyDocList",
-		"socialMediaList", "affiliatedPersonsList","agencyJobList","jobTagsList","lastJobPicList","userNotifs" })
+		"socialMediaList", "affiliatedPersonsList","agencyJobList","jobTagsList","lastJobPicList","userNotifs","userJobsLiked" })
 public class AgencyController {
 
 	@Autowired
@@ -106,6 +110,9 @@ public class AgencyController {
 	
 	@Autowired
 	private MessageService messServ;
+	
+	@Autowired
+	private LikeService likeServ;
 	
 
 	@GetMapping("/register")
@@ -312,9 +319,12 @@ public class AgencyController {
 				agencyJobsTags.addAll(jobsTags);
 			}
 			
+			Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());			
+			model.addAttribute("userJobsLiked", userJobsIdLiked);
 			model.addAttribute("jobTagsList", agencyJobsTags);
 			
 		} else {
+			model.addAttribute("userJobsLiked", new HashSet<String>());
 			model.addAttribute("agencyJobList", new ArrayList<>());
 			model.addAttribute("jobTagsList", new ArrayList<>());
 		}

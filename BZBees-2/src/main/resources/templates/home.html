@@ -106,10 +106,23 @@
 							
                             <div id="job-card-text" th:text="${job.workingConditions}"> 
                             Project type, work type general conditions, special ... </div>
-                            <button data-toggle="modal" data-target="#showJobCard" >read more</button>
+                            <button data-toggle="modal" th:data-target="'#showJobCard' + ${job.jobId}" >read more</button>
                             
                             <div th:replace="modals::showJob"></div>
                             
+                            <script type="text/javascript" th:inline="javascript">
+						
+							$("#showJobCard" + [[${job.jobId}]])
+								.on('hidden.bs.modal', 
+									function() {
+									console.log('inside function');
+									alert('close read more modal');								
+									$(" #card-interact" + [[${job.jobId}]]).load(window.location.href + " #card-interact" + [[${job.jobId}]]);
+						
+								}
+							);
+					
+					</script>
                             
                             </div>
                                              
@@ -132,11 +145,7 @@
 									th:onclick="@{/login}">
 								<span class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303"></span>
 								</button>
-
-								 
-								 
-
-								
+			
 													
                                 <button sec:authorize="isAuthenticated()"  th:if="${#lists.contains(userJobsLiked, job.jobId)}"
                                 	th:attr="onclick=|(pressunlikeJob(${job.jobId}))|" class="button-like" th:id="likeButton + ${job.jobId}">
@@ -176,6 +185,7 @@
                                 			
                                 		},
                                 		success: function () {
+                                			$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
                                 			$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
                                 		},
                                 		
@@ -222,6 +232,7 @@
                                 			
                                 		},
                                 		success: function () {
+	                                		$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
 											$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
                                 		},
                                 		
@@ -289,6 +300,7 @@
 
                             </div>
                         </div>
+                    
                     </div>
                     
                     </li>
@@ -332,7 +344,7 @@
 
 									</div>
 									
-									<div th:text="${aAgency.agencyName}" id="agencycard-avatar-text">the JobBoss</div>
+									<a th:text="${aAgency.agencyName}" id="agencycard-avatar-text" th:href="@{/agencyProfile(id=${aAgency.agencyId})}">the JobBoss</a>
 
                                 </div>
 
@@ -396,8 +408,8 @@
                         </div>
 
 
-                        <div id="agencycard-footer">
-                            <div id="agencycard-starRating">
+                        <div th:id="'agencycard-footer' + ${aAgency.agencyId}" class="agency-card-footer">
+                            <div id="agencycard-starRating" class="agency-Rating">
                                 <p>4.5</p>
                                 <img src="../css/cards/fullBlackStar.png" />
                                 <img src="../css/cards/fullBlackStar.png" />
@@ -407,9 +419,112 @@
                             </div>
 
                             <div id="agency-likes">
-                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
-                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
-                                <div class="like-text">23 likes</div>
+                                <button sec:authorize="isAnonymous()" class="button-like" style="background-color: rgba(244, 228, 142, 0.63);" 
+									th:onclick="@{/login}">
+								<span class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303; "></span>
+								</button>
+												
+                                <button sec:authorize="isAuthenticated()"  th:if="${#lists.contains(userAgencyLiked, aAgency.agencyId)}"
+                                		style="background-color: rgba(244, 228, 142, 0.63);"
+                                	th:attr="onclick=|(pressunlikeAgency(${aAgency.agencyId}))|" class="button-like" th:id="likeButton + ${aAgency.agencyId}">
+                                	<span 
+                                			th:id="'agencyidfull' + ${aAgency.agencyId}"  style="color:#B10303;"
+                                			class="iconify" data-icon="clarity:heart-solid" data-inline="false"></span>
+                                			
+                                	<span 
+                                			th:id="'agencyidempty' + ${aAgency.agencyId}" 
+                                		class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303;display:none;"></span>
+                                	
+                                	</button>  
+                                	
+                                <script th:inline="javascript" type="text/javascript" >
+                                		
+                                function pressunlikeAgency(agencyId) {
+                                	
+                                	console.log('agency heart pressed')
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+                                	
+                                	
+                                	$.ajax({
+                                		type: "GET",
+                                		url:"/likeAgency?agencyId=" + agencyId,
+                                		beforeSend: function() {
+                                			
+                                			$(" #agencyidempty" + agencyId).css('display','flex');
+                                			$(" #agencyidfull" + agencyId).css('display','none');
+                                			
+
+                                		},
+                                		completed: function () {
+                                		                            			
+                                		
+                                			
+                                		},
+                                		success: function () {
+                                			$(" #agencycard-footer" + agencyId).load(window.location.href + " #agencycard-footer" + agencyId);
+                                			
+                                		},
+                                		
+                                	
+                                	});
+                                	          
+                                }
+                                
+                                </script>
+                                
+                                
+                                 <button sec:authorize="isAuthenticated()" th:if="${not #lists.contains(userAgencyLiked, aAgency.agencyId)}"
+                                 		style="background-color: rgba(244, 228, 142, 0.63);"
+                                	th:attr="onclick=|(presslikeAgency(${aAgency.agencyId}))|" class="button-like" th:id="likeButton + ${aAgency.agencyId}">
+                                	<span  
+                                			th:id="'agencyidfull' + ${aAgency.agencyId}"  style="color:#B10303;display:none;"
+                                			class="iconify" data-icon="clarity:heart-solid" data-inline="false"></span>
+                                	<span 
+                                			th:id="'agencyidempty' + ${aAgency.agencyId}" 
+                                		class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303;"></span>
+                                	</button>  
+                                	
+                                <script th:inline="javascript" type="text/javascript" >
+                                		
+                                function presslikeAgency(agencyId) {
+                                	
+                                	console.log('agency heart pressed')
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+                                	
+                                	
+                                	$.ajax({
+                                		type: "GET",
+                                		url:"/likeAgency?agencyId=" + agencyId,
+                                		beforeSend: function() {
+                                			
+                                			$(" #agencyidfull" + agencyId).css('display','flex');
+                                			$(" #agencyidempty" + agencyId).css('display','none');
+
+                                		},
+                                		completed: function () {
+                                		                            			
+                                			
+                                			
+                                		},
+                                		success: function () {
+	                                		$(" #agencycard-footer" + agencyId).load(window.location.href + " #agencycard-footer" + agencyId);
+                                		},
+                                		
+                                	
+                                	});
+                                	          
+                                }
+                                
+                                </script>
+                                                             
+                               
+                                                             
+                                <div class="like-text" th:id="likes + ${aAgency.agencyId}" th:text="${aAgency.agencyLikesCount} + ' likes'">256 likes</div>
+
                             </div>
 
                         </div>

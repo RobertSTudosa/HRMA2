@@ -126,9 +126,12 @@ public class HomeController {
 				List<Agency> allAgencies = agencyServ.findAll();
 				System.out.println("adding agencies ---> " + allAgencies.size());
 				model.addAttribute("agenciesList", allAgencies);
+				Set<Long> userAgencyIdLiked = likeServ.findLikedAgencyIdsByUsername(auth.getName());
+				model.addAttribute("userAgencyLiked",userAgencyIdLiked);
 				
 			} else {
 				System.out.println("Empty agency list");
+				model.addAttribute("userAgencyLiked", new HashSet<Long>());
 				model.addAttribute("agenciesList", new ArrayList<Agency>());
 			}
 			
@@ -136,8 +139,7 @@ public class HomeController {
 			if(!jobServ.getAll().isEmpty()) {
 				List<Job> allJobs = jobServ.findJobsPostedByAgencies();
 				model.addAttribute("jobList", allJobs);
-				Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
-				Set<Like> userJobsLiked = likeServ.findLikesByUsername(auth.getName());
+				Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());				
 				model.addAttribute("userJobsLiked", userJobsIdLiked);
 		
 			} else {
@@ -353,10 +355,17 @@ public class HomeController {
 						List<Tag> jobsTags = tagServ.findTagsByJobId(job.getJobId());
 						agencyJobsTags.addAll(jobsTags);
 					}
-					
+					if(auth != null) {
+						Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());			
+						model.addAttribute("userJobsLiked", userJobsIdLiked);						
+					} else {
+						model.addAttribute("userJobsLiked", new HashSet<String>());
+					}
+
 					model.addAttribute("jobTagsList", agencyJobsTags);
 					
 				} else {
+					
 					model.addAttribute("agencyJobList", new ArrayList<>());
 					model.addAttribute("jobTagsList", new ArrayList<>());
 				}
@@ -587,8 +596,7 @@ public class HomeController {
 				likeServ.saveLike(newLike);
 				theJob.setJobLikesCount(theJob.getJobLikesCount() + 1);
 				jobServ.save(theJob);
-				
-								
+												
 			} else {
 				Like unLike = likeServ.findLikeByJobIdAndUsername(jobId, auth.getName());
 				likeServ.deleteLike(unLike);
@@ -597,6 +605,29 @@ public class HomeController {
 				
 			}
 		} 
+	}
+	
+	
+	@GetMapping("/likeAgency")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void likedAgency(@RequestParam ("agencyId") long agencyId, Authentication auth, Model model) {
+		if(auth != null) {
+			
+			Agency theAgency = (Agency) agencyServ.findAgencyByID(agencyId);
+			
+			if(likeServ.findLikeByAgencyIdAndUsername(agencyId, auth.getName()) == null) {
+				Like newLike = new Like(new Date(),null, theAgency,auth.getName());
+				likeServ.saveLike(newLike);
+				theAgency.setAgencyLikesCount(theAgency.getAgencyLikesCount() + 1);
+				agencyServ.saveAgency(theAgency);
+			} else {
+				Like unLike = likeServ.findLikeByAgencyIdAndUsername(agencyId, auth.getName());
+				likeServ.deleteLike(unLike);
+				theAgency.setAgencyLikesCount(theAgency.getAgencyLikesCount() -1);
+				agencyServ.saveAgency(theAgency);
+			}
+			
+		}
 	}
 
 

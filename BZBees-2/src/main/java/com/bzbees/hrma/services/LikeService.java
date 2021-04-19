@@ -45,5 +45,10 @@ public class LikeService {
 		return likeRepo.findLikedJobIdbyUsername(username);
 	}
 	
+	public Set<Long> findLikedAgencyIdsByUsername(String username) {
+		return likeRepo.findLikedAgencyIdbyUsername(username);
+	}
+
+	
 
 }
