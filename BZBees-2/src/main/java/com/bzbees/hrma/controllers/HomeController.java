@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -628,6 +629,34 @@ public class HomeController {
 			}
 			
 		}
+	}
+	
+	
+	@GetMapping("/showJob/{jobId}")
+	public String showJob(@PathVariable("jobId") long jobId, Authentication auth, Model model) {
+		if(!model.containsAttribute("job")) {
+			Job theJob = (Job) jobServ.findJobById(jobId);
+			model.addAttribute("job", theJob);
+			Agency aAgency = (Agency) theJob.getTheAgency();
+			System.out.println("agency if model contains job is ------> " + aAgency.getAgencyName());
+			model.addAttribute("aAgency", aAgency);
+			if(auth != null) {
+				Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());				
+				model.addAttribute("userJobsLiked", userJobsIdLiked);	
+				
+				System.out.println("agency if model contains job is and user is authenticated ------> " + aAgency.getAgencyName());
+				model.addAttribute("aAgency", aAgency);
+				
+			} 
+			
+		} else {
+			model.addAttribute("job", new Job());
+			model.addAttribute("userJobsLiked", new HashSet<>());
+			model.addAttribute("aAgency", null);
+			System.out.println("agency if model DOES NOT contains job is ------> NULL" );
+		}
+			
+		return "agency/job";
 	}
 
 

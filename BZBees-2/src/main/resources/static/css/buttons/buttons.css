@@ -1,3 +1,4 @@
+
 .button-userplus {
     display: none;
     position: absolute;
@@ -7,6 +8,7 @@
     height: 35px;
     border: none;
     background-color: white;
+    z-index: 401;
     
 }
 
@@ -42,19 +44,51 @@
     background-color: white;
 }
 
-.button-shareActive {
-    display: none;
-    width: 24px;
-    height: 27px;
-    border: none;
-    background-color: white;
+.button-share details[data-popover] {
+		display:inline;
+		position:relative;
+}
+	
+.button-share details[data-popover] > summary:focus {
+	outline:none;
+}	
+
+.button-share details[data-popover] > summary::-webkit-details-marker {
+  display: none;
 }
 
-.button-share {
-    width: 33px;
-    height: 33px;
-    border: none;
-    background-color: white;
+
+.button-share details[data-popover] > summary {
+  list-style: none;
+  text-decoration: underline dotted teal;
+}
+
+.button-share details[data-popover] > summary + * {
+  position: absolute;
+  display: block;
+  z-index: 1;
+  width: 250px;
+  height:auto;
+  border: solid 1px teal;
+  border-radius: 5%;
+  padding: 10px;
+  background: white;
+}
+.button-share details[data-popover] > * + * {
+  /* hide detail elements that would ruin the popover */
+  display: none;
+}
+
+.button-share details[data-popover="down"] > summary + * {
+  top: calc(0.5rem + 100%);
+  right: 60%;
+  transform: translateX(80%);
+}
+
+.button-share details[data-popover="up"] > summary + * {
+  bottom: calc(0.5rem + 100%);
+  right: 60%;
+  transform: translateX(80%);
 }
 
 .button-addToListActive {

@@ -2,6 +2,7 @@
 @import url("header/navbar.css");
 @import url("text.css");
 @import url("cards/jobcard.css");
+@import url("cards/job_page.css");
 @import url("cards/newscard.css");
 @import url("cards/agency.css");
 @import url("graphic/arrow.css");

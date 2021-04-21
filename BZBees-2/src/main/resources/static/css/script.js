@@ -35,9 +35,20 @@ $(document).mouseup (e => {
 		$('.notifications-links').has(e.target).length === 0) {
 		$('.notifications-links').removeClass('active');
 	}
+	
+	if(!$('.buttonShare').is(e.target) &&
+		$('.buttonShare').has(e.target).length === 0) {
+		$('.buttonShare').removeAttr('open');
+	}
+	
 });
 
 
+//enable bs popover everywhere... yey ... free popovers everywheereee!!!
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
 
 /* code for 
 

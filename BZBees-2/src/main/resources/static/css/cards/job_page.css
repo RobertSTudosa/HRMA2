@@ -1,0 +1,54 @@
+@charset "ISO-8859-1";
+
+.job-page-parent {
+	display: flex;
+	flex-flow: row nowrap;
+	padding-top: 5%;
+	justify-content: space-around;
+}
+
+#single-job-card{
+	border: 1px solid lightgray;
+	
+}
+
+#job-single-page-agency{
+	width:30%;
+}
+
+.job-page {
+	padding-top: 5%;
+}
+
+.job-page-agency-avatar {
+	width: 45%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+}
+
+.job-page-card-header {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+@media screen and (max-width: 801px) {
+	.job-page {
+		width: 100%;
+	}
+	
+	.job-page-parent {
+		flex-flow: column nowrap;
+		padding-top: 20%;
+	}
+	
+	#single-job-card {
+		width: 120%;
+	}
+	
+	#job-single-page-agency {
+		width: 100%;
+	
+	}
+}

@@ -19,7 +19,7 @@ public interface AgencyRepository extends CrudRepository<Agency, Long>{
 				" FROM agency " + 
 				" left outer join user_accounts ON user_accounts.user_id = agency.user_id " +
 				" WHERE user_accounts.user_id = ?1 ;")
-		public Agency findAgencyFromUserId(long userId);
+	public Agency findAgencyFromUserId(long userId);
 	
 	public Agency findAgencyByagencyId(long agencyId);
 	

@@ -1,100 +1,85 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!--<![endif]-->
 
 <head>
-
 	<div th:replace="header:: head"></div>
-	<title>BZBees - real job and management app</title>
 	
+
+	
+	<title>BZBees - profile</title>
+
 </head>
 
 <body>
 
-    <header>
-    <div th:replace="header::nav"></div>
-    </header>
+	<header>
+		 
+		 
+		 <div th:replace="header::nav"></div>
+		 
+		 
+	</header>
 
-    <main>
-    	
-		<div th:text="${message}"></div>
-        <div class="searchbox">       
-            <input type="text" id="searchbox-input" onclick="" placeholder="search for me" />
-            <button type="submit" class="search-button"><img src="../css/graphic/search.png" /></button>
-        </div>
-        
-  		<a th:text="${localVerNumber}" style="self-align:right;"></a>
-        <section class="top-main">
-			
-            <section class="jobs">
-            
-			
+ 
+ <main>
+ 
+<div class="job-page-parent">	
+	<section class="job-page">
+		<div>
+				<div class="job-page-container single-job-page">	
+						
 
-                <div class="main-yellow-text">jobs</div>
-
-                <div class="job-card-container">
-                
-                				<ul  class="job-card-container">
-					
-					<li th:each="job : ${jobList}" th:style="${job.isJobPrivate()} ? 'display:none'  ">
-					
-					
-					<div class="job-card" >
-					
-                        <div id="agency-avatar">
-							
-							<a th:if="${job.theAgency.lastAgencyImageId < 0}">
-								<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
-							</a> 
-							
-	
-							 <img th:if="${job.theAgency.lastAgencyImageId > 0}"
-										th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">                         
-                           
-                           <div id="agency-avatar-text" 
-                           		
+					<div class="job-card " id="single-job-card" >
+						<div class="job-page-card-header">
+						
+						<div id="agency-avatar" class="job-page-agency-avatar" >
+																
+							<div id="agency-image-container" >					
+								<a  th:href="@{/agencyProfile(id=${aAgency.agencyId})}"
+									th:if="${job.theAgency.lastAgencyImageId < 0}">
+									<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
+								</a> 
 								
-								th:text="${job.theAgency.agencyName}">
-                           
-                           </div>
-                          
-
-                        </div>
-                        
+		
+								 <img th:if="${job.theAgency.lastAgencyImageId > 0}"
+											th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">                         
+	                           
+	                           </div>
+	                           
+	                           <a id="agency-avatar-text" style=" font-size: 18px;" 	                           
+									th:text="${job.theAgency.agencyName}"
+	                           		th:href="@{/agencyProfile(id=${aAgency.agencyId})}">	
+	                           </a>
+	                           
+	                     </div>      
+							<a id="job-card-title" th:text="'position: ' + ${job.jobTitle}" style="padding-right: 0.3rem;">Value</a>	
+      					</div>
+      					
                         <div id="job-card-main">
-                        
-	                        <a id="job-card-img" th:if="${job.lastImageId < 1}">
+                            <a id="job-card-img" th:if="${job.lastImageId < 1}">
+	                           
 											<span  class="iconify" data-icon="bytesize:work" data-inline="false" style="font-size: 5rem;"></span>
 							</a>
 		
 							<img id="job-card-img" th:if="${job.lastImageId > 0}"
 								th:src="@{/agency/jobimg(imgId=${job.lastImageId}, jobId=${job.jobId})}" style="size: 10%">
+ 	
                             
+                            <div id="read-more-modal">
                             
-                            
-                            <a id="job-card-title" th:text="${job.jobTitle} + ' / ' + ${job.jobLocation}">Value</a>
-                            
-                            
-                            <div id="job-card-hashes">
-								<ul id="job-card-hashes" th:each="tag : ${jobTagsList}">
-									<li th:if="${job.jobId} == ${tag.theJob.jobId}"
-										th:text="'#'+${tag.tag}"></li>
-
-								</ul>
-							</div>
-							
-								
-						
-							
-                            
-                            <div id="read-more">
+                            <a	id="agency-avatar-text" th:text="'location: ' + ${job.jobLocation}">Value</a>
                             
                             <div sec:authorize="isAuthenticated()"  id="agency-avatar-text">
 	                            	<div  th:text="'start: ' + ${#dates.format(job.startDate, 'dd-MMM-yyyy')} " 
 	                            			
 										id="startDate">14.05.2014</div>
 									
-	                            </div>
+	                         </div>
 	                            
 	                            <div sec:authorize="isAuthenticated()"  id="agency-avatar-text">
 	                            	<div th:text="' salary: ' + ${job.salary} + ' ' + ${job.currency} + '/h'" 
@@ -102,40 +87,43 @@
 										id="salary">14.05.2014</div>
 									
 	                            </div> 
-							
-                            <div id="job-card-text" th:text="${job.workingConditions}"> 
-                            Project type, work type general conditions, special ... </div>
-                            <button data-toggle="modal" th:data-target="'#showJobCard' + ${job.jobId}" >read more</button>
+	                            							
+                            </div>                     
+                           
+                           
+                          </div>  
+                          
+                         <div class="job-card-text-body">
+                        
+                         <h5>working conditions:</h5>
+                            <div id="job-card-text" th:text="${job.workingConditions}"> Project type, work type general conditions, special ... </div>
+							<br>
+							<h5>necessary documents:</h5>
+                            <div id="job-card-text" th:text="${job.necessaryDocuments}"> Project type, work type general conditions, special ... </div>
+                            <br>
+                            <h5>job tasks:</h5>                            
+                            <div id="job-card-text" th:text="${job.responsabilities}"> Project type, work type general conditions, special ... </div>
+                            <!-- <a>read more</a> -->
                             
-                            <div th:replace="modals::showJob"></div>
-                            
-                            <script type="text/javascript" th:inline="javascript">
-						
-							$("#showJobCard" + [[${job.jobId}]])
-								.on('hidden.bs.modal', 
-									function() {
-									console.log('inside function');
-									alert('close read more modal');								
-									$(" #card-interact" + [[${job.jobId}]]).load(window.location.href + " #card-interact" + [[${job.jobId}]]);
-						
-								}
-							);
-					
-					</script>
-                            
-                            </div>
-                                             
-                        </div>
+                             <div id="job-card-hashes">
+								<ul id="job-card-hashes" th:each="tag : ${jobTagsList}">
+									<li th:if="${job.jobId} == ${tag.theJob.jobId}"
+										th:text="'#'+${tag.tag}"></li>
 
-                        <div id="job-card-footer">
+								</ul>
+							</div>
+                         </div>                   
+
+							<div id="job-card-footer" style="margin-bottom: 1.5rem;margin-top:0.5rem;">
 
 
-                            <div class="card-interact" th:id="'card-interact' + ${job.jobId}">
+                            <div class="card-interact" th:id="'read-more-card-interact' + ${job.jobId}">
 
                                 <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
                                 <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
 
-								<div class="button-share">
+
+<div class="button-share">
     							<details class="buttonShare"  data-popover="down">
     								<summary>
     									<span class="iconify" data-icon="ri:user-voice-line" data-inline="false" style="color:#E9D415;"></span>
@@ -168,27 +156,33 @@
     							
     							</details>
     							</div>
+
+								
 								<button sec:authorize="isAnonymous()" class="button-like" 
 									th:onclick="@{/login}">
 								<span class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303"></span>
 								</button>
-			
+
+								 
+								 
+
+								
 													
                                 <button sec:authorize="isAuthenticated()"  th:if="${#lists.contains(userJobsLiked, job.jobId)}"
-                                	th:attr="onclick=|(pressunlikeJob(${job.jobId}))|" class="button-like" th:id="likeButton + ${job.jobId}">
+                                	th:attr="onclick=|(pressreadmoreunlikeJob(${job.jobId}))|" class="button-like" th:id="likeButton + ${job.jobId}">
                                 	<span 
-                                			th:id="'jobidfull' + ${job.jobId}"  style="color:#B10303;"
+                                			th:id="'readmorejobidfull' + ${job.jobId}"  style="color:#B10303;"
                                 			class="iconify" data-icon="clarity:heart-solid" data-inline="false"></span>
                                 			
                                 	<span 
-                                			th:id="'jobidempty' + ${job.jobId}" 
+                                			th:id="'readmorejobidempty' + ${job.jobId}" 
                                 		class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303;display:none"></span>
                                 	
                                 	</button>  
                                 	
                                 <script th:inline="javascript" type="text/javascript" >
                                 		
-                                function pressunlikeJob(jobId) {
+                                function pressreadmoreunlikeJob(jobId) {
                                 	
                                 	console.log('heart pressed')
                                 		Pace.options = {
@@ -201,8 +195,8 @@
                                 		url:"/likeJob?jobId=" + jobId,
                                 		beforeSend: function() {
                                 			
-                                			$(" #jobidempty" + jobId).css('display','flex');
-                                			$(" #jobidfull" + jobId).css('display','none');
+                                			$(" #readmorejobidempty" + jobId).css('display','flex');
+                                			$(" #readmorejobidfull" + jobId).css('display','none');
                                 			
 
                                 		},
@@ -225,18 +219,18 @@
                                 
                                 
                                  <button sec:authorize="isAuthenticated()" th:if="${not #lists.contains(userJobsLiked, job.jobId)}"
-                                	th:attr="onclick=|(presslikeJob(${job.jobId}))|" class="button-like" th:id="likeButton + ${job.jobId}">
+                                	th:attr="onclick=|(pressreadmorelikeJob(${job.jobId}))|" class="button-like" th:id="likeButton + ${job.jobId}">
                                 	<span  
-                                			th:id="'jobidfull' + ${job.jobId}"  style="color:#B10303;display:none;"
+                                			th:id="'readmorejobidfull' + ${job.jobId}"  style="color:#B10303;display:none;"
                                 			class="iconify" data-icon="clarity:heart-solid" data-inline="false"></span>
                                 	<span 
-                                			th:id="'jobidempty' + ${job.jobId}" 
+                                			th:id="'readmorejobidempty' + ${job.jobId}" 
                                 		class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303"></span>
                                 	</button>  
                                 	
                                 <script th:inline="javascript" type="text/javascript" >
                                 		
-                                function presslikeJob(jobId) {
+                                function pressreadmorelikeJob(jobId) {
                                 	
                                 	console.log('heart pressed')
                                 		Pace.options = {
@@ -249,8 +243,8 @@
                                 		url:"/likeJob?jobId=" + jobId,
                                 		beforeSend: function() {
                                 			
-                                			$(" #jobidfull" + jobId).css('display','flex');
-                                			$(" #jobidempty" + jobId).css('display','none');
+                                			$(" #readmorejobidfull" + jobId).css('display','flex');
+                                			$(" #readmorejobidempty" + jobId).css('display','none');
 
                                 		},
                                 		completed: function () {
@@ -259,7 +253,7 @@
                                 			
                                 		},
                                 		success: function () {
-	                                		$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
+											$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
 											$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
                                 		},
                                 		
@@ -270,13 +264,18 @@
                                 
                                 </script>
                                                              
+                               
+                                                             
                                 <div class="like-text" th:id="likes + ${job.jobId}" th:text="${job.jobLikesCount} + ' likes'">256 likes</div>
+                                
+                                
                                 
                             </div>
 
                             <div class="apply">
                             	
-                                          <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
+                            								
+                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
                                 <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
 
                             </div>
@@ -284,9 +283,7 @@
                     
                     </div>
                     
-                    </li>
-                    
-                </ul>
+
 
                  
 
@@ -294,15 +291,19 @@
 
                     <br><br><br>
                 </div>
+                
+                
+				</div>
 
-            </section>
-
-            <section class="agencies">
+		
+	</section>
+	
+<section class="agencies" id="job-single-page-agency">
                 <div class="main-yellow-text">agencies</div>
 
-                <ul  class="agencycard-container">
+                <div  class="agencycard-container">
 
-                    <li th:each="aAgency:${agenciesList}" class="agencycard">
+                    <div class="agencycard">
 
                         <div id="agencycard-bg">
                             <div id="agencycard-header">
@@ -509,95 +510,12 @@
                             </div>
 
                         </div>
-                    </li>
+                    </div>
 
 
-<!-- DUMMY AGENCY CARD - NO DETAILS FILLED IN (ORIGINAL STATE)  
-                    <li class="agencycard">
-
-                        <div id="agencycard-bg">
-                            <div id="agencycard-header">
-
-                                <div id="agencycard-avatar">
-                                    <img src="../css/cards/agencycard_avatar.svg" alt="agency" />
-                                    <div id="agencycard-avatar-text">the JobBoss</div>
-
-                                </div>
-
-                                <div class="arrow">
-                                    <div class="line"></div>
-                                    <div class="point"></div>
-                                    <div class="point2"></div>
-                                </div>
-                            </div>
-
-
-
-                            <div id="agencycard-left-details">
-                                <div id="agencycard-location">
-                                    <h6>location:</h6>
-                                    <h4>Denmark</h4>
-                                </div>
-
-                                <div id="agencycard-joblocation">
-                                    <h6>jobs location:</h6>
-                                    <h4>Denmark, Estonia, Germany</h4>
-                                </div>
-
-                                <div id="agencycard-jobs">
-                                    <h6>jobs:</h6>
-                                    <h4>webdesigner, wireframe, java developer</h4>
-                                </div>
-
-                                <div id="agencycard-mainindustries">
-                                    <h6>main industries:</h6>
-                                    <h4>IT, software development</h4>
-                                </div>
-
-                            </div>
-
-                            <div id="agencycard-rightdetails">
-
-                                <div id="agencycard-icns">
-                                    <img src="../css/cards/agencycard_candidates.png" />
-                                    <h4>357</h4>
-                                    <h6>candidates</h6>
-                                </div>
-
-                                <div id="agencycard-icns">
-                                    <img src="../css/cards/agencycard_avgSalary.png" />
-                                    <h4>$ 56/h</h4>
-                                    <h6>average salary</h6>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div id="agencycard-footer">
-                            <div id="agencycard-starRating">
-                                <p>4.5</p>
-                                <img src="../css/cards/fullBlackStar.png" />
-                                <img src="../css/cards/fullBlackStar.png" />
-                                <img src="../css/cards/fullBlackStar.png" />
-                                <img src="../css/cards/fullBlackStar.png" />
-                                <img src="../css/cards/halfBlackStar.png" />
-                            </div>
-
-                            <div id="agency-likes">
-                                <button class="button-like"><img src="../css/buttons/heart_vector.png" alt="like"/></button>
-                                <button class="button-fullLike"><img src="../css/buttons/fullLike.png" alt="like"/></button>
-                                <div class="like-text">23 likes</div>
-                            </div>
-
-                        </div>
-                    </li>
-
- -->
                 
                 
-                </ul>
+                </div>
 
 
 
@@ -605,173 +523,15 @@
 
 
 
-        </section>
-
-
-
-        <div class="main-yellow-text">news</div>
-
-        <div class="newscontainer">
-
-
-            <div class="newscard">
-
-                <div id="newscard-textarea">
-                    <h2>The news are big</h2>
-                    <div id="newscard-subtitle">
-                        <h4>24.09.2020</h4>
-                        <h4>by Robert S. Tudor</h4>
-                    </div>
-
-
-                    <p id="newscard-text">Completely leverage other's 24/365 imperatives and frictionless manufactured products. Globally harness collaborative vortals after 2.0 convergence. Enthusiastically myocardinate holistic sources and professional human capital. Compellingly
-                        create magnetic paradigms before highly efficient.
-                    </p>
-
-
-                </div>
-
-            </div>
-
-            <div class="newscard-md">
-
-                <div id="newscard-textarea-md">
-                    <h2>And other news</h2>
-                    <div id="newscard-subtitle">
-                        <h4>12.10.2020</h4>
-                        <h4>by Stef R. Tudor</h4>
-                    </div>
-
-                    <p id="newscard-text">Completely leverage other's 24/365 imperatives and frictionless manufactured products. Globally harness collaborative vortals after 2.0 convergence. Enthusiastically myocardinate holistic sources and professional human capital. Compellingly
-                        create magnetic paradigms before highly efficient.
-                </div>
-
-            </div>
-
-
-            <div class="newscard-sm">
-
-                <div id="newscard-textarea-sm">
-                    <h2>Here we go</h2>
-                    <div id="newscard-subtitle">
-                        <h4>07.12.2020</h4>
-                        <h4>by Alina T.</h4>
-                    </div>
-
-                    <p id="newscard-text">Completely leverage other's 24/365 imperatives and frictionless manufactured products. Globally harness collaborative vortals after 2.0 convergence.
-                </div>
-
-            </div>
-        </div>
-
-
-    </main>
-    <h3>Check out this useful links</h3>
-    <!-- <hr>
-    <hr style="height:1px;border-width:0;color:gray;background-color:gray"> -->
-    <footer class="footer-container">
-
-        <section class="footer-section">
-
-            <ul>
-                <li>
-                    <a href="#">
-                        About
-                    </a>
-                    <p>Quickly implement ubiquitous schemas and optimal metrics. Appropriately pontificate distinctive testing procedures with resource sucking methodologies. Interactively envisioneer effective synergy via strategic innovation.
-                    </p>
-
-                    <a href="#">
-                        How to use
-                    </a>
-                    <p>Quickly implement ubiquitous schemas and optimal metrics. Appropriately pontificate distinctive testing procedures with resource sucking methodologies. Interactively envisioneer effective synergy via strategic innovation.
-                    </p>
-
-                    <a href="#">
-                        Uff, yet another webapp...
-                    </a>
-                    <p>Quickly implement ubiquitous schemas and optimal metrics. Appropriately pontificate distinctive testing procedures with resource sucking methodologies. Interactively envisioneer effective synergy via strategic innovation.
-                    </p>
-
-
-                    <a href="#">
-                        For companies
-                    </a>
-                    <p>Quickly implement ubiquitous schemas and optimal metrics. Appropriately pontificate distinctive testing procedures with resource sucking methodologies. Interactively envisioneer effective synergy via strategic innovation.
-                    </p>
-
-
-                </li>
-            </ul>
-        </section>
-        <nav class="bottom-nav">
-            <div class="bottom-nav-links">
-                <button class="button-home">
-                    <a href="#" class="bottom-nav-link-item">
-                        <img src="../css/buttons/home.png" alt="Home"/>
-                        <h5>Home</h5></a>
-                </button>
-
-                <button class="button-news">
-                    <a href="#" class="bottom-nav-link-item">
-                        <img src="../css/buttons/book-open.png" alt="News"/>
-                        <h5>News</h5></a>
-                </button>
-
-                <button class="button-search">
-                    <a href="#" class="bottom-nav-link-item">
-                        <img src="../css/buttons/search.png"/>
-                        <h5>Search</h5></a>
-                </button>
-
-                <button class="button-jobs">
-                   
-                    <a href="#" class="bottom-nav-link-item">
-                        <img src="../css/buttons/briefcase.png"/>
-                        <h5>Jobs</h5></a>
-                </button>
-
-                <button class="button-agencies">
-                    
-                    <a href="#" class="bottom-nav-link-item">
-                        <img src="../css/buttons/agencies.png"/>
-                        <h5>Agencies</h5></a>
-                </button>
-
-            </div>
-        </nav>
-
-        <div class="footer-follow-me">
-            <button class="facebook">
-                <span class="iconify" data-inline="false" data-icon="dashicons:facebook"></span>
-                <label for="facebook" >facebook</label>
-            </button>
-            <button class="linkedin">
-                <span class="iconify" data-inline="false" data-icon="el:linkedin"></span>
-                <label for="linkedin">linkedin</label>
-            </button>
-            <button class="twitter">
-                <span class="iconify" data-inline="false" data-icon="vaadin:twitter-square"></span>
-                <label for="twitter">twitter</label>
-            </button>
-            <button class="youtube">
-                <span class="iconify" data-inline="false" data-icon="ant-design:youtube-outlined"></span>
-                <label for="youtube">youtube</label>
-            </button>
-
-
-        </div>
-
-        <div class="copyright">
-            <h5>Conveniently redefine world-class e-business after state of the art relationships. Authoritatively streamline standardized users without efficient "outside the box" thinking. Uniquely whiteboard.</h5>
-
-        </div>
-    </footer>
-
-
+        
+</div>	
+	
+	
+	
+	
+</main>
 
     <script src="../css/script.js" defer></script> 
 
 </body>
-
 </html>
