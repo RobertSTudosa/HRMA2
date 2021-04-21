@@ -14,9 +14,13 @@ const notifButton = document.getElementsByClassName('notif-button')[0];
 
 const notifLinks = document.getElementsByClassName('notifications-links')[0];
 
+
+if(typeof(notifButton) != undefined && notifButton != null) {
 notifButton.addEventListener('click', () => {
 	notifLinks.classList.toggle('active');
 });
+
+}
 
 
 //click out close for all interactive elements

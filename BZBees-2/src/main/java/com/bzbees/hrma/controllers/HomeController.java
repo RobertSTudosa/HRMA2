@@ -640,6 +640,8 @@ public class HomeController {
 			Agency aAgency = (Agency) theJob.getTheAgency();
 			System.out.println("agency if model contains job is ------> " + aAgency.getAgencyName());
 			model.addAttribute("aAgency", aAgency);
+			
+			
 			if(auth != null) {
 				Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());				
 				model.addAttribute("userJobsLiked", userJobsIdLiked);	
@@ -647,13 +649,19 @@ public class HomeController {
 				System.out.println("agency if model contains job is and user is authenticated ------> " + aAgency.getAgencyName());
 				model.addAttribute("aAgency", aAgency);
 				
+				Set<Long> userAgencyIdLiked = likeServ.findLikedAgencyIdsByUsername(auth.getName());
+				model.addAttribute("userAgencyLiked",userAgencyIdLiked);
+
+				
 			} 
 			
 		} else {
+			
 			model.addAttribute("job", new Job());
 			model.addAttribute("userJobsLiked", new HashSet<>());
 			model.addAttribute("aAgency", null);
 			System.out.println("agency if model DOES NOT contains job is ------> NULL" );
+			model.addAttribute("userAgencyLiked", new HashSet<Long>());
 		}
 			
 		return "agency/job";

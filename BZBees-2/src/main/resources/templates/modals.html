@@ -121,14 +121,14 @@
 
     										<div class="input_field">
 	    									<input  th:value="'https://hrm.bpeople.ro/showJob/' + ${job.jobId}" 
-	    											autofocus th:id="'copyText' + ${job.jobId}" type="text"></input>
-											<a th:attr="onclick=|(copyText('${job.jobId}'))|" style="cursor:pointer;color: white;" class="btn btn-sm btn-secondary">copy</a>
+	    											autofocus th:id="'readMoreCopyText' + ${job.jobId}" type="text"></input>
+											<a th:attr="onclick=|(readMoreCopyText('${job.jobId}'))|" style="cursor:pointer;color: white;" class="btn btn-sm btn-secondary">copy</a>
 											</div>
     									</form>
     									
     									<script type="text/javascript" th:inline="javascript">
-    										function copyText(jobId) {
-	    										var copyText = document.getElementById("copyText" + jobId);
+    										function readMoreCopyText(jobId) {
+	    										var copyText = document.getElementById("readMoreCopyText" + jobId);
 	    										console.log(jobId);
 	    										copyText.focus();
 												copyText.select();

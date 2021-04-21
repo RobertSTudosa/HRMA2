@@ -9043,3 +9043,1214 @@ java.lang.IllegalArgumentException: Cannot execute list contains: target is null
 2021-04-21 16:01:39.930 DEBUG 15616 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
  
  
+2021-04-21 16:03:13.819  INFO 15616 --- [Thread-123] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-21 16:03:13.822  INFO 15616 --- [Thread-123] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-04-21 16:03:15.048  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 15616 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2021-04-21 16:03:15.048 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2021-04-21 16:03:15.048  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2021-04-21 16:03:15.625  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-21 16:03:15.678  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52ms. Found 16 JPA repository interfaces.
+2021-04-21 16:03:15.853 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-04-21 16:03:15.854 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-04-21 16:03:15.854 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2021-04-21 16:03:15.882  INFO 15616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2021-04-21 16:03:15.915  INFO 15616 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 865 ms
+2021-04-21 16:03:17.326  INFO 15616 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://209.159.147.190:3306/bpeople_BZBees?autoReconnect=true&serverTimezone=UTC'
+2021-04-21 16:03:17.799  INFO 15616 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-21 16:03:18.317  WARN 15616 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-21 16:03:18.526  INFO 15616 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e5cc219, org.springframework.security.web.context.SecurityContextPersistenceFilter@57982270, org.springframework.security.web.header.HeaderWriterFilter@60cb7dfb, org.springframework.security.web.csrf.CsrfFilter@5d9457ff, org.springframework.security.web.authentication.logout.LogoutFilter@7a04e5c3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5e3b7761, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a1e69fd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2101fbe0, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@723e6306, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@716b1364, org.springframework.security.web.session.SessionManagementFilter@28ccb339, org.springframework.security.web.access.ExceptionTranslationFilter@281cbae4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@708bf264]
+2021-04-21 16:03:18.606  INFO 15616 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-21 16:03:19.013  INFO 15616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-21 16:03:19.022  INFO 15616 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-04-21 16:03:19.663  INFO 15616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2021-04-21 16:03:19.664  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 4.66 seconds (JVM running for 106526.55)
+2021-04-21 16:03:19.668  INFO 15616 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-04-21 16:03:34.218  INFO 15616 --- [Thread-129] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-21 16:03:34.220  INFO 15616 --- [Thread-129] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-04-21 16:03:34.408  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 15616 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2021-04-21 16:03:34.408 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2021-04-21 16:03:34.408  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2021-04-21 16:03:34.787  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-21 16:03:34.832  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45ms. Found 16 JPA repository interfaces.
+2021-04-21 16:03:34.952 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-04-21 16:03:34.953 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-04-21 16:03:34.953 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2021-04-21 16:03:34.972  INFO 15616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2021-04-21 16:03:34.998  INFO 15616 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 588 ms
+2021-04-21 16:03:36.355  INFO 15616 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://209.159.147.190:3306/bpeople_BZBees?autoReconnect=true&serverTimezone=UTC'
+2021-04-21 16:03:36.647  INFO 15616 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-21 16:03:36.999  WARN 15616 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-21 16:03:37.105  INFO 15616 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@11b84158, org.springframework.security.web.context.SecurityContextPersistenceFilter@30ce202f, org.springframework.security.web.header.HeaderWriterFilter@3c138169, org.springframework.security.web.csrf.CsrfFilter@49048784, org.springframework.security.web.authentication.logout.LogoutFilter@5b184850, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@15947b0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a106b21, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a28bdc3, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@59aae899, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3418dd82, org.springframework.security.web.session.SessionManagementFilter@5d9bb4bf, org.springframework.security.web.access.ExceptionTranslationFilter@4d98e98e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@50debb66]
+2021-04-21 16:03:37.163  INFO 15616 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-21 16:03:37.381  INFO 15616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-21 16:03:37.384  INFO 15616 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-04-21 16:03:37.864  INFO 15616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2021-04-21 16:03:37.865  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 3.485 seconds (JVM running for 106544.75)
+2021-04-21 16:03:37.867  INFO 15616 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-04-21 16:10:45.799  INFO 15616 --- [https-jsse-nio-443-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-21 16:10:45.805  INFO 15616 --- [https-jsse-nio-443-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2021-04-21 16:12:44.241 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:44.242 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.showJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26]}]
+2021-04-21 16:12:44.243 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:12:44.748 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:44.748 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.showJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26], job=com.bzbees.hrma.entities.Job@7e794f8, aAgency=com.bzbees.hrma.entities.Agency@481416ec, userJobsLiked=[]}]
+2021-04-21 16:12:44.748 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:12:45.032 ERROR 15616 --- [https-jsse-nio-443-exec-5] org.thymeleaf.TemplateEngine             : [THYMELEAF][https-jsse-nio-443-exec-5] Exception processing template "agency/job": An error happened during template parsing (template: "class path resource [templates/agency/job.html]")
+
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/agency/job.html]")
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:109) ~[spring-boot-actuator-2.2.7.RELEASE.jar:2.2.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:666) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "#lists.contains(userAgencyLiked, aAgency.agencyId)" (template: "agency/job" - line 409, col 76)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	... 90 common frames omitted
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "#lists.contains(userAgencyLiked, aAgency.agencyId)" (template: "agency/job" - line 409, col 76)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:125) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.StandardIfTagProcessor.isVisible(StandardIfTagProcessor.java:59) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor.doProcess(AbstractStandardConditionalVisibilityTagProcessor.java:61) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	... 92 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Cannot execute list contains: target is null
+	at org.thymeleaf.util.Validate.notNull(Validate.java:37) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ListUtils.contains(ListUtils.java:78) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.expression.Lists.contains(Lists.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at jdk.internal.reflect.GeneratedMethodAccessor872.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.expression.spel.support.ReflectiveMethodExecutor.execute(ReflectiveMethodExecutor.java:129) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getValueInternal(MethodReference.java:139) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.access$000(MethodReference.java:55) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference$MethodValueRef.getValue(MethodReference.java:386) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	... 113 common frames omitted
+
+2021-04-21 16:12:45.034 ERROR 15616 --- [https-jsse-nio-443-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/agency/job.html]")] with root cause
+
+java.lang.IllegalArgumentException: Cannot execute list contains: target is null
+	at org.thymeleaf.util.Validate.notNull(Validate.java:37) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ListUtils.contains(ListUtils.java:78) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.expression.Lists.contains(Lists.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at jdk.internal.reflect.GeneratedMethodAccessor872.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.expression.spel.support.ReflectiveMethodExecutor.execute(ReflectiveMethodExecutor.java:129) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getValueInternal(MethodReference.java:139) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.access$000(MethodReference.java:55) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference$MethodValueRef.getValue(MethodReference.java:386) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:125) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.StandardIfTagProcessor.isVisible(StandardIfTagProcessor.java:59) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor.doProcess(AbstractStandardConditionalVisibilityTagProcessor.java:61) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:109) ~[spring-boot-actuator-2.2.7.RELEASE.jar:2.2.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:666) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+
+2021-04-21 16:12:45.040 ERROR 15616 --- [https-jsse-nio-443-exec-5] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/showJob/1] and exception [An error happened during template parsing (template: "class path resource [templates/agency/job.html]")] as the response has already been committed. As a result, the response may have the wrong status code.
+2021-04-21 16:12:45.204 DEBUG 15616 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:45.204 DEBUG 15616 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28]}]
+2021-04-21 16:12:45.204 DEBUG 15616 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:12:45.588 DEBUG 15616 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:45.588 DEBUG 15616 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28]}]
+2021-04-21 16:12:45.588 DEBUG 15616 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:12:53.429 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:53.429 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE likedJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.likedJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26]}]
+2021-04-21 16:12:53.429 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:12:56.038 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:56.038 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER likedJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.likedJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26]}]
+2021-04-21 16:12:56.038 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:12:56.046 DEBUG 15616 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:56.046 DEBUG 15616 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.showJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26]}]
+2021-04-21 16:12:56.046 DEBUG 15616 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:12:56.543 DEBUG 15616 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:56.544 DEBUG 15616 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.showJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26], job=com.bzbees.hrma.entities.Job@723f33a3, aAgency=com.bzbees.hrma.entities.Agency@4b425f83, userJobsLiked=[1]}]
+2021-04-21 16:12:56.544 DEBUG 15616 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:12:56.827 ERROR 15616 --- [https-jsse-nio-443-exec-1] org.thymeleaf.TemplateEngine             : [THYMELEAF][https-jsse-nio-443-exec-1] Exception processing template "agency/job": An error happened during template parsing (template: "class path resource [templates/agency/job.html]")
+
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/agency/job.html]")
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:109) ~[spring-boot-actuator-2.2.7.RELEASE.jar:2.2.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:666) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "#lists.contains(userAgencyLiked, aAgency.agencyId)" (template: "agency/job" - line 409, col 76)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	... 90 common frames omitted
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "#lists.contains(userAgencyLiked, aAgency.agencyId)" (template: "agency/job" - line 409, col 76)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:125) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.StandardIfTagProcessor.isVisible(StandardIfTagProcessor.java:59) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor.doProcess(AbstractStandardConditionalVisibilityTagProcessor.java:61) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	... 92 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Cannot execute list contains: target is null
+	at org.thymeleaf.util.Validate.notNull(Validate.java:37) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ListUtils.contains(ListUtils.java:78) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.expression.Lists.contains(Lists.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at jdk.internal.reflect.GeneratedMethodAccessor872.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.expression.spel.support.ReflectiveMethodExecutor.execute(ReflectiveMethodExecutor.java:129) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getValueInternal(MethodReference.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.access$000(MethodReference.java:55) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference$MethodValueRef.getValue(MethodReference.java:386) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	... 113 common frames omitted
+
+2021-04-21 16:12:56.829 ERROR 15616 --- [https-jsse-nio-443-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/agency/job.html]")] with root cause
+
+java.lang.IllegalArgumentException: Cannot execute list contains: target is null
+	at org.thymeleaf.util.Validate.notNull(Validate.java:37) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ListUtils.contains(ListUtils.java:78) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.expression.Lists.contains(Lists.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at jdk.internal.reflect.GeneratedMethodAccessor872.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.expression.spel.support.ReflectiveMethodExecutor.execute(ReflectiveMethodExecutor.java:129) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getValueInternal(MethodReference.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.access$000(MethodReference.java:55) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference$MethodValueRef.getValue(MethodReference.java:386) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:125) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.StandardIfTagProcessor.isVisible(StandardIfTagProcessor.java:59) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor.doProcess(AbstractStandardConditionalVisibilityTagProcessor.java:61) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:109) ~[spring-boot-actuator-2.2.7.RELEASE.jar:2.2.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:666) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+
+2021-04-21 16:12:56.834 ERROR 15616 --- [https-jsse-nio-443-exec-1] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/showJob/1] and exception [An error happened during template parsing (template: "class path resource [templates/agency/job.html]")] as the response has already been committed. As a result, the response may have the wrong status code.
+2021-04-21 16:12:59.944 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:12:59.944 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE likedJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.likedJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26]}]
+2021-04-21 16:12:59.944 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:13:01.410 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:13:01.410 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER likedJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.likedJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26]}]
+2021-04-21 16:13:01.410 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:13:01.423 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:13:01.424 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.showJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26]}]
+2021-04-21 16:13:01.424 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:13:01.811 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:13:01.811 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.showJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@1a349c4a, com.bzbees.hrma.entities.Tag@398a5afe, com.bzbees.hrma.entities.Tag@1b05fb4c], agency=com.bzbees.hrma.entities.Agency@1345fb33, person=com.bzbees.hrma.entities.Person@2d2df3dd, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@54aecbf1, agenciesList=[com.bzbees.hrma.entities.Agency@1345fb33], agencyJobList=[com.bzbees.hrma.entities.Job@469b012c], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@72f05d28], jobList=[com.bzbees.hrma.entities.Job@4ed0ac26], job=com.bzbees.hrma.entities.Job@1ace0964, aAgency=com.bzbees.hrma.entities.Agency@1cdb1135, userJobsLiked=[]}]
+2021-04-21 16:13:01.811 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:13:02.068 ERROR 15616 --- [https-jsse-nio-443-exec-6] org.thymeleaf.TemplateEngine             : [THYMELEAF][https-jsse-nio-443-exec-6] Exception processing template "agency/job": An error happened during template parsing (template: "class path resource [templates/agency/job.html]")
+
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/agency/job.html]")
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:109) ~[spring-boot-actuator-2.2.7.RELEASE.jar:2.2.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:666) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "#lists.contains(userAgencyLiked, aAgency.agencyId)" (template: "agency/job" - line 409, col 76)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	... 90 common frames omitted
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "#lists.contains(userAgencyLiked, aAgency.agencyId)" (template: "agency/job" - line 409, col 76)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:125) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.StandardIfTagProcessor.isVisible(StandardIfTagProcessor.java:59) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor.doProcess(AbstractStandardConditionalVisibilityTagProcessor.java:61) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	... 92 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Cannot execute list contains: target is null
+	at org.thymeleaf.util.Validate.notNull(Validate.java:37) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ListUtils.contains(ListUtils.java:78) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.expression.Lists.contains(Lists.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at jdk.internal.reflect.GeneratedMethodAccessor872.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.expression.spel.support.ReflectiveMethodExecutor.execute(ReflectiveMethodExecutor.java:129) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getValueInternal(MethodReference.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.access$000(MethodReference.java:55) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference$MethodValueRef.getValue(MethodReference.java:386) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	... 113 common frames omitted
+
+2021-04-21 16:13:02.072 ERROR 15616 --- [https-jsse-nio-443-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/agency/job.html]")] with root cause
+
+java.lang.IllegalArgumentException: Cannot execute list contains: target is null
+	at org.thymeleaf.util.Validate.notNull(Validate.java:37) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ListUtils.contains(ListUtils.java:78) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.expression.Lists.contains(Lists.java:62) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at jdk.internal.reflect.GeneratedMethodAccessor872.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.expression.spel.support.ReflectiveMethodExecutor.execute(ReflectiveMethodExecutor.java:129) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.getValueInternal(MethodReference.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference.access$000(MethodReference.java:55) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.MethodReference$MethodValueRef.getValue(MethodReference.java:386) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337) ~[spring-expression-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:125) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.StandardIfTagProcessor.isVisible(StandardIfTagProcessor.java:59) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor.doProcess(AbstractStandardConditionalVisibilityTagProcessor.java:61) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1314) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072) ~[thymeleaf-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189) ~[thymeleaf-spring5-3.0.11.RELEASE.jar:3.0.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter.doFilter(RememberMeAuthenticationFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:109) ~[spring-boot-actuator-2.2.7.RELEASE.jar:2.2.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:666) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.34.jar:9.0.34]
+	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+
+2021-04-21 16:13:02.076 ERROR 15616 --- [https-jsse-nio-443-exec-6] s.e.ErrorMvcAutoConfiguration$StaticView : Cannot render error page for request [/showJob/1] and exception [An error happened during template parsing (template: "class path resource [templates/agency/job.html]")] as the response has already been committed. As a result, the response may have the wrong status code.
+2021-04-21 16:20:27.147  INFO 15616 --- [Thread-135] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-21 16:20:27.154  INFO 15616 --- [Thread-135] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-04-21 16:20:27.345  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 15616 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2021-04-21 16:20:27.346 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2021-04-21 16:20:27.346  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2021-04-21 16:20:27.716  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-21 16:20:27.762  INFO 15616 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45ms. Found 16 JPA repository interfaces.
+2021-04-21 16:20:27.882 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-04-21 16:20:27.882 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-04-21 16:20:27.882 DEBUG 15616 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2021-04-21 16:20:27.903  INFO 15616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2021-04-21 16:20:27.929  INFO 15616 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 581 ms
+2021-04-21 16:20:29.286  INFO 15616 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://209.159.147.190:3306/bpeople_BZBees?autoReconnect=true&serverTimezone=UTC'
+2021-04-21 16:20:29.543  INFO 15616 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-21 16:20:29.950  WARN 15616 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-21 16:20:30.062  INFO 15616 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@189af97, org.springframework.security.web.context.SecurityContextPersistenceFilter@308c30a7, org.springframework.security.web.header.HeaderWriterFilter@587bdd8c, org.springframework.security.web.csrf.CsrfFilter@298f0880, org.springframework.security.web.authentication.logout.LogoutFilter@4cfbf05a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1d1ce55, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4d0a2128, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4b1b12b8, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@5d7cbeed, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@260ab47f, org.springframework.security.web.session.SessionManagementFilter@6116ef0d, org.springframework.security.web.access.ExceptionTranslationFilter@3a98ec62, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5bdf8f66]
+2021-04-21 16:20:30.096  INFO 15616 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-21 16:20:30.298  INFO 15616 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-21 16:20:30.301  INFO 15616 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-04-21 16:20:30.756  INFO 15616 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2021-04-21 16:20:30.757  INFO 15616 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 3.438 seconds (JVM running for 107557.642)
+2021-04-21 16:20:30.758  INFO 15616 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-04-21 16:20:30.805  INFO 15616 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-21 16:20:30.809  INFO 15616 --- [https-jsse-nio-443-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2021-04-21 16:20:30.811 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:20:30.812 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.showJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@4017242, com.bzbees.hrma.entities.Tag@5a4acf7a, com.bzbees.hrma.entities.Tag@1e5ae92c], agency=com.bzbees.hrma.entities.Agency@5ce54a7c, person=com.bzbees.hrma.entities.Person@5379b0c0, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agenciesList=[com.bzbees.hrma.entities.Agency@5ce54a7c], agencyJobList=[com.bzbees.hrma.entities.Job@5f4494ca], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@169e0587], jobList=[com.bzbees.hrma.entities.Job@605e0b82]}]
+2021-04-21 16:20:30.812 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:20:31.416 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:20:31.417 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJob EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.showJob () with arguments[s] = [1, org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, {jobTagsList=[com.bzbees.hrma.entities.Tag@4017242, com.bzbees.hrma.entities.Tag@5a4acf7a, com.bzbees.hrma.entities.Tag@1e5ae92c], agency=com.bzbees.hrma.entities.Agency@5ce54a7c, person=com.bzbees.hrma.entities.Person@5379b0c0, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agenciesList=[com.bzbees.hrma.entities.Agency@5ce54a7c], agencyJobList=[com.bzbees.hrma.entities.Job@5f4494ca], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@169e0587], jobList=[com.bzbees.hrma.entities.Job@605e0b82], job=com.bzbees.hrma.entities.Job@5259d43c, aAgency=com.bzbees.hrma.entities.Agency@2879b47c, userJobsLiked=[], userAgencyLiked=[]}]
+2021-04-21 16:20:31.417 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:20:31.801 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:20:31.802 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@4017242, com.bzbees.hrma.entities.Tag@5a4acf7a, com.bzbees.hrma.entities.Tag@1e5ae92c], agency=com.bzbees.hrma.entities.Agency@5ce54a7c, person=com.bzbees.hrma.entities.Person@5379b0c0, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agencyJobList=[com.bzbees.hrma.entities.Job@5f4494ca], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@169e0587]}]
+2021-04-21 16:20:31.802 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:20:32.181 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:20:32.182 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@4017242, com.bzbees.hrma.entities.Tag@5a4acf7a, com.bzbees.hrma.entities.Tag@1e5ae92c], agency=com.bzbees.hrma.entities.Agency@5ce54a7c, person=com.bzbees.hrma.entities.Person@5379b0c0, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agencyJobList=[com.bzbees.hrma.entities.Job@5f4494ca], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@169e0587]}]
+2021-04-21 16:20:32.182 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:22:31.805 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:22:31.805 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@4017242, com.bzbees.hrma.entities.Tag@5a4acf7a, com.bzbees.hrma.entities.Tag@1e5ae92c], agency=com.bzbees.hrma.entities.Agency@5ce54a7c, person=com.bzbees.hrma.entities.Person@5379b0c0, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agenciesList=[com.bzbees.hrma.entities.Agency@5ce54a7c], agencyJobList=[com.bzbees.hrma.entities.Job@5f4494ca], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@169e0587], jobList=[com.bzbees.hrma.entities.Job@605e0b82], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@11a28813]
+2021-04-21 16:22:31.806 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:22:36.752 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:22:36.752 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@194fe2ae, com.bzbees.hrma.entities.Tag@5fbbbfc9, com.bzbees.hrma.entities.Tag@58d89d50], agency=com.bzbees.hrma.entities.Agency@6bac1ad9, person=com.bzbees.hrma.entities.Person@49e7e3c2, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agenciesList=[com.bzbees.hrma.entities.Agency@6bac1ad9], agencyJobList=[com.bzbees.hrma.entities.Job@5f4494ca], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@169e0587], jobList=[com.bzbees.hrma.entities.Job@4cc3533e], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, userAgencyLiked=[], userJobsLiked=[]}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@7e6b6be7: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@fffc7f0c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 64E9017B84D038C9F214E31DC8B03125; Granted Authorities: AGENCY, CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@11a28813]
+2021-04-21 16:22:36.752 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:22:36.969 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:22:36.970 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@194fe2ae, com.bzbees.hrma.entities.Tag@5fbbbfc9, com.bzbees.hrma.entities.Tag@58d89d50], agency=com.bzbees.hrma.entities.Agency@6bac1ad9, person=com.bzbees.hrma.entities.Person@49e7e3c2, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agencyJobList=[com.bzbees.hrma.entities.Job@5f4494ca], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@169e0587]}]
+2021-04-21 16:22:36.970 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 16:22:37.475 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 16:22:37.476 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@194fe2ae, com.bzbees.hrma.entities.Tag@5fbbbfc9, com.bzbees.hrma.entities.Tag@58d89d50], agency=com.bzbees.hrma.entities.Agency@6bac1ad9, person=com.bzbees.hrma.entities.Person@49e7e3c2, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agencyJobList=[com.bzbees.hrma.entities.Job@5f4494ca], lastAgencyPicList=[com.bzbees.hrma.entities.ProfileImg@169e0587]}]
+2021-04-21 16:22:37.476 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 17:52:35.727  WARN 15616 --- [HikariPool-24 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-24 - Thread starvation or clock leap detected (housekeeper delta=1h26m36s303ms333µs500ns).
+2021-04-21 17:54:30.001 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 17:54:30.002 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , null, org.apache.catalina.session.StandardSessionFacade@1d702044]
+2021-04-21 17:54:30.002 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 17:54:32.576 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 17:54:32.577 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, agenciesList=[com.bzbees.hrma.entities.Agency@255db8b8], jobList=[com.bzbees.hrma.entities.Job@1f13bd01], jobTagsList=[com.bzbees.hrma.entities.Tag@1f3a76f, com.bzbees.hrma.entities.Tag@23eaee88, com.bzbees.hrma.entities.Tag@47729ecc]}, , null, org.apache.catalina.session.StandardSessionFacade@1d702044]
+2021-04-21 17:54:32.577 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 17:56:23.564 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 17:56:23.564 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@1f3a76f, com.bzbees.hrma.entities.Tag@23eaee88, com.bzbees.hrma.entities.Tag@47729ecc], agenciesList=[com.bzbees.hrma.entities.Agency@255db8b8], jobList=[com.bzbees.hrma.entities.Job@1f13bd01], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , null, org.apache.catalina.session.StandardSessionFacade@1d702044]
+2021-04-21 17:56:23.564 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 17:56:25.324 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 17:56:25.324 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@41a82127, com.bzbees.hrma.entities.Tag@270f32c5, com.bzbees.hrma.entities.Tag@4c9c615f], agenciesList=[com.bzbees.hrma.entities.Agency@1134bca5], jobList=[com.bzbees.hrma.entities.Job@2ccdaf47], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , null, org.apache.catalina.session.StandardSessionFacade@1d702044]
+2021-04-21 17:56:25.324 DEBUG 15616 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 17:56:25.537 DEBUG 15616 --- [https-jsse-nio-443-exec-3] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 17:56:25.537 DEBUG 15616 --- [https-jsse-nio-443-exec-3] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@41a82127, com.bzbees.hrma.entities.Tag@270f32c5, com.bzbees.hrma.entities.Tag@4c9c615f]}]
+2021-04-21 17:56:25.537 DEBUG 15616 --- [https-jsse-nio-443-exec-3] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 17:56:26.071 DEBUG 15616 --- [https-jsse-nio-443-exec-3] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 17:56:26.071 DEBUG 15616 --- [https-jsse-nio-443-exec-3] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@41a82127, com.bzbees.hrma.entities.Tag@270f32c5, com.bzbees.hrma.entities.Tag@4c9c615f]}]
+2021-04-21 17:56:26.071 DEBUG 15616 --- [https-jsse-nio-443-exec-3] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:02:09.900 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:02:09.900 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@41a82127, com.bzbees.hrma.entities.Tag@270f32c5, com.bzbees.hrma.entities.Tag@4c9c615f], agenciesList=[com.bzbees.hrma.entities.Agency@1134bca5], jobList=[com.bzbees.hrma.entities.Job@2ccdaf47], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , null, org.apache.catalina.session.StandardSessionFacade@1d702044]
+2021-04-21 18:02:09.900 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:02:11.729 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:02:11.729 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@34bef329, com.bzbees.hrma.entities.Tag@22937347, com.bzbees.hrma.entities.Tag@7c255b2f], agenciesList=[com.bzbees.hrma.entities.Agency@3ab88ac6], jobList=[com.bzbees.hrma.entities.Job@47243dab], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , null, org.apache.catalina.session.StandardSessionFacade@1d702044]
+2021-04-21 18:02:11.729 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:02:11.961 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:02:11.961 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@34bef329, com.bzbees.hrma.entities.Tag@22937347, com.bzbees.hrma.entities.Tag@7c255b2f]}]
+2021-04-21 18:02:11.961 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:02:12.523 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:02:12.523 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@34bef329, com.bzbees.hrma.entities.Tag@22937347, com.bzbees.hrma.entities.Tag@7c255b2f]}]
+2021-04-21 18:02:12.523 DEBUG 15616 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:04:14.056 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:04:14.057 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayLoginForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.LoginController.displayLoginForm () with arguments[s] = [null]
+2021-04-21 18:04:14.057 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:04:14.060 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:04:14.060 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayLoginForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.LoginController.displayLoginForm () with arguments[s] = [null]
+2021-04-21 18:04:14.060 DEBUG 15616 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:04:20.433 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:04:20.434 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@34bef329, com.bzbees.hrma.entities.Tag@22937347, com.bzbees.hrma.entities.Tag@7c255b2f], agenciesList=[com.bzbees.hrma.entities.Agency@3ab88ac6], jobList=[com.bzbees.hrma.entities.Job@47243dab], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@81967223: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@166c8: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: FDA89ABA9EE3BFA5BA8457D841A7BB39; Granted Authorities: AGENCY, CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@1d702044]
+2021-04-21 18:04:20.434 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:04:28.361 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:04:28.362 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@ac91123, com.bzbees.hrma.entities.Tag@20c66491, com.bzbees.hrma.entities.Tag@3dfe2fcc], agenciesList=[com.bzbees.hrma.entities.Agency@4c12efc1], jobList=[com.bzbees.hrma.entities.Job@325902b], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@5a2aa855, userAccount=com.bzbees.hrma.entities.User@51b0bb2f, agency=com.bzbees.hrma.entities.Agency@4c12efc1, userAgencyLiked=[], userJobsLiked=[], userNotifs=[]}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@81967223: Principal: org.springframework.security.core.userdetails.User@c8d2bd82: Username: robert; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: AGENCY,CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@166c8: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: FDA89ABA9EE3BFA5BA8457D841A7BB39; Granted Authorities: AGENCY, CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@1d702044]
+2021-04-21 18:04:28.362 DEBUG 15616 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:04:28.494 DEBUG 15616 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:04:28.495 DEBUG 15616 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@ac91123, com.bzbees.hrma.entities.Tag@20c66491, com.bzbees.hrma.entities.Tag@3dfe2fcc], agency=com.bzbees.hrma.entities.Agency@4c12efc1, person=com.bzbees.hrma.entities.Person@5a2aa855, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f}]
+2021-04-21 18:04:28.496 DEBUG 15616 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-04-21 18:04:29.830 DEBUG 15616 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-04-21 18:04:29.831 DEBUG 15616 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@ac91123, com.bzbees.hrma.entities.Tag@20c66491, com.bzbees.hrma.entities.Tag@3dfe2fcc], agency=com.bzbees.hrma.entities.Agency@4c12efc1, person=com.bzbees.hrma.entities.Person@5a2aa855, userNotifs=[], userAccount=com.bzbees.hrma.entities.User@51b0bb2f}]
+2021-04-21 18:04:29.831 DEBUG 15616 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
