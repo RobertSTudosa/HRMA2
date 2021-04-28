@@ -1,12 +1,12 @@
 package com.bzbees.hrma.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bzbees.hrma.dao.JobRepository;
-import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
 
 @Service
@@ -69,4 +69,18 @@ public class JobService {
 	public List<Job> findJobsPostedByAgencies() {
 		return jobRepo.findJobsPostedByAgencies();
 	}
+	
+	public Set<Job> findJobsAddedToListByPersonId (long personId) {
+		return jobRepo.getJobsAddToListByPersonId(personId);
+	}
+	
+	public Set<Job> findJobsAppliedByPersonId (long personId) {
+		return jobRepo.getJobsAddToListByPersonId(personId);
+	}
+	
+	public Set<Long> findJobsIdAddedToListByPersonId (long personId) {
+		return jobRepo.findJobsIdInListByPersonId(personId);
+	}
+	
+	
 }

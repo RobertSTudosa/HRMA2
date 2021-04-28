@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -46,6 +47,7 @@ import com.bzbees.hrma.services.DocService;
 import com.bzbees.hrma.services.ImageResize;
 import com.bzbees.hrma.services.JobService;
 import com.bzbees.hrma.services.LanguageService;
+import com.bzbees.hrma.services.LikeService;
 import com.bzbees.hrma.services.NotificationService;
 import com.bzbees.hrma.services.PersonService;
 import com.bzbees.hrma.services.ProfileImgService;
@@ -55,7 +57,8 @@ import com.bzbees.hrma.services.SocialMediaService;
 import com.bzbees.hrma.services.UserService;
 
 @Controller
-@SessionAttributes({ "person", "userAccount","picList", "lastPicList", "jobList","socialMediaList","userNotifs"})
+@SessionAttributes({ "person", "userAccount","picList", "lastPicList", "jobList","socialMediaList","userNotifs","userJobsInList",
+	"userJobsLiked","userJobsSaved"})
 //, "skillsList", "langList", "docList",  
 @RequestMapping("/person")
 public class PersonController {
@@ -92,6 +95,9 @@ public class PersonController {
 	
 	@Autowired
 	NotificationService notifServ;
+	
+	@Autowired
+	LikeService likeServ;
 
 	
 	@GetMapping("/sprofile")
@@ -160,8 +166,16 @@ public class PersonController {
 			model.addAttribute("agency", agency);
 			System.out.println("NEW Agency in the PersonController is added ");
 		}
-
-
+		
+		//get the list of job add in a list 
+		Set <Job> userJobsInList = jobServ.findJobsAddedToListByPersonId(personId);
+		
+		Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
+		
+		
+		Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
+		
+					
 		model.addAttribute("picList", personPics);
 		model.addAttribute("docList", personDocs);
 		model.addAttribute("jobList", personJobs);
@@ -169,6 +183,9 @@ public class PersonController {
 		model.addAttribute("skillsList", personSkills);
 		model.addAttribute("userAccount", user);
 		model.addAttribute("person", person);
+		model.addAttribute("userJobsSaved", userJobsInList);
+		model.addAttribute("userJobsLiked", userJobsIdLiked);
+		model.addAttribute("userJobsInList", userJobsIdInList);
 		
 	
 		
@@ -238,7 +255,20 @@ public class PersonController {
 		//get the logged in user notifs
 		if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 			List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
+			List<Notification> showUserNotifs = new ArrayList<>();
+			int count = allUserNotif.size();
+			for(int i = 0; i < 4; i++) {
+				
+				if(count == 0) {
+					break;
+				}
+				showUserNotifs.add(allUserNotif.get(i));
+				count = count -1;
+				
+			}
+			
 			model.addAttribute("userNotifs", allUserNotif);
+			
 		} else {
 			model.addAttribute("userNotifs", new ArrayList<>());
 		}
@@ -555,7 +585,7 @@ public class PersonController {
 
 	
 	@GetMapping("/profile/{id}")
-	public String displayProfileById(@PathVariable ("id") Long id, Model model) {
+	public String displayProfileById(@PathVariable ("id") Long id, Model model, Authentication auth) {
 
 		
 		Person person = persServ.findPersonById(id);
@@ -625,6 +655,30 @@ public class PersonController {
 			Language lang = new Language();
 			model.addAttribute("lang", lang);
 			System.out.println("New lang created <------------");
+		}
+		
+		if(auth != null) {
+			User user = (User) userServ.loadUserByUsername(auth.getName());
+			if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
+				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
+				List<Notification> showUserNotifs = new ArrayList<>();
+				int count = allUserNotif.size();
+				for(int i = 0; i < 4; i++) {
+				
+					if(count == 0) {
+						break;
+					}
+					showUserNotifs.add(allUserNotif.get(i));
+					count = count -1;
+					
+				}
+
+				model.addAttribute("userNotifs", showUserNotifs);
+				
+			} else {
+				model.addAttribute("userNotifs", new ArrayList<>());
+			}
+			
 		}
 		
 		

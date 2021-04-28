@@ -44,6 +44,15 @@
     background-color: white;
 }
 
+.button-share #desktopWhatsApp {
+	display: none;
+}
+
+.button-share #mobileWhatsApp {
+	margin-top: 0.3rem;
+	display: flex;
+}
+
 .button-share details[data-popover] {
 		display:inline;
 		position:relative;
@@ -67,7 +76,7 @@
   position: absolute;
   display: block;
   z-index: 1;
-  width: 250px;
+  width: 300px;
   height:auto;
   border: solid 1px teal;
   border-radius: 5%;
@@ -334,6 +343,14 @@
 
 .login-buttons .button_save {
 	width: 100%;
+}
+
+.button-share #desktopWhatsApp {
+	display: flex;
+}
+
+.button-share #mobileWhatsApp {
+	display: none;
 }
 
 /* .login-buttons .button_login p {

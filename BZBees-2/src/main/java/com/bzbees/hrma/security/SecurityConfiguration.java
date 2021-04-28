@@ -5,13 +5,14 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -29,6 +30,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //	@Autowired
 //	CustomAuthenticationProvider authenticationProvider;
 	
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+	    SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+	    handler.setUseReferer(true);
+	    return handler;
+	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,7 +61,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/home").hasAuthority("USER")
             .antMatchers("/","/**", "/css/**","/js/**" ).permitAll()
             .and()
-            .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true)
+            .formLogin().loginPage("/login")
+            .successHandler(successHandler())
+            .permitAll().defaultSuccessUrl("/", true)
             .and()
             .rememberMe().tokenValiditySeconds(2925000)
         	.and()

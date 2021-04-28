@@ -1699,25 +1699,208 @@
 
 				</div>
 
+				
+				
 			</div>
+			
+			<div class="skills_lang_desktop">
+
+				<div  id="skills_profile">
+
+					<div class="profile_headline">
+						<div class="profile_work_addJob">
+
+							<h3>jobs applied</h3>
+
+
+						</div>
+						
+					</div>
+					
+					
+					<hr class="new_line"> 
+					
+					
+					<div class="skill_profile">
+						<table class="table table-striped">
+							<thead>
+
+							</thead>
+							<tbody>
+								<tr th:each="aSkill : ${skillsList}">
+									<th th:text="${aSkill.skillName}">Java</th>
+									<td th:text="${aSkill.skillDescription}">Basic knowledge</td>
+									<td><a th:if="${#authentication.name} == ${userAccount.userName}" 
+										th:id="'deleteButton' + ${aSkill.skillId}"
+										th:attr="onclick=|deleteUserSkill('${aSkill.skillId}','${aSkill.skillName}')|">										
+											<i class="fas fa-lg" th:id="'toSpinDeleteUserSkill' + ${aSkill.skillId} "></i>
+											<span class="iconify" data-icon="jam:trash-alt-f"
+											data-inline="false" style="color:#1F9A01;" 
+											th:id="'trashIconUserSkill' + ${aSkill.skillId}"></span>
+									</a>
+									<script type="text/javascript" th:inline="javascript">
+										function deleteUserSkill(skillId, skillName) {
+										event.preventDefault();
+										alert('are you sure you want to delete ' + skillName + '?');  
+										Pace.restart();
+										
+										Pace.track(function () {
+										$.ajax({
+											type:"GET",
+											url: "/person/deleteSkillbyProfile?id=" + skillId,
+											
+											beforeSend: function () {
+												if($("#toSpinDeleteUserSkill") + skillId != null) {
+													$("#toSpinDeleteUserSkill" + skillId).addClass('fa-sync-alt fa-spin');
+													
+													$("#trashIconUserSkill" + skillId).css("display","none");
+
+												}
+											
+											},
+											completed: function () {
+												$("#toSpinDeleteUserSkill" + skillId).removeClass('fa-sync-alt fa-spin');
+											
+												$("#trashIconUserSkill" + skillId).css("display","flex");
+											},
+											success: function () {
+											$( " .skill_profile").load(window.location.href + " .skill_profile");
+											}
+										});
+										});
+									
+									}
+								
+									
+									
+									
+									</script>
+									
+									
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
 
 
 
 
+				</div>
+
+
+				<div  id="jobsListed_profile">
+
+					<div class="profile_headline">
+
+						<div class="profile_work_jobListed">
+							
+							<span  id="jobListedIcon"	class="iconify" data-icon="bx:bx-list-check" 
+                                	data-inline="false" ></span>
+							<h3>jobs wishlist</h3>
+							
+
+						</div>
+
+						
+
+					</div>
+					
+					<hr class="new_line">
+
+					<div class="whishlist">
+						<table class="table table-striped">
+							<thead>
+
+							</thead>
+							<tbody>
+								<tr th:each="job : ${userJobsSaved}">
+									<th >
+									<a th:text="${job.jobTitle}" scope="row" 
+										data-toggle="modal" th:data-target="'#showJobCard' + ${job.jobId}" 
+											th:href="@{'#showJobCard' + ${job.jobId}}" >Communicative</a>
+									<div th:replace="modals::showJob"></div>	
+									</th>
+			
+									
+										
+										<td th:text="${job.jobLocation}">
+											
+											
+										</td>
+										
+										
+									
+									
+									<td th:text="${job.salary} + ' ' + ${job.currency} + '/h'" >
+									<td style="text-align: top;"><a th:if="${#authentication.name} == ${userAccount.userName}" 
+										
+										th:attr="onclick=|removeFromList(${job.jobId})|">	
+										
+										
+										
+											<i class="fas fa-lg" th:id="'toSpinDeleteUserJobList' + ${job.jobId} "></i>
+											<span class="iconify" data-icon="jam:trash-alt-f"
+											data-inline="false" style="color:#1F9A01;" 
+											th:id="'trashIconUserJobList' + ${job.jobId}"></span>
+									</a>
+									
+									<script type="text/javascript" th:inline="javascript">
+										function removeFromList(jobId) {
+										event.preventDefault();
+										Pace.restart();
+										
+										Pace.track(function () {
+										$.ajax({
+											type:"GET",
+											url: "/addJobToList?jobId=" + jobId,
+											
+											beforeSend: function () {
+												if($("#toSpinDeleteUserJobList") + jobId != null) {
+													$("#toSpinDeleteUserJobList" + jobId).addClass('fa-sync-alt fa-spin');
+													
+													$("#trashIconUserJobList" + jobId).css("display","none");
+
+												}
+											
+											},
+											completed: function () {
+												$("#toSpinDeleteUserJobList" + jobId).removeClass('fa-sync-alt fa-spin');
+											
+												$("#trashIconUserJobList" + jobId).css("display","flex");
+											},
+											success: function () {
+											$( " .whishlist").load(window.location.href + " .whishlist");
+											}
+										});
+										});
+									
+									}
+								
+									
+									
+									
+									</script>
+									
+									</td>
+									</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+
+				
+				
+			</div>
+			
+			
 
 			<div class="login-buttons">
 
-				
-<!-- 				<form th:action="@{/person/finishAccount}" th:object="${person}" method="post">
-					
-					<button th:if="${#authentication.name} == ${userAccount.userName}" 
-					type="submit" class="button_login" style="width:95%;" >
-					<span class="iconify"  id="next_mobile" data-icon="icons8:finish-flag" data-inline="false"></span>
-					<span class="iconify"  id="next_desk" data-icon="ic:sharp-done-all" data-inline="false"></span>
-					<p>save</p>
-					</button>
-				</form>
- -->				
+			
 
 			</div>
 

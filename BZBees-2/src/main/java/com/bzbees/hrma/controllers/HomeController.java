@@ -49,7 +49,7 @@ import com.bzbees.hrma.services.UserService;
 @Controller
 @RequestMapping("/")
 @SessionAttributes({"agency", "agenciesList","person","userAccount","lastAgencyPicList",
-			"agencyJobList","jobTagsList", "jobList","userNotifs","jobTagsList"})
+			"agencyJobList","jobTagsList", "jobList","userNotifs","jobTagsList","userJobsInList"})
 public class HomeController {
 	
 	@Autowired
@@ -98,10 +98,6 @@ public class HomeController {
 			User user = (User) userServ.loadUserByUsername(name);
 			session.setAttribute("userAccount", user);
 			
-			if(user == null) {
-				return "redirect:/\\logout";
-			}
-			
 			
 			//get authorities to string 			
 			System.out.println("User's role in my home controller are: " + user.getRoles().toString());
@@ -141,19 +137,30 @@ public class HomeController {
 				List<Job> allJobs = jobServ.findJobsPostedByAgencies();
 				model.addAttribute("jobList", allJobs);
 				Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());				
-				model.addAttribute("userJobsLiked", userJobsIdLiked);
+				model.addAttribute("userJobsLiked", userJobsIdLiked);				
+				Set<Long> userJobsInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
+				model.addAttribute("userJobsInList", userJobsInList);
 		
 			} else {
 				model.addAttribute("jobList", new ArrayList<Job>());
-				model.addAttribute("userJobsLiked", new HashSet<String>());
+				model.addAttribute("userJobsLiked", new HashSet<Long>());
+				model.addAttribute("userJobsInList", new HashSet<Long>());
 			}
 			
 			//get the logged in user notifs
 			if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
 				List<Notification> showUserNotifs = new ArrayList<>();
+				int count = allUserNotif.size();
 				for(int i = 0; i < 4; i++) {
-					showUserNotifs.add(allUserNotif.get(i));					
+				
+					if(count == 0) {
+						break;
+					}
+					showUserNotifs.add(allUserNotif.get(i));
+					count = count -1;
+					System.out.println(allUserNotif.get(i).getNotificationId() 
+							+ " " + allUserNotif.get(i).getDateCreated());
 				}
 
 				model.addAttribute("userNotifs", showUserNotifs);
@@ -388,15 +395,14 @@ public class HomeController {
 								System.out.println("match is true");
 								model.addAttribute("match", true);
 								model.addAttribute("agencyMessage", "You're affiliation with this agency is in pending. Please wait until the agency will approve your request.");
-							} else {
-								System.out.println("match is false from within pending users");
+							} else {							
 								model.addAttribute("match", false);
 							}
 						}
 					
-					} else {
-						System.out.println("match is false because the pending user list is empty");
+					} else {						
 						model.addAttribute("match", false);
+						model.addAttribute("agencyMessage", "You can affiliate with this agency by clicking \'get affiliated\' button. ");
 					}
 				
 				}
@@ -431,8 +437,15 @@ public class HomeController {
 						if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 							List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
 							List<Notification> showUserNotifs = new ArrayList<>();
+							int count = allUserNotif.size();
 							for(int i = 0; i < 4; i++) {
-								showUserNotifs.add(allUserNotif.get(i));					
+							
+								if(count == 0) {
+									break;
+								}
+								showUserNotifs.add(allUserNotif.get(i));
+								count = count -1;
+								
 							}
 
 							model.addAttribute("userNotifs", showUserNotifs);
@@ -665,6 +678,64 @@ public class HomeController {
 		}
 			
 		return "agency/job";
+	}
+	
+	@GetMapping("/addJobToList")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void addJobToUserList(@RequestParam("jobId") long jobId, Model model, Authentication auth) {
+		//get the job by id
+		Job theJob = jobServ.findJobById(jobId);
+		// check if there is authentication 
+		if(auth != null) {
+		//retrieve the user
+		User loggedInUser = (User) userServ.loadUserByUsername(auth.getName());
+
+		//retrieve the person
+		Person person = (Person) persServ.findPersonByUserId(loggedInUser.getUserId());
+		
+		//initiate a set of jobs
+		Set<Job> personList = new HashSet<>();
+		
+		
+		//check if the set of jobs is not empty		
+		if(jobServ.findJobsAppliedByPersonId(person.getPersonId()) != null) {
+		
+			//query the list of jobs from the person and attribute it to the Set
+			personList = jobServ.findJobsAddedToListByPersonId(person.getPersonId());
+			if(personList.contains(theJob)) {
+				personList.remove(theJob);
+				person.setJobsInList(personList);
+				persServ.save(person);
+			} else {
+				//add the job in the param
+				personList.add(theJob);
+				//set this Set to the person in auth
+				person.setJobsInList(personList);
+				//save the person 
+				persServ.save(person);
+				
+			}
+			
+			
+			
+		} else {
+			//add the job in the param
+			personList.add(theJob);
+			//set this Set to the person in auth
+			person.setJobsInList(personList);
+			//save the person 
+			persServ.save(person);
+			
+		}
+		
+		
+
+		
+		
+	
+		
+		}
+		
 	}
 
 

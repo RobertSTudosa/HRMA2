@@ -3,7 +3,9 @@ package com.bzbees.hrma.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -84,6 +86,20 @@ public class Person implements Serializable {
 			joinColumns=@JoinColumn(name="person_id"),
 			inverseJoinColumns=@JoinColumn(name="job_id"))
 	private List<Job> jobs = new ArrayList<>();
+	
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsInList",
+			joinColumns=@JoinColumn(name="person_id"),
+			inverseJoinColumns=@JoinColumn(name="job_id"))
+	private Set<Job> jobsInList = new HashSet<>();
+	
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsApplied",
+			joinColumns=@JoinColumn(name="person_id"),
+			inverseJoinColumns=@JoinColumn(name="job_id"))
+	private Set<Job> jobsApplied = new HashSet<>();
 	
 	
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
@@ -494,6 +510,46 @@ public class Person implements Serializable {
 
 	public void setAffiliatedToAgency(boolean isAffiliatedToAgency) {
 		this.isAffiliatedToAgency = isAffiliatedToAgency;
+	}
+
+
+	public Set<Job> getJobsInList() {
+		return jobsInList;
+	}
+
+
+	public void setJobsInList(Set<Job> jobsInList) {
+		this.jobsInList = jobsInList;
+	}
+
+
+	public Set<Job> getJobsApplied() {
+		return jobsApplied;
+	}
+
+
+	public void setJobsApplied(Set<Job> jobsApplied) {
+		this.jobsApplied = jobsApplied;
+	}
+	
+	public void addJobsInList(Job job) {
+		if(this.jobsInList == null) {
+			this.jobsInList = new HashSet<>();
+			this.jobsInList.add(job);
+		} else {
+			this.jobsInList.add(job);
+		}
+		
+	}
+	
+	public void addJobsApplied(Job job) {
+		if(this.jobsApplied == null) {
+			this.jobsApplied = new HashSet<>();
+			this.jobsApplied.add(job);
+		} else {
+			this.jobsApplied.add(job);
+		}
+		
 	}
 
 

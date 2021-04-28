@@ -416,12 +416,31 @@
 	align-self: left;
 }
 
+.profile_headline .profile_work_jobListed {
+	display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 80%;
+    align-items: center;
+}
+
+#jobListedIcon {
+	color:#1F9A01;
+   	background-color:#FFFFFF;
+    font-size: 3rem;
+   	margin-top: -25px;
+}
+
 .skill_profile table {
 	width:95%;
 }
 
 .lang_profile table {
 	width:95%;
+}
+
+.jobListed_profile table {
+	width: 95%;
 }
 
 	.skills_lang_desktop {
@@ -438,6 +457,11 @@
 	}
 	
 	.skills_lang_desktop #lang_profile {
+		flex-grow: 1;
+		width:100%;
+	}
+	
+		.skills_lang_desktop #jobListed_profile {
 		flex-grow: 1;
 		width:100%;
 	}
@@ -614,6 +638,16 @@ td {
 		/* margin-left: 5rem; */
 	}
 	
+	.skills_lang_desktop #jobsListed_profile {
+		display: flex;
+		flex-flow: column wrap;
+		flex-basis: 650px;
+		height:auto;
+		/* margin-left: 5rem; */
+	}
+	
+	
+	
 	.profile_headline .profile_work_addJob {
 		width: 30%;
 	
@@ -625,6 +659,7 @@ td {
 		width: 100%;
 	}
 	
+
 	
 
 	
@@ -849,6 +884,20 @@ td {
 		text-decoration: none;
 		color: #C80000;
 	}	
+	
+	
+	#jobListedIcon {
+	color:#1F9A01;
+   	background-color:#FFFFFF;
+    font-size: 1.5rem;    	
+    margin-top: -5px;
+	
+	}
+	
+	#jobsListed_profile th, td {
+		font-size: 0.6rem;
+	}
+	
 	
 	
 

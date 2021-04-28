@@ -319,14 +319,18 @@ public class AgencyController {
 				agencyJobsTags.addAll(jobsTags);
 			}
 			
-			Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());			
+			Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
+			Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
+			model.addAttribute("userJobsInList", userJobsIdInList);
 			model.addAttribute("userJobsLiked", userJobsIdLiked);
 			model.addAttribute("jobTagsList", agencyJobsTags);
 			
 		} else {
 			model.addAttribute("userJobsLiked", new HashSet<String>());
+			model.addAttribute("userJobsInList", new HashSet<String>());
 			model.addAttribute("agencyJobList", new ArrayList<>());
 			model.addAttribute("jobTagsList", new ArrayList<>());
+			
 		}
 		
 		if(!model.containsAttribute("job")) {
@@ -341,8 +345,14 @@ public class AgencyController {
 		if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 			List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
 			List<Notification> showUserNotifs = new ArrayList<>();
+			int count = allUserNotif.size();
 			for(int i = 0; i < 4; i++) {
-				showUserNotifs.add(allUserNotif.get(i));					
+				
+				if(count == 0) {
+					break;
+				}
+				showUserNotifs.add(allUserNotif.get(i));			
+				count = count -1;
 			}
 
 			model.addAttribute("userNotifs", showUserNotifs);
@@ -362,11 +372,13 @@ public class AgencyController {
 						model.addAttribute("agencyMessage", "You're affiliation with this agency is in pending. Please wait until the agency will approve your request.");
 					} else {
 						model.addAttribute("match", false);
+						
 					}
 				}
 			
 			} else {
 				model.addAttribute("match", false);
+				
 			}
 
 		return "agency/agency_profile";
@@ -1153,14 +1165,26 @@ public class AgencyController {
 			if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
 				List<Notification> showUserNotifs = new ArrayList<>();
+				int count = allUserNotif.size();
 				for(int i = 0; i < 4; i++) {
-					showUserNotifs.add(allUserNotif.get(i));					
+					if(count == 0) {
+						break;
+					}
+					showUserNotifs.add(allUserNotif.get(i));
+					count=count -1;
 				}
 
 				model.addAttribute("userNotifs", showUserNotifs);
 			} else {
 				model.addAttribute("userNotifs", new ArrayList<>());
 			}
+			
+			
+			Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(person.getPersonId());
+			model.addAttribute("userJobsInList", userJobsIdInList);
+			
+			Set <Job> userJobsInList = jobServ.findJobsAddedToListByPersonId(person.getPersonId());
+			model.addAttribute("userJobsSaved", userJobsInList);
 		
 		}
 		
@@ -1435,7 +1459,7 @@ public class AgencyController {
 	
 	
 	@GetMapping(value="/affiliate", produces = MediaType.TEXT_HTML_VALUE)
-	public String affiliateUser(@RequestParam("id") long agencyId, Model model, Agency agency, Authentication auth) {
+	public String affiliateUser(@RequestParam("id") long agencyId, Model model, Agency theAgency, Authentication auth) {
 		
 		if(auth == null) {
 			System.out.println("No user is logged in. Testing the affiliate button");
@@ -1447,7 +1471,8 @@ public class AgencyController {
 		
 		User loggedInUser = (User) userServ.loadUserByUsername(name);
 		Person userPerson = (Person) persServ.findPersonByUserId(loggedInUser.getUserId());
-
+		
+		Agency agency = agencyServ.findAgencyByID(agencyId);
 		//get the user that is an admin for the agency
 		User agencyAdmin = (User) userServ.loadUserByUsername(agency.getAdminName());//Robert
 		Person agencyPerson = persServ.findPersonByUserId(agencyAdmin.getUserId());
@@ -1527,9 +1552,10 @@ public class AgencyController {
 		loggedInPerson.setUnreadNotifs(true);
 		
 		//add the pending user to the agency
-		List<User> pendingUsers = new ArrayList<User> ();
+		//List<User> pendingUsers = new ArrayList<User>();
+		List<User> pendingUsers = agency.getPendingUsers();		
 		pendingUsers.add(loggedInUser);
-		agency.setPendingUsers(pendingUsers);
+//		agency.setPendingUsers(pendingUsers);
 		loggedInUser.setPendingAgency(agency);
 
 		//set the messages to the notification object of the logged in user
@@ -1553,16 +1579,18 @@ public class AgencyController {
 		
 		model.addAttribute("agencyPersonNotifs", agencyPersonNotifs);
 		
+		int count = reverseUserNotifs.size();
 		List<Notification> showUserNotifs = new ArrayList<>();
 		for(int i = 0; i < 4; i++) {
+			count = count -1;
+			if(count == 0) {
+				break;
+			}
 			showUserNotifs.add(reverseUserNotifs.get(i));					
 		}
 
 		model.addAttribute("userNotifs", showUserNotifs);
-		
-		
 
-		
 			
 		return "redirect:/agencyProfile?id=" + agency.getAgencyId();
 		
@@ -1757,6 +1785,7 @@ public class AgencyController {
 		List<Notification> reverseUserNotifs = notifServ.reverseFindNotificationsByUserId(user.getUserId());
 	
 		model.addAttribute("userNotifs", reverseUserNotifs);
+		model.addAttribute("agencyMessage", "You are now disaffiliated with this agency.");
 
 
 		

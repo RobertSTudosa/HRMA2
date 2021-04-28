@@ -106,8 +106,55 @@
 
                             <div class="card-interact" th:id="'read-more-card-interact' + ${job.jobId}">
 
-                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
-                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+                                 <button sec:authorize="isAuthenticated()" 
+                                		th:if="${not #lists.contains(userJobsInList,job.jobId)}"
+                                		class="button-addToList" style="background-color:#FFFFFF"
+                                		th:attr="onclick=|(saveJobToListReadMore(${job.jobId}))|">
+                                	<span 	th:id="'jobIdNotInList-readMore' + ${job.jobId}"
+                                			class="iconify" data-icon="mdi:clipboard-list" data-inline="false" 
+                                			style="color:#E9D415;background-color:#FFFFFF"></span>
+                                	<span 	th:id="'jobIdInList-readMore' + ${job.jobId}"
+                                			class="iconify" data-icon="bx:bx-list-check" data-inline="false" style="color:#1F9A01;background-color:#FFFFFF;display:none"></span>
+                                	
+                                </button>
+                                <script type="text/javascript" th:inline="javascript">
+                                	function saveJobToListReadMore(jobId){
+                                		
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+										
+										$.ajax({
+											type: "GET",
+											url: "/addJobToList?jobId=" + jobId,
+											beforeSend: function() {
+                                			
+                                				$(" #jobIdInList-readMore" + jobId).css('display','flex');
+                                				$(" #jobIdNotInList-readMore" + jobId).css('display','none');
+                                			
+
+                                		},
+                                		completed: function () {
+                                		                            			
+                                		
+                                			
+                                		},
+                                		success: function () {
+                                			$(" #read-more-card-interact-readMore" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
+                                			$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
+                                		},
+											
+											
+										}); 
+                                	
+                                	}
+                                
+                                </script>
+                                <button sec:authorize="isAuthenticated()" 
+                                		th:if="${#lists.contains(userJobsInList,job.jobId)}" 
+                                	class="button-addToList" style="background-color:#FFFFFF">
+                                	<span class="iconify" data-icon="bx:bx-list-check" data-inline="false" style="color:#1F9A01;background-color:#FFFFFF"></span>
+                                </button>
 
 
 								<div class="button-share">
@@ -875,8 +922,8 @@
 											},
 					 						success:function(data) {
 					 						
-												$( " .job-card").load(window.location.href + " .job-card");														
-												$( " .job-card-container").load(window.location.href + " .job-card-container");
+												//$( " .job-card").load(window.location.href + " .job-card");														
+												$( " #allAgencyJobs").load(window.location.href + " #allAgencyJobs");
 
 																						
 											}

@@ -132,8 +132,13 @@
 
                             <div class="card-interact" th:id="'card-interact' + ${job.jobId}">
 
-                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
-                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+                                
+                                <button class="button-addToList" style="background-color:#FFFFFF">
+                                	<span class="iconify" data-icon="mdi:clipboard-list" data-inline="false" style="color:#E9D415;background-color:#FFFFFF"></span>
+                                </button>
+                                <button class="button-addToList" style="background-color:#FFFFFF">
+                                	<span class="iconify" data-icon="bx:bx-list-check" data-inline="false" style="color:#1F9A01;background-color:#FFFFFF"></span>
+                                </button>
 
 								<div class="button-share">
     							<details class="buttonShare"  data-popover="down">
@@ -148,6 +153,21 @@
 	    									<input  th:value="'https://hrm.bpeople.ro/showJob/' + ${job.jobId}" 
 	    											autofocus th:id="'copyText' + ${job.jobId}" type="text"></input>
 											<a th:attr="onclick=|(copyText('${job.jobId}'))|" style="cursor:pointer;color: white;" class="btn btn-sm btn-secondary">copy</a>
+											
+											<a th:href="@{https://web.whatsapp.com://send?text=https://hrm.bpeople.ro/showJob/{jobId}(jobId =${job.jobId})}"  
+													id="desktopWhatsApp"
+													data-action="share/whatsapp/share"  
+       												 target="_blank"> <span class="iconify" data-icon="uil:whatsapp-alt" data-inline="false"></span></a>
+       										
+       										<a th:href="@{whatsapp://send?text=https://hrm.bpeople.ro/showJob/{jobId}(jobId =${job.jobId})}"  
+       												id="mobileWhatsApp"
+       												data-action="share/whatsapp/share"  
+       												 target="_blank"> <span class="iconify" data-icon="logos:whatsapp" data-inline="false"></span>  </a>
+       												 
+       		<!-- 								<a th:href="@{https://www.facebook.com/sharer.php?u=https://hrm.bpeople.ro/showJob/{jobId}(jobId =${job.jobId})}"  
+       												id="mobileWhatsApp"
+       												data-action="share/whatsapp/share"  
+       												 target="_blank"> <span class="iconify" data-icon="akar-icons:facebook-fill" data-inline="false"></span></a> -->		 		  
 											</div>
     									</form>
     									
@@ -168,10 +188,10 @@
     							
     							</details>
     							</div>
-								<button sec:authorize="isAnonymous()" class="button-like" 
-									th:onclick="@{/login}">
+								<a sec:authorize="isAnonymous()" class="button-like" 
+									th:href="@{/login}">
 								<span class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303"></span>
-								</button>
+								</a>
 			
 													
                                 <button sec:authorize="isAuthenticated()"  th:if="${#lists.contains(userJobsLiked, job.jobId)}"

@@ -107,6 +107,21 @@ public class Job implements Serializable {
 			joinColumns=@JoinColumn(name="job_id"),
 			inverseJoinColumns=@JoinColumn(name="person_id"))
 	private Set<Person> persons = new HashSet<>();
+	
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsInList",
+			joinColumns=@JoinColumn(name="job_id"),
+			inverseJoinColumns=@JoinColumn(name="person_id"))
+	private Set<Person> personsInList = new HashSet<>();
+	
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsApplied",
+			joinColumns=@JoinColumn(name="job_id"),
+			inverseJoinColumns=@JoinColumn(name="person_id"))
+	private Set<Person> personsApplied = new HashSet<>();
+	
 		
 	@ManyToOne(fetch = FetchType.LAZY, optional=true)
 	private Agency theAgency;
@@ -327,6 +342,22 @@ public class Job implements Serializable {
 
 	public void setJobLikesCount(int jobLikesCount) {
 		this.jobLikesCount = jobLikesCount;
+	}
+
+	public Set<Person> getPersonsInList() {
+		return personsInList;
+	}
+
+	public void setPersonsInList(Set<Person> personsInList) {
+		this.personsInList = personsInList;
+	}
+
+	public Set<Person> getPersonsApplied() {
+		return personsApplied;
+	}
+
+	public void setPersonsApplied(Set<Person> personsApplied) {
+		this.personsApplied = personsApplied;
 	}
 	
 	
