@@ -171,9 +171,12 @@ public class PersonController {
 		Set <Job> userJobsInList = jobServ.findJobsAddedToListByPersonId(personId);
 		
 		Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
-		
-		
+			
 		Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
+		
+		Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());
+				
+		Set<Job> userJobsApplied = jobServ.findJobsAppliedByPersonId(personId);
 		
 					
 		model.addAttribute("picList", personPics);
@@ -186,6 +189,8 @@ public class PersonController {
 		model.addAttribute("userJobsSaved", userJobsInList);
 		model.addAttribute("userJobsLiked", userJobsIdLiked);
 		model.addAttribute("userJobsInList", userJobsIdInList);
+		model.addAttribute("userJobsIdApplied", userJobsAppliedTo);
+		model.addAttribute("userJobsApplied", userJobsApplied);
 		
 	
 		

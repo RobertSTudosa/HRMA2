@@ -82,5 +82,9 @@ public class JobService {
 		return jobRepo.findJobsIdInListByPersonId(personId);
 	}
 	
+	public Set<Long> findJobsIdAppliedToByPersonId (long personId) {
+		return jobRepo.findJobsAppliedToByPersonId(personId);
+	}
+	
 	
 }

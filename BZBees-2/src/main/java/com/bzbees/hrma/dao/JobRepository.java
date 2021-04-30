@@ -82,5 +82,13 @@ public interface JobRepository extends JpaRepository<Job, Long>{
 					+ " WHERE person_id = ?1 ;")
 	public Set<Long> findJobsIdInListByPersonId(long personId);
 	
+	@Query(nativeQuery = true,
+			value = "select person_jobs_applied.job_id "
+					+ " FROM person_jobs_applied "
+					+ " WHERE person_id = ?1 ;")
+	public Set<Long> findJobsAppliedToByPersonId(long personId);
+		
+	
+	
 
 }

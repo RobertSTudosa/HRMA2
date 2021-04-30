@@ -321,13 +321,16 @@ public class AgencyController {
 			
 			Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
 			Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
+			Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());
+			model.addAttribute("userJobsIdApplied", userJobsAppliedTo);
 			model.addAttribute("userJobsInList", userJobsIdInList);
 			model.addAttribute("userJobsLiked", userJobsIdLiked);
 			model.addAttribute("jobTagsList", agencyJobsTags);
 			
 		} else {
-			model.addAttribute("userJobsLiked", new HashSet<String>());
-			model.addAttribute("userJobsInList", new HashSet<String>());
+			model.addAttribute("userJobsIdApplied", new HashSet<Long>());
+			model.addAttribute("userJobsLiked", new HashSet<Long>());
+			model.addAttribute("userJobsInList", new HashSet<Long>());
 			model.addAttribute("agencyJobList", new ArrayList<>());
 			model.addAttribute("jobTagsList", new ArrayList<>());
 			
@@ -1162,6 +1165,7 @@ public class AgencyController {
 		//get the logged in user notifs
 		if(auth != null) {
 			User user = (User) userServ.loadUserByUsername(auth.getName());
+			Person personLoggedIn = (Person) persServ.findPersonByUserId(user.getUserId());
 			if(!notifServ.findNotificationsByUserId(user.getUserId()).isEmpty()) {
 				List<Notification> allUserNotif = notifServ.reverseFindNotificationsByUserId(user.getUserId());
 				List<Notification> showUserNotifs = new ArrayList<>();
@@ -1179,12 +1183,20 @@ public class AgencyController {
 				model.addAttribute("userNotifs", new ArrayList<>());
 			}
 			
+			Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(user.getUsername());
+			model.addAttribute("userJobsLiked", userJobsIdLiked);
 			
-			Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(person.getPersonId());
+			Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(personLoggedIn.getPersonId());
 			model.addAttribute("userJobsInList", userJobsIdInList);
 			
 			Set <Job> userJobsInList = jobServ.findJobsAddedToListByPersonId(person.getPersonId());
 			model.addAttribute("userJobsSaved", userJobsInList);
+			
+			Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());
+			model.addAttribute("userJobsIdApplied", userJobsAppliedTo);
+			
+			Set<Job> userJobsApplied = jobServ.findJobsAppliedByPersonId(person.getPersonId());
+			model.addAttribute("userJobsApplied", userJobsApplied);
 		
 		}
 		

@@ -49,7 +49,7 @@ import com.bzbees.hrma.services.UserService;
 @Controller
 @RequestMapping("/")
 @SessionAttributes({"agency", "agenciesList","person","userAccount","lastAgencyPicList",
-			"agencyJobList","jobTagsList", "jobList","userNotifs","jobTagsList","userJobsInList"})
+			"agencyJobList","jobTagsList", "jobList","userNotifs","jobTagsList","userJobsInList","userJobsIdApplied"})
 public class HomeController {
 	
 	@Autowired
@@ -140,8 +140,11 @@ public class HomeController {
 				model.addAttribute("userJobsLiked", userJobsIdLiked);				
 				Set<Long> userJobsInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
 				model.addAttribute("userJobsInList", userJobsInList);
+				Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());
+				model.addAttribute("userJobsIdApplied", userJobsAppliedTo);
 		
 			} else {
+				model.addAttribute("userJobsIdApplied", new HashSet<Long>());
 				model.addAttribute("jobList", new ArrayList<Job>());
 				model.addAttribute("userJobsLiked", new HashSet<Long>());
 				model.addAttribute("userJobsInList", new HashSet<Long>());
@@ -254,6 +257,12 @@ public class HomeController {
 			model.addAttribute("person", person);
 			model.addAttribute("userAccount", user);
 			
+			Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(person.getPersonId());
+			model.addAttribute("userJobsInList", userJobsIdInList);
+			
+			Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());
+			model.addAttribute("userJobsIdApplied", userJobsAppliedTo);
+			
 		}	
 		
 		
@@ -365,7 +374,9 @@ public class HomeController {
 					}
 					if(auth != null) {
 						Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());			
-						model.addAttribute("userJobsLiked", userJobsIdLiked);						
+						model.addAttribute("userJobsLiked", userJobsIdLiked);
+						
+						
 					} else {
 						model.addAttribute("userJobsLiked", new HashSet<String>());
 					}
@@ -697,8 +708,9 @@ public class HomeController {
 		Set<Job> personList = new HashSet<>();
 		
 		
-		//check if the set of jobs is not empty		
-		if(jobServ.findJobsAppliedByPersonId(person.getPersonId()) != null) {
+		//check if the set of jobs is not empty
+		
+		if(jobServ.findJobsAddedToListByPersonId(person.getPersonId()) != null) {
 		
 			//query the list of jobs from the person and attribute it to the Set
 			personList = jobServ.findJobsAddedToListByPersonId(person.getPersonId());
@@ -715,9 +727,7 @@ public class HomeController {
 				persServ.save(person);
 				
 			}
-			
-			
-			
+						
 		} else {
 			//add the job in the param
 			personList.add(theJob);
@@ -727,15 +737,53 @@ public class HomeController {
 			persServ.save(person);
 			
 		}
-		
-		
-
-		
-		
-	
-		
+				
 		}
 		
+	}
+	
+	
+	@GetMapping("/applyToJob")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void applyToJob(@RequestParam("jobId") long jobId, Model model, Authentication auth) {
+		//get the job from the model 
+		Job theJob = (Job) jobServ.findJobById(jobId);
+		
+		//check if there is an authentication 
+		if(auth != null) {
+			//retrieve the user
+			User loggedInUser = (User) userServ.loadUserByUsername(auth.getName());
+
+			//retrieve the person
+			Person person = (Person) persServ.findPersonByUserId(loggedInUser.getUserId());
+			
+			//initiate a set of jobs
+			Set<Job> personList = new HashSet<>();
+			
+			//check if the user has a list of jobs that applied to 
+			if(jobServ.findJobsAppliedByPersonId(person.getPersonId()) != null) {
+				//initiate a person lists with applied jobs
+				personList = jobServ.findJobsAppliedByPersonId(person.getPersonId());
+				//if the list contains the job in the method remove it 
+				if(personList.contains(theJob)) {
+					personList.remove(theJob);
+					person.setJobsApplied(personList);
+					persServ.save(person);
+				} else {
+					//add the job to the list
+					personList.add(theJob);
+					person.setJobsApplied(personList);
+					persServ.save(person);
+				}
+	
+			} else {
+				//job can be added with the user's new list
+				personList.add(theJob);
+				person.setJobsApplied(personList);
+				persServ.save(person);
+			}
+			
+		}
 	}
 
 
