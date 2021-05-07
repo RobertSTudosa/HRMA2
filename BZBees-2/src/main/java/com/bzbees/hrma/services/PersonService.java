@@ -3,6 +3,7 @@ package com.bzbees.hrma.services;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,14 @@ public class PersonService {
 	
 	public Person findPersonByEmail (String email) {
 		return persRepo.findPersonByEmailIgnoreCase(email);
+	}
+	
+	public Set<Person> findCandidatesAppliedToJob (long jobId) {
+		return persRepo.personsAppliedToJob(jobId);
+	}
+	
+	public void deletePersonApplicationsBypersonId(long personId) {
+		persRepo.deletePersonApplications(personId);
 	}
 	
 }

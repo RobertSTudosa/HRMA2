@@ -130,6 +130,7 @@
 
 .candidate-details a {
 	font-weight: 600;
+	
 }
 
 .candidate-jobs {
@@ -168,29 +169,94 @@
 	}
 
 @media screen and (max-width: 375px ) {
+	
 	.candidate-details p {
-	font-size: 0.8rem;
+		font-size: 0.6rem;
+	}
+	
+	.candidate-pic .iconify{
+		font-size: 2.0rem;		
+	}
+	
+	.candidate-pic {
+		width: 35px;
+	}
+	
+	.candidate-details {
+		width: 50%;
 	}
 
 	.candidate-details span {
-	font-size:0.5rem;
-	margin-right:0.2rem;	
+	font-size:0.4rem;
+	margin-right:0.1rem;	
 	}
 
 	.candidate-jobs p {
-	font-size: 0.8rem;
+	font-size: 0.6rem;
 	}
 	
 	.candidate-jobs span {
 	font-size:0.5rem;
-	margin-right:0.2rem;	
+	margin-right:0.1rem;	
 	}
 	
 	.candidate-jobDescription {
 		display: none;
 	}
+	
+	.reference-button {
+		padding:0.2rem;
+	}
 
 }
+
+@media screen and (max-width: 425px ) {
+	
+	.candidate-details p {
+		font-size: 0.7rem;
+	}
+	
+	.candidate-details a {
+	font-weight: 600;
+	font-size: 0.6rem;
+}
+	
+	.candidate-pic .iconify{
+		font-size: 2.0rem;		
+	}
+	
+	.candidate-pic {
+		width: 35px;
+	}
+	
+	.candidate-details {
+		width: 50%;
+	}
+
+	.candidate-details span {
+	font-size:0.4rem;
+	margin-right:0.1rem;	
+	}
+
+	.candidate-jobs p {
+	font-size: 0.7rem;
+	}
+	
+	.candidate-jobs span {
+	font-size:0.5rem;
+	margin-right:0.1rem;	
+	}
+	
+	.candidate-jobDescription {
+		display: none;
+	}
+	
+	.reference-button {
+		padding:0.2rem;
+	}
+
+}
+
 
 
 @media screen and (min-width: 780px ) {
@@ -203,7 +269,7 @@
 		flex-flow: column wrap;
 		justify-content: flex-start;
 		align-items: flex-start;
-		width:100%;
+		width:90%;
 		height:auto;
 		max-height:70px;
 		

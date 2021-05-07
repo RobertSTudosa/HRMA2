@@ -25,6 +25,16 @@ public interface AgencyRepository extends CrudRepository<Agency, Long>{
 	
 	public void deleteAgencyByagencyId(long agencyId);
 	
+	@Query(nativeQuery= true, value= "select agency.agency_id, admin_name, agency_name, agency.user_birth_date," + 
+			" agency.user_credentials, agency.user_full_name, agency.user_id, agency.unique_reg_code, "
+			+ " agency.reg_com_number, agency.legal_address, agency.web_address, agency.email, agency.phone_number,"
+			+ " agency.last_agency_image_id, agency.short_description, agency.account_non_expired, agency.account_non_locked,"
+			+ " agency.credentials_non_expired, agency.active, agency_likes_count " +
+			" FROM agency " + 
+			" left outer join jobs ON jobs.the_agency_agency_id = agency.agency_id" +
+			" WHERE jobs.the_agency_agency_id = ?1 ;")
+	public Agency findAgencyByJobId(long jobId);
+	
 	
 	
 //	public Agency findAgencyByJobId(long jobId);

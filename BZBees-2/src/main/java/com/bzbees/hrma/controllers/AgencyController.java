@@ -18,6 +18,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -44,7 +46,6 @@ import com.bzbees.hrma.entities.CompanyDoc;
 import com.bzbees.hrma.entities.Doc;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Language;
-import com.bzbees.hrma.entities.Like;
 import com.bzbees.hrma.entities.Message;
 import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
@@ -298,8 +299,12 @@ public class AgencyController {
 					ProfileImg lastImg = profileImgServ.getLastProfilePic(affiliatedPerson.getPersonId());
 					affiliatedPerson.setLastImgId(lastImg.getPicId());
 				} else {
-					System.out.println("Id ul ultimei imagini este null");;
+					System.out.println("Id ul ultimei imagini este null");
 				}
+				
+				//insert the job affiliated with this user crossed checked with the agency.
+				
+				
 			}
 			model.addAttribute("affiliatedPersonsList", personsAffiliated);
 			
@@ -317,6 +322,8 @@ public class AgencyController {
 			for(Job job : agencyJobs) {
 				List<Tag> jobsTags = tagServ.findTagsByJobId(job.getJobId());
 				agencyJobsTags.addAll(jobsTags);
+				Set<Person> applicants = persServ.findCandidatesAppliedToJob(job.getJobId());
+				model.addAttribute("applicantsTo" + job.getJobId(), applicants);
 			}
 			
 			Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
@@ -1630,9 +1637,7 @@ public class AgencyController {
 				
 				if(userServ.getAllPendingUsersByAgencyId(agency.getAgencyId()) != null) {
 					List<User> pendingUsersList = userServ.getAllPendingUsersByAgencyId(agency.getAgencyId());
-					for(User pendingUser : pendingUsersList) {
-						System.out.println("Pending user ----------> " + pendingUser.getUsername());
-					}
+				
 					if(!pendingUsersList.contains(userToApprove)) {
 						notifToAprove.setHasApprove(false);	
 						System.out.println("in the false approve");
@@ -1709,6 +1714,7 @@ public class AgencyController {
 	}
 	
 	@GetMapping(value="/disaffiliate")
+	@Transactional
 	public String disaffiliateCandidate(@RequestParam("id") long agencyId, Model model,  Authentication auth ) {
 		
 		if(auth == null) {
@@ -1787,6 +1793,12 @@ public class AgencyController {
 		
 		//make one_agency null for logged in user 
 		user.setOneAgency(null);
+		
+//		//removed from persons_applied_jobs 
+//		persServ.deletePersonApplicationsBypersonId(loggedInPerson.getPersonId());
+		Set<Job> appliedJobs = (Set<Job>) loggedInPerson.getJobsApplied();		
+		Set<Job> noJobApplied = new HashSet<Job>();
+		loggedInPerson.setJobsApplied(noJobApplied);
 		
 		notifServ.saveNotif(userNotif);
 		
@@ -1882,6 +1894,23 @@ public class AgencyController {
 				.body(new InputStreamResource(ptf));
 		
 
+	
+	}
+	
+	@RequestMapping(value = "/showApplicants")
+	@ResponseStatus(value = HttpStatus.OK)
+	public String getJobApplicants(@RequestParam("jobId") long jobId, Model model, Authentication auth, RedirectAttributes rediAttr) {
+		Set<Person> applicants = persServ.findCandidatesAppliedToJob(jobId);
+		//find the agency that posted the job
+		Agency theAgency = agencyServ.findAgencyByJobId(jobId);
+		// check if the applicants are affiliated with that agency
+			//start a new Set of Person to add the user who is affiliated
+		
+		//test if this is working
+		model.addAttribute("applicantsTo", applicants);
+		
+	return "modals :: #jobApplicantsTo";
+	
 	
 	}
 

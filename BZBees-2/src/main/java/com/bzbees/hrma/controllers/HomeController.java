@@ -29,6 +29,7 @@ import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.CompanyDoc;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Like;
+import com.bzbees.hrma.entities.Message;
 import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
@@ -748,6 +749,13 @@ public class HomeController {
 	public void applyToJob(@RequestParam("jobId") long jobId, Model model, Authentication auth) {
 		//get the job from the model 
 		Job theJob = (Job) jobServ.findJobById(jobId);
+		//get the agency that posted the job
+		Agency theAgency = (Agency) agencyServ.findAgencyByJobId(jobId);
+		//get the admin of the agency
+		String agencyAdminName = theAgency.getAdminName();
+		User agencyAdmin = (User) userServ.loadUserByUsername(agencyAdminName);
+		//get the person associated with the agency admin
+		Person agencyAdminPerson = (Person) persServ.findPersonByUserId(agencyAdmin.getUserId());
 		
 		//check if there is an authentication 
 		if(auth != null) {
@@ -757,8 +765,36 @@ public class HomeController {
 			//retrieve the person
 			Person person = (Person) persServ.findPersonByUserId(loggedInUser.getUserId());
 			
+			//check if the person is affiliated to the agency 
+			//if not then direct to agency page 
+			
 			//initiate a set of jobs
 			Set<Job> personList = new HashSet<>();
+			
+			//prep the notifications 
+			Message firstString = new Message("Candidate");
+			Message secondString = new Message(person.getFirstName());
+			long personId = person.getPersonId();
+			Message href = new Message("/agency/cprofile?id=" + Long.toString(personId));
+			Message longText = new Message("applied to " + theJob.getJobTitle() + ". " + "Check your agency profile");
+			List<Message> agencyMessages = new ArrayList<Message>();
+			agencyMessages.add(0,firstString);
+			agencyMessages.add(1,secondString);
+			agencyMessages.add(2,href);
+			agencyMessages.add(3,longText);
+			
+			Notification agencyAdminNotif = new Notification(agencyMessages,false,false, firstString.getMessage(), new Date()); 
+			firstString.setNotification(agencyAdminNotif);
+			secondString.setNotification(agencyAdminNotif);
+			href.setNotification(agencyAdminNotif);
+			longText.setNotification(agencyAdminNotif);
+			
+			//get the notifications of agency admin 
+			List<Notification> adminPersonNotifs = agencyAdminPerson.getNotifications();
+			adminPersonNotifs.add(agencyAdminNotif);
+			agencyAdminPerson.setNotifications(adminPersonNotifs);
+			agencyAdminPerson.setUnreadNotifs(true);
+			
 			
 			//check if the user has a list of jobs that applied to 
 			if(jobServ.findJobsAppliedByPersonId(person.getPersonId()) != null) {
@@ -770,21 +806,37 @@ public class HomeController {
 					person.setJobsApplied(personList);
 					persServ.save(person);
 				} else {
-					//add the job to the list
-					personList.add(theJob);
-					person.setJobsApplied(personList);
-					persServ.save(person);
+
+						//get the user affiliated with the agency and check for the logged in user
+					List<User> affiliatedUsers = userServ.getAllAffiliatedUsersByAgencyId(theAgency.getAgencyId());
+							//verify is the person logged in is affiliated with the agency
+					if(affiliatedUsers.contains(loggedInUser)) {
+						//add the job to the list of applied jobs
+						notifServ.saveNotif(agencyAdminNotif);
+						userServ.save(agencyAdmin);
+						personList.add(theJob);
+						person.setJobsApplied(personList);						
+						persServ.save(person);	
+					} 
 				}
 	
 			} else {
 				//job can be added with the user's new list
+				notifServ.saveNotif(agencyAdminNotif);
+				userServ.save(agencyAdmin);				
 				personList.add(theJob);
 				person.setJobsApplied(personList);
 				persServ.save(person);
+				
 			}
+			
+			
 			
 		}
 	}
+	
+	
+
 
 
 	

@@ -75,7 +75,7 @@ public class JobService {
 	}
 	
 	public Set<Job> findJobsAppliedByPersonId (long personId) {
-		return jobRepo.getJobsAddToListByPersonId(personId);
+		return jobRepo.getJobsAppliedByPersonId(personId);
 	}
 	
 	public Set<Long> findJobsIdAddedToListByPersonId (long personId) {

@@ -33,5 +33,9 @@ public class AgencyService {
 	public List<Agency> findAll() {
 		return (List<Agency>) agencyRepo.findAll();
 	}
+	
+	public Agency findAgencyByJobId(long jobId) {
+		return agencyRepo.findAgencyByJobId(jobId);
+	}
 
 }
