@@ -314,17 +314,34 @@ public class AgencyController {
 			model.addAttribute("affiliatedPersonsList", new ArrayList<Person>());
 		}
 		
+		
+		
 		//get the jobs of the agency in the profile
 		if(jobServ.findJobsByAgencyId(agency.getAgencyId()) !=null) {
 			List<Job> agencyJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
 			model.addAttribute("agencyJobList", agencyJobs);
 			List<Tag> agencyJobsTags = new ArrayList<>();
+			Set<Person> allApplicantsApproved = new HashSet<Person>();
+			Set<Long> allCandidatesIdsWithValidDate = new HashSet<Long>();
 			for(Job job : agencyJobs) {
 				List<Tag> jobsTags = tagServ.findTagsByJobId(job.getJobId());
 				agencyJobsTags.addAll(jobsTags);
-				Set<Person> applicants = persServ.findCandidatesAppliedToJob(job.getJobId());
-				model.addAttribute("applicantsTo" + job.getJobId(), applicants);
+	
+				Set<Person> applicantsApproved = persServ.getCandidatesApprovedToJob(job.getJobId());
+				allApplicantsApproved.addAll(applicantsApproved);
+
+				Set<Long> applicantsWithValidDate = persServ.getCandidatesIdsWithValidDatesByJobId(job.getJobId());
+
+				allCandidatesIdsWithValidDate.addAll(applicantsWithValidDate);
+
 			}
+			
+			
+			model.addAttribute("allApplicantsApproved", allApplicantsApproved);
+
+			if(allCandidatesIdsWithValidDate != null  ) {
+				model.addAttribute("allCandidatesIdsWithValidDate", allCandidatesIdsWithValidDate);
+			} 
 			
 			Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());
 			Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
@@ -1908,13 +1925,59 @@ public class AgencyController {
 		
 		//test if this is working
 		model.addAttribute("applicantsTo", applicants);
+		model.addAttribute("theJobId", jobId);
+		
+		//get the personsIds approved for this job 
+		
+		model.addAttribute("approvedPersonIds", persServ.getPersonsIdsApprovedToJob(jobId));
+		
 		
 	return "modals :: #jobApplicantsTo";
 	
 	
 	}
-
 	
-
+	@GetMapping(value="approveCandidate")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void approveCandidateToJob(@RequestParam("personId") long personId, @RequestParam("jobId") long jobId, 
+				Model model, Authentication auth, RedirectAttributes redirAttr) {
+		//approve means the job and the person must be saved and
+		//establish relationships through getters and setters so that 
+		//the many to many to populate persons_jobs_approved table
+		
+		//get the person from the line 
+		Person person = (Person) persServ.findPersonById(personId);
+		
+		//get the person's approved jobs
+		Set<Job> personsJob = person.getJobsApproved();
+		
+		//get the job from the read more
+		Job job = (Job) jobServ.findJobById(jobId);
+		
+		//add to the person's list of approved jobs
+		personsJob.add(job);
+		
+		//set the list of job to the person
+		person.setJobsApproved(personsJob);
+		
+		persServ.save(person);
+		
+		//get the  job's approved person
+		Set<Person> jobsPerson = job.getPersonsApproved();
+		
+		//add the person to the list 
+		jobsPerson.add(person);
+		
+		//set the list to the jobs approved persons
+		job.setPersonsApproved(jobsPerson);
+		
+		//save the entities
+		jobServ.save(job);
+		
+		model.addAttribute("acceptedInList", true);
+		
+				
+						
+	}
 
 }

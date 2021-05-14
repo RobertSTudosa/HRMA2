@@ -92,11 +92,20 @@ public class HomeController {
 	@GetMapping("/")
 	public String displayHome ( Model model, @ModelAttribute("message") String message, 
 			Authentication auth, HttpSession session ) {
+		if(auth == null) {
+			return "home";
+		}
+		
 		
 		if(auth !=null ) {
 			String name = auth.getName();
 			
 			User user = (User) userServ.loadUserByUsername(name);
+			
+			if(user == null) {
+				auth.setAuthenticated(false);
+				return "/";
+			}
 			session.setAttribute("userAccount", user);
 			
 			
@@ -250,8 +259,17 @@ public class HomeController {
 		
 		User user = null;
 		
+		if(auth == null) {
+			return "home";
+		}
+		
 		if(auth != null) {
 			user = (User) userServ.loadUserByUsername(auth.getName());
+			
+			if(user == null) {
+				auth.setAuthenticated(false);
+				return "/";
+			}
 
 			// get the person from repo user query
 			Person person = persServ.findPersonByUserId(user.getUserId());
@@ -369,9 +387,19 @@ public class HomeController {
 					List<Job> agencyJobs = jobServ.findJobsByAgencyId(agency.getAgencyId());
 					model.addAttribute("agencyJobList", agencyJobs);
 					List<Tag> agencyJobsTags = new ArrayList<>();
+					Set<Person> allApplicantsApproved = new HashSet<Person>();
+					Set<Long> allCandidatesIdsWithValidDate = new HashSet<Long>();
 					for(Job job : agencyJobs) {
 						List<Tag> jobsTags = tagServ.findTagsByJobId(job.getJobId());
 						agencyJobsTags.addAll(jobsTags);
+						Set<Person> applicantsApproved = persServ.getCandidatesApprovedToJob(job.getJobId());
+						allApplicantsApproved.addAll(applicantsApproved);
+						
+						
+						
+						Set<Long> applicantsWithValidDate = persServ.getCandidatesIdsWithValidDatesByJobId(job.getJobId());
+
+						allCandidatesIdsWithValidDate.addAll(applicantsWithValidDate);
 					}
 					if(auth != null) {
 						Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());			
@@ -383,6 +411,10 @@ public class HomeController {
 					}
 
 					model.addAttribute("jobTagsList", agencyJobsTags);
+					model.addAttribute("allApplicantsApproved", allApplicantsApproved);
+					if(allCandidatesIdsWithValidDate != null  ) {
+						model.addAttribute("allCandidatesIdsWithValidDate", allCandidatesIdsWithValidDate);
+					} 
 					
 				} else {
 					
@@ -751,6 +783,7 @@ public class HomeController {
 		Job theJob = (Job) jobServ.findJobById(jobId);
 		//get the agency that posted the job
 		Agency theAgency = (Agency) agencyServ.findAgencyByJobId(jobId);
+		System.out.println("Agency is ---->" + theAgency.getAgencyName());
 		//get the admin of the agency
 		String agencyAdminName = theAgency.getAdminName();
 		User agencyAdmin = (User) userServ.loadUserByUsername(agencyAdminName);
@@ -834,6 +867,12 @@ public class HomeController {
 			
 		}
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 

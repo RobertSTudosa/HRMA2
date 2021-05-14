@@ -101,6 +101,20 @@ public class Person implements Serializable {
 			inverseJoinColumns=@JoinColumn(name="job_id"))
 	private Set<Job> jobsApplied = new HashSet<>();
 	
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsApproved",
+			joinColumns=@JoinColumn(name="person_id"),
+			inverseJoinColumns=@JoinColumn(name="job_id"))
+	private Set<Job> jobsApproved = new HashSet<>();
+	
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsValidDate",
+			joinColumns=@JoinColumn(name="person_id"),
+			inverseJoinColumns=@JoinColumn(name="job_id"))
+	private Set<Job> jobsValidDate = new HashSet<>();
+	
 	
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
 			fetch = FetchType.LAZY)
@@ -156,6 +170,8 @@ public class Person implements Serializable {
 	private Date startJob;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date endJob;
+	
+	
 	
 	public Person() {
 		
@@ -551,6 +567,29 @@ public class Person implements Serializable {
 		}
 		
 	}
+
+
+	public Set<Job> getJobsApproved() {
+		return jobsApproved;
+	}
+
+
+	public void setJobsApproved(Set<Job> jobsApproved) {
+		this.jobsApproved = jobsApproved;
+	}
+
+
+	public Set<Job> getJobsValidDate() {
+		return jobsValidDate;
+	}
+
+
+	public void setJobsValidDate(Set<Job> jobsValidDate) {
+		this.jobsValidDate = jobsValidDate;
+	}
+
+
+
 
 
 

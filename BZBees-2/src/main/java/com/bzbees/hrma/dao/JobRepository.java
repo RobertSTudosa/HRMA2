@@ -88,6 +88,33 @@ public interface JobRepository extends JpaRepository<Job, Long>{
 					+ " WHERE person_id = ?1 ;")
 	public Set<Long> findJobsAppliedToByPersonId(long personId);
 		
+	@Query(nativeQuery = true,
+			value = "select person_jobs_approved.job_id "
+					+ " FROM person_jobs_approved "
+					+ " WHERE person_id = ?1 ;")
+	public Set<Long> findApprovedJobsIdsBypersonId (long personId);
+	
+	@Query(nativeQuery= true, value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
+			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags, "
+			+ "the_agency_agency_id, last_image_id, job_likes_count "
+			+ " FROM jobs "
+			+ " left outer join person_jobs_approved ON jobs.job_id = person_jobs_approved.job_id " 
+			+ " WHERE person_jobs_approved.person_id = ?1 ;")
+	public Set<Job> getJobsApprovedByPersonId (long personId);
+	
+	@Query(nativeQuery= true, value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
+			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags, "
+			+ "the_agency_agency_id, last_image_id, job_likes_count "
+			+ " FROM jobs "
+			+ " left outer join person_jobs_valid_date ON jobs.job_id = person_jobs_valid_date.job_id " 
+			+ " WHERE person_jobs_valid_date.person_id = ?1 ;")
+	public Set<Job> getJobsWithValidDateCandidatesByPersonId (long personId);
+	
+	@Query(nativeQuery = true,
+			value = "select person_jobs_valid_date.job_id "
+					+ " FROM person_jobs_valid_date "
+					+ " WHERE person_id = ?1 ;")
+	public Set<Long> findValidDateJobsIdsBypersonId (long personId);
 	
 	
 

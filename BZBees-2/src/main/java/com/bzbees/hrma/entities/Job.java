@@ -117,14 +117,30 @@ public class Job implements Serializable {
 	
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
 			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsValidDate",
+			joinColumns=@JoinColumn(name="job_id"),
+			inverseJoinColumns=@JoinColumn(name="person_id"))
+	private Set<Person> personsValidDate = new HashSet<>();
+	
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+			fetch = FetchType.LAZY)
 	@JoinTable(name="person_jobsApplied",
 			joinColumns=@JoinColumn(name="job_id"),
 			inverseJoinColumns=@JoinColumn(name="person_id"))
 	private Set<Person> personsApplied = new HashSet<>();
 	
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsApproved",
+			joinColumns=@JoinColumn(name="job_id"),
+			inverseJoinColumns=@JoinColumn(name="person_id"))
+	private Set<Person> personsApproved = new HashSet<>();
+	
 		
 	@ManyToOne(fetch = FetchType.LAZY, optional=true)
 	private Agency theAgency;
+	
+	
 
 	public Job() {
 
@@ -358,6 +374,28 @@ public class Job implements Serializable {
 
 	public void setPersonsApplied(Set<Person> personsApplied) {
 		this.personsApplied = personsApplied;
+	}
+
+	public Set<Person> getPersonsApproved() {
+		return personsApproved;
+	}
+
+	public void setPersonsApproved(Set<Person> personsApproved) {
+		this.personsApproved = personsApproved;
+	}
+
+	@Override
+	public String toString() {
+		
+		return this.jobTitle + this.companyName + this.jobLocation;
+	}
+
+	public Set<Person> getPersonsValidDate() {
+		return personsValidDate;
+	}
+
+	public void setPersonsValidDate(Set<Person> personsValidDate) {
+		this.personsValidDate = personsValidDate;
 	}
 	
 	

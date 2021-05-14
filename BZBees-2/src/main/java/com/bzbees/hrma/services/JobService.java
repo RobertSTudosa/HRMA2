@@ -86,5 +86,21 @@ public class JobService {
 		return jobRepo.findJobsAppliedToByPersonId(personId);
 	}
 	
+	public Set<Long> findApprovedJobsIdsByPersonId (long personId) {
+		return jobRepo.findApprovedJobsIdsBypersonId(personId);
+	}
+	
+	public Set<Job> findApprovedJobsByPersonId (long personId) {
+		return jobRepo.getJobsApprovedByPersonId(personId);
+	}
+	
+	public Set<Job> getValidDateJobsByPersonId(long personId) {
+		return jobRepo.getJobsWithValidDateCandidatesByPersonId(personId);
+	}
+	
+	public Set<Long> findValidDateJobsIdsByPersonId (long personId) {
+		return jobRepo.findValidDateJobsIdsBypersonId(personId);
+	}
+	
 	
 }

@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -113,7 +116,7 @@ public class PersonController {
 		User user = (User) userServ.loadUserByUsername(auth.getName());
 		
 		
-		//get the person from repo user query
+		//get the person from repo user query // this is the logged in person
 		Person person = persServ.findPersonByUserId(user.getUserId());
 
 		System.out.println("What user is in the profiles? : " + user.getUserId());
@@ -178,7 +181,30 @@ public class PersonController {
 				
 		Set<Job> userJobsApplied = jobServ.findJobsAppliedByPersonId(personId);
 		
-					
+		model.addAttribute("accepted", false);
+		model.addAttribute("validated", false);
+
+		for(Job job: userJobsApplied) {
+			//get the personsId approved for this job then verify with the person logged in 
+			// if the id is in the list. If it is then add attribute ('accepted') true else false
+			Set<Long> personsIdApproved = persServ.getPersonsIdsApprovedToJob(job.getJobId());
+			
+			for(Long somePersonId : personsIdApproved) {
+				if (somePersonId == person.getPersonId()) {
+					model.addAttribute("accepted", true);
+				}
+				
+			Set<Long> personsIdsAccepted = persServ.getCandidatesIdsWithValidDatesByJobId(job.getJobId());	
+			
+			for(Long validDatePersonId : personsIdsAccepted) {
+				if(validDatePersonId == person.getPersonId() ) {
+					model.addAttribute("validated", true);	
+				}
+
+			}
+			}
+		}
+
 		model.addAttribute("picList", personPics);
 		model.addAttribute("docList", personDocs);
 		model.addAttribute("jobList", personJobs);
@@ -1050,6 +1076,31 @@ public class PersonController {
 		
 		return "redirect:/person/sprofile";
 	}
+	
+	
+	@GetMapping("/validateAvailability")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void validateAvailability (@RequestParam ("personId") long personId, @RequestParam ("jobId") long jobId,
+								Model model, Authentication auth, RedirectAttributes redirAttr) {
+		
+		//the person must be in the approved list of the agency on the same job he applied 
+		//person must be valid available for the agency for the job cacat only if the conditions above apply
+		Person person = persServ.findPersonById(personId);
+		Job job = jobServ.findJobById(jobId);
+		
+		Set<Job> candidateJobsValidDate = jobServ.getValidDateJobsByPersonId(personId);
+		candidateJobsValidDate.add(job);
+		person.setJobsValidDate(candidateJobsValidDate);
+		persServ.save(person);
+		
+		Set<Person> personsWithValidDate = persServ.getCandidatesWithValidDateByJobId(jobId);
+		personsWithValidDate.add(person);
+		jobServ.save(job);
+		
+
+	}
+	
+
 	
 
 

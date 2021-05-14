@@ -19,7 +19,7 @@ public interface UserRepository extends CrudRepository <User, Long> {
 	@Query(nativeQuery= true, value= "select user_accounts.user_id, username, user_accounts.email, password, user_accounts.active, " +
  						" user_accounts.account_non_expired, user_accounts.account_non_locked, "
  						+ "user_accounts.credentials_non_expired, user_accounts.one_agency_agency_id, "
- 						+ "user_accounts.person_id, pending_agency_agency_id"  
+ 						+ "user_accounts.person_id, pending_agency_agency_id, job_approved"  
 						+ " FROM user_accounts "  
 						+ " left outer join persons ON user_accounts.user_id = persons.person_id " 
 						+ " WHERE persons.person_id = ?1 ;")
@@ -28,7 +28,7 @@ public interface UserRepository extends CrudRepository <User, Long> {
 	@Query(nativeQuery= true, value = "select user_accounts.user_id, username, user_accounts.email, password, user_accounts.active, " +
  						" user_accounts.account_non_expired, user_accounts.account_non_locked, "
  						+ "user_accounts.credentials_non_expired, user_accounts.one_agency_agency_id, "
- 						+ "user_accounts.person_id, pending_agency_agency_id " 
+ 						+ "user_accounts.person_id, pending_agency_agency_id, job_approved " 
 						+ " FROM user_accounts "					 
 						+ " WHERE user_accounts.username = ?1 ;")
 	public User findUserByUsername(String username);
@@ -37,7 +37,7 @@ public interface UserRepository extends CrudRepository <User, Long> {
 	@Query(nativeQuery= true, value = "select user_accounts.user_id, username, user_accounts.email, password, user_accounts.active, " +
 			 			" user_accounts.account_non_expired, user_accounts.account_non_locked, "
 			 			+ "user_accounts.credentials_non_expired, user_accounts.one_agency_agency_id, "
-			 			+ "user_accounts.person_id, pending_agency_agency_id" + 
+			 			+ "user_accounts.person_id, pending_agency_agency_id, job_approved" + 
 			 			" FROM user_accounts " + 
 			 			" left outer join agency ON user_accounts.one_agency_agency_id = agency.agency_id " + 
 						" WHERE agency.agency_id = ?1 ;")
@@ -46,7 +46,7 @@ public interface UserRepository extends CrudRepository <User, Long> {
 	@Query(nativeQuery= true, value = "select user_accounts.user_id, username, user_accounts.email, password, user_accounts.active, " +
  			" user_accounts.account_non_expired, user_accounts.account_non_locked, "
  			+ "user_accounts.credentials_non_expired, user_accounts.one_agency_agency_id, "
- 			+ "user_accounts.person_id, pending_agency_agency_id" + 
+ 			+ "user_accounts.person_id, pending_agency_agency_id, job_approved" + 
  			" FROM user_accounts " + 
  			" left outer join agency ON user_accounts.pending_agency_agency_id = agency.agency_id " + 
 			" WHERE agency.agency_id = ?1 ;")

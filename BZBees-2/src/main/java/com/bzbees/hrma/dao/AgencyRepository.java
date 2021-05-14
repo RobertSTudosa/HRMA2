@@ -32,7 +32,7 @@ public interface AgencyRepository extends CrudRepository<Agency, Long>{
 			+ " agency.credentials_non_expired, agency.active, agency_likes_count " +
 			" FROM agency " + 
 			" left outer join jobs ON jobs.the_agency_agency_id = agency.agency_id" +
-			" WHERE jobs.the_agency_agency_id = ?1 ;")
+			" WHERE jobs.job_id = ?1 ;")
 	public Agency findAgencyByJobId(long jobId);
 	
 	

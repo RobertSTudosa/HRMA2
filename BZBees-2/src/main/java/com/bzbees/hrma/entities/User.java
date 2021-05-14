@@ -57,6 +57,8 @@ public class User implements UserDetails, Serializable{
 	
 	private boolean active;
 	
+	private boolean jobApproved;
+	
 	
 	@ManyToMany
 	@JoinTable(name="user_role",
@@ -252,12 +254,15 @@ public class User implements UserDetails, Serializable{
 	public void setPendingAgency(Agency pendingAgency) {
 		this.pendingAgency = pendingAgency;
 	}
+
+	public boolean isJobApproved() {
+		return jobApproved;
+	}
+
+	public void setJobApproved(boolean jobApproved) {
+		this.jobApproved = jobApproved;
+	}
 	
-	
-	
-	
-	
-	
-	
+
 
 }

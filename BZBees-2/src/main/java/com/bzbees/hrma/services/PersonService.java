@@ -70,4 +70,20 @@ public class PersonService {
 		persRepo.deletePersonApplications(personId);
 	}
 	
+	public Set<Person> getCandidatesApprovedToJob (long jobId) {
+		return persRepo.personsApprovedToJob(jobId);
+	}
+	
+	public Set<Long> getPersonsIdsApprovedToJob (long jobId) {
+		return persRepo.personsIdsApprovedToJob(jobId);
+	}
+	
+	public Set<Person> getCandidatesWithValidDateByJobId (long jobId) {
+		return persRepo.personsValidDateToJob(jobId);
+	}
+	
+	public Set<Long> getCandidatesIdsWithValidDatesByJobId(long jobId) {
+		return persRepo.personsIdsWithValidDateToJob(jobId);
+	}
+	
 }
