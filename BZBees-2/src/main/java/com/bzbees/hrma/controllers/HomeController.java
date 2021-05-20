@@ -92,10 +92,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String displayHome ( Model model, @ModelAttribute("message") String message, 
 			Authentication auth, HttpSession session ) {
-		if(auth == null) {
-			return "home";
-		}
-		
+
 		
 		if(auth !=null ) {
 			String name = auth.getName();
