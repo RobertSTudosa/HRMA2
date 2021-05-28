@@ -110,6 +110,14 @@ public class Person implements Serializable {
 	
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
 			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsRejected",
+			joinColumns=@JoinColumn(name="person_id"),
+			inverseJoinColumns=@JoinColumn(name="job_id"))
+	private Set<Job> jobsRejected = new HashSet<>();
+	
+	
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST },
+			fetch = FetchType.LAZY)
 	@JoinTable(name="person_jobsValidDate",
 			joinColumns=@JoinColumn(name="person_id"),
 			inverseJoinColumns=@JoinColumn(name="job_id"))
@@ -498,6 +506,10 @@ public class Person implements Serializable {
 	public void setNotifications(List<Notification> notifications) {
 		this.notifications = notifications;
 	}
+	
+	public void addNotification(Notification notification) {
+		this.notifications.add(notification);
+	}
 
 
 	public void setPersonId(long personId) {
@@ -587,6 +599,19 @@ public class Person implements Serializable {
 	public void setJobsValidDate(Set<Job> jobsValidDate) {
 		this.jobsValidDate = jobsValidDate;
 	}
+
+
+	public Set<Job> getJobsRejected() {
+		return jobsRejected;
+	}
+
+
+	public void setJobsRejected(Set<Job> jobsRejected) {
+		this.jobsRejected = jobsRejected;
+	}
+	
+	
+	
 
 
 

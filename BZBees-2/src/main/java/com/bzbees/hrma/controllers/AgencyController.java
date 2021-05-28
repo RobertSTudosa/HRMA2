@@ -56,6 +56,7 @@ import com.bzbees.hrma.entities.Tag;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.entities.UserRole;
 import com.bzbees.hrma.services.AgencyService;
+import com.bzbees.hrma.services.AsyncService;
 import com.bzbees.hrma.services.CompanyDocService;
 import com.bzbees.hrma.services.ImageResize;
 import com.bzbees.hrma.services.JobService;
@@ -114,6 +115,9 @@ public class AgencyController {
 	
 	@Autowired
 	private LikeService likeServ;
+	
+	@Autowired
+	private AsyncService asyncServ;
 	
 
 	@GetMapping("/register")
@@ -1920,10 +1924,7 @@ public class AgencyController {
 		Set<Person> applicants = persServ.findCandidatesAppliedToJob(jobId);
 		//find the agency that posted the job
 		Agency theAgency = agencyServ.findAgencyByJobId(jobId);
-		// check if the applicants are affiliated with that agency
-			//start a new Set of Person to add the user who is affiliated
 		
-		//test if this is working
 		model.addAttribute("applicantsTo", applicants);
 		model.addAttribute("theJobId", jobId);
 		
@@ -1931,6 +1932,59 @@ public class AgencyController {
 		
 		model.addAttribute("approvedPersonIds", persServ.getPersonsIdsApprovedToJob(jobId));
 		
+		//get all the approved candidates ids for the agency's jobs 
+		//and if that candidate is in the list then add to a list of no more approve
+		Set<Long> candidatesIdsApprovedByAgency = new HashSet<Long>();
+		List<Job> agencyJobs = jobServ.findJobsByAgencyId(theAgency.getAgencyId());
+		
+		for(Job agencyJob : agencyJobs) {			
+			Set<Long> candidatesIdsApprovedForThisJob = persServ.getPersonsIdsApprovedToJob(agencyJob.getJobId());
+			candidatesIdsApprovedByAgency.addAll(candidatesIdsApprovedForThisJob);
+		}
+		
+		Set<Long> noMoreApprovedCandidates = new HashSet<Long>();
+		
+		
+		for(Person candidate : applicants) {
+			if(candidatesIdsApprovedByAgency.contains(candidate.getPersonId())) {
+				noMoreApprovedCandidates.add(candidate.getPersonId());
+			}
+		}
+		
+		
+		model.addAttribute("candidatesIdsApprovedByAgency", agencyJobs);
+		model.addAttribute("noMoreApproval", noMoreApprovedCandidates);
+		
+		Set<Person> allApplicantsApproved = new HashSet<Person>();
+		Set<Long> allCandidatesIdsWithValidDate = new HashSet<Long>();
+		
+		
+		for(Job job : agencyJobs) {
+
+			Set<Person> applicantsApproved = persServ.getCandidatesApprovedToJob(job.getJobId());
+			allApplicantsApproved.addAll(applicantsApproved);
+
+			Set<Long> applicantsWithValidDate = persServ.getCandidatesIdsWithValidDatesByJobId(job.getJobId());
+
+
+		}
+		
+		
+		Set<Long> allCandidatesIdsRejectedForThisJob = persServ.getCandidatesIdsRejectedByJobId(jobId);
+		
+		for(long candidateId:allCandidatesIdsRejectedForThisJob) {
+			System.out.println("Candidate id rejected is -----> " + candidateId);
+
+		}
+		
+		model.addAttribute("candidatesIdsRejected", allCandidatesIdsRejectedForThisJob);
+		model.addAttribute("allApplicantsApproved", allApplicantsApproved);
+
+		if(allCandidatesIdsWithValidDate != null  ) {
+			model.addAttribute("allCandidatesIdsWithValidDate", allCandidatesIdsWithValidDate);
+		} 
+		
+		 
 		
 	return "modals :: #jobApplicantsTo";
 	
@@ -1940,7 +1994,7 @@ public class AgencyController {
 	@GetMapping(value="approveCandidate")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void approveCandidateToJob(@RequestParam("personId") long personId, @RequestParam("jobId") long jobId, 
-				Model model, Authentication auth, RedirectAttributes redirAttr) {
+				Model model, Authentication auth, RedirectAttributes redirAttr) throws InterruptedException {
 		//approve means the job and the person must be saved and
 		//establish relationships through getters and setters so that 
 		//the many to many to populate persons_jobs_approved table
@@ -1974,10 +2028,77 @@ public class AgencyController {
 		//save the entities
 		jobServ.save(job);
 		
+		
+		//prepare to create notif
+		Agency agency = agencyServ.findAgencyByJobId(jobId);
+		String agencyName = agency.getAgencyName();
+		
+		String jobTitle = job.getJobTitle();
+		
+		
+		asyncServ.createAsyncNotificationForCandidateApprovedByAgencyToJob(personId, jobId, agencyName, jobTitle);
+		
+		
+		
+	
 		model.addAttribute("acceptedInList", true);
 		
 				
 						
 	}
+	
+	
+	@GetMapping(value="rejectCandidate")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void rejectCandidateToJob(@RequestParam("personId") long personId, @RequestParam("jobId") long jobId, 
+				Model model, Authentication auth, RedirectAttributes redirAttr) throws InterruptedException { 
+		
+		//get the person from the line 
+		Person person = (Person) persServ.findPersonById(personId);
+				
+		//get the person's rejected jobs
+		Set<Job> personsRejectedJob = person.getJobsRejected();
+				
+		//get the job from the read more
+		Job job = (Job) jobServ.findJobById(jobId);
+				
+		//add the job to the person's list of rejected jobs
+		personsRejectedJob.add(job);
+				
+		//set the list of job to the person
+		person.setJobsRejected(personsRejectedJob); 
+		
+		persServ.save(person);
+				
+		//get the  job's rejected person
+		Set<Person> jobsRejectedPersons = job.getPersonsRejected();
+				
+		//add the person to the list 
+		jobsRejectedPersons.add(person);
+				
+		//set the list to the jobs approved persons
+		job.setPersonsRejected(jobsRejectedPersons); 
+				
+		//save the entities
+		jobServ.save(job);
+				
+				
+		//prepare to create notification for candidate that he was rejected.	
+		Agency agency = agencyServ.findAgencyByJobId(jobId);
+		String agencyName = agency.getAgencyName();
+				
+		String jobTitle = job.getJobTitle();
+				
+		
+		//CHECK IF THE SAME NOTIFICATION WAS ALREADY SENT 
+		asyncServ.createNotificationForJobRejectionByAgency(personId, jobId);
+		
+		
+		
+	
+		
+	}
+	
+	
 
 }

@@ -129,6 +129,14 @@ public class Job implements Serializable {
 			inverseJoinColumns=@JoinColumn(name="person_id"))
 	private Set<Person> personsApplied = new HashSet<>();
 	
+	
+	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+			fetch = FetchType.LAZY)
+	@JoinTable(name="person_jobsRejected",
+			joinColumns=@JoinColumn(name="job_id"),
+			inverseJoinColumns=@JoinColumn(name="person_id"))
+	private Set<Person> personsRejected = new HashSet<>();
+	
 	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
 			fetch = FetchType.LAZY)
 	@JoinTable(name="person_jobsApproved",
@@ -396,6 +404,14 @@ public class Job implements Serializable {
 
 	public void setPersonsValidDate(Set<Person> personsValidDate) {
 		this.personsValidDate = personsValidDate;
+	}
+
+	public Set<Person> getPersonsRejected() {
+		return personsRejected;
+	}
+
+	public void setPersonsRejected(Set<Person> personsRejected) {
+		this.personsRejected = personsRejected;
 	}
 	
 	

@@ -119,11 +119,65 @@
 
                             <div class="card-interact" th:id="'read-more-card-interact' + ${job.jobId}">
 
-                                <button class="button-addToListActive"><img src="../css/buttons/addToListActive.png" alt="like"/></button>
-                                <button class="button-addToList"><img src="../css/buttons/addToList.png" alt="like"/></button>
+                               <a sec:authorize="isAnonymous()" th:href="@{/login}"
+									class="button-addToList" style="background-color:#FFFFFF">
+                                	<span class="iconify" data-icon="mdi:clipboard-list" data-inline="false" style="color:#E9D415;background-color:#FFFFFF"></span>
+                                </a>
+                                
+                                
+                                  <button sec:authorize="isAuthenticated()" 
+                                		th:if="${not #lists.contains(userJobsInList,job.jobId)}"
+                                		class="button-addToList" style="background-color:#FFFFFF"
+                                		th:attr="onclick=|(saveJobToList(${job.jobId}))|">
+                                	<span 	th:id="'jobIdNotInList' + ${job.jobId}"
+                                			class="iconify" data-icon="mdi:clipboard-list" data-inline="false" 
+                                			style="color:#E9D415;background-color:#FFFFFF"></span>
+                                	<span 	th:id="'jobIdInList' + ${job.jobId}"
+                                			class="iconify" data-icon="bx:bx-list-check" data-inline="false" style="color:#1F9A01;background-color:#FFFFFF;display:none"></span>
+                                	
+                                </button>
+                                <script type="text/javascript" th:inline="javascript">
+                                	function saveJobToList(jobId){
+                                		
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+										
+										$.ajax({
+											type: "GET",
+											url: "/addJobToList?jobId=" + jobId,
+											beforeSend: function() {
+                                			
+                                				$(" #jobIdInList-readMore" + jobId).css('display','flex');
+                                				$(" #jobIdNotInList-readMore" + jobId).css('display','none');
+                                			
+
+                                		},
+                                		completed: function () {
+                                		                            			
+                                		
+                                			
+                                		},
+                                		success: function () {
+                                			$(" #read-more-card-interact-readMore" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
+                                			$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
+                                		},
+											
+											
+										}); 
+                                	
+                                	}
+                                
+                                </script>
+                                <button sec:authorize="isAuthenticated()" 
+                                		th:if="${#lists.contains(userJobsInList,job.jobId)}" 
+                                	class="button-addToList" style="background-color:#FFFFFF">
+                                	<span class="iconify" data-icon="bx:bx-list-check" data-inline="false" style="color:#1F9A01;background-color:#FFFFFF"></span>
+                                </button>
+                               
 
 
-<div class="button-share">
+								<div class="button-share">
     							<details class="buttonShare"  data-popover="down">
     								<summary>
     									<span class="iconify" data-icon="ri:user-voice-line" data-inline="false" style="color:#E9D415;"></span>
@@ -272,11 +326,77 @@
                                 
                             </div>
 
-                            <div class="apply">
-                            	
-                            								
-                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
-                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+                               <div class="apply" th:if="${#authentication.name} != ${job.theAgency.user.userName}">
+
+                                <a sec:authorize="isAnonymous()" th:href="@{/login}"
+									class="button-addToList" style="background-color:#FFFFFF">
+                                	<img src="../css/buttons/openJob2.svg" alt="like"/>
+                                </a>
+                                
+                                <button sec:authorize="isAuthenticated()" 
+                                		th:unless="${userAccount.jobApproved} == true"
+                                		th:if="${not #lists.contains(userJobsIdApplied,job.jobId)}"
+                                		class="button-addToList" style="background-color:#FFFFFF"
+                                		th:attr="onclick=|(applyToJob(${job.jobId}))|">
+                                	<img 	th:id="'jobIdNotApplied' + ${job.jobId}"
+                                			
+                                			style="color:#E9D415;background-color:#FFFFFF"
+                                			src="../css/buttons/openJob2.svg"/>
+                                	<img 	th:id="'jobIdApplied' + ${job.jobId}"
+                                			style="color:#1F9A01;background-color:#FFFFFF;display:none"
+                                			src="../css/buttons/applied.png" ></img>
+                                	
+                                </button>
+                                
+                                <script type="text/javascript" th:inline="javascript">
+                                	function applyToJob(jobId){
+                                		
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+										
+										$.ajax({
+											type: "GET",
+											url: "/applyToJob?jobId=" + jobId,
+											beforeSend: function() {
+                                			
+                                				$(" #jobIdApplied" + jobId).css('display','flex');
+                                				$(" #jobIdNotApplied" + jobId).css('display','none');
+                                			
+
+                                		},
+                                		completed: function () {
+                                		                            			
+                                		
+                                			
+                                		},
+                                		success: function () {
+                                			$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
+                                			$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
+                                		},
+											
+											
+										}); 
+                                	
+                                	}
+                                
+                                </script>
+                                <label sec:authorize="isAuthenticated()"  
+                                th:if="${#lists.contains(userJobsIdApplied,job.jobId)}" 
+                                style="margin-right:0.2rem;margin-top: 0.5rem;font-size: 0.7rem;color:#1F9A01;">
+                                		applied</label> 
+                                <button sec:authorize="isAuthenticated()" 
+                                		th:if="${#lists.contains(userJobsIdApplied,job.jobId)}" 
+                                	class="button-addToList" style="background-color:#FFFFFF;">
+                                	<img 	th:id="'jobIdApplied' + ${job.jobId}"
+                                			style="color:#1F9A01;background-color:#FFFFFF;"
+                                			src="../css/buttons/applied.png" />
+                                	<img 	th:id="'jobIdNotApplied' + ${job.jobId}"
+                                			
+                                			style="color:#E9D415;background-color:#FFFFFF;display:none;"
+                                			src="../css/buttons/openJob2.svg"></img>
+                                </button>
+                                
 
                             </div>
                         </div>

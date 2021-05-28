@@ -1,6 +1,7 @@
 package com.bzbees.hrma.controllers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -688,6 +689,7 @@ public class HomeController {
 	
 	@GetMapping("/showJob/{jobId}")
 	public String showJob(@PathVariable("jobId") long jobId, Authentication auth, Model model) {
+		
 		if(!model.containsAttribute("job")) {
 			Job theJob = (Job) jobServ.findJobById(jobId);
 			model.addAttribute("job", theJob);
@@ -697,8 +699,17 @@ public class HomeController {
 			
 			
 			if(auth != null) {
+				User user = (User) userServ.loadUserByUsername(auth.getName());
 				Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());				
-				model.addAttribute("userJobsLiked", userJobsIdLiked);	
+				model.addAttribute("userJobsLiked", userJobsIdLiked);
+				
+				
+				
+				Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());
+				model.addAttribute("userJobsIdApplied", userJobsAppliedTo);
+				
+				Set<Long> userJobsInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
+				model.addAttribute("userJobsInList", userJobsInList);
 				
 				System.out.println("agency if model contains job is and user is authenticated ------> " + aAgency.getAgencyName());
 				model.addAttribute("aAgency", aAgency);
@@ -825,6 +836,12 @@ public class HomeController {
 			agencyAdminPerson.setNotifications(adminPersonNotifs);
 			agencyAdminPerson.setUnreadNotifs(true);
 			
+			//set candidate availability one day in advance
+			Calendar c = Calendar.getInstance();
+			c.setTime(new Date());
+			c.add(Calendar.DATE, 1);
+			Date futureDate = c.getTime();
+			
 			
 			//check if the user has a list of jobs that applied to 
 			if(jobServ.findJobsAppliedByPersonId(person.getPersonId()) != null) {
@@ -833,7 +850,8 @@ public class HomeController {
 				//if the list contains the job in the method remove it 
 				if(personList.contains(theJob)) {
 					personList.remove(theJob);
-					person.setJobsApplied(personList);
+					person.setJobsApplied(personList);					
+					person.setAvailability(futureDate);
 					persServ.save(person);
 				} else {
 
@@ -845,7 +863,8 @@ public class HomeController {
 						notifServ.saveNotif(agencyAdminNotif);
 						userServ.save(agencyAdmin);
 						personList.add(theJob);
-						person.setJobsApplied(personList);						
+						person.setJobsApplied(personList);	
+						person.setAvailability(futureDate);
 						persServ.save(person);	
 					} 
 				}
@@ -856,6 +875,7 @@ public class HomeController {
 				userServ.save(agencyAdmin);				
 				personList.add(theJob);
 				person.setJobsApplied(personList);
+				person.setAvailability(futureDate);
 				persServ.save(person);
 				
 			}

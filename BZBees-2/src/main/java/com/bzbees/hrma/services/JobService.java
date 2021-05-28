@@ -102,5 +102,13 @@ public class JobService {
 		return jobRepo.findValidDateJobsIdsBypersonId(personId);
 	}
 	
+	public Set<Job> getRejectedJobsByPersonId(long personId){
+		return jobRepo.getJobsRejectedByPersonId(personId);
+	}
+	
+	public Set<Long> findRejectedJobsIdsByPersonId(long personId) {
+		return jobRepo.findRejectedJobsIdsBypersonId(personId);
+	}
+	
 	
 }

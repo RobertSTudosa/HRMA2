@@ -69,7 +69,20 @@ public interface PersonRepository extends CrudRepository <Person, Long>{
 				+ " WHERE person_jobs_valid_date.job_id = ?1 ;")
 		public Set<Long> personsIdsWithValidDateToJob(long jobId);
 
-	
+		@Query(nativeQuery= true, value= "select persons.person_id, first_name, last_name, persons.email, app_status, "
+				+ "employment_status, location, current_job, private_currentjob, active_job, work_experience, "
+				+ " availability, birth_date, job_wish_desc, total_hours, status_start_date, start_job, end_job,  "
+				+ "	 last_img_id, unread_notifs, is_affiliated_to_agency "	
+				+ " FROM persons "
+				+ " left outer join person_jobs_rejected ON person_jobs_rejected.person_id = persons.person_id "
+				+ " WHERE person_jobs_rejected.job_id = ?1 ;")
+		public Set<Person> personsRejectedToJob(long jobId );
+		
+		
+		@Query(nativeQuery= true, value = " select person_id "
+				+ " FROM person_jobs_rejected "
+				+ " WHERE person_jobs_rejected.job_id = ?1 ;")
+		public Set<Long> personsIdsRejectedToJob(long jobId);	
 	
 
 }

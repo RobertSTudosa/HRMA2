@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -46,6 +46,7 @@ import com.bzbees.hrma.entities.Skill;
 import com.bzbees.hrma.entities.SocialMedia;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.services.AgencyService;
+import com.bzbees.hrma.services.AsyncService;
 import com.bzbees.hrma.services.DocService;
 import com.bzbees.hrma.services.ImageResize;
 import com.bzbees.hrma.services.JobService;
@@ -101,6 +102,9 @@ public class PersonController {
 	
 	@Autowired
 	LikeService likeServ;
+	
+	@Autowired
+	AsyncService asyncServ;
 
 	
 	@GetMapping("/sprofile")
@@ -181,29 +185,58 @@ public class PersonController {
 				
 		Set<Job> userJobsApplied = jobServ.findJobsAppliedByPersonId(personId);
 		
-		model.addAttribute("accepted", false);
+		
+		
 		model.addAttribute("validated", false);
+		
+		Set<Long> jobsIdApproved = new HashSet<Long>();
+		Set<Long> jobsIdAccepted = new HashSet<Long>();
+		Set<Long> jobsIdRejected = new HashSet<Long>();
+		
 
-		for(Job job: userJobsApplied) {
-			//get the personsId approved for this job then verify with the person logged in 
-			// if the id is in the list. If it is then add attribute ('accepted') true else false
-			Set<Long> personsIdApproved = persServ.getPersonsIdsApprovedToJob(job.getJobId());
-			
-			for(Long somePersonId : personsIdApproved) {
-				if (somePersonId == person.getPersonId()) {
-					model.addAttribute("accepted", true);
-				}
-				
-			Set<Long> personsIdsAccepted = persServ.getCandidatesIdsWithValidDatesByJobId(job.getJobId());	
-			
-			for(Long validDatePersonId : personsIdsAccepted) {
-				if(validDatePersonId == person.getPersonId() ) {
-					model.addAttribute("validated", true);	
+		for (Job job : userJobsApplied) {
+
+			long jobId = job.getJobId();
+
+			// get the personsId approved for this job then verify with the person logged in
+			// if the id is in the list. If it is then add jobId to the list of jobs where
+			// person is approved
+			Set<Long> personsIdApprovedForThisJob = persServ.getPersonsIdsApprovedToJob(jobId);
+
+			for (Long somePersonId : personsIdApprovedForThisJob) {
+				if (somePersonId == personId) {
+					jobsIdApproved.add(jobId);
+
 				}
 
-			}
+				Set<Long> personsIdsAcceptedForThisJob = persServ.getCandidatesIdsWithValidDatesByJobId(jobId);
+
+				for (Long validDatePersonId : personsIdsAcceptedForThisJob) {
+					if (validDatePersonId == personId) {
+						jobsIdAccepted.add(jobId);
+
+					}
+
+				}
+
+//				Set<Long> personsIdRejected = persServ.getCandidatesIdsRejectedByJobId(jobId);
+//				
+//
+//				for (Long rejectedPersonId : personsIdRejected) {
+//					if (rejectedPersonId == personId) {
+//						jobsIdRejected.add(jobId);
+//
+//					}
+//				}
 			}
 		}
+		
+		model.addAttribute("jobsIdApproved", jobsIdApproved);
+		model.addAttribute("jobsIdAccepted", jobsIdAccepted);
+		Set<Long> personsIdsRejected = jobServ.findRejectedJobsIdsByPersonId(personId);
+		
+		model.addAttribute("jobsIdRejected", personsIdsRejected);
+		
 
 		model.addAttribute("picList", personPics);
 		model.addAttribute("docList", personDocs);
@@ -1083,10 +1116,17 @@ public class PersonController {
 	public void validateAvailability (@RequestParam ("personId") long personId, @RequestParam ("jobId") long jobId,
 								Model model, Authentication auth, RedirectAttributes redirAttr) {
 		
+		//check if already validated
+		Set<Long> jobsIdValidated = jobServ.findValidDateJobsIdsByPersonId(personId);
+		if(!jobsIdValidated.contains(jobId)) {
+			
+		
+		
 		//the person must be in the approved list of the agency on the same job he applied 
 		//person must be valid available for the agency for the job cacat only if the conditions above apply
 		Person person = persServ.findPersonById(personId);
 		Job job = jobServ.findJobById(jobId);
+		
 		
 		Set<Job> candidateJobsValidDate = jobServ.getValidDateJobsByPersonId(personId);
 		candidateJobsValidDate.add(job);
@@ -1097,7 +1137,70 @@ public class PersonController {
 		personsWithValidDate.add(person);
 		jobServ.save(job);
 		
+		//get the agency admin id 
+		Agency agency = (Agency) agencyServ.findAgencyByJobId(jobId);
+		String agencyAdminName = agency.getAdminName();
+		User agencyAdminUser = (User) userServ.loadUserByUsername(agencyAdminName);
+		
+		long agencyAdminId = agencyAdminUser.getUserId(); // <------ pass to async
+		
+		String jobTitle = job.getJobTitle();
+		
+		
+		//calling async to create a notification
+		notifServ.createNotificationForAgencyByCandidateAcceptedJob(agencyAdminId, personId, jobTitle);
 
+		}
+
+	}
+	
+	@GetMapping("/rejectAvailability")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void rejectAvailability (@RequestParam ("personId") long personId, @RequestParam ("jobId") long jobId,
+								Model model, Authentication auth, RedirectAttributes redirAttr) throws InterruptedException { 
+		
+		/*
+		 * if a candidate rejects job then he is always considered applied //add
+		 * candidate to the person_rejected_job //signal the agency with a notification
+		 * keep the job in the list and show red background with text - 'you rejected
+		 * this job' //no options for the candidate to redo this action //candidate can
+		 * be approved for a new job
+		 */	
+		
+		Person personLoggedIn = (Person) persServ.findPersonById(personId);
+		Job job = (Job) jobServ.findJobById(jobId);
+		
+		//get candidates approved by agency job 
+		Set<Person> approvedCandidates = job.getPersonsApproved();
+		//remove from approved jobs
+		approvedCandidates.remove(personLoggedIn);
+		//persist the new list
+		job.setPersonsApproved(approvedCandidates);
+		
+		jobServ.save(job);	
+		
+		Set<Job> personsRejectedJobs = personLoggedIn.getJobsRejected();
+		personsRejectedJobs.add(job);
+		persServ.save(personLoggedIn);
+		
+		//persist persons_jobs_rejected (check name for consistency)  
+		
+		Set<Long> jobsIdsRejected = jobServ.findRejectedJobsIdsByPersonId(personId);
+		model.addAttribute("jobsIdRejected", jobsIdsRejected);
+		
+		//send list of jobs ids of the agency in which the candidate has rejected the jobs
+		//call method to send notification 
+		
+		
+		Agency agency = (Agency) agencyServ.findAgencyByJobId(jobId);
+		String agencyAdmin = agency.getAdminName();
+		User adminUser = (User) userServ.loadUserByUsername(agencyAdmin);
+		long agencyAdminId = adminUser.getUserId();
+		String jobTitle = job.getJobTitle();
+		
+		asyncServ.createAsyncNotificationForAgencyByCandidateRejectedJob(agencyAdminId, personId, jobTitle);
+				
+	
 	}
 	
 

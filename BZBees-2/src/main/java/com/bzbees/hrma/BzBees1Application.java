@@ -5,10 +5,11 @@ import java.util.TimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.bzbees.hrma.services.UserService;
 
+@EnableAsync
 @SpringBootApplication
 //@ComponentScan({"com.bzbess.hrma.controllers","com.bzbess.hrma.dao","com.bzbess.hrma.dto",
 //	"com.bzbess.hrma.entities", "com.bzbess.hrma.services", "com.bzbess.hrma.logging"})

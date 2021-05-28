@@ -86,4 +86,12 @@ public class PersonService {
 		return persRepo.personsIdsWithValidDateToJob(jobId);
 	}
 	
+	public Set<Person> getCandidatesRejectedByJobId (long jobId) {
+		return persRepo.personsRejectedToJob(jobId); 
+	}
+	
+	public Set<Long> getCandidatesIdsRejectedByJobId(long jobId) {
+		return persRepo.personsIdsRejectedToJob(jobId); 
+	}
+	
 }

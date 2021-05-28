@@ -117,5 +117,19 @@ public interface JobRepository extends JpaRepository<Job, Long>{
 	public Set<Long> findValidDateJobsIdsBypersonId (long personId);
 	
 	
+	@Query(nativeQuery= true, value="select jobs.job_id , job_title, company_name, currency, job_private, necessary_documents, "
+			+ "job_location, start_date, end_date, responsabilities, salary, currency, working_conditions, skills, tags, "
+			+ "the_agency_agency_id, last_image_id, job_likes_count "
+			+ " FROM jobs "
+			+ " left outer join person_jobs_rejected ON jobs.job_id = person_jobs_rejected.job_id " 
+			+ " WHERE person_jobs_rejected.person_id = ?1 ;")
+	public Set<Job> getJobsRejectedByPersonId (long personId);
+	
+	@Query(nativeQuery = true,
+			value = "select person_jobs_rejected.job_id "
+					+ " FROM person_jobs_rejected "
+					+ " WHERE person_id = ?1 ;")
+	public Set<Long> findRejectedJobsIdsBypersonId (long personId);
+	
 
 }
