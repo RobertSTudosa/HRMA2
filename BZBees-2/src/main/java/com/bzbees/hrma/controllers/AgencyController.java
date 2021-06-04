@@ -1820,7 +1820,12 @@ public class AgencyController {
 		Set<Job> appliedJobs = (Set<Job>) loggedInPerson.getJobsApplied();		
 		Set<Job> noJobApplied = new HashSet<Job>();
 		loggedInPerson.setJobsApplied(noJobApplied);
+			
+		//remove from approved jobs
 		
+		//remove from valid date jobs
+		
+		//remove from rejected jobs
 		notifServ.saveNotif(userNotif);
 		
 		persServ.save(loggedInPerson);

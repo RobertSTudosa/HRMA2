@@ -258,7 +258,7 @@ public class HomeController {
 		User user = null;
 		
 		if(auth == null) {
-			return "home";
+			return "user/login";
 		}
 		
 		if(auth != null) {
