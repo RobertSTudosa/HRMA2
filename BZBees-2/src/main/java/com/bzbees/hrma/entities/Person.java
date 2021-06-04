@@ -159,7 +159,7 @@ public class Person implements Serializable {
 	private int workExperience;
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@FutureOrPresent 
+	//@FutureOrPresent 
 	private Date availability;
 	
 	

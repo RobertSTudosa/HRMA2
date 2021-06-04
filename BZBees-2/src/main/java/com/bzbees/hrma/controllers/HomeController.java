@@ -401,7 +401,13 @@ public class HomeController {
 					}
 					if(auth != null) {
 						Set<Long> userJobsIdLiked = likeServ.findLikedJobsIdsByUsername(auth.getName());			
+						Set<Long> userJobsIdInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
+						Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());
 						model.addAttribute("userJobsLiked", userJobsIdLiked);
+						model.addAttribute("userJobsIdApplied", userJobsAppliedTo);
+						model.addAttribute("userJobsInList", userJobsIdInList);
+						
+						model.addAttribute("jobTagsList", agencyJobsTags);
 						
 						
 					} else {
