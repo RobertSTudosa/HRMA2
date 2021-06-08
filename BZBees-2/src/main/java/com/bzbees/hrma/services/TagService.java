@@ -27,6 +27,10 @@ public class TagService {
 		return tagRepo.findTagsbyJobId(jobId);
 	}
 	
+	public List<Tag> find2TagsByJobId(long jobId) {
+		return tagRepo.find2TagsbyJobId(jobId);
+	}
+	
 	public void deleteJobTags(List<Tag> jobTags) {
 		tagRepo.deleteAll(jobTags);
 	}

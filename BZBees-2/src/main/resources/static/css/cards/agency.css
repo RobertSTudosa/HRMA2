@@ -245,8 +245,9 @@
     padding-left: .2rem;
 }
 
-.agencycard #agencycard-footer #agency-likes .button-like {
+ #agency-likes>.button-like {
     margin-top: .3rem;
+    background-color: #F8EEB8;
 }
 
 @media screen and (min-width:481px) and (max-width: 780px) {
@@ -260,9 +261,18 @@
         background-size: cover;
     }
     .agencycard #agencycard-footer #agency-likes .button-like {
-        background-color: rgba(244, 228, 142, 0.63);
+        background-color: #F8EEB8;
     }
+    
+    
 }
+
+@media screen and (max-width:320px) { 
+	#agency-likes>.button-like {
+        background-color: white;
+    }
+
+	}
 
 @media screen and (min-width: 781px) {
     .agencycard-container {
@@ -280,6 +290,6 @@
         background-size: cover;
     }
     .agencycard #agencycard-footer #agency-likes .button-like {
-        background-color: rgba(244, 228, 142, 0.63);
+        background-color: #F8EEB8;
     }
 }

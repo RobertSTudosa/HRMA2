@@ -148,7 +148,7 @@ public class HomeController {
 				model.addAttribute("userJobsLiked", userJobsIdLiked);				
 				Set<Long> userJobsInList = jobServ.findJobsIdAddedToListByPersonId(user.getUserId());
 				model.addAttribute("userJobsInList", userJobsInList);
-				Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());
+				Set<Long> userJobsAppliedTo = jobServ.findJobsIdAppliedToByPersonId(user.getUserId());				
 				model.addAttribute("userJobsIdApplied", userJobsAppliedTo);
 		
 			} else {
@@ -204,7 +204,7 @@ public class HomeController {
 			model.addAttribute("jobList", allJobs);
 			List<Tag> agencyJobsTags = new ArrayList<>();
 			for(Job job : allJobs) {
-				List<Tag> jobsTags = tagServ.findTagsByJobId(job.getJobId());
+				List<Tag> jobsTags = tagServ.find2TagsByJobId(job.getJobId());
 				agencyJobsTags.addAll(jobsTags);
 			}
 			

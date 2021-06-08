@@ -15,4 +15,11 @@ public interface TagRepository extends JpaRepository<Tag, Long> {
 			+ " FROM tag "
 			+ " WHERE tag.the_job_job_id = ?1 ; ")
 	public List<Tag> findTagsbyJobId(long jobId);
+	
+	
+	@Query(nativeQuery= true, value="select tag.tag_id, tag.tag, tag.the_job_job_id "
+			+ " FROM tag "
+			+ " WHERE tag.the_job_job_id = ?1 "
+			+ " LIMIT 2 ; ")
+	public List<Tag> find2TagsbyJobId(long jobId);
 }

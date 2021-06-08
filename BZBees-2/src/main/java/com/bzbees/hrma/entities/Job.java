@@ -61,6 +61,7 @@ public class Job implements Serializable {
 	private String responsabilities;
 	
 	@Column(name="working_conditions")
+	@Size(min=3, max=4000)
 	private String workingConditions;
 	
 	@Column(name="job_private")
