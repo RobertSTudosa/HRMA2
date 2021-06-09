@@ -1,13 +1,14 @@
 package com.bzbees.hrma.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,6 @@ import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.CompanyDoc;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Like;
-import com.bzbees.hrma.entities.Message;
 import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
 import com.bzbees.hrma.entities.ProfileImg;
@@ -38,6 +38,7 @@ import com.bzbees.hrma.entities.SocialMedia;
 import com.bzbees.hrma.entities.Tag;
 import com.bzbees.hrma.entities.User;
 import com.bzbees.hrma.services.AgencyService;
+import com.bzbees.hrma.services.AsyncService;
 import com.bzbees.hrma.services.CompanyDocService;
 import com.bzbees.hrma.services.JobService;
 import com.bzbees.hrma.services.LikeService;
@@ -87,6 +88,9 @@ public class HomeController {
 	@Autowired
 	LikeService likeServ;
 	
+	@Autowired
+	private AsyncService asyncServ;
+	
 //	@Value("${version}")
 //	private String ver;
 	
@@ -112,9 +116,7 @@ public class HomeController {
 			
 			model.addAttribute("person", persServ.findPersonByUserId(user.getUserId()));
 			model.addAttribute("userAccount", user);
-			
-				
-			
+						
 			//get the agency if any is associated with current user 
 			if(agencyServ.findAgencyByUserId(user.getUserId()) !=null) {
 				Agency agency = agencyServ.findAgencyByUserId(user.getUserId());
@@ -178,6 +180,8 @@ public class HomeController {
 			} else {
 				model.addAttribute("userNotifs", new ArrayList<>());
 			}
+			
+			
 		
 		}
 		
@@ -792,12 +796,15 @@ public class HomeController {
 	
 	@GetMapping("/applyToJob")
 	@ResponseStatus(value = HttpStatus.OK)
-	public void applyToJob(@RequestParam("jobId") long jobId, Model model, Authentication auth) {
+	public String applyToJob(@RequestParam("jobId") long jobId, Model model, Authentication auth, HttpServletResponse httpServletResponse) throws IOException {
+		
+
 		//get the job from the model 
 		Job theJob = (Job) jobServ.findJobById(jobId);
+		
 		//get the agency that posted the job
 		Agency theAgency = (Agency) agencyServ.findAgencyByJobId(jobId);
-		System.out.println("Agency is ---->" + theAgency.getAgencyName());
+		
 		//get the admin of the agency
 		String agencyAdminName = theAgency.getAdminName();
 		User agencyAdmin = (User) userServ.loadUserByUsername(agencyAdminName);
@@ -806,101 +813,47 @@ public class HomeController {
 		
 		//check if there is an authentication 
 		if(auth != null) {
-			//retrieve the user
+			//retrieve the user logged in
 			User loggedInUser = (User) userServ.loadUserByUsername(auth.getName());
 
-			//retrieve the person
+			//retrieve the user details
 			Person person = (Person) persServ.findPersonByUserId(loggedInUser.getUserId());
 			
 			//check if the person is affiliated to the agency 
-			//if not then direct to agency page 
-			
-			//initiate a set of jobs
-			Set<Job> personList = new HashSet<>();
-			
-			//prep the notifications 
-			Message firstString = new Message("Candidate");
-			Message secondString = new Message(person.getFirstName());
-			long personId = person.getPersonId();
-			Message href = new Message("/agency/cprofile?id=" + Long.toString(personId));
-			Message longText = new Message("applied to " + theJob.getJobTitle() + ". " + "Check your agency profile");
-			List<Message> agencyMessages = new ArrayList<Message>();
-			agencyMessages.add(0,firstString);
-			agencyMessages.add(1,secondString);
-			agencyMessages.add(2,href);
-			agencyMessages.add(3,longText);
-			
-			Notification agencyAdminNotif = new Notification(agencyMessages,false,false, firstString.getMessage(), new Date()); 
-			firstString.setNotification(agencyAdminNotif);
-			secondString.setNotification(agencyAdminNotif);
-			href.setNotification(agencyAdminNotif);
-			longText.setNotification(agencyAdminNotif);
-			
-			//get the notifications of agency admin 
-			List<Notification> adminPersonNotifs = agencyAdminPerson.getNotifications();
-			adminPersonNotifs.add(agencyAdminNotif);
-			agencyAdminPerson.setNotifications(adminPersonNotifs);
-			agencyAdminPerson.setUnreadNotifs(true);
-			
-			//set candidate availability one day in advance
-			Calendar c = Calendar.getInstance();
-			c.setTime(new Date());
-			c.add(Calendar.DATE, 1);
-			Date futureDate = c.getTime();
-			
-			
-			//check if the user has a list of jobs that applied to 
-			if(jobServ.findJobsAppliedByPersonId(person.getPersonId()) != null) {
-				//initiate a person lists with applied jobs
-				personList = jobServ.findJobsAppliedByPersonId(person.getPersonId());
-				//if the list contains the job in the method remove it 
-				if(personList.contains(theJob)) {
-					personList.remove(theJob);
-					person.setJobsApplied(personList);					
-					person.setAvailability(futureDate);
+			List<User> affiliatedUsers = userServ.getAllAffiliatedUsersByAgencyId(theAgency.getAgencyId());
+			//verify is the person logged in is affiliated with the agency
+				if(affiliatedUsers.contains(loggedInUser)) {
+					
+					//add the job to the list of applied jobs
+					Set<Job> appliedJobs = person.getJobsApplied();
+					appliedJobs.add(theJob);
+					person.setJobsApplied(appliedJobs);
+					
+					//call async for notification
+					long candidateId = person.getPersonId();
+					long agencyId = theAgency.getAgencyId();
+					
+					asyncServ.createNotificationForJobAppliedByUser(candidateId, jobId, agencyId);
+					
+					//add the job to the list of jobs of the candidate
+					person.addJobsApplied(theJob);
 					persServ.save(person);
-				} else {
-
-						//get the user affiliated with the agency and check for the logged in user
-					List<User> affiliatedUsers = userServ.getAllAffiliatedUsersByAgencyId(theAgency.getAgencyId());
-							//verify is the person logged in is affiliated with the agency
-					if(affiliatedUsers.contains(loggedInUser)) {
-						//add the job to the list of applied jobs
-						notifServ.saveNotif(agencyAdminNotif);
-						userServ.save(agencyAdmin);
-						personList.add(theJob);
-						person.setJobsApplied(personList);	
-						person.setAvailability(futureDate);
-						persServ.save(person);	
-					} 
-				}
-	
-			} else {
-				//job can be added with the user's new list
-				notifServ.saveNotif(agencyAdminNotif);
-				userServ.save(agencyAdmin);				
-				personList.add(theJob);
-				person.setJobsApplied(personList);
-				person.setAvailability(futureDate);
-				persServ.save(person);
 				
-			}
-			
-			
+					
+					
+				} else {
+					model.addAttribute("message", "not affiliated to this agency");
+					
+					return "redirect:/agency/profile";
+				}
+
 			
 		}
+		
+		
+		return null;
+		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
 	
 
 }

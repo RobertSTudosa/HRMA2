@@ -1371,6 +1371,7 @@ public class AgencyController {
 		
 		return "redirect:/agency/profile";
 	}
+	
 	//MediaType.APPLICATION_FORM_URLENCODED_VALUE, { "multipart/form-data"}
 	@PostMapping(value="/editJob" , consumes = {MediaType.ALL_VALUE,  "multipart/form-data" })
 	public String partialUpdate(@Valid @ModelAttribute("job") Job patchJob, 

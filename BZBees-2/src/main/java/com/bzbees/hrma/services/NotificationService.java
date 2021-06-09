@@ -1,6 +1,7 @@
 package com.bzbees.hrma.services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -12,11 +13,13 @@ import com.bzbees.hrma.dao.AgencyRepository;
 import com.bzbees.hrma.dao.JobRepository;
 import com.bzbees.hrma.dao.NotificationRepository;
 import com.bzbees.hrma.dao.PersonRepository;
+import com.bzbees.hrma.dao.UserRepository;
 import com.bzbees.hrma.entities.Agency;
 import com.bzbees.hrma.entities.Job;
 import com.bzbees.hrma.entities.Message;
 import com.bzbees.hrma.entities.Notification;
 import com.bzbees.hrma.entities.Person;
+import com.bzbees.hrma.entities.User;
 
 @Service
 public class NotificationService {
@@ -32,6 +35,9 @@ public class NotificationService {
 	
 	@Autowired
 	JobRepository jobRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 	
 	
 //	public Notification saveAndFlush(Notification notif) {
@@ -226,6 +232,51 @@ public class NotificationService {
 		personInNotif.setUnreadNotifs(true);
 		notifRepo.save(userNotif);
 		persRepo.save(personInNotif);
+	}
+
+	@Transactional
+	public void createNotificationForJobAppliedByCandidate(long candidateId, long jobId, long agencyId) {
+		
+		//logged in candidate
+		Person person = persRepo.findPersonByPersonId(candidateId);
+		
+		//the job the candidate applied to
+		Job theJob = jobRepo.findJobByJobId(jobId);
+		
+		//get the agency of the job
+		Agency theAgency = agencyRepo.findAgencyByagencyId(agencyId);
+		theAgency.getUser().getUserId();
+		
+		//get the admin of the agency
+		User agencyAdminUser = userRepo.findUserByUsername(theAgency.getUser().getUsername());
+		Person agencyAdminPerson = persRepo.findPersonFromUserId(agencyAdminUser.getUserId());
+		
+		Message firstString = new Message("Candidate");
+		Message secondString = new Message(person.getFirstName()); 
+		
+		Message href = new Message("/agency/cprofile?id=" + Long.toString(candidateId)); 
+		Message longText = new Message("applied to " + theJob.getJobTitle() + ". " + "Check your agency profile"); 
+		List<Message> agencyMessages = new ArrayList<Message>(); 
+		agencyMessages.add(0,firstString);
+		agencyMessages.add(1,secondString); 
+		agencyMessages.add(2,href);
+		agencyMessages.add(3,longText);
+		  
+		Notification agencyAdminNotif = new Notification(agencyMessages,false,false,firstString.getMessage(), new Date());
+		firstString.setNotification(agencyAdminNotif);
+		secondString.setNotification(agencyAdminNotif);
+		href.setNotification(agencyAdminNotif);
+		longText.setNotification(agencyAdminNotif);
+ 
+		//get the notifications of agency admin 
+		List<Notification> adminPersonNotifs = agencyAdminPerson.getNotifications();
+		adminPersonNotifs.add(agencyAdminNotif);
+		agencyAdminPerson.setNotifications(adminPersonNotifs);
+		agencyAdminPerson.setUnreadNotifs(true);
+		notifRepo.save(agencyAdminNotif);
+		persRepo.save(agencyAdminPerson);
+		
+		
 	}
 	
 	

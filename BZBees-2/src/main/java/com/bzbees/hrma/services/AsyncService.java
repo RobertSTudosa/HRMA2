@@ -31,5 +31,10 @@ public class AsyncService {
 	public void createNotificationForJobRejectionByAgency(long candidateId, long jobId) {
 		notifServ.createNotificationForRejectionByAgency(candidateId, jobId);
 	}
+	
+	@Async
+	public void createNotificationForJobAppliedByUser(long candidateId, long jobId, long agencyId) {
+		notifServ.createNotificationForJobAppliedByCandidate(candidateId, jobId, agencyId);
+	}
 		
 }
