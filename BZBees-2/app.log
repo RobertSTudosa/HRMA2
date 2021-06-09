@@ -3913,3 +3913,530 @@ The last packet successfully received from the server was 108 milliseconds ago. 
 2021-06-09 19:13:58.500 DEBUG 16344 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
  
  
+2021-06-09 19:17:54.599  INFO 16344 --- [RMI TCP Connection(25)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-06-09 19:17:54.601  INFO 16344 --- [RMI TCP Connection(25)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-09 19:17:54.605  INFO 16344 --- [RMI TCP Connection(25)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-06-09 20:45:06.564  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 22020 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2021-06-09 20:45:06.567 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2021-06-09 20:45:06.567  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2021-06-09 20:45:06.631  INFO 22020 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-06-09 20:45:06.632  INFO 22020 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-06-09 20:45:07.765  INFO 22020 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-09 20:45:07.890  INFO 22020 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 114ms. Found 16 JPA repository interfaces.
+2021-06-09 20:45:08.877 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-06-09 20:45:08.878 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-06-09 20:45:08.878 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2021-06-09 20:45:08.951  INFO 22020 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2021-06-09 20:45:09.094  INFO 22020 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2462 ms
+2021-06-09 20:45:12.193  INFO 22020 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://209.159.147.190:3306/bpeople_BZBees?autoReconnect=true&serverTimezone=UTC'
+2021-06-09 20:45:14.369  INFO 22020 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-09 20:45:15.427  WARN 22020 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-09 20:45:16.068  INFO 22020 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5cfc1ae7, org.springframework.security.web.context.SecurityContextPersistenceFilter@5058905f, org.springframework.security.web.header.HeaderWriterFilter@16f50c64, org.springframework.security.web.csrf.CsrfFilter@23da4f3, org.springframework.security.web.authentication.logout.LogoutFilter@212b54ab, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5f3c6e4b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@21377e9c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@396ee50a, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@57609061, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3ef1d7a3, org.springframework.security.web.session.SessionManagementFilter@7acb5051, org.springframework.security.web.access.ExceptionTranslationFilter@3d80163c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@f814a71]
+2021-06-09 20:45:16.259  INFO 22020 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-09 20:45:17.073  INFO 22020 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-06-09 20:45:17.086  INFO 22020 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-06-09 20:45:17.596  INFO 22020 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2021-06-09 20:45:17.598  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 11.375 seconds (JVM running for 12.263)
+2021-06-09 20:45:44.546  INFO 22020 --- [https-jsse-nio-443-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-06-09 20:45:44.565  INFO 22020 --- [https-jsse-nio-443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+2021-06-09 20:45:44.642 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:45:44.643 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , null, org.apache.catalina.session.StandardSessionFacade@783ae443]
+2021-06-09 20:45:44.644 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:45:47.106 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:45:47.107 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, agenciesList=[com.bzbees.hrma.entities.Agency@25352c67], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], jobTagsList=[com.bzbees.hrma.entities.Tag@7bbac581, com.bzbees.hrma.entities.Tag@f578169, com.bzbees.hrma.entities.Tag@d60cf55, com.bzbees.hrma.entities.Tag@3ac5fd5c]}, , null, org.apache.catalina.session.StandardSessionFacade@783ae443]
+2021-06-09 20:45:47.107 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:45:47.924 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:45:47.924 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@7bbac581, com.bzbees.hrma.entities.Tag@f578169, com.bzbees.hrma.entities.Tag@d60cf55, com.bzbees.hrma.entities.Tag@3ac5fd5c]}]
+2021-06-09 20:45:47.924 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:45:47.927 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:45:47.927 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@7bbac581, com.bzbees.hrma.entities.Tag@f578169, com.bzbees.hrma.entities.Tag@d60cf55, com.bzbees.hrma.entities.Tag@3ac5fd5c]}]
+2021-06-09 20:45:47.927 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:45:47.956 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:45:47.956 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@7bbac581, com.bzbees.hrma.entities.Tag@f578169, com.bzbees.hrma.entities.Tag@d60cf55, com.bzbees.hrma.entities.Tag@3ac5fd5c]}]
+2021-06-09 20:45:47.956 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:45:49.059 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:45:49.059 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@7bbac581, com.bzbees.hrma.entities.Tag@f578169, com.bzbees.hrma.entities.Tag@d60cf55, com.bzbees.hrma.entities.Tag@3ac5fd5c]}]
+2021-06-09 20:45:49.060 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:45:49.365 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:45:49.366 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@7bbac581, com.bzbees.hrma.entities.Tag@f578169, com.bzbees.hrma.entities.Tag@d60cf55, com.bzbees.hrma.entities.Tag@3ac5fd5c]}]
+2021-06-09 20:45:49.366 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:46:05.785 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:46:05.785 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@7bbac581, com.bzbees.hrma.entities.Tag@f578169, com.bzbees.hrma.entities.Tag@d60cf55, com.bzbees.hrma.entities.Tag@3ac5fd5c]}]
+2021-06-09 20:46:05.785 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:16.544 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:48:16.545 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayLoginForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.LoginController.displayLoginForm () with arguments[s] = [null]
+2021-06-09 20:48:16.545 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:16.547 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:48:16.548 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayLoginForm EXECUTION**************** 
+ com.bzbees.hrma.controllers.LoginController.displayLoginForm () with arguments[s] = [null]
+2021-06-09 20:48:16.548 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:23.815 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:48:23.815 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@7bbac581, com.bzbees.hrma.entities.Tag@f578169, com.bzbees.hrma.entities.Tag@d60cf55, com.bzbees.hrma.entities.Tag@3ac5fd5c], agenciesList=[com.bzbees.hrma.entities.Agency@25352c67], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@783ae443]
+2021-06-09 20:48:23.815 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:48.473 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:48:48.474 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@720bc78c, com.bzbees.hrma.entities.Tag@16acf65f, com.bzbees.hrma.entities.Tag@3718f46a, com.bzbees.hrma.entities.Tag@5f900b8d], agenciesList=[com.bzbees.hrma.entities.Agency@3136413d], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, person=com.bzbees.hrma.entities.Person@5f1c0931, userAccount=com.bzbees.hrma.entities.User@24f4fc63, agency=com.bzbees.hrma.entities.Agency@2f10d77b, userAgencyLiked=[], userJobsLiked=[], userJobsInList=[1, 2], userJobsIdApplied=[], userNotifs=[com.bzbees.hrma.entities.Notification@43d37477, com.bzbees.hrma.entities.Notification@5a11abcb, com.bzbees.hrma.entities.Notification@37dfdc6a, com.bzbees.hrma.entities.Notification@35f459e2]}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@783ae443]
+2021-06-09 20:48:48.475 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:49.228 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:48:49.229 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:48:49.229 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@720bc78c, com.bzbees.hrma.entities.Tag@16acf65f, com.bzbees.hrma.entities.Tag@3718f46a, com.bzbees.hrma.entities.Tag@5f900b8d], agency=com.bzbees.hrma.entities.Agency@2f10d77b, person=com.bzbees.hrma.entities.Person@5f1c0931, userNotifs=[com.bzbees.hrma.entities.Notification@43d37477, com.bzbees.hrma.entities.Notification@5a11abcb, com.bzbees.hrma.entities.Notification@37dfdc6a, com.bzbees.hrma.entities.Notification@35f459e2], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:48:49.229 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@720bc78c, com.bzbees.hrma.entities.Tag@16acf65f, com.bzbees.hrma.entities.Tag@3718f46a, com.bzbees.hrma.entities.Tag@5f900b8d], agency=com.bzbees.hrma.entities.Agency@2f10d77b, person=com.bzbees.hrma.entities.Person@5f1c0931, userNotifs=[com.bzbees.hrma.entities.Notification@43d37477, com.bzbees.hrma.entities.Notification@5a11abcb, com.bzbees.hrma.entities.Notification@37dfdc6a, com.bzbees.hrma.entities.Notification@35f459e2], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:48:49.229 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:49.229 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:49.253 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:48:49.254 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@720bc78c, com.bzbees.hrma.entities.Tag@16acf65f, com.bzbees.hrma.entities.Tag@3718f46a, com.bzbees.hrma.entities.Tag@5f900b8d], agency=com.bzbees.hrma.entities.Agency@2f10d77b, person=com.bzbees.hrma.entities.Person@5f1c0931, userNotifs=[com.bzbees.hrma.entities.Notification@43d37477, com.bzbees.hrma.entities.Notification@5a11abcb, com.bzbees.hrma.entities.Notification@37dfdc6a, com.bzbees.hrma.entities.Notification@35f459e2], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:48:49.254 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:52.489 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:48:52.490 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@720bc78c, com.bzbees.hrma.entities.Tag@16acf65f, com.bzbees.hrma.entities.Tag@3718f46a, com.bzbees.hrma.entities.Tag@5f900b8d], agency=com.bzbees.hrma.entities.Agency@2f10d77b, person=com.bzbees.hrma.entities.Person@5f1c0931, userNotifs=[com.bzbees.hrma.entities.Notification@43d37477, com.bzbees.hrma.entities.Notification@5a11abcb, com.bzbees.hrma.entities.Notification@37dfdc6a, com.bzbees.hrma.entities.Notification@35f459e2], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:48:52.490 DEBUG 22020 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:48:59.999 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:49:00.000 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@720bc78c, com.bzbees.hrma.entities.Tag@16acf65f, com.bzbees.hrma.entities.Tag@3718f46a, com.bzbees.hrma.entities.Tag@5f900b8d], agency=com.bzbees.hrma.entities.Agency@2f10d77b, person=com.bzbees.hrma.entities.Person@5f1c0931, userNotifs=[com.bzbees.hrma.entities.Notification@43d37477, com.bzbees.hrma.entities.Notification@5a11abcb, com.bzbees.hrma.entities.Notification@37dfdc6a, com.bzbees.hrma.entities.Notification@35f459e2], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:49:00.000 DEBUG 22020 --- [https-jsse-nio-443-exec-7] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:49:09.843 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:49:09.844 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@720bc78c, com.bzbees.hrma.entities.Tag@16acf65f, com.bzbees.hrma.entities.Tag@3718f46a, com.bzbees.hrma.entities.Tag@5f900b8d], agency=com.bzbees.hrma.entities.Agency@2f10d77b, person=com.bzbees.hrma.entities.Person@5f1c0931, userNotifs=[com.bzbees.hrma.entities.Notification@43d37477, com.bzbees.hrma.entities.Notification@5a11abcb, com.bzbees.hrma.entities.Notification@37dfdc6a, com.bzbees.hrma.entities.Notification@35f459e2], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:49:09.844 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:53:30.466 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:53:30.466 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@720bc78c, com.bzbees.hrma.entities.Tag@16acf65f, com.bzbees.hrma.entities.Tag@3718f46a, com.bzbees.hrma.entities.Tag@5f900b8d], agency=com.bzbees.hrma.entities.Agency@2f10d77b, userJobsInList=[1, 2], person=com.bzbees.hrma.entities.Person@5f1c0931, userNotifs=[com.bzbees.hrma.entities.Notification@43d37477, com.bzbees.hrma.entities.Notification@5a11abcb, com.bzbees.hrma.entities.Notification@37dfdc6a, com.bzbees.hrma.entities.Notification@35f459e2], userAccount=com.bzbees.hrma.entities.User@24f4fc63, agenciesList=[com.bzbees.hrma.entities.Agency@3136413d], userJobsIdApplied=[], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@783ae443]
+2021-06-09 20:53:30.466 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:53:43.150 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:53:43.151 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@55e1de72, com.bzbees.hrma.entities.Tag@63041898, com.bzbees.hrma.entities.Tag@423e7569, com.bzbees.hrma.entities.Tag@4902cf7], agency=com.bzbees.hrma.entities.Agency@15f306a9, userJobsInList=[1, 2], person=com.bzbees.hrma.entities.Person@4841b68, userNotifs=[com.bzbees.hrma.entities.Notification@7cb05c9d, com.bzbees.hrma.entities.Notification@4371be1f, com.bzbees.hrma.entities.Notification@18587c06, com.bzbees.hrma.entities.Notification@4cea5af], userAccount=com.bzbees.hrma.entities.User@24f4fc63, agenciesList=[com.bzbees.hrma.entities.Agency@491cf6ff], userJobsIdApplied=[], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, userAgencyLiked=[], userJobsLiked=[]}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@783ae443]
+2021-06-09 20:53:43.152 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:53:43.856 DEBUG 22020 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:53:43.857 DEBUG 22020 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@55e1de72, com.bzbees.hrma.entities.Tag@63041898, com.bzbees.hrma.entities.Tag@423e7569, com.bzbees.hrma.entities.Tag@4902cf7], agency=com.bzbees.hrma.entities.Agency@15f306a9, person=com.bzbees.hrma.entities.Person@4841b68, userNotifs=[com.bzbees.hrma.entities.Notification@7cb05c9d, com.bzbees.hrma.entities.Notification@4371be1f, com.bzbees.hrma.entities.Notification@18587c06, com.bzbees.hrma.entities.Notification@4cea5af], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:53:43.857 DEBUG 22020 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:53:43.871 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:53:43.871 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@55e1de72, com.bzbees.hrma.entities.Tag@63041898, com.bzbees.hrma.entities.Tag@423e7569, com.bzbees.hrma.entities.Tag@4902cf7], agency=com.bzbees.hrma.entities.Agency@15f306a9, person=com.bzbees.hrma.entities.Person@4841b68, userNotifs=[com.bzbees.hrma.entities.Notification@7cb05c9d, com.bzbees.hrma.entities.Notification@4371be1f, com.bzbees.hrma.entities.Notification@18587c06, com.bzbees.hrma.entities.Notification@4cea5af], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:53:43.871 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:53:43.891 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:53:43.891 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@55e1de72, com.bzbees.hrma.entities.Tag@63041898, com.bzbees.hrma.entities.Tag@423e7569, com.bzbees.hrma.entities.Tag@4902cf7], agency=com.bzbees.hrma.entities.Agency@15f306a9, person=com.bzbees.hrma.entities.Person@4841b68, userNotifs=[com.bzbees.hrma.entities.Notification@7cb05c9d, com.bzbees.hrma.entities.Notification@4371be1f, com.bzbees.hrma.entities.Notification@18587c06, com.bzbees.hrma.entities.Notification@4cea5af], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:53:43.891 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:53:44.936 DEBUG 22020 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:53:44.937 DEBUG 22020 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@55e1de72, com.bzbees.hrma.entities.Tag@63041898, com.bzbees.hrma.entities.Tag@423e7569, com.bzbees.hrma.entities.Tag@4902cf7], agency=com.bzbees.hrma.entities.Agency@15f306a9, person=com.bzbees.hrma.entities.Person@4841b68, userNotifs=[com.bzbees.hrma.entities.Notification@7cb05c9d, com.bzbees.hrma.entities.Notification@4371be1f, com.bzbees.hrma.entities.Notification@18587c06, com.bzbees.hrma.entities.Notification@4cea5af], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:53:44.937 DEBUG 22020 --- [https-jsse-nio-443-exec-2] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:53:45.036 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:53:45.037 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@55e1de72, com.bzbees.hrma.entities.Tag@63041898, com.bzbees.hrma.entities.Tag@423e7569, com.bzbees.hrma.entities.Tag@4902cf7], agency=com.bzbees.hrma.entities.Agency@15f306a9, person=com.bzbees.hrma.entities.Person@4841b68, userNotifs=[com.bzbees.hrma.entities.Notification@7cb05c9d, com.bzbees.hrma.entities.Notification@4371be1f, com.bzbees.hrma.entities.Notification@18587c06, com.bzbees.hrma.entities.Notification@4cea5af], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:53:45.037 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:53:54.690 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:53:54.691 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@55e1de72, com.bzbees.hrma.entities.Tag@63041898, com.bzbees.hrma.entities.Tag@423e7569, com.bzbees.hrma.entities.Tag@4902cf7], agency=com.bzbees.hrma.entities.Agency@15f306a9, person=com.bzbees.hrma.entities.Person@4841b68, userNotifs=[com.bzbees.hrma.entities.Notification@7cb05c9d, com.bzbees.hrma.entities.Notification@4371be1f, com.bzbees.hrma.entities.Notification@18587c06, com.bzbees.hrma.entities.Notification@4cea5af], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:53:54.691 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:55:05.030 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:55:05.031 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@55e1de72, com.bzbees.hrma.entities.Tag@63041898, com.bzbees.hrma.entities.Tag@423e7569, com.bzbees.hrma.entities.Tag@4902cf7], agency=com.bzbees.hrma.entities.Agency@15f306a9, userJobsInList=[1, 2], person=com.bzbees.hrma.entities.Person@4841b68, userNotifs=[com.bzbees.hrma.entities.Notification@7cb05c9d, com.bzbees.hrma.entities.Notification@4371be1f, com.bzbees.hrma.entities.Notification@18587c06, com.bzbees.hrma.entities.Notification@4cea5af], userAccount=com.bzbees.hrma.entities.User@24f4fc63, agenciesList=[com.bzbees.hrma.entities.Agency@491cf6ff], userJobsIdApplied=[], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@783ae443]
+2021-06-09 20:55:05.031 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:55:29.324 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:55:29.325 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@7a20cdd0, com.bzbees.hrma.entities.Tag@61c3236c, com.bzbees.hrma.entities.Tag@21d2d618, com.bzbees.hrma.entities.Tag@2f4c7609], agency=com.bzbees.hrma.entities.Agency@4e191f4a, userJobsInList=[1, 2], person=com.bzbees.hrma.entities.Person@41ca23f6, userNotifs=[com.bzbees.hrma.entities.Notification@274c551, com.bzbees.hrma.entities.Notification@257fc9ac, com.bzbees.hrma.entities.Notification@65e1471b, com.bzbees.hrma.entities.Notification@19d20f6e], userAccount=com.bzbees.hrma.entities.User@24f4fc63, agenciesList=[com.bzbees.hrma.entities.Agency@abb509f], userJobsIdApplied=[], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, userAgencyLiked=[], userJobsLiked=[]}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@783ae443]
+2021-06-09 20:55:29.325 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:55:30.111 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:55:30.112 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@7a20cdd0, com.bzbees.hrma.entities.Tag@61c3236c, com.bzbees.hrma.entities.Tag@21d2d618, com.bzbees.hrma.entities.Tag@2f4c7609], agency=com.bzbees.hrma.entities.Agency@4e191f4a, person=com.bzbees.hrma.entities.Person@41ca23f6, userNotifs=[com.bzbees.hrma.entities.Notification@274c551, com.bzbees.hrma.entities.Notification@257fc9ac, com.bzbees.hrma.entities.Notification@65e1471b, com.bzbees.hrma.entities.Notification@19d20f6e], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:55:30.113 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:55:30.119 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:55:30.119 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@7a20cdd0, com.bzbees.hrma.entities.Tag@61c3236c, com.bzbees.hrma.entities.Tag@21d2d618, com.bzbees.hrma.entities.Tag@2f4c7609], agency=com.bzbees.hrma.entities.Agency@4e191f4a, person=com.bzbees.hrma.entities.Person@41ca23f6, userNotifs=[com.bzbees.hrma.entities.Notification@274c551, com.bzbees.hrma.entities.Notification@257fc9ac, com.bzbees.hrma.entities.Notification@65e1471b, com.bzbees.hrma.entities.Notification@19d20f6e], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:55:30.119 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:55:30.146 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:55:30.146 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@7a20cdd0, com.bzbees.hrma.entities.Tag@61c3236c, com.bzbees.hrma.entities.Tag@21d2d618, com.bzbees.hrma.entities.Tag@2f4c7609], agency=com.bzbees.hrma.entities.Agency@4e191f4a, person=com.bzbees.hrma.entities.Person@41ca23f6, userNotifs=[com.bzbees.hrma.entities.Notification@274c551, com.bzbees.hrma.entities.Notification@257fc9ac, com.bzbees.hrma.entities.Notification@65e1471b, com.bzbees.hrma.entities.Notification@19d20f6e], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:55:30.147 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:55:32.771 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:55:32.771 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@7a20cdd0, com.bzbees.hrma.entities.Tag@61c3236c, com.bzbees.hrma.entities.Tag@21d2d618, com.bzbees.hrma.entities.Tag@2f4c7609], agency=com.bzbees.hrma.entities.Agency@4e191f4a, person=com.bzbees.hrma.entities.Person@41ca23f6, userNotifs=[com.bzbees.hrma.entities.Notification@274c551, com.bzbees.hrma.entities.Notification@257fc9ac, com.bzbees.hrma.entities.Notification@65e1471b, com.bzbees.hrma.entities.Notification@19d20f6e], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:55:32.771 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:55:34.516 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:55:34.517 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@7a20cdd0, com.bzbees.hrma.entities.Tag@61c3236c, com.bzbees.hrma.entities.Tag@21d2d618, com.bzbees.hrma.entities.Tag@2f4c7609], agency=com.bzbees.hrma.entities.Agency@4e191f4a, person=com.bzbees.hrma.entities.Person@41ca23f6, userNotifs=[com.bzbees.hrma.entities.Notification@274c551, com.bzbees.hrma.entities.Notification@257fc9ac, com.bzbees.hrma.entities.Notification@65e1471b, com.bzbees.hrma.entities.Notification@19d20f6e], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:55:34.517 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:55:39.925 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:55:39.926 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@7a20cdd0, com.bzbees.hrma.entities.Tag@61c3236c, com.bzbees.hrma.entities.Tag@21d2d618, com.bzbees.hrma.entities.Tag@2f4c7609], agency=com.bzbees.hrma.entities.Agency@4e191f4a, person=com.bzbees.hrma.entities.Person@41ca23f6, userNotifs=[com.bzbees.hrma.entities.Notification@274c551, com.bzbees.hrma.entities.Notification@257fc9ac, com.bzbees.hrma.entities.Notification@65e1471b, com.bzbees.hrma.entities.Notification@19d20f6e], userAccount=com.bzbees.hrma.entities.User@24f4fc63}]
+2021-06-09 20:55:39.926 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:12.394  INFO 22020 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-09 20:56:12.400  INFO 22020 --- [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-06-09 20:56:12.585  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 22020 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2021-06-09 20:56:12.586 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2021-06-09 20:56:12.586  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2021-06-09 20:56:13.008  INFO 22020 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-09 20:56:13.061  INFO 22020 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52ms. Found 16 JPA repository interfaces.
+2021-06-09 20:56:13.200 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-06-09 20:56:13.200 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-06-09 20:56:13.201 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2021-06-09 20:56:13.219  INFO 22020 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2021-06-09 20:56:13.246  INFO 22020 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 643 ms
+2021-06-09 20:56:14.590  INFO 22020 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://209.159.147.190:3306/bpeople_BZBees?autoReconnect=true&serverTimezone=UTC'
+2021-06-09 20:56:14.956  INFO 22020 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-09 20:56:15.487  WARN 22020 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-09 20:56:15.638  INFO 22020 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c923882, org.springframework.security.web.context.SecurityContextPersistenceFilter@56300a45, org.springframework.security.web.header.HeaderWriterFilter@43cd4fa3, org.springframework.security.web.csrf.CsrfFilter@23ddb608, org.springframework.security.web.authentication.logout.LogoutFilter@5294ec07, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@74582169, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@293b9250, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@226083, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@19b44a3b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@20707290, org.springframework.security.web.session.SessionManagementFilter@189392a9, org.springframework.security.web.access.ExceptionTranslationFilter@5185de25, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@11a3b9b1]
+2021-06-09 20:56:15.689  INFO 22020 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-09 20:56:16.024  INFO 22020 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-06-09 20:56:16.028  INFO 22020 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-06-09 20:56:16.277  INFO 22020 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2021-06-09 20:56:16.278  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 3.719 seconds (JVM running for 670.943)
+2021-06-09 20:56:16.280  INFO 22020 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-06-09 20:56:26.757  INFO 22020 --- [https-jsse-nio-443-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-06-09 20:56:26.760  INFO 22020 --- [https-jsse-nio-443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2021-06-09 20:56:26.762 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:56:26.762 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@3d3c903e, com.bzbees.hrma.entities.Tag@50a3b476, com.bzbees.hrma.entities.Tag@1922423a, com.bzbees.hrma.entities.Tag@2e19cddf], agency=com.bzbees.hrma.entities.Agency@777d0542, userJobsInList=[1, 2], person=com.bzbees.hrma.entities.Person@3a300fdf, userNotifs=[com.bzbees.hrma.entities.Notification@3108a931, com.bzbees.hrma.entities.Notification@511fedfa, com.bzbees.hrma.entities.Notification@4ed7a58e, com.bzbees.hrma.entities.Notification@7423057c], userAccount=com.bzbees.hrma.entities.User@187be2f1, agenciesList=[com.bzbees.hrma.entities.Agency@166be8], userJobsIdApplied=[], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@2ec8262d]
+2021-06-09 20:56:26.763 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:31.847 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:56:31.848 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@3f2dc16e, com.bzbees.hrma.entities.Tag@2cabaafc, com.bzbees.hrma.entities.Tag@7d5cc466, com.bzbees.hrma.entities.Tag@44c87f1f], agency=com.bzbees.hrma.entities.Agency@2931a276, userJobsInList=[1, 2], person=com.bzbees.hrma.entities.Person@7d15311c, userNotifs=[com.bzbees.hrma.entities.Notification@324a0a21, com.bzbees.hrma.entities.Notification@4f9e4c21, com.bzbees.hrma.entities.Notification@48220366, com.bzbees.hrma.entities.Notification@5f5a4f20], userAccount=com.bzbees.hrma.entities.User@187be2f1, agenciesList=[com.bzbees.hrma.entities.Agency@1efa1bb3], userJobsIdApplied=[], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, userAgencyLiked=[], userJobsLiked=[]}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@2ec8262d]
+2021-06-09 20:56:31.849 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:32.441 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:56:32.441 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@3f2dc16e, com.bzbees.hrma.entities.Tag@2cabaafc, com.bzbees.hrma.entities.Tag@7d5cc466, com.bzbees.hrma.entities.Tag@44c87f1f], agency=com.bzbees.hrma.entities.Agency@2931a276, person=com.bzbees.hrma.entities.Person@7d15311c, userNotifs=[com.bzbees.hrma.entities.Notification@324a0a21, com.bzbees.hrma.entities.Notification@4f9e4c21, com.bzbees.hrma.entities.Notification@48220366, com.bzbees.hrma.entities.Notification@5f5a4f20], userAccount=com.bzbees.hrma.entities.User@187be2f1}]
+2021-06-09 20:56:32.441 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:32.443 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:56:32.444 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@3f2dc16e, com.bzbees.hrma.entities.Tag@2cabaafc, com.bzbees.hrma.entities.Tag@7d5cc466, com.bzbees.hrma.entities.Tag@44c87f1f], agency=com.bzbees.hrma.entities.Agency@2931a276, person=com.bzbees.hrma.entities.Person@7d15311c, userNotifs=[com.bzbees.hrma.entities.Notification@324a0a21, com.bzbees.hrma.entities.Notification@4f9e4c21, com.bzbees.hrma.entities.Notification@48220366, com.bzbees.hrma.entities.Notification@5f5a4f20], userAccount=com.bzbees.hrma.entities.User@187be2f1}]
+2021-06-09 20:56:32.445 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:32.480 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:56:32.480 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@3f2dc16e, com.bzbees.hrma.entities.Tag@2cabaafc, com.bzbees.hrma.entities.Tag@7d5cc466, com.bzbees.hrma.entities.Tag@44c87f1f], agency=com.bzbees.hrma.entities.Agency@2931a276, person=com.bzbees.hrma.entities.Person@7d15311c, userNotifs=[com.bzbees.hrma.entities.Notification@324a0a21, com.bzbees.hrma.entities.Notification@4f9e4c21, com.bzbees.hrma.entities.Notification@48220366, com.bzbees.hrma.entities.Notification@5f5a4f20], userAccount=com.bzbees.hrma.entities.User@187be2f1}]
+2021-06-09 20:56:32.481 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:32.975 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:56:32.975 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@3f2dc16e, com.bzbees.hrma.entities.Tag@2cabaafc, com.bzbees.hrma.entities.Tag@7d5cc466, com.bzbees.hrma.entities.Tag@44c87f1f], agency=com.bzbees.hrma.entities.Agency@2931a276, person=com.bzbees.hrma.entities.Person@7d15311c, userNotifs=[com.bzbees.hrma.entities.Notification@324a0a21, com.bzbees.hrma.entities.Notification@4f9e4c21, com.bzbees.hrma.entities.Notification@48220366, com.bzbees.hrma.entities.Notification@5f5a4f20], userAccount=com.bzbees.hrma.entities.User@187be2f1}]
+2021-06-09 20:56:32.976 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:33.219 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:56:33.251 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@3f2dc16e, com.bzbees.hrma.entities.Tag@2cabaafc, com.bzbees.hrma.entities.Tag@7d5cc466, com.bzbees.hrma.entities.Tag@44c87f1f], agency=com.bzbees.hrma.entities.Agency@2931a276, person=com.bzbees.hrma.entities.Person@7d15311c, userNotifs=[com.bzbees.hrma.entities.Notification@324a0a21, com.bzbees.hrma.entities.Notification@4f9e4c21, com.bzbees.hrma.entities.Notification@48220366, com.bzbees.hrma.entities.Notification@5f5a4f20], userAccount=com.bzbees.hrma.entities.User@187be2f1}]
+2021-06-09 20:56:33.252 DEBUG 22020 --- [https-jsse-nio-443-exec-8] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:33.442 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:56:33.443 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@3f2dc16e, com.bzbees.hrma.entities.Tag@2cabaafc, com.bzbees.hrma.entities.Tag@7d5cc466, com.bzbees.hrma.entities.Tag@44c87f1f], agency=com.bzbees.hrma.entities.Agency@2931a276, person=com.bzbees.hrma.entities.Person@7d15311c, userNotifs=[com.bzbees.hrma.entities.Notification@324a0a21, com.bzbees.hrma.entities.Notification@4f9e4c21, com.bzbees.hrma.entities.Notification@48220366, com.bzbees.hrma.entities.Notification@5f5a4f20], userAccount=com.bzbees.hrma.entities.User@187be2f1}]
+2021-06-09 20:56:33.443 DEBUG 22020 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:56:49.233  INFO 22020 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-09 20:56:49.236  INFO 22020 --- [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-06-09 20:56:49.403  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 22020 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2021-06-09 20:56:49.403 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2021-06-09 20:56:49.403  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2021-06-09 20:56:49.784  INFO 22020 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-09 20:56:49.832  INFO 22020 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47ms. Found 16 JPA repository interfaces.
+2021-06-09 20:56:49.965 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-06-09 20:56:49.966 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-06-09 20:56:49.966 DEBUG 22020 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2021-06-09 20:56:49.979  INFO 22020 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2021-06-09 20:56:50.005  INFO 22020 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 600 ms
+2021-06-09 20:56:51.359  INFO 22020 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://209.159.147.190:3306/bpeople_BZBees?autoReconnect=true&serverTimezone=UTC'
+2021-06-09 20:56:51.665  INFO 22020 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-09 20:56:52.094  WARN 22020 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-09 20:56:52.224  INFO 22020 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d58e38b, org.springframework.security.web.context.SecurityContextPersistenceFilter@1569882a, org.springframework.security.web.header.HeaderWriterFilter@3519de08, org.springframework.security.web.csrf.CsrfFilter@54e27a91, org.springframework.security.web.authentication.logout.LogoutFilter@4bf431b5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6cae06f7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@792f85ff, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@23ded4c, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@2229d25f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@20209d79, org.springframework.security.web.session.SessionManagementFilter@5218460a, org.springframework.security.web.access.ExceptionTranslationFilter@4ec44ddd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@38c2a2e3]
+2021-06-09 20:56:52.265  INFO 22020 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-09 20:56:52.501  INFO 22020 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-06-09 20:56:52.505  INFO 22020 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-06-09 20:56:52.742  INFO 22020 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2021-06-09 20:56:52.743  INFO 22020 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 3.365 seconds (JVM running for 707.409)
+2021-06-09 20:56:52.745  INFO 22020 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-06-09 20:57:06.334  INFO 22020 --- [https-jsse-nio-443-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-06-09 20:57:06.338  INFO 22020 --- [https-jsse-nio-443-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2021-06-09 20:57:06.339 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:57:06.340 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@7c4b89f3, com.bzbees.hrma.entities.Tag@3889bb63, com.bzbees.hrma.entities.Tag@1110be35, com.bzbees.hrma.entities.Tag@38569991], agency=com.bzbees.hrma.entities.Agency@18728b79, userJobsInList=[1, 2], person=com.bzbees.hrma.entities.Person@6dd579b7, userNotifs=[com.bzbees.hrma.entities.Notification@79a0932e, com.bzbees.hrma.entities.Notification@75b6179a, com.bzbees.hrma.entities.Notification@79136316, com.bzbees.hrma.entities.Notification@3f4db542], userAccount=com.bzbees.hrma.entities.User@3672b5a6, agenciesList=[com.bzbees.hrma.entities.Agency@42096866], userJobsIdApplied=[], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@746ad7a]
+2021-06-09 20:57:06.340 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:57:11.390 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:57:11.390 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{jobTagsList=[com.bzbees.hrma.entities.Tag@17db835e, com.bzbees.hrma.entities.Tag@4e2bd5f2, com.bzbees.hrma.entities.Tag@52fd8445, com.bzbees.hrma.entities.Tag@7fd21969], agency=com.bzbees.hrma.entities.Agency@61deb293, userJobsInList=[1, 2], person=com.bzbees.hrma.entities.Person@3627ea32, userNotifs=[com.bzbees.hrma.entities.Notification@2a2bacb6, com.bzbees.hrma.entities.Notification@2abec15c, com.bzbees.hrma.entities.Notification@1e3e6ab0, com.bzbees.hrma.entities.Notification@5ed82498], userAccount=com.bzbees.hrma.entities.User@3672b5a6, agenciesList=[com.bzbees.hrma.entities.Agency@7bcb60eb], userJobsIdApplied=[], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, userAgencyLiked=[], userJobsLiked=[]}, , org.springframework.security.authentication.UsernamePasswordAuthenticationToken@c1c76221: Principal: org.springframework.security.core.userdetails.User@58997d1: Username: alina; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Granted Authorities: CANDIDATE,USER; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@ffff4c9c: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: 8F887E9DADE845054722B912017B0F15; Granted Authorities: CANDIDATE, USER, org.apache.catalina.session.StandardSessionFacade@746ad7a]
+2021-06-09 20:57:11.391 DEBUG 22020 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:57:11.978 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:57:11.979 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@17db835e, com.bzbees.hrma.entities.Tag@4e2bd5f2, com.bzbees.hrma.entities.Tag@52fd8445, com.bzbees.hrma.entities.Tag@7fd21969], agency=com.bzbees.hrma.entities.Agency@61deb293, person=com.bzbees.hrma.entities.Person@3627ea32, userNotifs=[com.bzbees.hrma.entities.Notification@2a2bacb6, com.bzbees.hrma.entities.Notification@2abec15c, com.bzbees.hrma.entities.Notification@1e3e6ab0, com.bzbees.hrma.entities.Notification@5ed82498], userAccount=com.bzbees.hrma.entities.User@3672b5a6}]
+2021-06-09 20:57:11.979 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:57:11.983 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:57:11.984 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@17db835e, com.bzbees.hrma.entities.Tag@4e2bd5f2, com.bzbees.hrma.entities.Tag@52fd8445, com.bzbees.hrma.entities.Tag@7fd21969], agency=com.bzbees.hrma.entities.Agency@61deb293, person=com.bzbees.hrma.entities.Person@3627ea32, userNotifs=[com.bzbees.hrma.entities.Notification@2a2bacb6, com.bzbees.hrma.entities.Notification@2abec15c, com.bzbees.hrma.entities.Notification@1e3e6ab0, com.bzbees.hrma.entities.Notification@5ed82498], userAccount=com.bzbees.hrma.entities.User@3672b5a6}]
+2021-06-09 20:57:11.984 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:57:12.018 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:57:12.019 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@17db835e, com.bzbees.hrma.entities.Tag@4e2bd5f2, com.bzbees.hrma.entities.Tag@52fd8445, com.bzbees.hrma.entities.Tag@7fd21969], agency=com.bzbees.hrma.entities.Agency@61deb293, person=com.bzbees.hrma.entities.Person@3627ea32, userNotifs=[com.bzbees.hrma.entities.Notification@2a2bacb6, com.bzbees.hrma.entities.Notification@2abec15c, com.bzbees.hrma.entities.Notification@1e3e6ab0, com.bzbees.hrma.entities.Notification@5ed82498], userAccount=com.bzbees.hrma.entities.User@3672b5a6}]
+2021-06-09 20:57:12.019 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:57:12.502 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:57:12.502 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@17db835e, com.bzbees.hrma.entities.Tag@4e2bd5f2, com.bzbees.hrma.entities.Tag@52fd8445, com.bzbees.hrma.entities.Tag@7fd21969], agency=com.bzbees.hrma.entities.Agency@61deb293, person=com.bzbees.hrma.entities.Person@3627ea32, userNotifs=[com.bzbees.hrma.entities.Notification@2a2bacb6, com.bzbees.hrma.entities.Notification@2abec15c, com.bzbees.hrma.entities.Notification@1e3e6ab0, com.bzbees.hrma.entities.Notification@5ed82498], userAccount=com.bzbees.hrma.entities.User@3672b5a6}]
+2021-06-09 20:57:12.503 DEBUG 22020 --- [https-jsse-nio-443-exec-1] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:57:12.758 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:57:12.759 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@17db835e, com.bzbees.hrma.entities.Tag@4e2bd5f2, com.bzbees.hrma.entities.Tag@52fd8445, com.bzbees.hrma.entities.Tag@7fd21969], agency=com.bzbees.hrma.entities.Agency@61deb293, person=com.bzbees.hrma.entities.Person@3627ea32, userNotifs=[com.bzbees.hrma.entities.Notification@2a2bacb6, com.bzbees.hrma.entities.Notification@2abec15c, com.bzbees.hrma.entities.Notification@1e3e6ab0, com.bzbees.hrma.entities.Notification@5ed82498], userAccount=com.bzbees.hrma.entities.User@3672b5a6}]
+2021-06-09 20:57:12.760 DEBUG 22020 --- [https-jsse-nio-443-exec-4] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 20:57:12.974 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-09 20:57:12.975 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@17db835e, com.bzbees.hrma.entities.Tag@4e2bd5f2, com.bzbees.hrma.entities.Tag@52fd8445, com.bzbees.hrma.entities.Tag@7fd21969], agency=com.bzbees.hrma.entities.Agency@61deb293, person=com.bzbees.hrma.entities.Person@3627ea32, userNotifs=[com.bzbees.hrma.entities.Notification@2a2bacb6, com.bzbees.hrma.entities.Notification@2abec15c, com.bzbees.hrma.entities.Notification@1e3e6ab0, com.bzbees.hrma.entities.Notification@5ed82498], userAccount=com.bzbees.hrma.entities.User@3672b5a6}]
+2021-06-09 20:57:12.975 DEBUG 22020 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-09 21:02:26.402  INFO 22020 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-06-09 21:02:26.404  INFO 22020 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-09 21:02:26.407  INFO 22020 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
