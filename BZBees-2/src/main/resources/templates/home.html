@@ -295,9 +295,25 @@
                             </div>
 
                             <div class="apply">
+                            	<div sec:authorize="isAnonymous()"> 
+                            		<a class="button-openJob" th:href="@{/applyToJob(jobId=${job.jobId})}"><img src="../css/buttons/openJob2.svg" alt="like"/></a>
                             	
-                                          <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
-                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+                            	</div>
+                            	
+                            	<div sec:authorize="isAuthenticated()">
+                            	
+                            		<button class="button-openJob" th:href="@{/applyToJob(jobId=${job.jobId})}">
+                            		
+                            			<img src="../css/buttons/openJob2.svg" alt="like"/>
+                            			
+                            			
+                            		</button>
+                            	
+                            	
+                            	</div>
+                            	
+                                        <!--   <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
+                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button> -->
                                 <!--ce mai mare tampanie de la facebook incoace !!!!!aaaaaahahahahahahaahahah  -->
 
                             </div>

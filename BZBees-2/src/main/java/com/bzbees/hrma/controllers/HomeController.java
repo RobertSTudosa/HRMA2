@@ -798,6 +798,9 @@ public class HomeController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public String applyToJob(@RequestParam("jobId") long jobId, Model model, Authentication auth, HttpServletResponse httpServletResponse) throws IOException {
 		
+		if(auth == null) {
+			return "user/login";
+		}
 
 		//get the job from the model 
 		Job theJob = (Job) jobServ.findJobById(jobId);
