@@ -7622,3 +7622,101 @@ org.attoparser.ParseException: (Line = 15, Column = 89) Malformed markup: Attrib
 2021-06-10 13:24:04.505  INFO 22332 --- [RMI TCP Connection(125)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
 2021-06-10 13:24:04.506  INFO 22332 --- [RMI TCP Connection(125)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 2021-06-10 13:24:04.509  INFO 22332 --- [RMI TCP Connection(125)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-06-10 14:23:42.152  INFO 14464 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Starting BzBees1Application on DESKTOP-626N0R4 with PID 14464 (C:\Users\rober\git\HRMA2\BZBees-2\target\classes started by rober in C:\Users\rober\git\HRMA2\BZBees-2)
+2021-06-10 14:23:42.155 DEBUG 14464 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Running with Spring Boot v2.2.7.RELEASE, Spring v5.2.6.RELEASE
+2021-06-10 14:23:42.155  INFO 14464 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : The following profiles are active: dev
+2021-06-10 14:23:42.203  INFO 14464 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-06-10 14:23:42.204  INFO 14464 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-06-10 14:23:43.287  INFO 14464 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-06-10 14:23:43.400  INFO 14464 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104ms. Found 16 JPA repository interfaces.
+2021-06-10 14:23:44.238 DEBUG 14464 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-06-10 14:23:44.238 DEBUG 14464 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : Code archive: C:\Users\rober\.m2\repository\org\springframework\boot\spring-boot\2.2.7.RELEASE\spring-boot-2.2.7.RELEASE.jar
+2021-06-10 14:23:44.239 DEBUG 14464 --- [restartedMain] com.bzbees.hrma.security.ServerConfig$1  : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2021-06-10 14:23:44.299  INFO 14464 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 8080 (http)
+2021-06-10 14:23:44.417  INFO 14464 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2213 ms
+2021-06-10 14:23:46.081  INFO 14464 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://209.159.147.190:3306/bpeople_BZBees?autoReconnect=true&serverTimezone=UTC'
+2021-06-10 14:23:47.948  INFO 14464 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-10 14:23:48.771  WARN 14464 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-10 14:23:49.343  INFO 14464 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6bcf1a97, org.springframework.security.web.context.SecurityContextPersistenceFilter@24b3978c, org.springframework.security.web.header.HeaderWriterFilter@50b1b213, org.springframework.security.web.csrf.CsrfFilter@40dde1d0, org.springframework.security.web.authentication.logout.LogoutFilter@7908f79d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@8b56306, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1dd97ce8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@69adf067, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@148b25cb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ddab58b, org.springframework.security.web.session.SessionManagementFilter@2dee4fa3, org.springframework.security.web.access.ExceptionTranslationFilter@3ce667f0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2d27496c]
+2021-06-10 14:23:49.495  INFO 14464 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-10 14:23:50.129  INFO 14464 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-06-10 14:23:50.137  INFO 14464 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-06-10 14:23:50.383  INFO 14464 --- [RMI TCP Connection(3)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-06-10 14:23:50.395  INFO 14464 --- [RMI TCP Connection(3)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2021-06-10 14:23:50.693  INFO 14464 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 8080 (http) with context path ''
+2021-06-10 14:23:50.697  INFO 14464 --- [restartedMain] com.bzbees.hrma.BzBees1Application       : Started BzBees1Application in 8.903 seconds (JVM running for 9.634)
+2021-06-10 14:23:53.891 DEBUG 14464 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-10 14:23:53.893 DEBUG 14464 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors}, , null, org.apache.catalina.session.StandardSessionFacade@6d817f13]
+2021-06-10 14:23:53.893 DEBUG 14464 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-10 14:23:56.020 DEBUG 14464 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-10 14:23:56.021 DEBUG 14464 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER displayHome EXECUTION**************** 
+ com.bzbees.hrma.controllers.HomeController.displayHome () with arguments[s] = [{message=, org.springframework.validation.BindingResult.message=org.springframework.validation.BeanPropertyBindingResult: 0 errors, agenciesList=[com.bzbees.hrma.entities.Agency@5193d03e], jobList=[Scaffolder BpeopleNetherlands, Insulator - IzolatorBpeopleOlanda], jobTagsList=[com.bzbees.hrma.entities.Tag@6bbb29e5, com.bzbees.hrma.entities.Tag@7454a50e, com.bzbees.hrma.entities.Tag@2bda4a0f, com.bzbees.hrma.entities.Tag@7008cebe]}, , null, org.apache.catalina.session.StandardSessionFacade@6d817f13]
+2021-06-10 14:23:56.022 DEBUG 14464 --- [https-jsse-nio-443-exec-9] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-10 14:23:56.521 DEBUG 14464 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-10 14:23:56.521 DEBUG 14464 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@6bbb29e5, com.bzbees.hrma.entities.Tag@7454a50e, com.bzbees.hrma.entities.Tag@2bda4a0f, com.bzbees.hrma.entities.Tag@7008cebe]}]
+2021-06-10 14:23:56.522 DEBUG 14464 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-10 14:23:56.665 DEBUG 14464 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-10 14:23:56.665 DEBUG 14464 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@6bbb29e5, com.bzbees.hrma.entities.Tag@7454a50e, com.bzbees.hrma.entities.Tag@2bda4a0f, com.bzbees.hrma.entities.Tag@7008cebe]}]
+2021-06-10 14:23:56.665 DEBUG 14464 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-10 14:23:56.690 DEBUG 14464 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-10 14:23:56.691 DEBUG 14464 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** BEFORE showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@6bbb29e5, com.bzbees.hrma.entities.Tag@7454a50e, com.bzbees.hrma.entities.Tag@2bda4a0f, com.bzbees.hrma.entities.Tag@7008cebe]}]
+2021-06-10 14:23:56.691 DEBUG 14464 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-10 14:23:57.083 DEBUG 14464 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-10 14:23:57.083 DEBUG 14464 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showAgencyImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showAgencyImg () with arguments[s] = [3, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@6bbb29e5, com.bzbees.hrma.entities.Tag@7454a50e, com.bzbees.hrma.entities.Tag@2bda4a0f, com.bzbees.hrma.entities.Tag@7008cebe]}]
+2021-06-10 14:23:57.084 DEBUG 14464 --- [https-jsse-nio-443-exec-10] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-10 14:23:57.425 DEBUG 14464 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-10 14:23:57.425 DEBUG 14464 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [2, 2, {jobTagsList=[com.bzbees.hrma.entities.Tag@6bbb29e5, com.bzbees.hrma.entities.Tag@7454a50e, com.bzbees.hrma.entities.Tag@2bda4a0f, com.bzbees.hrma.entities.Tag@7008cebe]}]
+2021-06-10 14:23:57.425 DEBUG 14464 --- [https-jsse-nio-443-exec-5] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-10 14:23:57.663 DEBUG 14464 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : 
+ 
+ 
+ 
+2021-06-10 14:23:57.663 DEBUG 14464 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : ***************** AFTER showJobImg EXECUTION**************** 
+ com.bzbees.hrma.controllers.AgencyController.showJobImg () with arguments[s] = [1, 1, {jobTagsList=[com.bzbees.hrma.entities.Tag@6bbb29e5, com.bzbees.hrma.entities.Tag@7454a50e, com.bzbees.hrma.entities.Tag@2bda4a0f, com.bzbees.hrma.entities.Tag@7008cebe]}]
+2021-06-10 14:23:57.663 DEBUG 14464 --- [https-jsse-nio-443-exec-6] c.b.h.logging.ApplicationLoggerAspect    : __________________________________________________________ 
+ 
+ 
+2021-06-10 14:27:54.463  INFO 14464 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-06-10 14:27:54.468  INFO 14464 --- [RMI TCP Connection(9)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-06-10 14:27:54.473  INFO 14464 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
