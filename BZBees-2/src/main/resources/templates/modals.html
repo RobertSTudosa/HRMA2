@@ -6,46 +6,36 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Affiliation required to apply to: </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       	<button type="button" class="btn btn-secondary close" data-dismiss="modal"
+						aria-label="Close" ><span aria-hidden="true">&times;</span></button>
       </div>
 				<div class="modal-body">
 					<h5 th:text="${job.jobTitle} + ' ' + ${job.jobLocation}">job title</h5>
 					
-					<p>
-						Please consider <a role="button" class="btn btn-outline-secondary" ><i id="toSpin" class="fas fa-people-carry fa-sm"></i></a> 
-						
-							affiliating to this agency <!-- <a th:href="@{/agencyProfile(id=${job.theAgency.agencyId})}" role="button"
-							
-							
-							class="btn btn-outline-secondary popover-test" title="Popover title" th:text="${job.theAgency.getAgencyName()}"
-							data-bs-content="Popover body content is set in this attribute."> -->
+					
 							
 							<div id="agency-avatar">
 							
-							<a th:if="${job.theAgency.lastAgencyImageId < 0}" th:href="@{/agencyProfile(id=${job.theAgency.agencyId})}" role="button" class="btn btn-outline-secondary">
-								<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
-							</a> 
-							
-							<a role="button" class="btn btn-outline-secondary">
-							 		<img th:if="${job.theAgency.lastAgencyImageId > 0}"
-										th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">                         
-                           </a>
-                           
-                           <div id="agency-avatar-text" 
-                           		
-								
-								th:text="${job.theAgency.agencyName}">
-                           
-                           </div>
-                          
+							<p>
+							Please consider affiliating <a role="button" class="btn btn-outline-secondary" ><i id="toSpin" class="fas fa-people-carry fa-sm"></i></a> 
+						
+							 to this 
+							<a th:href="@{/agencyProfile(id=${job.theAgency.agencyId})}" class="btn btn-outline-secondary btn-sm"  style="display:inline-block;">
+								<span  th:if="${job.theAgency.lastAgencyImageId < 0}"  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
+								<img th:if="${job.theAgency.lastAgencyImageId > 0}"
+										th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">
+								<span id="agency-avatar-text" style="display:inline-block;"
+								th:text="${job.theAgency.agencyName}"></span>
+							</a> agency 
+							</p>
+
 
                         </div>
 							<!--  button</a> -->
 							
-							<button type="button" class="btn btn-secondary close" data-dismiss="modal"
-						aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+							
 					
-					</p>
+					
 					<hr>
 <!-- 					<h5>Tooltips in a modal</h5>
 					<p>
