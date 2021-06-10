@@ -109,7 +109,7 @@
                             
                             <div th:replace="modals::showJob"></div>
                             
-                            <script type="text/javascript" th:inline="javascript">
+                           <script type="text/javascript" th:inline="javascript">
 						
 							$("#showJobCard" + [[${job.jobId}]])
 								.on('hidden.bs.modal', 
@@ -121,7 +121,7 @@
 								}
 							);
 					
-					</script>
+					</script> 
                             
                             </div>
                                              
@@ -302,29 +302,76 @@
                             	
                             	<div sec:authorize="isAuthenticated()">
                             	
-                            		<button class="button-openJob" th:href="@{/applyToJob(jobId=${job.jobId})}">
+                            		<div th:if="${userAccount.oneAgency == null OR job.theAgency.agencyId != userAccount.oneAgency.agencyId}"> 
+                            		
+                            			
+                            			
+                            			<button class="button-openJob" data-toggle="modal" 
+                            				 	th:data-target="'#askForAffiliation' + ${job.jobId}">
+<!--                             				 th:href="@{/agencyProfile(id=${job.theAgency.agencyId})}"> -->
+                            				<img src="../css/buttons/openJob2.svg" alt="like"/></button>
+                            				<span id="applyBtnText" style="display: inline-block;margin: 0;font-size: 0.6rem;">apply</span>
+                            				
+                            				 <div th:replace="modals::askForAffiliation"></div>
+                            	
+                            		</div>
+                            		
+                            		<div th:if="${userAccount.oneAgency != null AND job.theAgency.agencyId == userAccount.oneAgency.agencyId}">
+                            	
+                            		<button class="button-openJob" th:href="@{/applyToJob(jobId=${job.jobId})}"
+                            				th:attr="onclick=|(applyToJob(${job.jobId}))|"
+                            				th:if="${not #lists.contains(userJobsIdApplied , job.jobId)}">
                             		
                             			<img th:id="openJob + ${job.jobId}" src="../css/buttons/openJob2.svg" alt="like"/>
-                            			<i th:id="appliedJob + ${job.jobId}" class="fas fa-user-check"></i>
+                            			<i th:id="appliedJob + ${job.jobId}" class="fas fa-user-check" style="display: none;"></i>
                             			
                             		</button>
                             		<span th:id="applyBtnText + ${job.jobId}" style="display: inline-block;margin: 0;font-size: 0.6rem;">apply</span>
-                            		<span th:id="appliedBtnText" style="display: inline-block;margin: 0;font-size: 0.6rem;">applied</span>
+                            		<span th:id="appliedBtnText" style="display: inline-block;margin: 0;font-size: 0.6rem;display:none;">applied</span>
 
+                            		  <script th:inline="javascript" type="text/javascript" >
+                                		
+                                function applyToJob(jobId) {
+                                	
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+                                	
+                                	
+                                	$.ajax({
+                                		type: "GET",
+                                		url:"/applyToJob?jobId=" + jobId,
+                                		beforeSend: function() {
+                                			
+                                			$(" #appliedBtnText" + jobId).css('display','flex');
+                                			$(" #applyBtnText" + jobId).css('display','none');
+
+                                		},
+                                		completed: function () {
+                       			
+                                		},
+                                		success: function () {
+	                                		$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
+											$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
+                                		},
+                                		
+                                	
+                                	});
+                                	          
+                                }
+                                
+                                </script>
                             		
-                            		
-                            		<button class="button-openJob" th:href="@{/applyToJob(jobId=${job.jobId})}">
+                            		<button class="button-openJob" th:href="@{/applyToJob(jobId=${job.jobId})}"
+                            			th:if="${ #lists.contains(userJobsIdApplied , job.jobId)}">
                             			<i class="fas fa-user-check"></i>                            			
                             		</button>
-                            		<span id="applyBtnText">applied</span>
-                            	
+                            		<span id="applyBtnText" th:if="${ #lists.contains(userJobsIdApplied , job.jobId)}">applied</span>
                             	
                             	</div>
+                            	</div>
                             	
-                                        <!--   <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
-                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button> -->
-                                <!--ce mai mare tampanie de la facebook incoace !!!!!aaaaaahahahahahahaahahah  -->
-
+                                       
                             </div>
                         </div>
                     
@@ -446,13 +493,13 @@
                             </div>
 
                             <div id="agency-likes">
-                                <button sec:authorize="isAnonymous()" class="button-like" style="background-color: rgba(244, 228, 142, 0.63);" 
+                                <button sec:authorize="isAnonymous()" class="button-like" 
 									th:onclick="@{/login}">
 								<span class="iconify" data-icon="bytesize:heart" data-inline="false" style="color:#B10303; "></span>
 								</button>
 												
                                 <button sec:authorize="isAuthenticated()"  th:if="${#lists.contains(userAgencyLiked, aAgency.agencyId)}"
-                                		style="background-color: rgba(244, 228, 142, 0.63);"
+                                		
                                 	th:attr="onclick=|(pressunlikeAgency(${aAgency.agencyId}))|" class="button-like" th:id="likeButton + ${aAgency.agencyId}">
                                 	<span 
                                 			th:id="'agencyidfull' + ${aAgency.agencyId}"  style="color:#B10303;"
