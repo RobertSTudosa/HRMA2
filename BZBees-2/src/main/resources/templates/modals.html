@@ -363,23 +363,91 @@
                                
                                                              
                                 <div class="like-text" th:id="likes + ${job.jobId}" th:text="${job.jobLikesCount} + ' likes'">256 likes</div>
-                                
-                                
-                                
-                                
-                               
-                                
-                                
+
                                 
                             </div>
 
-                            <div class="apply">
+                           <div class="apply" th:id="read-more-apply + ${job.jobId}">
+                            	<div sec:authorize="isAnonymous()"> 
+                            		<a class="button-openJob" th:href="@{/applyToJob(jobId=${job.jobId})}"><img src="../css/buttons/openJob2.svg" alt="like"/></a>
                             	
-                            
-								
-                                <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
-                                <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
+                            	</div>
+                            	
+                            	<div sec:authorize="isAuthenticated()">
+                            	
+                            		<div th:if="${userAccount.oneAgency == null OR job.theAgency.agencyId != userAccount.oneAgency.agencyId}"> 
+                            		
+                            			
+                            			
+                            			<button class="button-openJob" data-toggle="modal" 
+                            				 	th:data-target="'#askForAffiliation' + ${job.jobId}">
+<!--                             				 th:href="@{/agencyProfile(id=${job.theAgency.agencyId})}"> -->
+                            				<img src="../css/buttons/openJob2.svg" alt="like"/></button>
+                            				<span id="applyBtnTextReadMore" style="display: inline-block;margin: 0;font-size: 0.6rem;">apply</span>
+                            				
+                            				 <div th:replace="modals::askForAffiliation"></div>
+                            	
+                            		</div>
+                            		
+                            		<div th:if="${userAccount.oneAgency != null AND job.theAgency.agencyId == userAccount.oneAgency.agencyId}">
+                            	
+                            		<button class="button-openJob" th:href="@{/applyToJob(jobId=${job.jobId})}"
+                            				th:attr="onclick=|(applyToJobReadMore(${job.jobId}))|"
+                            				th:if="${not #lists.contains(userJobsIdApplied , job.jobId)}">
+                            		
+                            			<img th:id="openJobReadMore + ${job.jobId}" src="../css/buttons/openJob2.svg" alt="like"/>
+                            			<i th:id="appliedJobReadMore + ${job.jobId}" class="fas fa-user-check" style="display: none;"></i>
+                            			
+                            		</button>
+                            		<span th:if="${not #lists.contains(userJobsIdApplied , job.jobId)}" th:id="applyBtnTextReadMore + ${job.jobId}" style="display: inline-block;margin: 0;font-size: 0.6rem;">apply</span>
+                            		<span th:id="appliedBtnTextReadMore + ${job.jobId}" style="display: inline-block;margin: 0;font-size: 0.6rem;display:none;">applied</span>
 
+                            		  <script th:inline="javascript" type="text/javascript" >
+                                		
+                                function applyToJobReadMore(jobId) {
+                                	
+                                		Pace.options = {
+ 									 		ajax: false
+										}
+                                	
+                                	
+                                	$.ajax({
+                                		type: "GET",
+                                		url:"/applyToJob?jobId=" + jobId,
+                                		beforeSend: function() {
+                                		
+                                			$(" #openJobReadMore" + jobId).css('display','none');
+                                			$(" #appliedJobReadMore" + jobId).css('display','flex');
+                                			$(" #appliedBtnTextReadMore" + jobId).css('display','flex');
+                                			$(" #applyBtnTextReadMore" + jobId).css('display','none');
+                                			
+
+                                		},
+                                		completed: function () {
+                       			
+                                		},
+                                		success: function () {
+	                                		$(" #read-more-apply" + jobId).load(window.location.href + " #read-more-apply" + jobId);
+											$(" #apply" + jobId).load(window.location.href + " #apply" + jobId);
+                                		},
+                                		
+                                	
+                                	});
+                                	          
+                                }
+                                
+                                </script>
+                            		
+                            		<button class="button-openJob" 
+                            			th:if="${ #lists.contains(userJobsIdApplied , job.jobId)}">
+                            			<i class="fas fa-user-check"></i>                            			
+                            		</button>
+                            		<span id="applyBtnText" th:if="${ #lists.contains(userJobsIdApplied , job.jobId)}">applied</span>
+                            	
+                            	</div>
+                            	</div>
+                            	
+                                       
                             </div>
                         </div>
                     
