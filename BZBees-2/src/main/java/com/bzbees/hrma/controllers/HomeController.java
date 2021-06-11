@@ -744,7 +744,12 @@ public class HomeController {
 	
 	@GetMapping("/addJobToList")
 	@ResponseStatus(value = HttpStatus.OK)
-	public void addJobToUserList(@RequestParam("jobId") long jobId, Model model, Authentication auth) {
+	public String addJobToUserList(@RequestParam("jobId") long jobId, Model model, Authentication auth) {
+		
+		if(auth == null) {
+			return "user/login";
+		}
+		
 		//get the job by id
 		Job theJob = jobServ.findJobById(jobId);
 		// check if there is authentication 
@@ -790,6 +795,8 @@ public class HomeController {
 		}
 				
 		}
+		
+		return null;
 		
 	}
 	

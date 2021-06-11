@@ -134,17 +134,68 @@
                             <div class="card-interact" th:id="'card-interact' + ${job.jobId}">
 
                                 <div sec:authorize="isAnonymous()">
-                                <button class="button-addToList" style="background-color:#FFFFFF">
+                                <a class="button-addToList" style="background-color:#FFFFFF" th:href="@{/addJobToList(jobId=${job.jobId})}">
                                 	<span class="iconify" data-icon="mdi:clipboard-list" data-inline="false" style="color:#E9D415;background-color:#FFFFFF"></span>
-                                </button>
+                                </a>
                                 
                                 </div>
-                                <button class="button-addToList" style="background-color:#FFFFFF">
-                                	<span class="iconify" data-icon="mdi:clipboard-list" data-inline="false" style="color:#E9D415;background-color:#FFFFFF"></span>
+                                
+                                
+                                <div sec:authorize="isAuthenticated()">
+                                
+                                
+                                	<button class="button-addToList" style="background-color:#FFFFFF" th:if="${not #lists.contains(userJobsInList, job.jobId)}" 
+                                		th:attr="onclick=|(addToList('${job.jobId}'))|">
+                                		<span class="iconify" th:id="notAddedToList + ${job.jobId}"data-icon="mdi:clipboard-list" data-inline="false" style="color:#E9D415;background-color:#FFFFFF"></span>
+                                		<span class="iconify" th:id="addedToList + ${job.jobId}" data-icon="bx:bx-list-check" data-inline="false" style="color:#1F9A01;background-color:#FFFFFF;display:none;"></span>
+                                	</button>
+                                	
+                                	<script type="text/javascript" th:inline="javascript">
+                                	
+                                		function addToList(jobId) {
+                                				Pace.options = {
+ 									 		ajax: false
+											}
+                                	
+                                	
+		                                	$.ajax({
+		                                		type: "GET",
+		                                		url:"/addJobToList?jobId=" + jobId,
+		                                		beforeSend: function() {
+		                                			
+		                                			$(" #addedToList" + jobId).css('display','flex');
+		                                			$(" #notAddedToList" + jobId).css('display','none');
+		                                			
+		
+		                                		},
+		                                		completed: function () {
+		                                		                            			
+		                                		
+		                                			
+		                                		},
+		                                		success: function () {
+		                                			$(" #read-more-card-interact" + jobId).load(window.location.href + " #read-more-card-interact" + jobId);
+		                                			$(" #card-interact" + jobId).load(window.location.href + " #card-interact" + jobId);
+		                                		},
+		                                		
+		                                	
+		                                	});
+                                		
+                                		
+                                		}
+                                	
+                                	
+                                	</script>
+                                
+                                
+                                  
+                                <button class="button-addToList" style="background-color:#FFFFFF" th:if="${ #lists.contains(userJobsInList, job.jobId)}">                            
+                                		<span class="iconify" data-icon="bx:bx-list-check" data-inline="false" style="color:#1F9A01;background-color:#FFFFFF"></span>
                                 </button>
-                                <button class="button-addToList" style="background-color:#FFFFFF">
-                                	<span class="iconify" data-icon="bx:bx-list-check" data-inline="false" style="color:#1F9A01;background-color:#FFFFFF"></span>
-                                </button>
+                                </div>
+                                
+                              
+                                
 
 								<div class="button-share">
     							<details class="buttonShare"  data-popover="down">

@@ -1748,52 +1748,8 @@
 									
 									<td style="text-align: top;">
 									
-									<a th:if="${#authentication.name} == ${userAccount.userName}" 
-										
-										th:attr="onclick=|removeFromList(${job.jobId})|">	
-																														
-											<i class="fas fa-lg" th:id="'toSpinDeleteUserJobList' + ${job.jobId} "></i>
-											<span class="iconify" data-icon="jam:trash-alt-f"
-											data-inline="false" style="color:#1F9A01;" 
-											th:id="'trashIconUserJobList' + ${job.jobId}"></span>
-									</a>
 									
-									<script type="text/javascript" th:inline="javascript">
-										function removeFromList(jobId) {
-										event.preventDefault();
-										Pace.restart();
-										
-										Pace.track(function () {
-										$.ajax({
-											type:"GET",
-											url: "/addJobToList?jobId=" + jobId,
-											
-											beforeSend: function () {
-												if($("#toSpinDeleteUserJobList") + jobId != null) {
-													$("#toSpinDeleteUserJobList" + jobId).addClass('fa-sync-alt fa-spin');
-													
-													$("#trashIconUserJobList" + jobId).css("display","none");
-
-												}
-											
-											},
-											completed: function () {
-												$("#toSpinDeleteUserJobList" + jobId).removeClass('fa-sync-alt fa-spin');
-											
-												$("#trashIconUserJobList" + jobId).css("display","flex");
-											},
-											success: function () {
-											$( " .whishlist").load(window.location.href + " .whishlist");
-											}
-										});
-										});
-									
-									}
 								
-									
-									
-									
-									</script>
 									
 									</td>
 								</tr>

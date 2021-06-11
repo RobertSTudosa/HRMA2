@@ -375,42 +375,7 @@
 
                             <div class="apply">
                             	
-                            	<!-- 	<div th:replace="modals::editAgencyJob"></div>
-	
-
-								trigger the modal for jobEditModal
-								<button sec:authorize="isAuthenticated()"
-							th:if="${#authentication.name} == ${job.theAgency.user.userName}"		 
-									data-toggle="modal" data-target="#editJobModal"
-									th:attrappend="data-target=${job.jobId}">
-									<span class="iconify" data-icon="ant-design:edit-outlined" data-inline="false" 
-									style="background-color: white;"></span>
-									<img src="../css/graphic/edit.png" alt="user" />
-								</button>
-								<form sec:authorize="isAuthenticated()"
-									th:if="${#authentication.name} == ${job.theAgency.user.userName}"		 
-									th:action="@{/agency/makeJobPrivate(id=${job.jobId})}"
-									th:object="${job}" method="post">
-
- 									este true 
-									<button th:if="${ job.isJobPrivate()==true}" th:id="jobPrivate"
-										th:name="jobPrivate" value="false" type="submit">
-										<span class="iconify" id="false"
-											data-icon="ant-design:eye-invisible-outlined"
-											data-inline="false"></span>
-									</button>
-
-									este false
-									<button th:if="${ job.isJobPrivate()==false}"
-										th:id="jobPrivate" th:name="jobPrivate" value="true"
-										type="submit">
-										<span class="iconify" id="true"
-											data-icon="ant-design:eye-outlined" data-inline="false"></span>
-									</button>
-
-
-
-								</form> -->
+                            
 								
                                 <button class="button-applied"><img src="../css/buttons/applied.png" alt="like"/></button>
                                 <button class="button-openJob"><img src="../css/buttons/openJob2.svg" alt="like"/></button>
