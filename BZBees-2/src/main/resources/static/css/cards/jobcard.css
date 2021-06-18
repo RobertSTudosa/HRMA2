@@ -256,6 +256,15 @@ max-height: 48px;
   	font-size: 0.6rem;
 }
 
+#agency-avatar summary {
+	display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .5rem;
+    margin-left: .2rem;
+}
+
 @media screen and (min-width:481px) and (max-width: 780px) {
     .job-card-container {
         grid-template-columns: auto auto;

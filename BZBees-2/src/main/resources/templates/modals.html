@@ -2,6 +2,66 @@
 <body>
 
 <div class="modal fade" th:fragment="askForAffiliation" th:id="askForAffiliation + ${job.jobId}" tabindex="-201" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Affiliation required to apply to: </h5>
+       	<button type="button" class="btn btn-secondary close" data-dismiss="modal"
+						aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+      </div>
+				<div class="modal-body">
+					<h5 th:text="${job.jobTitle} + ' ' + ${job.jobLocation}">job title</h5>
+					
+					
+							
+							<div id="agency-avatar">
+							
+							<p>
+							Please consider affiliating <a role="button" class="btn btn-outline-secondary" ><i id="toSpin" class="fas fa-people-carry fa-sm"></i></a> 
+						
+							 to this 
+							<a th:href="@{/agencyProfile(id=${job.theAgency.agencyId})}" class="btn btn-outline-secondary btn-sm"  style="display:inline-block;">
+								<span  th:if="${job.theAgency.lastAgencyImageId < 0}"  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
+								<img th:if="${job.theAgency.lastAgencyImageId > 0}"
+										th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">
+								<span id="agency-avatar-text" style="display:inline-block;"
+								th:text="${job.theAgency.agencyName}"></span>
+							</a> agency 
+							</p>
+
+
+                        </div>
+							<!--  button</a> -->
+							
+							
+					
+					
+					<hr>
+<!-- 					<h5>Tooltips in a modal</h5>
+					<p>
+						<a href="#" class="tooltip-test" title="Tooltip">This link</a> and
+						<a href="#" class="tooltip-test" title="Tooltip">that link</a>
+						have tooltips on hover.
+					</p> -->
+
+
+				</div>
+<!-- 				<div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+	
+
+</body>
+</html>
+
+<html name="askforReadMoreAffiliation">
+<body>
+
+<div class="modal fade" th:fragment="askForReadMoreAffiliation" th:id="askForReadMoreAffiliation + ${job.jobId}" tabindex="-201" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -380,12 +440,12 @@
                             			
                             			
                             			<button class="button-openJob" data-toggle="modal" 
-                            				 	th:data-target="'#askForAffiliation' + ${job.jobId}">
+                            				 	th:data-target="'#askForReadMoreAffiliation' + ${job.jobId}">
 <!--                             				 th:href="@{/agencyProfile(id=${job.theAgency.agencyId})}"> -->
                             				<img src="../css/buttons/openJob2.svg" alt="like"/></button>
                             				<span id="applyBtnTextReadMore" style="display: inline-block;margin: 0;font-size: 0.6rem;">apply</span>
                             				
-                            				 <div th:replace="modals::askForAffiliation"></div>
+                            				 <div th:replace="modals::askForReadMoreAffiliation"></div>
                             	
                             		</div>
                             		
@@ -1016,8 +1076,9 @@
 												
 											},
 					 						success:function(data) {
-					 						
-												//$( " .job-card").load(window.location.href + " .job-card");														
+					 							document.getElementById("formSubmitAgencyJob").reset();
+					 							//$( " #addJob").load(window.location.href + " #addJob");			
+												//$( " .job-card-container").load(window.location.href + " .job-card-container");														
 												$( " #allAgencyJobs").load(window.location.href + " #allAgencyJobs");
 
 																						

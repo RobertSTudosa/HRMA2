@@ -43,21 +43,67 @@
 					
 					
                         <div id="agency-avatar">
-							
-							<a th:if="${job.theAgency.lastAgencyImageId < 0}">
-								<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
-							</a> 
+                        
+                        <div class="button-share">
+                         <details class="buttonShare"  data-popover="up">
+    								<summary>
+    									
+    									<a th:if="${job.theAgency.lastAgencyImageId < 0}">
+											<span  class="iconify" data-icon="bytesize:work" data-inline="false" ></span>
+											</a> 
 							
 	
-							 <img th:if="${job.theAgency.lastAgencyImageId > 0}"
-										th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">                         
+										 <img th:if="${job.theAgency.lastAgencyImageId > 0}"
+											th:src="@{/agency/img(imgId=${job.theAgency.lastAgencyImageId}, agencyId=${job.theAgency.agencyId})}">                         
                            
-                           <div id="agency-avatar-text" 
-                           		
-								
-								th:text="${job.theAgency.agencyName}">
-                           
-                           </div>
+                	    		       <span id="agency-avatar-text" 
+											th:text="${job.theAgency.agencyName}">   
+        			                   </span>
+    									
+    									
+    								</summary>
+    								
+    								<div class="popover-main">
+    									<h6 style="font-size: 0.6rem;">Agency card: </h6>
+    									<div class="agency-popover">
+    										
+    										<div class="main-agency-popover">
+    											
+    											<div >location : <span th:text="${job.theAgency.legalAddress}" ></span></div>		
+    												
+    											<div id="agencycard-popover-icns">
+                                				    <img src="../css/cards/agencycard_candidates.png" />
+                                    				<h4 th:text="${#lists.size(job.theAgency.affiliatedUsers)}">357</h4>
+                                    				<h6>candidates</h6>
+                                				</div>
+    										
+    										
+    										</div>
+    										<div class="footer-agency-popover"></div>
+    									</div>
+    									
+    									
+    									<script type="text/javascript" th:inline="javascript">
+    										function copyText(jobId) {
+	    										var copyText = document.getElementById("copyText" + jobId);
+	    										console.log(jobId);
+	    										copyText.focus();
+												copyText.select();
+												//copyText.setSelectionRange(0, 99999);//for mobile devices
+												document.execCommand("copy");
+												   										
+    										}
+    									
+    									</script>
+		
+									</div>
+    							
+    							</details>
+    
+                        </div>
+                       
+							
+							
                           
 
                         </div>
@@ -360,9 +406,6 @@
                             	<div sec:authorize="isAuthenticated()">
                             	
                             		<div th:if="${userAccount.oneAgency == null OR job.theAgency.agencyId != userAccount.oneAgency.agencyId}"> 
-                            		
-                            			
-                            			
                             			<button class="button-openJob" data-toggle="modal" 
                             				 	th:data-target="'#askForAffiliation' + ${job.jobId}">
 <!--                             				 th:href="@{/agencyProfile(id=${job.theAgency.agencyId})}"> -->
